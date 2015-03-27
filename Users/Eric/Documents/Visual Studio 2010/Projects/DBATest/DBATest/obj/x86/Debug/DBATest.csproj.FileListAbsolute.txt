@@ -1,8 +1,0 @@
-c:\users\eric\documents\visual studio 2010\Projects\DBATest\DBATest\obj\x86\Debug\DBATest.Form1.resources
-c:\users\eric\documents\visual studio 2010\Projects\DBATest\DBATest\obj\x86\Debug\DBATest.Properties.Resources.resources
-c:\users\eric\documents\visual studio 2010\Projects\DBATest\DBATest\obj\x86\Debug\DBATest.csproj.GenerateResource.Cache
-c:\users\eric\documents\visual studio 2010\Projects\DBATest\DBATest\bin\Debug\DBATest.exe
-c:\users\eric\documents\visual studio 2010\Projects\DBATest\DBATest\bin\Debug\DBATest.pdb
-c:\users\eric\documents\visual studio 2010\Projects\DBATest\DBATest\obj\x86\Debug\DBATest.exe
-c:\users\eric\documents\visual studio 2010\Projects\DBATest\DBATest\obj\x86\Debug\DBATest.pdb
-C:\Users\Eric\documents\visual studio 2010\Projects\DBATest\DBATest\obj\x86\Debug\DBATest.csprojResolveAssemblyReference.cache
