@@ -1,0 +1,7 @@
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\bin\Debug\FrontEndV0.1.exe
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\bin\Debug\FrontEndV0.1.pdb
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Form1.resources
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Properties.Resources.resources
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.csproj.GenerateResource.Cache
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.exe
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.pdb
