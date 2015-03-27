@@ -17,8 +17,8 @@ DROP TABLE STUDENT;
 CREATE TABLE Student ( --links a student id to a name 
 StuID varchar2(10)
 , FirstName varchar2(20) NOT NULL
-, LastName varchar2(20) NOT NULL -- in the pdf it doesn't say that it has to be not null... but that's kinda :/
-, Email varchar2(100) UNIQUE --nullable? Not everyone will have an email right?
+, LastName varchar2(20)
+, Email varchar2(100) UNIQUE NOT NULL
 , ContactNo varchar2(10) NOT NULL
 , Password varchar2(50) NOT NULL -- ie admin assigns pw at the start, could be bday for example
 , PRIMARY KEY (StuID)
@@ -32,7 +32,7 @@ UnitID varchar2 (10)
 );
 
 CREATE TABLE UnitOffering ( -- links unit to a point in time (year and semester) and assigns convener
-UnitID varchar2(10) NOT NULL
+UnitID varchar2(10)
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
 , PRIMARY KEY (UnitID, Semester, Year)
@@ -54,8 +54,8 @@ StuID varchar2(10) NOT NULL
 CREATE TABLE Employee ( --links an employee id to a name
 EmpID varchar2(10)
 , FirstName varchar2(20) NOT NULL
-, LastName varchar2 (20) NOT NULL
-, Email varchar2(100) UNIQUE
+, LastName varchar2 (20)
+, Email varchar2(100) UNIQUE NOT NULL
 , ContactNo varchar2(10) NOT NULL
 , Password varchar2(50) NOT NULL
 , PRIMARY KEY (EmpID)
@@ -68,25 +68,19 @@ Role varchar2(20) -- use a check constraint? Extra points. Ok
 );
 
 CREATE TABLE EmployeeRole ( --Links an employee to a particular role in a particular offered unit 
-EmpID varchar2(10) NOT NULL -- do we need to explicitly say 'not null' for all of these below?
-, Role varchar2(20) NOT NULL
-, UnitID varchar2(20) NOT NULL
-, Semester number(1) NOT NULL
-, Year number(4) NOT NULL
-, PRIMARY KEY (EmpID, Role, UnitID, Semester, Year)
-, FOREIGN KEY (EmpID) REFERENCES Employee
-, FOREIGN KEY (Role) REFERENCES Role
-, FOREIGN KEY (UnitID, Semester, Year) REFERENCES UnitOffering
+EmpID varchar2(10) -- do we need to explicitly say 'not null' for all of these below?
+, Role varchar2(20)
+, PRIMARY KEY (EmpID, Role)
 );
 
 -------------------------------------------------------------------------------------
 
 CREATE TABLE Project ( --Links a projectID (with description) to an offered unit 
-ProjID varchar2(10) NOT NULL
-, ProjDesc varchar2(200) NOT NULL
-, UnitID varchar2(10) NOT NULL
-, Semester number(1) NOT NULL
-, Year number (4) NOT NULL
+ProjID varchar2(10) 
+, ProjDesc varchar2(200) 
+, UnitID varchar2(10) 
+, Semester number(1) 
+, Year number (4) 
 , PRIMARY KEY (ProjID, UnitID, Semester, Year)
 , FOREIGN KEY (UnitID, Semester, Year) REFERENCES UnitOffering
 );
@@ -104,7 +98,7 @@ TeamID varchar2(10) NOT NULL
 , FOREIGN KEY (EmpID, Role, UnitID, Semester, Year) REFERENCES EmployeeRole --need to test
 );
 
-CREATE TABLE TeamAllocation ( --links an enrolled student to a team (which is already assigned to a unit offering)
+CREATE TABLE StudentTeamAllocation ( --links an enrolled student to a team (which is already assigned to a unit offering)
 TeamID varchar2(10) -- do we need 'not null'
 , StuID varchar2(10) -- 'can' be null
 , UnitID varchar2(10) NOT NULL
@@ -118,8 +112,8 @@ TeamID varchar2(10) -- do we need 'not null'
 -------------------------------------------------------------------------------------
 
 CREATE TABLE Meeting ( --Links a team to a meeting for an offered unit
-TeamID varchar2(10) NOT NULL
-, MeetingNo number(2) NOT NULL --thus will be limited to 99 meetings, but I 
+TeamID varchar2(10) 
+, MeetingID number(2) NOT NULL --thus will be limited to 99 meetings, but I 
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
@@ -129,7 +123,7 @@ TeamID varchar2(10) NOT NULL
 , Minutes varchar2(1000) --not null?
 , ActionItems varchar2(1000) --not null?
 , EmpID varchar2(10) NOT NULL --the supervisor (retrieved from the team table)
-, PRIMARY KEY (TeamID, MeetingNo) --include MeetingID, UnitID, Semester, Year...?
+, PRIMARY KEY (MeetingID) --include MeetingID, UnitID, Semester, Year...?
 , FOREIGN KEY (TeamID) REFERENCES Team
 );
 
@@ -137,8 +131,8 @@ CREATE TABLE MeetingAttendance ( --Links a student to a meeting
 MeetingNo number(2) NOT NULL
 , TeamID varchar2(10) NOT NULL
 , StuID varchar2(10) NOT NULL
-, PRIMARY KEY (TeamID, MeetingNo, StuID)
-, FOREIGN KEY (TeamID, MeetingNo) REFERENCES Meeting
+, PRIMARY KEY (TeamID, MeetingID, StuID)
+, FOREIGN KEY (TeamID, MeetingID) REFERENCES Meeting
 , FOREIGN KEY (TeamID, StuID) REFERENCES TeamAllocation
 );
 

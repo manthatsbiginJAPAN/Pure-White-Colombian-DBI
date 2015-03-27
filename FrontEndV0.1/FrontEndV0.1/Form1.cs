@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Oracle.DataAccess.Client; //Libaries to hook into Swinburne Oracle
+using Oracle.DataAccess.Client; //Libraries to hook into Swinburne Oracle
 
 namespace FrontEndV0._1
 {
