@@ -14,12 +14,51 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
 
 
+CREATE OR REPLACE PROCEDURE UC1_2_Update_Employee
+		(pEmpID varchar2, 
+       	 pFirstName varchar2,
+       	 pLastName varchar2,
+       	 pEmail varchar2,
+       	 pContactNo varchar2,
+       	 pPassword varchar2) AS
+BEGIN
+	UPDATE Employee
+	SET FirstName = pFirstName,
+		LastName = pLastName,
+		Email = pEmail,
+		ContactNo = pContactNo,
+		Password = pPassword
+	WHERE EmpID = pEmpID;
+	dbms_output.put_line('Employee ' || pEmpID || ' updated' );
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
 
 
+CREATE or REPLACE PROCEDURE UC1_3_View_Employee AS
+	e Employee%ROWTYPE;
+	CURSOR emps IS SELECT * FROM Employee Emp;
+BEGIN
+	dbms_output.put_line('Listing All Employee Details');
+	OPEN emps;
+	LOOP
+		Fetch emps into e;
+		Exit When emps%NOTFOUND;
+		dbms_output.put_line('Employee ID: '|| e.EmpId || ' First Name: ' ||e.FirstName|| ' Last Name: ' ||e.LastName|| ' Email: ' || e.Email || ' ContactNo:' || e.ContactNo);
+	End Loop;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
 
+/
 
 
 CREATE OR REPLACE PROCEDURE UC1_9_Register_Student
@@ -38,8 +77,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-/
 
+/
 
 
 CREATE OR REPLACE PROCEDURE UC1_10_Update_Student
@@ -50,24 +89,20 @@ CREATE OR REPLACE PROCEDURE UC1_10_Update_Student
        	 pContactNo varchar2,
        	 pPassword varchar2) AS
 BEGIN
-	UDPATE Student
+	UPDATE Student
 	SET FirstName = pFirstName,
 		LastName = pLastName,
 		Email = pEmail,
 		ContactNo = pContactNo,
-		Password = pPassword)
+		Password = pPassword
 	WHERE StuID = pStuID;
 	dbms_output.put_line('Student ' || pStuID || ' updated' );
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
-
-
-
-
-
 
 
 CREATE OR REPLACE PROCEDURE UC1_5_Register_Unit
@@ -83,12 +118,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
-
-
-
-
-
 
 
 CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
@@ -104,12 +135,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
-
-
-
-
-
 
 
 CREATE OR REPLACE PROCEDURE UC1_13_Register_Enrolment
@@ -126,4 +153,6 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
+

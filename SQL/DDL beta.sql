@@ -214,7 +214,7 @@
 		, PRIMARY KEY (AssID, UnitID, Semester, Year, StuID)
 		, FOREIGN KEY (AssID, UnitID, Semester, Year) REFERENCES Assessment
 		, FOREIGN KEY (StuID, UnitID, Semester, Year) REFERENCES Enrolment -- Does UnitID, Semester, Year need to reference all 3?
-		, FOREIGN KEY (TeamID) REFERENCES Team 
+		, FOREIGN KEY (TeamID) REFERENCES Team -- Should this reference StudentTeamAllocation to match ERD?
 		);
 
 		-------------------------------------------------------------------------------------	
