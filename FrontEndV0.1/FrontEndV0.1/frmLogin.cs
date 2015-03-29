@@ -25,7 +25,8 @@ namespace FrontEndV0._1
             //OracleConnection conn = new OracleConnection(oradb); //C# Syntax
             //conn.Open();
 
-            MessageBox.Show("Connection created successfully");
+            frmAddStudent frm = new frmAddStudent();
+            frm.Show();
 
             //conn.Close();
         }
