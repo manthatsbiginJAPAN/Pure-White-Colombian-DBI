@@ -7,14 +7,13 @@ CREATE OR REPLACE PROCEDURE UC1_1_Register_Employee
        	 pPassword varchar2) AS
 BEGIN
 	INSERT INTO Employee VALUES (pEmpID, pFirstName, pLastName, pEmail, pContactNo, pPassword);
-	dbms_output.put_line('Employee ' || pEmpID || ' added' );
+	dbms_output.put_line('Employee ' || pEmpID || ' added' ); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Employee ID  ' || pEmpID || ' already exists');
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-
 /
 
 
@@ -33,12 +32,11 @@ BEGIN
 		ContactNo = pContactNo,
 		Password = pPassword
 	WHERE EmpID = pEmpID;
-	dbms_output.put_line('Employee ' || pEmpID || ' updated' );
+	dbms_output.put_line('Employee ' || pEmpID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-
 /
 
 
@@ -51,13 +49,28 @@ BEGIN
 	LOOP
 		Fetch emps into e;
 		Exit When emps%NOTFOUND;
-		dbms_output.put_line('Employee ID: '|| e.EmpId || ' First Name: ' ||e.FirstName|| ' Last Name: ' ||e.LastName|| ' Email: ' || e.Email || ' ContactNo:' || e.ContactNo);
+		dbms_output.put_line('Employee ID: '|| e.EmpId --for testing
+						 || ' First Name: ' ||e.FirstName
+						 || ' Last Name: ' ||e.LastName
+						 || ' Email: ' || e.Email
+						 || ' ContactNo:' || e.ContactNo); 
 	End Loop;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
 End;
+/
 
+CREATE OR REPLACE PROCEDURE UC1_4_Delete_Employee
+		(pEmpID varchar2) AS
+BEGIN
+	Delete Employee
+	WHERE EmpID = pEmpID;
+	dbms_output.put_line('Employee ' || pEmpID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
 /
 
 
@@ -70,7 +83,7 @@ CREATE OR REPLACE PROCEDURE UC1_9_Register_Student
        	 pPassword varchar2) AS
 BEGIN
 	INSERT INTO Student VALUES (pStuID, pFirstName, pLastName, pEmail, pContactNo, pPassword);
-	dbms_output.put_line('Student ' || pStuID || ' added' );
+	dbms_output.put_line('Student ' || pStuID || ' added' );--for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Student ID ' || pStuID || ' already exists');
@@ -96,7 +109,7 @@ BEGIN
 		ContactNo = pContactNo,
 		Password = pPassword
 	WHERE StuID = pStuID;
-	dbms_output.put_line('Student ' || pStuID || ' updated' );
+	dbms_output.put_line('Student ' || pStuID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
@@ -111,7 +124,7 @@ CREATE OR REPLACE PROCEDURE UC1_5_Register_Unit
        	 pUnitDesc varchar2) AS
 BEGIN
 	INSERT INTO Unit VALUES (pUnitID, pUnitName, pUnitDesc);
-	dbms_output.put_line('Unit ' || pUnitID || ' added' );
+	dbms_output.put_line('Unit ' || pUnitID || ' added' ); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Unit ID ' || pUnitID || ' already exists');
@@ -128,7 +141,7 @@ CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
        	 pYear number) AS
 BEGIN
 	INSERT INTO UnitOffering VALUES (pUnitID, pSemester, pYear);
-	dbms_output.put_line('Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear);
+	dbms_output.put_line('Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Unit offering ' || pUnitID || ' already exists for semester ' || pSemester || ', ' || pYear);
@@ -146,7 +159,10 @@ CREATE OR REPLACE PROCEDURE UC1_13_Register_Enrolment
        	 pYear number) AS
 BEGIN
 	INSERT INTO Enrolment VALUES (pStuID, pUnitID, pSemester, pYear);
-	dbms_output.put_line('Student ' || pStuID || ' enrolled ' || pUnitID || ' semester ' || pSemester || ', ' || pYear);
+	dbms_output.put_line('Student ' || pStuID --for testing
+					|| ' enrolled ' || pUnitID
+					|| ' semester ' || pSemester
+					|| ', ' || pYear); 
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Student ' || pStuID || ' already enrolled in ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear);
