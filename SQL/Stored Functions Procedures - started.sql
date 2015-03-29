@@ -1,3 +1,27 @@
+CREATE OR REPLACE PROCEDURE UC1_1_Register_Employee
+		( pEmpID varchar2, 
+       	 pFirstName varchar2,
+       	 pLastName varchar2,
+       	 pEmail varchar2,
+       	 pContactNo varchar2,
+       	 pPassword varchar2) AS
+BEGIN
+	INSERT INTO Employee VALUES (pEmpID, pFirstName, pLastName, pEmail, pContactNo, pPassword);
+	dbms_output.put_line('Employee ' || pEmpID || ' added' );
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Employee ID  ' || pEmpID || ' already exists');
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
+
+
+
+
 CREATE OR REPLACE PROCEDURE UC1_9_Register_Student
 		(pStuID varchar2, 
        	 pFirstName varchar2,
