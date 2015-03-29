@@ -18,6 +18,32 @@ END;
 
 
 
+CREATE OR REPLACE PROCEDURE UC1_10_Update_Student
+		(pStuID varchar2, 
+       	 pFirstName varchar2,
+       	 pLastName varchar2,
+       	 pEmail varchar2,
+       	 pContactNo varchar2,
+       	 pPassword varchar2) AS
+BEGIN
+	UDPATE Student
+	SET FirstName = pFirstName,
+		LastName = pLastName,
+		Email = pEmail,
+		ContactNo = pContactNo,
+		Password = pPassword)
+	WHERE StuID = pStuID;
+	dbms_output.put_line('Student ' || pStuID || ' updated' );
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
+
+
 
 
 CREATE OR REPLACE PROCEDURE UC1_5_Register_Unit
