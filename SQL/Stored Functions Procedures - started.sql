@@ -74,6 +74,81 @@ END;
 /
 
 
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE UC1_5_Register_Unit
+		( pUnitID varchar2, 
+       	 pUnitName varchar2,
+       	 pUnitDesc varchar2) AS
+BEGIN
+	INSERT INTO Unit VALUES (pUnitID, pUnitName, pUnitDesc);
+	dbms_output.put_line('Unit ' || pUnitID || ' added' ); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Unit ID  ' || pUnitID || ' already exists');
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE UC1_6_Update_Unit
+		(pUnitID varchar2, 
+       	 pUnitName varchar2,
+       	 pUnitDesc varchar2) AS
+BEGIN
+	UPDATE Unit
+	SET UnitName = pUnitName,
+		UnitDesc = pUnitDesc
+	WHERE UnitID = pUnitID;
+	dbms_output.put_line('Unit ' || pUnitID || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE or REPLACE PROCEDURE UC1_7_View_Unit AS
+	u Unit%ROWTYPE;
+	CURSOR units IS SELECT * FROM Unit;
+BEGIN
+	dbms_output.put_line('Listing All Unit Details');
+	OPEN units;
+	LOOP
+		Fetch units into u;
+		Exit When units%NOTFOUND;
+		dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
+						 || ' Unit Name: ' || u.UnitName
+						 || ' Unit Description: ' || u.UnitDesc);
+	End Loop;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
+
+CREATE OR REPLACE PROCEDURE UC1_8_Delete_Unit
+		(pUnitID varchar2) AS
+BEGIN
+	Delete Unit
+	WHERE UnitID = pUnitID;
+	dbms_output.put_line('Unit ' || pUnitID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
+
+
 CREATE OR REPLACE PROCEDURE UC1_9_Register_Student
 		(pStuID varchar2, 
        	 pFirstName varchar2,
@@ -90,7 +165,6 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-
 /
 
 
@@ -114,42 +188,10 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-
 /
 
 
-CREATE OR REPLACE PROCEDURE UC1_5_Register_Unit
-		(pUnitID varchar2, 
-       	 pUnitName varchar2,
-       	 pUnitDesc varchar2) AS
-BEGIN
-	INSERT INTO Unit VALUES (pUnitID, pUnitName, pUnitDesc);
-	dbms_output.put_line('Unit ' || pUnitID || ' added' ); --for testing
-EXCEPTION
-	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Unit ID ' || pUnitID || ' already exists');
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
 
-/
-
-
-CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
-		(pUnitID varchar2, 
-       	 pSemester number,
-       	 pYear number) AS
-BEGIN
-	INSERT INTO UnitOffering VALUES (pUnitID, pSemester, pYear);
-	dbms_output.put_line('Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
-EXCEPTION
-	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Unit offering ' || pUnitID || ' already exists for semester ' || pSemester || ', ' || pYear);
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-
-/
 
 
 CREATE OR REPLACE PROCEDURE UC1_13_Register_Enrolment
@@ -169,6 +211,102 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-
 /
 
+
+
+CREATE OR REPLACE PROCEDURE UC1_19_Update_Role -- think we're going to have problems with this
+		(pRole varchar2) AS
+BEGIN
+	UPDATE RoleType
+	SET Role = pRole,
+	WHERE Role = pRole;
+	dbms_output.put_line('Role ' || pRole || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE UC1_20_Delete_Role
+		(pRole varchar2) AS
+BEGIN
+	Delete RoleType
+	WHERE Role = pRole;
+	dbms_output.put_line('Role ' || pRole || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
+CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
+		(pUnitID varchar2, 
+       	 pSemester number,
+       	 pYear number) AS
+BEGIN
+	INSERT INTO UnitOffering VALUES (pUnitID, pSemester, pYear);
+	dbms_output.put_line('Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Unit offering ' || pUnitID || ' already exists for semester ' || pSemester || ', ' || pYear);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE or REPLACE PROCEDURE UC1_22_View_Unit_Offering AS
+	uo UnitOffering%ROWTYPE;
+	CURSOR uos IS SELECT * FROM UnitOffering;
+BEGIN
+	dbms_output.put_line('Listing All Unit Offerings');
+	OPEN uos;
+	LOOP
+		Fetch uos into uo;
+		Exit When uos%NOTFOUND;
+		dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
+						 || ' Semester: ' || uo.semester
+						 || ' Year: ' || uo.Year); 
+	End Loop;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
+
+
+CREATE OR REPLACE PROCEDURE UC1_23_Update_Unit_Offering
+		(pUnitID varchar2, 
+       	 pSemester number,
+       	 pYear number) AS
+BEGIN
+	UPDATE UnitOffering
+	SET UnitID = pUnitID, -- test this, idk it's possible to update the primary key of the row you've searched for USING it's original primary key...
+		Semester = pSemester,
+		Year = pYear
+	WHERE pUnitID = pUnitID AND Semester = pSemester AND Year = pYear;
+	dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' updated'); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE UC1_24_Delete_UnitOffering
+		(pUnitID varchar2, 
+       	 pSemester number,
+       	 pYear number) AS
+BEGIN
+	Delete UnitOffering
+	WHERE pUnitID = pUnitID AND Semester = pSemester AND Year = pYear;
+	dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' deleted'); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/

@@ -8,7 +8,7 @@
 		DROP TABLE Team CASCADE CONSTRAINTS;
 		DROP TABLE Project CASCADE CONSTRAINTS;
 		DROP TABLE EmployeeRole CASCADE CONSTRAINTS;
-		DROP TABLE Role CASCADE CONSTRAINTS;
+		DROP TABLE RoleType CASCADE CONSTRAINTS;
 		DROP TABLE Employee CASCADE CONSTRAINTS;
 		DROP TABLE Enrolment CASCADE CONSTRAINTS;
 		DROP TABLE UnitOffering CASCADE CONSTRAINTS;
@@ -73,7 +73,7 @@
 
 		/
 
-		CREATE TABLE Role ( --lists the number of roles available (ie convener, admin and supervisor)
+		CREATE TABLE RoleType ( --lists the number of roles available (ie convener, admin and supervisor)
 		Role varchar2(20) -- use a check constraint? Extra points. Ok
 		--, RoleDescription varchar2 (200) -- probably not neccessary..?
 		, PRIMARY KEY (Role)
@@ -86,7 +86,7 @@
 		, Role varchar2(20)
 		, PRIMARY KEY (EmpID, Role)
 		, FOREIGN KEY (EmpID) REFERENCES Employee
-		, FOREIGN KEY (Role) REFERENCES Role
+		, FOREIGN KEY (Role) REFERENCES RoleType
 		);
 
 		/
