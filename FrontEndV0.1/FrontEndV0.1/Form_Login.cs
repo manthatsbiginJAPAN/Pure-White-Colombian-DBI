@@ -10,20 +10,18 @@ using Oracle.DataAccess.Client; //Libraries to hook into Swinburne Oracle
 
 namespace FrontEndV0._1
 {
-    public partial class Form1 : Form
+    public partial class Form_Login : Form
     {
-        public Form1()
+        public Form_Login()
         {
             InitializeComponent();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Form_Login frm = new Form_Login();
-            frm.Show();
-
+            
             string oradb;
-            oradb = "Data Source=ictoraclesvm1.ict.swin.edu.au/dba;User Id=" + txtUser.Text.ToString() + ";Password=" + txtPass.Text.ToString() + ";";
+            oradb = "Data Source=ictoraclesvm1.ict.swin.edu.au/dba;User Id=" + txtUsername.Text.ToString() + ";Password=" + txtPassword.Text.ToString() + ";";
             //OracleConnection conn = new OracleConnection(oradb); //C# Syntax
             //conn.Open();
 

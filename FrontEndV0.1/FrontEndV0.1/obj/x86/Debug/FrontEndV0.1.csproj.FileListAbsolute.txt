@@ -15,3 +15,13 @@ C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\o
 C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Form1.resources
 C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Properties.Resources.resources
 C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.csproj.GenerateResource.Cache
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.exe
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.pdb
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.csprojResolveAssemblyReference.cache
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Form1.resources
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Form_Login.resources
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Properties.Resources.resources
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.csproj.GenerateResource.Cache
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\bin\Debug\FrontEndV0.1.exe
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\bin\Debug\FrontEndV0.1.pdb
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Student_Welcome.resources
