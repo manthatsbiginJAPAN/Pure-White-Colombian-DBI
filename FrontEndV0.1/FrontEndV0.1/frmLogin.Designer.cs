@@ -1,6 +1,6 @@
 ﻿namespace FrontEndV0._1
 {
-    partial class Form_Login
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.

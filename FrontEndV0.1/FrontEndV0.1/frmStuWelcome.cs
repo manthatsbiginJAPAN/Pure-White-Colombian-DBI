@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace FrontEndV0._1
 {
-    public partial class Employee_Welcome : Form
+    public partial class frmStuWelcome : Form
     {
-        public Employee_Welcome()
+        public frmStuWelcome()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace FrontEndV0._1
 {
-    partial class Employee_Welcome
+    partial class frmEmpWelcome
     {
         /// <summary>
         /// Required designer variable.

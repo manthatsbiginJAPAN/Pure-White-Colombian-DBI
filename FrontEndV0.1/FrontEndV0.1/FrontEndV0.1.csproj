@@ -48,37 +48,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee_Welcome.cs">
+    <Compile Include="frmEmpWelcome.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Employee_Welcome.Designer.cs">
-      <DependentUpon>Employee_Welcome.cs</DependentUpon>
+    <Compile Include="frmEmpWelcome.Designer.cs">
+      <DependentUpon>frmEmpWelcome.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmDBLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmDBLogin.Designer.cs">
+      <DependentUpon>frmDBLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Login.cs">
+    <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Login.Designer.cs">
-      <DependentUpon>Form_Login.cs</DependentUpon>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Student_Welcome.cs">
+    <Compile Include="frmStuWelcome.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Student_Welcome.Designer.cs">
-      <DependentUpon>Student_Welcome.cs</DependentUpon>
+    <Compile Include="frmStuWelcome.Designer.cs">
+      <DependentUpon>frmStuWelcome.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="frmDBLogin.resx">
+      <DependentUpon>frmDBLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Login.resx">
-      <DependentUpon>Form_Login.cs</DependentUpon>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,8 +89,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Student_Welcome.resx">
-      <DependentUpon>Student_Welcome.cs</DependentUpon>
+    <EmbeddedResource Include="frmStuWelcome.resx">
+      <DependentUpon>frmStuWelcome.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
