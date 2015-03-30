@@ -53,7 +53,7 @@ BEGIN
 						 || ' First Name: ' ||e.FirstName
 						 || ' Last Name: ' ||e.LastName
 						 || ' Email: ' || e.Email
-						 || ' Con	tactNo:' || e.ContactNo); 
+						 || ' ContactNo:' || e.ContactNo); 
 	End Loop;
 EXCEPTION
 	When Others Then
@@ -335,7 +335,7 @@ END;
 
 
 
-CREATE OR REPLACE PROCEDURE UC1_17_Register_RoleType
+CREATE OR REPLACE PROCEDURE UC1_17_Register_Role_Type
 		(pRole varchar2) AS
 BEGIN
 	INSERT INTO RoleType VALUES (pRole);
@@ -349,7 +349,7 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_18_View_RoleType RETURN CURSOR AS
+CREATE or REPLACE FUNCTION UC1_18_View_Role_Type RETURN CURSOR AS
 	r RoleType%ROWTYPE;
 	CURSOR roles IS SELECT * FROM RoleType;
 BEGIN
@@ -369,7 +369,7 @@ End;
 
 
 
-CREATE OR REPLACE PROCEDURE UC1_19_Update_Role -- think we're going to have problems with this
+CREATE OR REPLACE PROCEDURE UC1_19_Update_Role_Type -- think we're going to have problems with this
 		(pRole varchar2, NewRole varchar2) AS
 BEGIN
 	UPDATE RoleType
@@ -383,7 +383,7 @@ END;
 /
 
 
-CREATE OR REPLACE PROCEDURE UC1_20_Delete_Role
+CREATE OR REPLACE PROCEDURE UC1_20_Delete_Role_Type
 		(pRole varchar2) AS
 BEGIN
 	Delete RoleType
@@ -470,6 +470,216 @@ BEGIN
 	Delete UnitOffering
 	WHERE pUnitID = pUnitID AND Semester = pSemester AND Year = pYear;
 	dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' deleted'); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE UC1_25_Register_Employee_Role
+		( pEmpID varchar2, 
+       	 pRole varchar2) AS
+BEGIN
+	INSERT INTO EmployeeRole VALUES (pEmpID, pRole);
+	dbms_output.put_line('Employee ' || pEmpID || ' added as ' || pRole); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Employee ' || pEmpID || ' already ' || pRole);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN CURSOR AS
+	er EmployeeRole%ROWTYPE;
+	CURSOR emproles IS SELECT * FROM EmployeeRole;
+BEGIN
+	dbms_output.put_line('Listing All Employee Details');
+	OPEN emproles;
+	LOOP
+		Fetch emproles into er;
+		Exit When emproles%NOTFOUND;
+		dbms_output.put_line('Employee ID: '|| er.EmpId --for testing
+						 || ' Role: ' || er.Role); 
+	End Loop;
+	Return emproles;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
+
+
+CREATE OR REPLACE PROCEDURE UC1_27_Update_Employee_Role
+		(pEmpID varchar2, 
+       	 pRole varchar2,
+       	 NewEmpID varchar2,
+       	 NewRole varchar2) AS
+BEGIN
+	UPDATE EmployeeRole
+	SET EmpID = NewEmpID,
+		Role = NewRole
+	WHERE EmpID = pEmpID AND Role = pRole;
+	dbms_output.put_line('Employee ' || pEmpID || ' updated as ' || pRole); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE UC1_28_Delete_Employee_Role
+		(pEmpID varchar2, pRole varchar2) AS
+BEGIN
+	Delete EmployeeRole
+	WHERE EmpID = pEmpID AND Role = pRole;
+	dbms_output.put_line('Employee ' || pEmpID || ' deleted as ' || pRole); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
+
+
+	
+
+
+CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Role_Type
+		(pMeetType varchar2) AS
+BEGIN
+	INSERT INTO MeetingType VALUES (pMeetType);
+	dbms_output.put_line(pMeetType || ' meeting type added'); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting type ' || pMeetType || ' already exists');
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE or REPLACE FUNCTION UC1_30_View_Meeting_Type RETURN CURSOR AS
+	mt MeetingType%ROWTYPE;
+	CURSOR mts IS SELECT * FROM MeetingType;
+BEGIN
+	dbms_output.put_line('Listing All Meeting types');
+	OPEN mts;
+	LOOP
+		Fetch mt into mts;
+		Exit When mt%NOTFOUND;
+		dbms_output.put_line('Meeting type: '|| mt.MeetingType);
+	End Loop;
+	Return mts;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
+
+
+
+CREATE OR REPLACE PROCEDURE UC1_31_Update_Meeting_Type -- think we're going to have problems with this
+		(pMeetType varchar2, NewMeetType varchar2) AS
+BEGIN
+	UPDATE MeetingType
+	SET MeetType = NewMeetType,
+	WHERE MeetType = pMeetType;
+	dbms_output.put_line('Meeting type ' || pMeetType || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE UC1_32_Delete_Meeting_Type
+		(pMeetType varchar2) AS
+BEGIN
+	Delete MeetingType
+	WHERE MeetType = pMeetType;
+	dbms_output.put_line('Meeting type ' || pMeetType || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE UC1_33_Register_Assessment_Type
+		(pAssType varchar2, pTypeDesc varchar2) AS
+BEGIN
+	INSERT INTO AssessmentType VALUES (pAssType, pTypeDesc);
+	dbms_output.put_line(pAssType || ' Assessment type added'); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Assessment type ' || pAssessmentType || ' already exists');
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type RETURN CURSOR AS
+	at AssessmentType%ROWTYPE;
+	CURSOR ats IS SELECT * FROM MeetingType;
+BEGIN
+	dbms_output.put_line('Listing All Meeting types');
+	OPEN ats;
+	LOOP
+		Fetch at into mts;
+		Exit When mt%NOTFOUND;
+		dbms_output.put_line('Meeting type: '|| mt.MeetingType);
+	End Loop;
+	Return mts;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
+
+
+
+CREATE OR REPLACE PROCEDURE UC1_35_Update_Assessment_Type -- think we're going to have problems with this
+		(pAssType varchar2,
+		 pTypeDesc varchar2,
+		 NewAssType varchar2) AS
+BEGIN
+	UPDATE AssessmentType
+	SET AssType = NewAssType,
+	WHERE AssType = pAssType;
+	dbms_output.put_line('Assessment type ' || pAssType || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE UC1_36_Delete_Assessment_Type
+		(pAssType varchar2) AS
+BEGIN
+	Delete AssessmentType
+	WHERE AssType = pAssType;
+	dbms_output.put_line('Assessment type ' || pAssType || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
