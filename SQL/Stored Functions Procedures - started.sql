@@ -152,6 +152,8 @@ END;
 
 
 
+
+
 CREATE OR REPLACE PROCEDURE UC1_9_Register_Student
 		(pStuID varchar2, 
        	 pFirstName varchar2,
@@ -176,15 +178,13 @@ CREATE OR REPLACE PROCEDURE UC1_10_Update_Student
        	 pFirstName varchar2,
        	 pLastName varchar2,
        	 pEmail varchar2,
-       	 pContactNo varchar2,
-       	 pPassword varchar2) AS
+       	 pContactNo varchar2) AS
 BEGIN
 	UPDATE Student
 	SET FirstName = pFirstName,
 		LastName = pLastName,
 		Email = pEmail,
 		ContactNo = pContactNo,
-		Password = pPassword
 	WHERE StuID = pStuID;
 	dbms_output.put_line('Student ' || pStuID || ' updated' ); --for testing
 EXCEPTION
@@ -236,6 +236,9 @@ END;
 
 
 
+
+
+
 CREATE OR REPLACE PROCEDURE UC1_13_Register_Enrolment
 		(pStuID varchar2,	
 		 pUnitID varchar2, 
@@ -266,11 +269,11 @@ CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment
        	 NewYear number) AS
 BEGIN
 	UPDATE Enrolment
-	SET FirstName = NewFirstName,
-		LastName = NewLastName,
-		Email = NewEmail,
-		ContactNo = NewContactNo,
-	WHERE StuID = pStuID AND  
+	SET StuID = NewStuID,
+		UnitID = NewUnitID,
+		Semester = NewSemester,
+		Year = NewYear,
+	WHERE StuID = pStuID AND UnitID = pUnitID AND Semester = pSemester AND Year = pYear;
 	dbms_output.put_line('Enrolment of Student: ' || pStuID || 
 									 ' for unit ' || pUnitID ||
 									 ' semester ' || pSemester ||
@@ -284,21 +287,20 @@ END;
 
 
 CREATE or REPLACE FUNCTION UC1_15_View_Enrolment RETURN CURSOR AS
-	e Student%ROWTYPE;
-	CURSOR students IS SELECT * FROM Student;
+	e enrolmentt%ROWTYPE;
+	CURSOR enrolments IS SELECT * FROM Student;
 BEGIN
 	dbms_output.put_line('Listing All Student Enrolments');
 	OPEN enrolments;
 	LOOP
-		Fetch students into s;
-		Exit When students%NOTFOUND;
-		dbms_output.put_line('Student ID: '|| s.StuId --for testing
-						 || ' FirstName: ' || s.FirstName
-						 || ' LastName: ' || s.LastName
-						 || ' Email: ' || s.Email
-						 || ' ContactNo: ' || s.ContactNo);
+		Fetch enrolments into e;
+		Exit When enrolments%NOTFOUND;
+		dbms_output.put_line('Student ID: '|| e.StuId --for testing
+						 || ' UnitID: ' || e.UnitID
+						 || ' Semester: ' || e.Semester
+						 || ' Year: ' || e.Year);
 	End Loop;
-	Return students;
+	Return enrolments;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -306,17 +308,64 @@ End;
 /
 
 CREATE OR REPLACE PROCEDURE UC1_16_Delete_Enrolment
-		(pStuID varchar2) AS
+		(pStuID varchar2,	
+		 pUnitID varchar2, 
+       	 pSemester number,
+       	 pYear number) AS
 BEGIN
-	Delete Student
-	WHERE StuId = pStuID;
-	dbms_output.put_line('Student ' || pStuID || ' deleted' ); --for testing
+	Delete Enrolment
+	WHERE StuID = pStuID AND UnitID = pUnitID AND Semester = pSemester AND Year = pYear;
+	dbms_output.put_line('Enrolment of Student: ' || pStuID || 
+									 ' for unit ' || pUnitID ||
+									 ' semester ' || pSemester ||
+									 ', ' || pYear|| ' deleted'); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
 
+
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE UC1_17_Register_RoleType
+		(pRole varchar2) AS
+BEGIN
+	INSERT INTO RoleType VALUES (pRole);
+	dbms_output.put_line(pRole || ' roll added '); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Role ' || pRole || ' already exists');
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+CREATE or REPLACE FUNCTION UC1_18_View_RoleType RETURN CURSOR AS
+	r RoleType%ROWTYPE;
+	CURSOR roles IS SELECT * FROM RoleType;
+BEGIN
+	dbms_output.put_line('Listing All Role types');
+	OPEN roles;
+	LOOP
+		Fetch roles into r;
+		Exit When roles%NOTFOUND;
+		dbms_output.put_line('Role: '|| r.Role);
+	End Loop;
+	Return roles;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
 
 
 
@@ -345,6 +394,14 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
+
+
+
+
+
+
+
+
 
 
 
@@ -387,12 +444,15 @@ End;
 CREATE OR REPLACE PROCEDURE UC1_23_Update_Unit_Offering
 		(pUnitID varchar2, 
        	 pSemester number,
-       	 pYear number) AS
+       	 pYear number,
+       	 NewUnitID varchar2, 
+       	 NewSemester number,
+       	 NewYear number) AS
 BEGIN
 	UPDATE UnitOffering
-	SET UnitID = pUnitID, -- test this, idk it's possible to update the primary key of the row you've searched for USING it's original primary key...
-		Semester = pSemester,
-		Year = pYear
+	SET UnitID = NewUnitID, -- test this, idk it's possible to update the primary key of the row you've searched for USING it's original primary key...
+		Semester = NewSemester,
+		Year = NewYear,
 	WHERE pUnitID = pUnitID AND Semester = pSemester AND Year = pYear;
 	dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' updated'); --for testing
 EXCEPTION
