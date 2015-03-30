@@ -459,7 +459,7 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-
+/
 
 CREATE OR REPLACE PROCEDURE UC1_24_Delete_UnitOffering
 		(pUnitID varchar2, 
@@ -474,11 +474,6 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
-
-
-
-
-
 
 
 
@@ -618,19 +613,14 @@ END;
 
 
 
-
-
-
-
-
-CREATE OR REPLACE PROCEDURE UC1_33_Register_Assessment_Type
+create or replace PROCEDURE UC1_33_Register_Ass_Type
 		(pAssType varchar2, pTypeDesc varchar2) AS
 BEGIN
 	INSERT INTO AssessmentType VALUES (pAssType, pTypeDesc);
 	dbms_output.put_line(pAssType || ' Assessment type added'); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Assessment type ' || pAssessmentType || ' already exists');
+		RAISE_APPLICATION_ERROR(-20001, 'Assessment type ' || pAssType || ' already exists');
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
@@ -685,6 +675,7 @@ EXCEPTION
 END;
 /
 
+
 create or replace PROCEDURE UC2_1_Register_Team
 		(pTeamID varchar2,
 	pProjID varchar2,
@@ -704,26 +695,95 @@ EXCEPTION
 END;
 /
 
-
-CREATE OR REPLACE PROCEDURE UC2_5_Register_Project
-		(pProjID varchar2,
-	pProjDesc varchar2,
-	pUnitID varchar2, 
-    pSemester number,
-	pYear number) AS
+CREATE OR REPLACE PROCEDURE UC2_2_Update_Team
+		(pTeamID varchar2,
+	pProjID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pEmpID varchar2,
+	pRole varchar2) AS
 BEGIN
-	INSERT INTO Project VALUES (pProjID, pProjDesc, UnitID, pSemester, pYear);
-	dbms_output.put_line('Adding Project: '|| pProjID ||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
+	UPDATE Team
+	SET TeamID = pTeamID,
+		ProjID = pProjID,
+		Semester = pSemester,
+		Year = pYear,
+		EmpId = pEmpID,
+		Role = pRole
+	WHERE TeamID = pTeamID;
+	dbms_output.put_line('Team' || pTeamID || ' updated' ); --for testing
 EXCEPTION
-	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Project: ' || pProjID|| ' Already exists for:' || UnitID || ', ' || pSemester || ', ' || pYear);
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
 
 
-CREATE OR REPLACE PROCEDURE UC2_9_Register_Assessment
+CREATE OR REPLACE PROCEDURE UC2_4_Delete_Team
+		(pTeamID varchar2) AS
+BEGIN
+	Delete Team
+	WHERE TeamID = pTeamID;
+	dbms_output.put_line('Team ' || pTeamID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+create or replace PROCEDURE UC2_5_Register_Project
+		(pProjID varchar2,
+	pProjDesc varchar2,
+	pUnitID varchar2, 
+    pSemester number,
+	pYear number) AS
+BEGIN
+	INSERT INTO Project VALUES (pProjID, pProjDesc, pUnitID, pSemester, pYear);
+	dbms_output.put_line('Adding Project: '|| pProjID ||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Project: ' || pProjID|| ' Already exists for:' || pUnitID || ', ' || pSemester || ', ' || pYear);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+create or replace PROCEDURE UC2_6_Update_Project
+		(pProjID varchar2,
+	pProjDesc varchar2,
+	pUnitID varchar2, 
+    pSemester number,
+	pYear number) AS
+BEGIN
+	UPDATE Project
+	SET ProjID = pProjID,
+		ProjDesc = pProjDesc,
+		UnitID = pUnitID,
+		Semester = pSemester,
+		Year = pYear
+	WHERE ProjID = pProjID;
+	dbms_output.put_line('Project' || pProjID || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+CREATE OR REPLACE PROCEDURE UC2_8_Delete_Project
+		(pProjID varchar2) AS
+BEGIN
+	Delete Project
+	WHERE ProjID = pProjID;
+	dbms_output.put_line('Project ' || pProjID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+create or replace PROCEDURE UC2_9_Register_Assessment
 		(pAssID varchar2,
 	pAssTitle varchar2,
 	pAssDesc varchar2,
@@ -734,7 +794,7 @@ CREATE OR REPLACE PROCEDURE UC2_9_Register_Assessment
 	pAssType varchar2,
 	pDueDate date) AS
 BEGIN
-	INSERT INTO Assessment VALUES (pAssID, pAssTitle, pAssDesc, pUnitID, pSemester, pYear, pMarkingGuide, pAssType, p);
+	INSERT INTO Assessment VALUES (pAssID, pAssTitle, pAssDesc, pUnitID, pSemester, pYear, pMarkingGuide, pAssType, pDueDate);
 	dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -744,7 +804,49 @@ EXCEPTION
 END;
 /
 
-CREATE OR REPLACE PROCEDURE UC2_13_Register_Assessment_Allocation
+create or replace PROCEDURE UC2_10_Update_Assessment
+		(pAssID varchar2,
+	pAssTitle varchar2,
+	pAssDesc varchar2,
+	pUnitID varchar2, 
+	pSemester number,
+	pYear number,
+	pMarkingGuide varchar2,
+	pAssType varchar2,
+	pDueDate date) AS
+BEGIN
+	UPDATE Assessment
+	SET AssId = pAssID,
+		AssTitle = pAssTitle,
+		AssDesc = pAssDesc,
+		UnitId = pUnitID, 
+		Semester = pSemester,
+		Year = pYear,
+		MarkingGuide = pMarkingGuide,
+		AssType = pAssType,
+		DueDate = pDueDate
+	WHERE AssId = pAssID;
+	dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+CREATE OR REPLACE PROCEDURE UC2_12_Delete_Assessment
+		(pAssID varchar2) AS
+BEGIN
+	Delete Assessment
+	WHERE AssID = pAssID;
+	dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+create or replace PROCEDURE UC2_13_Register_Ass_Allo
 		(pAssID varchar2,
 	pUnitID varchar2, 
 	pSemester number,
@@ -753,7 +855,7 @@ CREATE OR REPLACE PROCEDURE UC2_13_Register_Assessment_Allocation
 	pTeamID varchar2,
 	pSubmission varchar2) AS
 BEGIN
-	INSERT INTO Assessment VALUES (pAssID, pUnitID, pSemester, pYear, pStuID, pSubmission);
+	INSERT INTO AssessmentAllocation VALUES (pAssID, pUnitID, pSemester, pYear, pStuID, pTeamID, pSubmission);
 	dbms_output.put_line('Assessment: '|| pAssID ||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear|| ' Assigned to student: '|| pStuID || ' In team: '|| pTeamID); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -763,7 +865,7 @@ EXCEPTION
 END;
 /
 
-CREATE OR REPLACE PROCEDURE UC2_17_Register_Team_Allocation
+create or replace PROCEDURE UC2_17_Register_Team_Allo
 		(pTeamID varchar2,
 	pStuID varchar2,
 	pUnitID varchar2,
@@ -774,8 +876,8 @@ BEGIN
 	dbms_output.put_line('Registered Student: '|| pStuID || ' into Team: '|| pTeamID|| ' for unit: ' || pUnitID || 'added semester ' || pSemester || ', '|| pYear);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Student: ' || pStuID || ' already exists for team: ' || pTeamID|);
+		RAISE_APPLICATION_ERROR(-20001, 'Student: ' || pStuID || ' already exists for team: ' || pTeamID);
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-	
+/
