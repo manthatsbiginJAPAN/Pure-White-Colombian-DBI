@@ -18,16 +18,6 @@ namespace FrontEndV0._1
             InitializeComponent();
         }       
 
-        public static OracleConnection oraConn
-        {
-            get
-            {
-                OracleConnection conn = new OracleConnection(
-                    "Data Source=ictoraclesvm1.ict.swin.edu.au/dba;User Id=s7663285;Password=123;");
-                return conn;
-                //At the moment, only works with hardcoded values - should be fixed soon hopefully
-            } 
-        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {

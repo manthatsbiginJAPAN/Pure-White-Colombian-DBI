@@ -13,12 +13,13 @@ namespace FrontEndV0._1
     public partial class frmStudentOperations : Form
     {
         private OracleConnection connection;
+        private Connection conn = new Connection("s7663285", "123");
 
         public frmStudentOperations()
         {
             InitializeComponent();
 
-            connection = frmDBLogin.oraConn;
+            connection = conn.oraConn();
 
             //Set dropdown box default to student
             cmbSelection.SelectedIndex = 0;
@@ -31,7 +32,6 @@ namespace FrontEndV0._1
 
             cmd.Parameters.Add("StuID for deletion", OracleDbType.Varchar2).Value = txtStuID.Text;
 
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
             connection.Open();
             cmd.ExecuteNonQuery();
 
@@ -51,9 +51,9 @@ namespace FrontEndV0._1
             cmd.Parameters.Add("Email", OracleDbType.Varchar2).Value = txtStuEmail.Text;
             cmd.Parameters.Add("Phone number", OracleDbType.Varchar2).Value = txtStuPhone.Text;
             cmd.Parameters.Add("Password", OracleDbType.Varchar2).Value = txtStuPass.Text;
+            //Functions that return a value are the last parameter to be 
 
             //Run the command
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
             connection.Open();
             cmd.ExecuteNonQuery();
 
@@ -63,6 +63,7 @@ namespace FrontEndV0._1
         private void btnListStudents_Click(object sender, EventArgs e)
         {
             getStudent();
+            //Example of what to do
         }
 
 
@@ -101,7 +102,7 @@ namespace FrontEndV0._1
             cmd.Parameters.Add("PARAM4", OracleDbType.Varchar2).Value = txtStuEmail.Text;
             cmd.Parameters.Add("PARAM5", OracleDbType.Varchar2).Value = txtStuPhone.Text;
 
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            //OracleDataAdapter da = new OracleDataAdapter(cmd);
             connection.Open();
             cmd.ExecuteNonQuery();
             cmd.Transaction.Commit();
@@ -129,6 +130,8 @@ namespace FrontEndV0._1
                     + " Email: " + dr.GetString(3)
                     + " Phone: " + dr.GetString(4)
                     );
+
+                //MessageBox.Show(dr.GetString(0).GetType().ToString()) ;
             }
 
             connection.Close();
@@ -166,7 +169,6 @@ namespace FrontEndV0._1
             cmd.Parameters.Add("Unit Name", OracleDbType.Varchar2).Value = txtUnitName.Text;
             cmd.Parameters.Add("Unit Desc", OracleDbType.Varchar2).Value = txtUnitDesc.Text;
 
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
@@ -181,7 +183,6 @@ namespace FrontEndV0._1
             cmd.Parameters.Add("Unit Semester", OracleDbType.Int16).Value = txtUnitSemester.Text;
             cmd.Parameters.Add("Unit Year", OracleDbType.Int16).Value = txtUnitYear.Text;
 
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();

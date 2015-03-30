@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connection.cs" />
+    <Compile Include="Executor.cs" />
     <Compile Include="forms\frmAdminOperations.cs">
       <SubType>Form</SubType>
     </Compile>
