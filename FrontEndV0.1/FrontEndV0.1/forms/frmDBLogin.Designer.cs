@@ -37,18 +37,18 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(156, 250);
+            this.btnLogin.Location = new System.Drawing.Point(14, 74);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.Size = new System.Drawing.Size(243, 82);
             this.btnLogin.TabIndex = 0;
-            this.btnLogin.Text = "Login";
+            this.btnLogin.Text = "Connect to Database";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(47, 150);
+            this.lblUser.Location = new System.Drawing.Point(9, 11);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(73, 17);
             this.lblUser.TabIndex = 1;
@@ -57,7 +57,7 @@
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(250, 150);
+            this.lblPass.Location = new System.Drawing.Point(124, 11);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(69, 17);
             this.lblPass.TabIndex = 2;
@@ -65,31 +65,31 @@
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(50, 185);
+            this.txtUser.Location = new System.Drawing.Point(12, 46);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(100, 22);
+            this.txtUser.Size = new System.Drawing.Size(109, 22);
             this.txtUser.TabIndex = 3;
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(253, 185);
+            this.txtPass.Location = new System.Drawing.Point(127, 46);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(100, 22);
+            this.txtPass.Size = new System.Drawing.Size(130, 22);
             this.txtPass.TabIndex = 4;
             this.txtPass.UseSystemPasswordChar = true;
             // 
-            // Form1
+            // frmDBLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 376);
+            this.ClientSize = new System.Drawing.Size(280, 194);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.lblPass);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.btnLogin);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmDBLogin";
+            this.Text = "Oracle Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 

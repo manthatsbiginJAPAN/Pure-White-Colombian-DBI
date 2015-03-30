@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Oracle.DataAccess;
 using Oracle.DataAccess.Client;
 
 namespace FrontEndV0._1
@@ -20,6 +19,23 @@ namespace FrontEndV0._1
             InitializeComponent();
 
             connection = frmDBLogin.oraConn;
+
+            //Set dropdown box default to student
+            cmbSelection.SelectedIndex = 0;
+        }
+
+        private void btnDeleteStudent_Click(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("UC1_12_Delete_Student", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("StuID for deletion", OracleDbType.Varchar2).Value = txtStuID.Text;
+
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
         }
 
         private void btnAddStudent_Click(object sender, EventArgs e)
@@ -29,12 +45,12 @@ namespace FrontEndV0._1
             cmd.CommandType = CommandType.StoredProcedure;
 
             //Load Parameters
-            cmd.Parameters.Add("PARAM1", OracleDbType.Varchar2).Value = txtStuID.Text;
-            cmd.Parameters.Add("PARAM2", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(0, txtStuName.Text.IndexOf(" "));
-            cmd.Parameters.Add("PARAM3", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(txtStuName.Text.IndexOf(" ") + 1);
-            cmd.Parameters.Add("PARAM4", OracleDbType.Varchar2).Value = txtStuEmail.Text;
-            cmd.Parameters.Add("PARAM5", OracleDbType.Varchar2).Value = txtStuPhone.Text;
-            cmd.Parameters.Add("PARAM6", OracleDbType.Varchar2).Value = txtStuPass.Text;
+            cmd.Parameters.Add("Student ID", OracleDbType.Varchar2).Value = txtStuID.Text;
+            cmd.Parameters.Add("First Name", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(0, txtStuName.Text.IndexOf(" "));
+            cmd.Parameters.Add("Surname", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(txtStuName.Text.IndexOf(" ") + 1);
+            cmd.Parameters.Add("Email", OracleDbType.Varchar2).Value = txtStuEmail.Text;
+            cmd.Parameters.Add("Phone number", OracleDbType.Varchar2).Value = txtStuPhone.Text;
+            cmd.Parameters.Add("Password", OracleDbType.Varchar2).Value = txtStuPass.Text;
 
             //Run the command
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -74,7 +90,7 @@ namespace FrontEndV0._1
 
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnUpdateStudent_Click(object sender, EventArgs e)
         {
             OracleCommand cmd = new OracleCommand("UC1_10_Update_Student", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -88,6 +104,7 @@ namespace FrontEndV0._1
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             connection.Open();
             cmd.ExecuteNonQuery();
+            cmd.Transaction.Commit();
 
             connection.Close();
         }
@@ -116,5 +133,59 @@ namespace FrontEndV0._1
 
             connection.Close();
         }
+
+        private void cmbSelection_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cmbSelection.Text == "Student" )
+            {
+                grpStudentControls.Visible = true;
+                grpEmployeeControls.Visible = false;
+                grpUnitControls.Visible = false;
+
+            }
+            else if (cmbSelection.Text == "Employee")
+            {
+                grpStudentControls.Visible = false;
+                grpEmployeeControls.Visible = true;
+                grpUnitControls.Visible = false;
+            }
+            else if (cmbSelection.Text == "Unit")
+            {
+                grpStudentControls.Visible = false;
+                grpEmployeeControls.Visible = false;
+                grpUnitControls.Visible = true;
+            }
+        }
+
+        private void btnAddUnit_Click(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("UC1_5_Register_Unit", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("Unit ID", OracleDbType.Varchar2).Value = txtUnitID.Text;
+            cmd.Parameters.Add("Unit Name", OracleDbType.Varchar2).Value = txtUnitName.Text;
+            cmd.Parameters.Add("Unit Desc", OracleDbType.Varchar2).Value = txtUnitDesc.Text;
+
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        private void btnRegisterUnitOffering_Click(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("UC1_21_Register_Unit_Offering", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("Unit ID", OracleDbType.Varchar2).Value = txtUnitID.Text;
+            cmd.Parameters.Add("Unit Semester", OracleDbType.Int16).Value = txtUnitSemester.Text;
+            cmd.Parameters.Add("Unit Year", OracleDbType.Int16).Value = txtUnitYear.Text;
+
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
     }
 }

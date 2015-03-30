@@ -48,45 +48,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmStudentOperations.cs">
+    <Compile Include="forms\frmAdminOperations.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmStudentOperations.Designer.cs">
-      <DependentUpon>frmStudentOperations.cs</DependentUpon>
+    <Compile Include="forms\frmAdminOperations.Designer.cs">
+      <DependentUpon>frmAdminOperations.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEmpWelcome.cs">
+    <Compile Include="forms\frmDBLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEmpWelcome.Designer.cs">
-      <DependentUpon>frmEmpWelcome.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmDBLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDBLogin.Designer.cs">
+    <Compile Include="forms\frmDBLogin.Designer.cs">
       <DependentUpon>frmDBLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.cs">
+    <Compile Include="forms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
+    <Compile Include="forms\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="frmStuWelcome.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmStuWelcome.Designer.cs">
-      <DependentUpon>frmStuWelcome.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="frmStudentOperations.resx">
-      <DependentUpon>frmStudentOperations.cs</DependentUpon>
+    <EmbeddedResource Include="forms\frmAdminOperations.resx">
+      <DependentUpon>frmAdminOperations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDBLogin.resx">
+    <EmbeddedResource Include="forms\frmDBLogin.resx">
       <DependentUpon>frmDBLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
+    <EmbeddedResource Include="forms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,9 +86,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmStuWelcome.resx">
-      <DependentUpon>frmStuWelcome.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

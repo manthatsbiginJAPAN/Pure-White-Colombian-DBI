@@ -187,6 +187,7 @@ BEGIN
 		ContactNo = pContactNo
 	WHERE StuID = pStuID;
 	dbms_output.put_line('Student ' || pStuID || ' updated' ); --for testing
+	
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);

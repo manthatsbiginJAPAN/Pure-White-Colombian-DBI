@@ -22,7 +22,8 @@ namespace FrontEndV0._1
         {
             get
             {
-                OracleConnection conn = new OracleConnection("Data Source=ictoraclesvm1.ict.swin.edu.au/dba;User Id=" + "s7663285" + ";Password=" + "123" + ";");
+                OracleConnection conn = new OracleConnection(
+                    "Data Source=ictoraclesvm1.ict.swin.edu.au/dba;User Id=s7663285;Password=123;");
                 return conn;
                 //At the moment, only works with hardcoded values - should be fixed soon hopefully
             } 
