@@ -778,4 +778,20 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
-		
+
+CREATE OR REPLACE PROCEDURE UC2_17_Register_Team_Allocation
+		(pTeamID varchar2,
+	pStuID varchar2,
+	pUnitID varchar2,
+	pSemester varchar2,
+	pYear varchar2) AS
+BEGIN 
+	INSERT INTO StudentTeamAllocation VALUES (pTeamID, pStuID, pUnitID, pSemester, pYear);
+	dbms_output.put_line('Registered Student: '|| pStuID || ' into Team: '|| pTeamID|| ' for unit: ' || pUnitID || 'added semester ' || pSemester || ', '|| pYear);
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Student: ' || pStuID || ' already exists for team: ' || pTeamID|);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+	
