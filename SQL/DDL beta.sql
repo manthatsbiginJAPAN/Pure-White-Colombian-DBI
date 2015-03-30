@@ -136,8 +136,8 @@
 		-------------------------------------------------------------------------------------
 
 		CREATE TABLE MeetingType (
-		MeetingType varchar2(20)
-		, PRIMARY KEY (MeetingType)
+		MeetType varchar2(20)
+		, PRIMARY KEY (MeetType)
 		);
 		
 		/
@@ -148,7 +148,7 @@
 		, UnitID varchar2(10) NOT NULL
 		, Semester number(1) NOT NULL
 		, Year number(4) NOT NULL
-		, MeetingType varchar2(20)
+		, MeetType varchar2(20)
 		, StartTime Date NOT NULL
 		, FinishTime Date NOT NULL
 		, Agenda varchar2(1000) --not null?
@@ -158,7 +158,7 @@
 		, ClientName varchar2(30)
 		, PRIMARY KEY (MeetingID) --include MeetingID, UnitID, Semester, Year...?
 		, FOREIGN KEY (TeamID) REFERENCES Team
-		, FOREIGN KEY (MeetingType) REFERENCES MeetingType
+		, FOREIGN KEY (MeetType) REFERENCES MeetingType
 		);
 
 		/
