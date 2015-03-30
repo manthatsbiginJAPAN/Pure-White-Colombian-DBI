@@ -149,6 +149,9 @@ END;
 
 
 
+
+
+
 CREATE OR REPLACE PROCEDURE UC1_9_Register_Student
 		(pStuID varchar2, 
        	 pFirstName varchar2,
@@ -228,6 +231,11 @@ END;
 
 
 
+
+
+
+
+
 CREATE OR REPLACE PROCEDURE UC1_13_Register_Enrolment
 		(pStuID varchar2,	
 		 pUnitID varchar2, 
@@ -238,7 +246,7 @@ BEGIN
 	dbms_output.put_line('Student ' || pStuID --for testing
 					|| ' enrolled ' || pUnitID
 					|| ' semester ' || pSemester
-					|| ', ' || pYear); 
+					|| ', ' || pYear);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Student ' || pStuID || ' already enrolled in ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear);
@@ -247,13 +255,76 @@ EXCEPTION
 END;
 /
 
+CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment
+		(pStuID varchar2,	
+		 pUnitID varchar2, 
+       	 pSemester number,
+       	 pYear number,
+       	 NewStuID varchar2,	
+		 NewUnitID varchar2, 
+       	 NewSemester number,
+       	 NewYear number) AS
+BEGIN
+	UPDATE Enrolment
+	SET FirstName = NewFirstName,
+		LastName = NewLastName,
+		Email = NewEmail,
+		ContactNo = NewContactNo,
+	WHERE StuID = pStuID AND  
+	dbms_output.put_line('Enrolment of Student: ' || pStuID || 
+									 ' for unit ' || pUnitID ||
+									 ' semester ' || pSemester ||
+									 ', ' || pYear|| ' updated'); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
+CREATE or REPLACE FUNCTION UC1_15_View_Enrolment RETURN CURSOR AS
+	e Student%ROWTYPE;
+	CURSOR students IS SELECT * FROM Student;
+BEGIN
+	dbms_output.put_line('Listing All Student Enrolments');
+	OPEN enrolments;
+	LOOP
+		Fetch students into s;
+		Exit When students%NOTFOUND;
+		dbms_output.put_line('Student ID: '|| s.StuId --for testing
+						 || ' FirstName: ' || s.FirstName
+						 || ' LastName: ' || s.LastName
+						 || ' Email: ' || s.Email
+						 || ' ContactNo: ' || s.ContactNo);
+	End Loop;
+	Return students;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
+
+CREATE OR REPLACE PROCEDURE UC1_16_Delete_Enrolment
+		(pStuID varchar2) AS
+BEGIN
+	Delete Student
+	WHERE StuId = pStuID;
+	dbms_output.put_line('Student ' || pStuID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
 
 
 CREATE OR REPLACE PROCEDURE UC1_19_Update_Role -- think we're going to have problems with this
-		(pRole varchar2) AS
+		(pRole varchar2, NewRole varchar2) AS
 BEGIN
 	UPDATE RoleType
-	SET Role = pRole,
+	SET Role = NewRole,
 	WHERE Role = pRole;
 	dbms_output.put_line('Role ' || pRole || ' updated' ); --for testing
 EXCEPTION
