@@ -184,7 +184,7 @@ BEGIN
 	SET FirstName = pFirstName,
 		LastName = pLastName,
 		Email = pEmail,
-		ContactNo = pContactNo,
+		ContactNo = pContactNo
 	WHERE StuID = pStuID;
 	dbms_output.put_line('Student ' || pStuID || ' updated' ); --for testing
 EXCEPTION
@@ -195,9 +195,9 @@ END;
 
 
 
-CREATE or REPLACE FUNCTION UC1_11_View_Student RETURN CURSOR AS
+CREATE or REPLACE FUNCTION UC1_11_View_Student RETURN SYS_REFCURSOR AS
 	s Student%ROWTYPE;
-	CURSOR students IS SELECT * FROM Student;
+	SYS_REFCURSOR students IS SELECT * FROM Student;
 BEGIN
 	dbms_output.put_line('Listing All Student Details');
 	OPEN students;
@@ -272,7 +272,7 @@ BEGIN
 	SET StuID = NewStuID,
 		UnitID = NewUnitID,
 		Semester = NewSemester,
-		Year = NewYear,
+		Year = NewYear
 	WHERE StuID = pStuID AND UnitID = pUnitID AND Semester = pSemester AND Year = pYear;
 	dbms_output.put_line('Enrolment of Student: ' || pStuID || 
 									 ' for unit ' || pUnitID ||
@@ -373,7 +373,7 @@ CREATE OR REPLACE PROCEDURE UC1_19_Update_Role_Type -- think we're going to have
 		(pRole varchar2, NewRole varchar2) AS
 BEGIN
 	UPDATE RoleType
-	SET Role = NewRole,
+	SET Role = NewRole
 	WHERE Role = pRole;
 	dbms_output.put_line('Role ' || pRole || ' updated' ); --for testing
 EXCEPTION
@@ -452,7 +452,7 @@ BEGIN
 	UPDATE UnitOffering
 	SET UnitID = NewUnitID, -- test this, idk it's possible to update the primary key of the row you've searched for USING it's original primary key...
 		Semester = NewSemester,
-		Year = NewYear,
+		Year = NewYear
 	WHERE pUnitID = pUnitID AND Semester = pSemester AND Year = pYear;
 	dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' updated'); --for testing
 EXCEPTION
@@ -594,7 +594,7 @@ CREATE OR REPLACE PROCEDURE UC1_31_Update_Meeting_Type -- think we're going to h
 		(pMeetType varchar2, NewMeetType varchar2) AS
 BEGIN
 	UPDATE MeetingType
-	SET MeetType = NewMeetType,
+	SET MeetType = NewMeetType
 	WHERE MeetType = pMeetType;
 	dbms_output.put_line('Meeting type ' || pMeetType || ' updated' ); --for testing
 EXCEPTION
@@ -664,7 +664,7 @@ CREATE OR REPLACE PROCEDURE UC1_35_Update_Assessment_Type -- think we're going t
 		 NewAssType varchar2) AS
 BEGIN
 	UPDATE AssessmentType
-	SET AssType = NewAssType,
+	SET AssType = NewAssType
 	WHERE AssType = pAssType;
 	dbms_output.put_line('Assessment type ' || pAssType || ' updated' ); --for testing
 EXCEPTION
@@ -686,7 +686,16 @@ EXCEPTION
 END;
 /
 
-CREATE OR REPLACE PROCEDURE UC2_1_Register_Team
+
+
+
+
+
+
+
+
+
+create or replace PROCEDURE UC2_1_Register_Team
 		(pTeamID varchar2,
 	pProjID varchar2,
 	pUnitID varchar2,
@@ -695,13 +704,12 @@ CREATE OR REPLACE PROCEDURE UC2_1_Register_Team
 	pEmpID varchar2,
 	pRole varchar2) AS
 BEGIN
-	INSERT INTO Team VALUES (pTeamID, pProjID, pUnitID, pSemester, pYear, pEmpID, pRole)
-	dbms_output.put_line('Team Id: ' || pTeamID || ' For the Project: ' || pProjID || ' Unit: ' || pUnitID ||' Semester: ' || pSemester || ' Year: ' || pYear || ' Supervisor Id ' || pEmpID)
+	INSERT INTO Team VALUES (pTeamID, pProjID, pUnitID, pSemester, pYear, pEmpID, pRole);
+	dbms_output.put_line('Team Id: ' || pTeamID || ' For the Project: ' || pProjID || ' Unit: ' || pUnitID ||' Semester: ' || pSemester || ' Year: ' || pYear || ' Supervisor Id ' || pEmpID);
+EXCEPTION
 WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Team ID ' || pTeamID|| ' already exists for semester ' ||pUnitID|| ', '|| pSemester || ', ' || pYear);
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
-/
-
 		
