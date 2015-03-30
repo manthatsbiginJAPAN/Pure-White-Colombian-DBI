@@ -685,3 +685,23 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
+
+CREATE OR REPLACE PROCEDURE UC2_1_Register_Team
+		(pTeamID varchar2,
+	pProjID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pEmpID varchar2,
+	pRole varchar2) AS
+BEGIN
+	INSERT INTO Team VALUES (pTeamID, pProjID, pUnitID, pSemester, pYear, pEmpID, pRole)
+	dbms_output.put_line('Team Id: ' || pTeamID || ' For the Project: ' || pProjID || ' Unit: ' || pUnitID ||' Semester: ' || pSemester || ' Year: ' || pYear || ' Supervisor Id ' || pEmpID)
+WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Team ID ' || pTeamID|| ' already exists for semester ' ||pUnitID|| ', '|| pSemester || ', ' || pYear);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+		
