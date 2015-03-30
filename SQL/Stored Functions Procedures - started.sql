@@ -192,6 +192,40 @@ END;
 
 
 
+CREATE or REPLACE FUNCTION UC1_11_View_Student RETURN CURSOR AS
+	s Student%ROWTYPE;
+	CURSOR students IS SELECT * FROM Student;
+BEGIN
+	dbms_output.put_line('Listing All Student Details');
+	OPEN students;
+	LOOP
+		Fetch students into s;
+		Exit When students%NOTFOUND;
+		dbms_output.put_line('Student ID: '|| s.StuId --for testing
+						 || ' FirstName: ' || s.FirstName
+						 || ' LastName: ' || s.LastName
+						 || ' Email: ' || s.Email
+						 || ' ContactNo: ' || s.ContactNo);
+	End Loop;
+	Return students;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
+
+CREATE OR REPLACE PROCEDURE UC1_12_Delete_Student
+		(pStuID varchar2) AS
+BEGIN
+	Delete Student
+	WHERE StuId = pStuID;
+	dbms_output.put_line('Student ' || pStuID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
 
 
 CREATE OR REPLACE PROCEDURE UC1_13_Register_Enrolment
