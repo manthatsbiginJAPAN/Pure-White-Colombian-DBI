@@ -25,7 +25,7 @@ H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\bin\Debug\FrontEndV0.1.exe
 H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\bin\Debug\FrontEndV0.1.pdb
 H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Student_Welcome.resources
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.csprojResolveAssemblyReference.cache
-C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.frmAddStudent.resources
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.frmDBLogin.resources
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.frmLogin.resources
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.frmStuWelcome.resources
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.frmStudentOperations.resources
