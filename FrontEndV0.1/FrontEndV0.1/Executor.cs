@@ -11,10 +11,10 @@ namespace FrontEndV0._1.forms
         private Connection _conn = new Connection("s7663285", "123");
         private string _command;
         private OracleConnection _oconn;
-        
+
         //private string[] <list of variables>
-            //something like this
-        
+        //something like this
+
         public Executor(string command)
         {
             _command = command;

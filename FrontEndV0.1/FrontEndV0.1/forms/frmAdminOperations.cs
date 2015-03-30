@@ -44,6 +44,9 @@ namespace FrontEndV0._1
             OracleCommand cmd = new OracleCommand("UC1_9_Register_Student", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
+            Parameter p1 = new Parameter(txtStuID.Text, Kind.String);
+            
+
             //Load Parameters
             cmd.Parameters.Add("Student ID", OracleDbType.Varchar2).Value = txtStuID.Text;
             cmd.Parameters.Add("First Name", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(0, txtStuName.Text.IndexOf(" "));

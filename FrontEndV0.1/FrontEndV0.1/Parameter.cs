@@ -8,8 +8,6 @@ namespace FrontEndV0._1
 
     class Parameter
     {
-        public enum Kind { Int, String, Date};
-
         private Kind _kind;
         private string _value;
 
@@ -24,9 +22,9 @@ namespace FrontEndV0._1
             get { return _kind; }
         }
 
-        public string Value 
+        public string Value
         {
-            get { return _value; } 
+            get { return _value; }
         }
     }
 }
