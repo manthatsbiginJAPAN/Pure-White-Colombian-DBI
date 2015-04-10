@@ -207,7 +207,7 @@ namespace FrontEndV0._1
 
             int cnt = ds.Tables["refcursor1"].Columns.Count;
 
-            for (int i = cnt - 1; i >= 0; i--)
+            for (int i = 0; i <=  cnt - 1; i++)
             {
                 MessageBox.Show("Row Name: " + ds.Tables[0].Columns[i].ToString() + " Row Type: " + ds.Tables[0].Columns[i].DataType.ToString() );
             }
