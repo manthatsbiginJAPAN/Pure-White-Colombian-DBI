@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace FrontEndV0._1
 {
@@ -43,9 +44,6 @@ namespace FrontEndV0._1
             //Set Command and Type
             OracleCommand cmd = new OracleCommand("UC1_9_Register_Student", connection);
             cmd.CommandType = CommandType.StoredProcedure;
-
-            Parameter p1 = new Parameter(txtStuID.Text, Kind.String);
-            
 
             //Load Parameters
             cmd.Parameters.Add("Student ID", OracleDbType.Varchar2).Value = txtStuID.Text;
@@ -188,6 +186,34 @@ namespace FrontEndV0._1
 
             connection.Open();
             cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("UC1_3_View_Employee", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("refcursor1", OracleDbType.RefCursor);
+            cmd.Parameters[0].Direction = ParameterDirection.ReturnValue;
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "refcursor1", (OracleRefCursor)(cmd.Parameters["refcursor1"].Value) );
+
+            int cnt = ds.Tables["refcursor1"].Columns.Count;
+
+            for (int i = cnt - 1; i >= 0; i--)
+            {
+                MessageBox.Show("Row Name: " + ds.Tables[0].Columns[i].ToString() + " Row Type: " + ds.Tables[0].Columns[i].DataType.ToString() );
+            }
+           // MessageBox.Show(ds.Tables["refcursor1"].Columns[0].ToString() );
+           // MessageBox.Show(ds.Tables["refcursor1"].Columns[0].DataType.ToString() );
+
             connection.Close();
         }
 

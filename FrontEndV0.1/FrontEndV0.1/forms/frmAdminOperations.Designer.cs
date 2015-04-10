@@ -62,6 +62,11 @@
             this.txtEmpPhone = new System.Windows.Forms.TextBox();
             this.txtEmpPass = new System.Windows.Forms.TextBox();
             this.grpUnitControls = new System.Windows.Forms.GroupBox();
+            this.btnRegisterUnitOffering = new System.Windows.Forms.Button();
+            this.lblUnitYear = new System.Windows.Forms.Label();
+            this.lblUnitSemester = new System.Windows.Forms.Label();
+            this.txtUnitYear = new System.Windows.Forms.TextBox();
+            this.txtUnitSemester = new System.Windows.Forms.TextBox();
             this.btnDeleteUnit = new System.Windows.Forms.Button();
             this.btnUpdateUnit = new System.Windows.Forms.Button();
             this.btnAddUnit = new System.Windows.Forms.Button();
@@ -71,11 +76,7 @@
             this.txtUnitDesc = new System.Windows.Forms.TextBox();
             this.txtUnitName = new System.Windows.Forms.TextBox();
             this.txtUnitID = new System.Windows.Forms.TextBox();
-            this.txtUnitSemester = new System.Windows.Forms.TextBox();
-            this.txtUnitYear = new System.Windows.Forms.TextBox();
-            this.lblUnitSemester = new System.Windows.Forms.Label();
-            this.lblUnitYear = new System.Windows.Forms.Label();
-            this.btnRegisterUnitOffering = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpStudentControls.SuspendLayout();
             this.grpEmployeeControls.SuspendLayout();
             this.grpUnitControls.SuspendLayout();
@@ -400,6 +401,7 @@
             // 
             // grpUnitControls
             // 
+            this.grpUnitControls.Controls.Add(this.button1);
             this.grpUnitControls.Controls.Add(this.btnRegisterUnitOffering);
             this.grpUnitControls.Controls.Add(this.lblUnitYear);
             this.grpUnitControls.Controls.Add(this.lblUnitSemester);
@@ -420,6 +422,48 @@
             this.grpUnitControls.TabIndex = 21;
             this.grpUnitControls.TabStop = false;
             this.grpUnitControls.Visible = false;
+            // 
+            // btnRegisterUnitOffering
+            // 
+            this.btnRegisterUnitOffering.Location = new System.Drawing.Point(343, 39);
+            this.btnRegisterUnitOffering.Name = "btnRegisterUnitOffering";
+            this.btnRegisterUnitOffering.Size = new System.Drawing.Size(137, 23);
+            this.btnRegisterUnitOffering.TabIndex = 13;
+            this.btnRegisterUnitOffering.Text = "Register Offering";
+            this.btnRegisterUnitOffering.UseVisualStyleBackColor = true;
+            this.btnRegisterUnitOffering.Click += new System.EventHandler(this.btnRegisterUnitOffering_Click);
+            // 
+            // lblUnitYear
+            // 
+            this.lblUnitYear.AutoSize = true;
+            this.lblUnitYear.Location = new System.Drawing.Point(227, 68);
+            this.lblUnitYear.Name = "lblUnitYear";
+            this.lblUnitYear.Size = new System.Drawing.Size(38, 17);
+            this.lblUnitYear.TabIndex = 12;
+            this.lblUnitYear.Text = "Year";
+            // 
+            // lblUnitSemester
+            // 
+            this.lblUnitSemester.AutoSize = true;
+            this.lblUnitSemester.Location = new System.Drawing.Point(227, 22);
+            this.lblUnitSemester.Name = "lblUnitSemester";
+            this.lblUnitSemester.Size = new System.Drawing.Size(68, 17);
+            this.lblUnitSemester.TabIndex = 11;
+            this.lblUnitSemester.Text = "Semester";
+            // 
+            // txtUnitYear
+            // 
+            this.txtUnitYear.Location = new System.Drawing.Point(227, 85);
+            this.txtUnitYear.Name = "txtUnitYear";
+            this.txtUnitYear.Size = new System.Drawing.Size(100, 22);
+            this.txtUnitYear.TabIndex = 10;
+            // 
+            // txtUnitSemester
+            // 
+            this.txtUnitSemester.Location = new System.Drawing.Point(227, 39);
+            this.txtUnitSemester.Name = "txtUnitSemester";
+            this.txtUnitSemester.Size = new System.Drawing.Size(100, 22);
+            this.txtUnitSemester.TabIndex = 9;
             // 
             // btnDeleteUnit
             // 
@@ -497,47 +541,15 @@
             this.txtUnitID.Size = new System.Drawing.Size(100, 22);
             this.txtUnitID.TabIndex = 0;
             // 
-            // txtUnitSemester
+            // button1
             // 
-            this.txtUnitSemester.Location = new System.Drawing.Point(227, 39);
-            this.txtUnitSemester.Name = "txtUnitSemester";
-            this.txtUnitSemester.Size = new System.Drawing.Size(100, 22);
-            this.txtUnitSemester.TabIndex = 9;
-            // 
-            // txtUnitYear
-            // 
-            this.txtUnitYear.Location = new System.Drawing.Point(227, 85);
-            this.txtUnitYear.Name = "txtUnitYear";
-            this.txtUnitYear.Size = new System.Drawing.Size(100, 22);
-            this.txtUnitYear.TabIndex = 10;
-            // 
-            // lblUnitSemester
-            // 
-            this.lblUnitSemester.AutoSize = true;
-            this.lblUnitSemester.Location = new System.Drawing.Point(227, 22);
-            this.lblUnitSemester.Name = "lblUnitSemester";
-            this.lblUnitSemester.Size = new System.Drawing.Size(68, 17);
-            this.lblUnitSemester.TabIndex = 11;
-            this.lblUnitSemester.Text = "Semester";
-            // 
-            // lblUnitYear
-            // 
-            this.lblUnitYear.AutoSize = true;
-            this.lblUnitYear.Location = new System.Drawing.Point(227, 68);
-            this.lblUnitYear.Name = "lblUnitYear";
-            this.lblUnitYear.Size = new System.Drawing.Size(38, 17);
-            this.lblUnitYear.TabIndex = 12;
-            this.lblUnitYear.Text = "Year";
-            // 
-            // btnRegisterUnitOffering
-            // 
-            this.btnRegisterUnitOffering.Location = new System.Drawing.Point(343, 39);
-            this.btnRegisterUnitOffering.Name = "btnRegisterUnitOffering";
-            this.btnRegisterUnitOffering.Size = new System.Drawing.Size(137, 23);
-            this.btnRegisterUnitOffering.TabIndex = 13;
-            this.btnRegisterUnitOffering.Text = "Register Offering";
-            this.btnRegisterUnitOffering.UseVisualStyleBackColor = true;
-            this.btnRegisterUnitOffering.Click += new System.EventHandler(this.btnRegisterUnitOffering_Click);
+            this.button1.Location = new System.Drawing.Point(113, 216);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmStudentOperations
             // 
@@ -610,5 +622,6 @@
         private System.Windows.Forms.Label lblUnitSemester;
         private System.Windows.Forms.TextBox txtUnitYear;
         private System.Windows.Forms.TextBox txtUnitSemester;
+        private System.Windows.Forms.Button button1;
     }
 }
