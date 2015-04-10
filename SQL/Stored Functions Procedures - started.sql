@@ -40,12 +40,15 @@ END;
 /
 
 
-CREATE or REPLACE PROCEDURE UC1_3_View_Employee AS
+CREATE or REPLACE FUNCTION UC1_3_View_Employee 
+	RETURN SYS_REFCURSOR AS emps;
 	e Employee%ROWTYPE;
-	CURSOR emps IS SELECT * FROM Employee Emp;
 BEGIN
+	
+	
+	OPEN emps for select * frmo employee;
+
 	dbms_output.put_line('Listing All Employee Details');
-	OPEN emps;
 	LOOP
 		Fetch emps into e;
 		Exit When emps%NOTFOUND;
@@ -55,6 +58,7 @@ BEGIN
 						 || ' Email: ' || e.Email
 						 || ' ContactNo:' || e.ContactNo); 
 	End Loop;
+	return emps;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
