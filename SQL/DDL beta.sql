@@ -144,16 +144,14 @@
 		
 		CREATE TABLE Meeting ( --Links a team to a meeting for an offered unit
 		TeamID varchar2(10) 
-		, MeetingID number(2) NOT NULL --Limited to 99 Meetings
+		, MeetingID number(3) NOT NULL --Limited to 99 Meetings
 		, UnitID varchar2(10) NOT NULL
 		, Semester number(1) NOT NULL
 		, Year number(4) NOT NULL
 		, MeetType varchar2(20)
 		, StartTime Date NOT NULL
-		, FinishTime Date NOT NULL
-		, Agenda varchar2(1000) --not null?
+		, FinishTime Date 
 		, Minutes varchar2(1000) --not null?
-		, ActionItems varchar2(1000) --not null?
 		, EmpID varchar2(10) NOT NULL --the supervisor (retrieved from the team table)
 		, ClientName varchar2(30)
 		, PRIMARY KEY (MeetingID) --include MeetingID, UnitID, Semester, Year...?
@@ -164,7 +162,7 @@
 		/
 
 		CREATE TABLE MeetingAttendance ( --Links a student to a meeting
-		MeetingID number(2)
+		MeetingID number(3)
 		, TeamID varchar2(10)
 		, StuID varchar2(10)
 		, PRIMARY KEY (TeamID, MeetingID, StuID)
@@ -172,7 +170,27 @@
 		, FOREIGN KEY (TeamID, StuID) REFERENCES StudentTeamAllocation
 		);
 
+		/
 		
+		CREATE TABLE AgendaItem (
+		MeetingID number(3)
+		, AgendaNum number(3)
+		, AgendaDesc varchar2(200)
+		, PRIMARY KEY (MeetingID, AgendaNum)
+		, FOREIGN KEY (MeetingID) REFERENCES Meeting
+		);
+		
+		/
+		
+		CREATE TABLE ActionItem (
+		MeetingID number(3)
+		, ActionNum number(3)
+		, ActionDesc varchar2(200)
+		, PRIMARY KEY (MeetingID, AgendaNum)
+		, FOREIGN (MeetingID) REFERENCES Meeting
+		);
+		
+		/ 
 		-------------------------------------------------------------------------------------
 
 		/
