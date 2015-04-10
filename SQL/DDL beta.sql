@@ -4,6 +4,8 @@
 		DROP TABLE MeetingType CASCADE CONSTRAINTS;
 		DROP TABLE MeetingAttendance CASCADE CONSTRAINTS;
 		DROP TABLE Meeting CASCADE CONSTRAINTS;
+    DROP TABLE AgendaItem CASCADE CONSTRAINTS;
+    DROP TABLE ActionItem CASCADE CONSTRAINTS;
 		DROP TABLE StudentTeamAllocation CASCADE CONSTRAINTS; 
 		DROP TABLE Team CASCADE CONSTRAINTS;
 		DROP TABLE Project CASCADE CONSTRAINTS;
@@ -186,8 +188,8 @@
 		MeetingID number(3)
 		, ActionNum number(3)
 		, ActionDesc varchar2(200)
-		, PRIMARY KEY (MeetingID, AgendaNum)
-		, FOREIGN (MeetingID) REFERENCES Meeting
+		, PRIMARY KEY (MeetingID, ActionNum)
+		, FOREIGN KEY (MeetingID) REFERENCES Meeting
 		);
 		
 		/ 
