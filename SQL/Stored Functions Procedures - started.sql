@@ -872,7 +872,35 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
+
+
+create or replace PROCEDURE UC2_14_Update_Ass_Allo
+		(pAssID varchar2,
+	pUnitID varchar2, 
+	pSemester number,
+	pYear number,
+	pStuID varchar2,
+	pTeamID varchar2,
+	pSubmission varchar2) AS
+BEGIN
+	UPDATE AssessmentAllocation
+	SET Submission = pSubmission
+	WHERE AssId = pAssID and
+		  UnitId = pUnitID and
+		  Semester = pSemester and
+		  Year = pYear and
+		  StuID = pStuID and
+		  TeamID = pTeamID;
+	dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
 
 create or replace PROCEDURE UC2_17_Register_Team_Allo
 		(pTeamID varchar2,
