@@ -37,16 +37,16 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
 
-
 CREATE or REPLACE FUNCTION UC1_3_View_Employee 
-	RETURN SYS_REFCURSOR AS emps;
+	RETURN SYS_REFCURSOR AS emps SYS_REFCURSOR;
 	e Employee%ROWTYPE;
 BEGIN
 	
 	
-	OPEN emps for select * frmo employee;
+	OPEN emps for select * from employee;
 
 	dbms_output.put_line('Listing All Employee Details');
 	LOOP
@@ -63,6 +63,8 @@ EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
 End;
+
+
 /
 
 CREATE OR REPLACE PROCEDURE UC1_4_Delete_Employee
@@ -75,6 +77,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
+
 /
 
 
