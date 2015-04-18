@@ -10,6 +10,7 @@ using Oracle.DataAccess.Client; //Libraries to hook into Swinburne Oracle
 
 namespace FrontEndV0._1
 {
+    using forms;
     public partial class frmDBLogin : Form
     {
 
@@ -23,10 +24,9 @@ namespace FrontEndV0._1
         {
 
             MessageBox.Show("Connection created successfully");
-                
-            frmLogin frm = new frmLogin();
+            frmEmpDashboard frm = new frmEmpDashboard();    
+            //frmLogin frm = new frmLogin();
             frm.Show();
-
         }
 
     }

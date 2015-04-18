@@ -96,7 +96,7 @@
 		-------------------------------------------------------------------------------------
 
 		CREATE TABLE Project ( --Links a projectID (with description) to an offered unit 
-		ProjID varchar2(10) 
+		ProjID varchar2(10)
 		, ProjDesc varchar2(200) 
 		, UnitID varchar2(10) 
 		, Semester number(1) 

@@ -1,0 +1,32 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   FrontEndV0.1/FrontEndV0.1/Executor.cs
+#	modified:   FrontEndV0.1/FrontEndV0.1/FrontEndV0.1.csproj
+#	new file:   FrontEndV0.1/FrontEndV0.1/FrontEndV0.1.csproj.user
+#	modified:   FrontEndV0.1/FrontEndV0.1/FrontEndV0.1.suo
+#	modified:   FrontEndV0.1/FrontEndV0.1/bin/Debug/FrontEndV0.1.exe
+#	modified:   FrontEndV0.1/FrontEndV0.1/bin/Debug/FrontEndV0.1.pdb
+#	modified:   FrontEndV0.1/FrontEndV0.1/forms/frmDBLogin.cs
+#	new file:   FrontEndV0.1/FrontEndV0.1/forms/frmEmpDashboard.Designer.cs
+#	new file:   FrontEndV0.1/FrontEndV0.1/forms/frmEmpDashboard.cs
+#	new file:   FrontEndV0.1/FrontEndV0.1/forms/frmEmpDashboard.resx
+#	new file:   FrontEndV0.1/FrontEndV0.1/forms/frmEmpDetails.Designer.cs
+#	new file:   FrontEndV0.1/FrontEndV0.1/forms/frmEmpDetails.cs
+#	new file:   FrontEndV0.1/FrontEndV0.1/forms/frmEmpDetails.resx
+#	modified:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/DesignTimeResolveAssemblyReferences.cache
+#	modified:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+#	modified:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/FrontEndV0.1.csproj.FileListAbsolute.txt
+#	modified:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/FrontEndV0.1.csproj.GenerateResource.Cache
+#	modified:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/FrontEndV0.1.csprojResolveAssemblyReference.cache
+#	modified:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/FrontEndV0.1.exe
+#	new file:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/FrontEndV0.1.pdb
+#	new file:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/FrontEndV0._1.forms.frmEmpDashboard.resources
+#	new file:   FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/FrontEndV0._1.forms.frmEmpDetails.resources
+#	modified:   SQL/DDL beta.sql
+#
+

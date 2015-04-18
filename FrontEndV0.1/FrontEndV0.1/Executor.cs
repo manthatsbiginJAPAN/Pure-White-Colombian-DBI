@@ -43,7 +43,7 @@ namespace FrontEndV0._1.forms
 
                 for (int i = 0; i <= _parameters.Count() - 1; i++)
                 {
-                    cmd.Parameters.Add("PARAM"+ i, 
+                    cmd.Parameters.Add("PARAM"+ i);
                 }
             }
 
@@ -52,9 +52,9 @@ namespace FrontEndV0._1.forms
             _oconn.Close();
         }
 
-        private string[] getTypes()
+        /*private string[] getTypes()
         {
            
-        }
+        }*/
     }
 }
