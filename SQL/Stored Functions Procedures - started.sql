@@ -14,6 +14,7 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
 
 
@@ -83,12 +84,6 @@ END;
 
 
 
-
-
-
-
-
-
 CREATE OR REPLACE PROCEDURE UC1_5_Register_Unit
 		( pUnitID varchar2, 
        	 pUnitName varchar2,
@@ -139,7 +134,9 @@ EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
 End;
+
 /
+
 
 CREATE OR REPLACE PROCEDURE UC1_8_Delete_Unit
 		(pUnitID varchar2) AS
@@ -151,14 +148,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
-
-
-
-
-
-
-
 
 
 
@@ -178,6 +169,7 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
 
 
@@ -200,6 +192,7 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
 
 
@@ -236,14 +229,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
-
-
-
-
-
-
-
 
 
 
@@ -278,7 +265,8 @@ CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment
        	 NewYear number) AS
 BEGIN
 	UPDATE Enrolment
-	SET StuID = NewStuID,
+	SET
+		\
 		UnitID = NewUnitID,
 		Semester = NewSemester,
 		Year = NewYear
@@ -332,15 +320,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
-
-
-
-
-
-
-
-
 
 
 
@@ -402,16 +383,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
-
-
-
-
-
-
-
-
-
 
 
 CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
@@ -917,4 +890,61 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
+
+CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pMeetType varchar2,
+	pStartTime date,
+	pFinishTime date,
+	pMinutes varchar2,
+	pEmpID varchar2,
+	pClientName varchar2) AS
+BEGIN
+	INSERT INTO Meeting VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
+END;
+
+/
+
+CREATE or REPLACE PROCEDURE UC3_3_Update_Meeting
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pMeetType varchar2,
+	pStartTime date,
+	pFinishTime date,
+	pMinutes varchar2,
+	pEmpID varchar2,
+	pClientName varchar2) AS
+BEGIN
+	UPDATE Meeting
+	SET TeamID = pTeamID,
+		UnitId = pUnitID,
+		Semester = pSemester,
+		Year = pYear,
+		Meeting = pMeetType,
+		StartTime = pStartTime,
+		Finish = pFinishTime,
+		Minutes = pMinutes,
+		EmpID = pEmpID,
+		ClientName = pClientName 
+	WHERE MeetingID = pMeetingID
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
+END;
+
