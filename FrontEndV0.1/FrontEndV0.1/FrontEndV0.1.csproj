@@ -56,6 +56,12 @@
     <Compile Include="forms\frmAdminOperations.Designer.cs">
       <DependentUpon>frmAdminOperations.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmConvenorOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmConvenorOperations.Designer.cs">
+      <DependentUpon>frmConvenorOperations.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmEmpDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,10 +80,19 @@
     <Compile Include="forms\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmSupervisorOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmSupervisorOperations.Designer.cs">
+      <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\frmAdminOperations.resx">
       <DependentUpon>frmAdminOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmConvenorOperations.resx">
+      <DependentUpon>frmConvenorOperations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEmpDashboard.resx">
       <DependentUpon>frmEmpDashboard.cs</DependentUpon>
@@ -87,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSupervisorOperations.resx">
+      <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

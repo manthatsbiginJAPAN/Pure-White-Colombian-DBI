@@ -14,6 +14,8 @@ namespace FrontEndV0._1.forms
     {
         private frmEmpDetails frmEmpDetails;
         private frmAdminOperations frmAdminOps;
+        private frmConvenorOperations frmConvOps;
+        private frmSupervisorOperations frmSupOps;
 
         public frmEmpDashboard()
         {
@@ -21,6 +23,9 @@ namespace FrontEndV0._1.forms
 
             //Form load, instantiate subforms
             frmEmpDetails = null;
+            frmAdminOps = null;
+            frmConvOps = null;
+            frmSupOps = null;
         }
 
        
@@ -64,12 +69,34 @@ namespace FrontEndV0._1.forms
 
         private void convenerFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (frmConvOps == null)
+            {
+                frmConvOps = new frmConvenorOperations();
+                frmConvOps.FormClosing += frmConvOpsClosing;
+                frmConvOps.MdiParent = this;
+                frmConvOps.Visible = true;
+            }
+        }
 
+        private void frmConvOpsClosing(object sender, FormClosingEventArgs e)
+        {
+            frmConvOps = null;
         }
 
         private void supervisorFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (frmSupOps == null)
+            {
+                frmSupOps = new frmSupervisorOperations();
+                frmSupOps.FormClosing += frmSupOpsClosing;
+                frmSupOps.MdiParent = this;
+                frmSupOps.Visible = true;
+            }
+        }
 
+        private void frmSupOpsClosing(object sender, FormClosingEventArgs e)
+        {
+            frmSupOps = null;
         }
 
         private void displayPanel_Paint(object sender, PaintEventArgs e)
