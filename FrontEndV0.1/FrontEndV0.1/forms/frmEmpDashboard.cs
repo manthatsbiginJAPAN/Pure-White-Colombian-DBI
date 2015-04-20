@@ -53,13 +53,13 @@ namespace FrontEndV0._1.forms
 
         private void administratorFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmAdminOps == null)
+            /*if (frmAdminOps == null)
             {
                 frmAdminOps = new frmAdminOperations();
                 frmAdminOps.FormClosing += frmAdminOperationsClosing;
                 frmAdminOps.MdiParent = this;
                 frmAdminOps.Visible = true;
-            }
+            }*/
         }
 
         private void frmAdminOperationsClosing(object sender, FormClosingEventArgs e)
@@ -102,6 +102,17 @@ namespace FrontEndV0._1.forms
         private void displayPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void manageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmAdminOps == null)
+            {
+                frmAdminOps = new frmAdminOperations();
+                frmAdminOps.FormClosing += frmAdminOperationsClosing;
+                frmAdminOps.MdiParent = this;
+                frmAdminOps.Visible = true;
+            }
         }
 
 
