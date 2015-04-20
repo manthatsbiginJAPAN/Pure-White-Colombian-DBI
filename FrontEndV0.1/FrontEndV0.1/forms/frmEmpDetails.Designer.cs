@@ -107,6 +107,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmEmpDetails";
+            this.Load += new System.EventHandler(this.frmEmpDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

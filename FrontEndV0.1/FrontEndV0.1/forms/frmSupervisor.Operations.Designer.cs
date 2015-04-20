@@ -1,6 +1,6 @@
 ﻿namespace FrontEndV0._1.forms
 {
-    partial class frmConvenorOperations
+    partial class frmSupervisor
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,16 @@
         {
             this.SuspendLayout();
             // 
-            // frmConvenorOperations
+            // frmSupervisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 262);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmConvenorOperations";
+            this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.Name = "frmSupervisor";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "frmConvenorOperations";
+            this.Text = "frmSupervisor";
+            this.Load += new System.EventHandler(this.frmSupervisor_Load);
             this.ResumeLayout(false);
 
         }

@@ -10,18 +10,16 @@ using System.Windows.Forms.Layout;
 
 namespace FrontEndV0._1.forms
 {
-    public partial class frmEmpDetails : Form
+    public partial class frmSupervisor : Form
     {
-        public frmEmpDetails()
+        public frmSupervisor()
         {
             InitializeComponent();
         }
 
-        private void frmEmpDetails_Load(object sender, EventArgs e)
+        private void frmSupervisor_Load(object sender, EventArgs e)
         {
 
         }
-
-
     }
 }
