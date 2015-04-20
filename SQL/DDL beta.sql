@@ -29,40 +29,7 @@
 		);
 
 		/
-
-		CREATE TABLE Unit ( --links a unit to a name
-		UnitID varchar2 (10)
-		, UnitName varchar2 (50) NOT NULL
-		, UnitDesc varchar2 (200)
-		, PRIMARY KEY (UnitID)
-		);
-
-		/
-
-		CREATE TABLE UnitOffering ( -- links unit to a point in time (year and semester) and assigns convener
-		UnitID varchar2(10)
-		, Semester number(1) NOT NULL
-		, Year number(4) NOT NULL
-		, PRIMARY KEY (UnitID, Semester, Year)
-		, FOREIGN KEY (UnitID) REFERENCES Unit
-		);
-
-		/
-
-		CREATE TABLE Enrolment ( --links an enrolled student to an offered unit
-		StuID varchar2(10) NOT NULL
-		, UnitID varchar2(10) NOT NULL
-		, Semester number(1) NOT NULL
-		, Year number(4) NOT NULL
-		, PRIMARY KEY (StuID, UnitID, Semester, Year)
-		, FOREIGN KEY (StuID) REFERENCES Student
-		, FOREIGN KEY (UnitID, Semester, Year) REFERENCES UnitOffering
-		);
-
-		/
-
-		-------------------------------------------------------------------------------------
-
+		
 		CREATE TABLE Employee ( --links an employee id to a name
 		EmpID varchar2(10)
 		, FirstName varchar2(20) NOT NULL
@@ -93,6 +60,42 @@
 
 		/
 
+
+		CREATE TABLE Unit ( --links a unit to a name
+		UnitID varchar2 (10)
+		, UnitName varchar2 (50) NOT NULL
+		, UnitDesc varchar2 (200)
+		, PRIMARY KEY (UnitID)
+		);
+
+		/
+
+		CREATE TABLE UnitOffering ( -- links unit to a point in time (year and semester) and assigns convener
+		UnitID varchar2(10)
+		, Semester number(1) NOT NULL
+		, Year number(4) NOT NULL
+		, EmpID varchar2(10) 
+		, Role varchar2(20)
+		, PRIMARY KEY (UnitID, Semester, Year)
+		, FOREIGN KEY (UnitID) REFERENCES Unit
+		, FOREIGN KEY (EmpID, Role) REFERENCES EmployeeRole
+		);
+
+		/
+
+		CREATE TABLE Enrolment ( --links an enrolled student to an offered unit
+		StuID varchar2(10) NOT NULL
+		, UnitID varchar2(10) NOT NULL
+		, Semester number(1) NOT NULL
+		, Year number(4) NOT NULL
+		, PRIMARY KEY (StuID, UnitID, Semester, Year)
+		, FOREIGN KEY (StuID) REFERENCES Student
+		, FOREIGN KEY (UnitID, Semester, Year) REFERENCES UnitOffering
+		);
+
+		/
+
+		
 		-------------------------------------------------------------------------------------
 
 		CREATE TABLE Project ( --Links a projectID (with description) to an offered unit 
