@@ -32,14 +32,15 @@
             // 
             // frmSupervisorOperations
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(379, 322);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmSupervisorOperations";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "frmSupervisorOperations";
+            this.Text = "Supervisor Operations";
             this.ResumeLayout(false);
 
         }

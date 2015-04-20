@@ -20,7 +20,7 @@ namespace FrontEndV0._1.forms
         {
             InitializeComponent();
 
-            //connection = conn.oraConn();
+            connection = conn.oraConn();
 
             //Set dropdown box default to student
             cmbSelection.SelectedIndex = 0;
@@ -91,26 +91,6 @@ namespace FrontEndV0._1.forms
             connection.Close();
 
         }
-
-        private void btnUpdateStudent_Click(object sender, EventArgs e)
-        {
-            OracleCommand cmd = new OracleCommand("UC1_10_Update_Student", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("PARAM1", OracleDbType.Varchar2).Value = txtStuID.Text;
-            cmd.Parameters.Add("PARAM2", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(0, txtStuName.Text.IndexOf(" "));
-            cmd.Parameters.Add("PARAM3", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(txtStuName.Text.IndexOf(" ") + 1);
-            cmd.Parameters.Add("PARAM4", OracleDbType.Varchar2).Value = txtStuEmail.Text;
-            cmd.Parameters.Add("PARAM5", OracleDbType.Varchar2).Value = txtStuPhone.Text;
-
-            //OracleDataAdapter da = new OracleDataAdapter(cmd);
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            cmd.Transaction.Commit();
-
-            connection.Close();
-        }
-
 
         private void getStudent()
         {
@@ -191,28 +171,22 @@ namespace FrontEndV0._1.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OracleCommand cmd = new OracleCommand("UC1_3_View_Employee", connection);
+
+        }
+
+        private void btnUpdateStudent_Click(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("UC1_10_Update_Student", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("refcursor1", OracleDbType.RefCursor);
-            cmd.Parameters[0].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("PARAM1", OracleDbType.Varchar2).Value = txtStuID.Text;
+            cmd.Parameters.Add("PARAM2", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(0, txtStuName.Text.IndexOf(" "));
+            cmd.Parameters.Add("PARAM3", OracleDbType.Varchar2).Value = txtStuName.Text.Substring(txtStuName.Text.IndexOf(" ") + 1);
+            cmd.Parameters.Add("PARAM4", OracleDbType.Varchar2).Value = txtStuEmail.Text;
+            cmd.Parameters.Add("PARAM5", OracleDbType.Varchar2).Value = txtStuPhone.Text;
 
             connection.Open();
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
-
-
-            DataSet ds = new DataSet();
-            da.Fill(ds, "refcursor1", (OracleRefCursor)(cmd.Parameters["refcursor1"].Value) );
-
-            int cnt = ds.Tables["refcursor1"].Columns.Count;
-
-            for (int i = 0; i <=  cnt - 1; i++)
-            {
-                MessageBox.Show("Row Name: " + ds.Tables[0].Columns[i].ToString() + " Row Type: " + ds.Tables[0].Columns[i].DataType.ToString() );
-            }
-           // MessageBox.Show(ds.Tables["refcursor1"].Columns[0].ToString() );
-           // MessageBox.Show(ds.Tables["refcursor1"].Columns[0].DataType.ToString() );
 
             connection.Close();
         }

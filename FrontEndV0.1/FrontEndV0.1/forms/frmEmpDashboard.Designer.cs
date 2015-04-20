@@ -131,13 +131,8 @@
             this.viewUnitOfferingsToolStripMenuItem});
             this.convenerFunctionsToolStripMenuItem.Enabled = false;
             this.convenerFunctionsToolStripMenuItem.Name = "convenerFunctionsToolStripMenuItem";
-
-            this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(241, 36);
-            this.convenerFunctionsToolStripMenuItem.Text = "Convenor Functions";
-
-            this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(191, 29);
+            this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(240, 36);
             this.convenerFunctionsToolStripMenuItem.Text = "Convener Functions";
-
             // 
             // manageAssessmentsMasterToolStripMenuItem
             // 
@@ -164,10 +159,7 @@
             // manageAssessmentAllocationsToolStripMenuItem
             // 
             this.manageAssessmentAllocationsToolStripMenuItem.Name = "manageAssessmentAllocationsToolStripMenuItem";
-
             this.manageAssessmentAllocationsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
-
-            this.manageAssessmentAllocationsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
             this.manageAssessmentAllocationsToolStripMenuItem.Text = "Manage Projects";
             // 
             // manageTeamsToolStripMenuItem
@@ -195,14 +187,9 @@
             this.viewAssessmentsToolStripMenuItem,
             this.viewTeamsToolStripMenuItem,
             this.viewProjectsToolStripMenuItem});
-
             this.supervisorFunctionsToolStripMenuItem.Enabled = false;
             this.supervisorFunctionsToolStripMenuItem.Name = "supervisorFunctionsToolStripMenuItem";
             this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(249, 36);
-            this.supervisorFunctionsToolStripMenuItem.Text = "Supervisor Functions";
-
-            this.supervisorFunctionsToolStripMenuItem.Name = "supervisorFunctionsToolStripMenuItem";
-            this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(199, 29);
             this.supervisorFunctionsToolStripMenuItem.Text = "Supervisor Functions";
             // 
             // manageMeetingsToolStripMenuItem
@@ -237,7 +224,6 @@
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             this.logoutToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(89, 36);
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(71, 29);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -249,9 +235,9 @@
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmEmpDashboard";
-            this.Text = "frmEmpDashboard";
+            this.Text = "Employee Dashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
