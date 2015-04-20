@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Oracle.DataAccess.Client;
 using Oracle.DataAccess.Types;
 
-namespace FrontEndV0._1
+namespace FrontEndV0._1.forms
 {
     public partial class frmAdminOperations : Form
     {
@@ -20,7 +20,7 @@ namespace FrontEndV0._1
         {
             InitializeComponent();
 
-            connection = conn.oraConn();
+            //connection = conn.oraConn();
 
             //Set dropdown box default to student
             cmbSelection.SelectedIndex = 0;

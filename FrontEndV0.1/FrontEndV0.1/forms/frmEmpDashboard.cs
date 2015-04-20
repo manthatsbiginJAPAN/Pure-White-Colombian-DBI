@@ -13,6 +13,7 @@ namespace FrontEndV0._1.forms
     public partial class frmEmpDashboard : Form
     {
         private frmEmpDetails frmEmpDetails;
+        private frmAdminOperations frmAdminOps;
 
         public frmEmpDashboard()
         {
@@ -47,7 +48,18 @@ namespace FrontEndV0._1.forms
 
         private void administratorFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (frmAdminOps == null)
+            {
+                frmAdminOps = new frmAdminOperations();
+                frmAdminOps.FormClosing += frmAdminOperationsClosing;
+                frmAdminOps.MdiParent = this;
+                frmAdminOps.Visible = true;
+            }
+        }
 
+        private void frmAdminOperationsClosing(object sender, FormClosingEventArgs e)
+        {
+            frmAdminOps = null;
         }
 
         private void convenerFunctionsToolStripMenuItem_Click(object sender, EventArgs e)

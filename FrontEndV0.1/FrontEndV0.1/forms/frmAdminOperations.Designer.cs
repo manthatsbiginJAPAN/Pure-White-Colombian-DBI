@@ -1,4 +1,4 @@
-﻿namespace FrontEndV0._1
+﻿namespace FrontEndV0._1.forms
 {
     partial class frmAdminOperations
     {
