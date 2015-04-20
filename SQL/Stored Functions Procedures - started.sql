@@ -199,22 +199,22 @@ END;
 
 
 
-CREATE or REPLACE FUNCTION UC1_11_View_Student RETURN CURSOR AS
+CREATE or REPLACE FUNCTION UC1_11_View_Student
+	RETURN SYS_REFCURSOR AS studs SYS_REFCURSOR;
 	s Student%ROWTYPE;
-	CURSOR students IS SELECT * FROM Student;
 BEGIN
 	dbms_output.put_line('Listing All Student Details');
 	OPEN students;
 	LOOP
-		Fetch students into s;
-		Exit When students%NOTFOUND;
+		Fetch studs into s;
+		Exit When studs%NOTFOUND;
 		dbms_output.put_line('Student ID: '|| s.StuId --for testing
 						 || ' FirstName: ' || s.FirstName
 						 || ' LastName: ' || s.LastName
 						 || ' Email: ' || s.Email
 						 || ' ContactNo: ' || s.ContactNo);
 	End Loop;
-	Return students;
+	Return studs;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -260,19 +260,14 @@ CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment
 		(pStuID varchar2,	
 		 pUnitID varchar2, 
        	 pSemester number,
-       	 pYear number,
-       	 NewStuID varchar2,	
-		 NewUnitID varchar2, 
-       	 NewSemester number,
-       	 NewYear number) AS
+       	 pYear number) AS
 BEGIN
 	UPDATE Enrolment
 	SET
-		StuID = NewStuID
-		UnitID = NewUnitID,
-		Semester = NewSemester,
-		Year = NewYear
-	WHERE StuID = pStuID AND UnitID = pUnitID AND Semester = pSemester AND Year = pYear;
+		UnitID = pUnitID,
+		Semester = pSemester,
+		Year = pYear
+	WHERE StuID = pStuID 
 	dbms_output.put_line('Enrolment of Student: ' || pStuID || 
 									 ' for unit ' || pUnitID ||
 									 ' semester ' || pSemester ||
@@ -285,21 +280,20 @@ END;
 
 
 
-CREATE or REPLACE FUNCTION UC1_15_View_Enrolment RETURN CURSOR AS
-	e enrolmentt%ROWTYPE;
-	CURSOR enrolments IS SELECT * FROM Student;
+CREATE or REPLACE FUNCTION UC1_15_View_Enrolment RETURN SYS_REFCURSOR AS enrols SYS_REFCURSOR;
+	e Enrolment%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Student Enrolments');
-	OPEN enrolments;
+	OPEN enrols for select * from Enrolment;
 	LOOP
-		Fetch enrolments into e;
-		Exit When enrolments%NOTFOUND;
+		Fetch enrols into e;
+		Exit When enrols%NOTFOUND;
 		dbms_output.put_line('Student ID: '|| e.StuId --for testing
 						 || ' UnitID: ' || e.UnitID
 						 || ' Semester: ' || e.Semester
 						 || ' Year: ' || e.Year);
 	End Loop;
-	Return enrolments;
+	Return enrols;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -341,9 +335,8 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_18_View_Role_Type RETURN CURSOR AS
-	r RoleType%ROWTYPE;
-	CURSOR roles IS SELECT * FROM RoleType;
+CREATE or REPLACE FUNCTION UC1_18_View_Role_Type RETURN SYS_REFCURSOR AS roles SYS_REFCURSOR;
+	r Role%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Role types');
 	OPEN roles;
@@ -405,12 +398,11 @@ END;
 /
 
 
-CREATE or REPLACE PROCEDURE UC1_22_View_Unit_Offering AS
-	uo UnitOffering%ROWTYPE;
-	CURSOR uos IS SELECT * FROM UnitOffering;
+CREATE or REPLACE PROCEDURE UC1_22_View_Unit_Offering RETURN SYS_REFCURSOR AS unofs SYS_REFCURSOR;
+	unos UnitOffering%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Unit Offerings');
-	OPEN uos;
+	OPEN uos for select * from UnitOffering;
 	LOOP
 		Fetch uos into uo;
 		Exit When uos%NOTFOUND;
@@ -429,14 +421,11 @@ create or replace PROCEDURE UC1_23_Update_Unit_Offering
 		(pUnitID varchar2, 
        	 pSemester number,
        	 pYear number,
-       	 NewUnitID varchar2, 
-       	 NewSemester number,
-       	 NewYear number) AS
+       	 pEmpID varchar2,
+) AS
 BEGIN
 	UPDATE UnitOffering
-	SET UnitID = NewUnitID, -- test this, idk it's possible to update the primary key of the row you've searched for USING it's original primary key...
-		Semester = NewSemester,
-		Year = NewYear
+	SET EmpID = pEmpID, -- Employee is the only thing we can change
 	WHERE UnitID = pUnitID AND Semester = pSemester AND Year = pYear;
 	dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' updated'); --for testing
 EXCEPTION
@@ -477,12 +466,11 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN CURSOR AS
-	er EmployeeRole%ROWTYPE;
-	CURSOR emproles IS SELECT * FROM EmployeeRole;
+CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN SYS_REFCURSOR AS emproles SYS_REFCURSOR;
+	e EmployeeRole%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Employee Details');
-	OPEN emproles;
+	OPEN emproles for select * from EmployeeRole;
 	LOOP
 		Fetch emproles into er;
 		Exit When emproles%NOTFOUND;
@@ -499,12 +487,10 @@ End;
 
 CREATE OR REPLACE PROCEDURE UC1_27_Update_Employee_Role
 		(pEmpID varchar2, 
-       	 pRole varchar2,
-       	 NewEmpID varchar2,
-       	 NewRole varchar2) AS
+       	 pRole varchar2) AS
 BEGIN
 	UPDATE EmployeeRole
-	SET EmpID = NewEmpID,
+	SET 
 		Role = NewRole
 	WHERE EmpID = pEmpID AND Role = pRole;
 	dbms_output.put_line('Employee ' || pEmpID || ' updated as ' || pRole); --for testing
@@ -528,12 +514,6 @@ END;
 /
 
 
-
-
-
-	
-
-
 CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Role_Type
 		(pMeetType varchar2) AS
 BEGIN
@@ -548,18 +528,17 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_30_View_Meeting_Type RETURN CURSOR AS
-	mt MeetingType%ROWTYPE;
-	CURSOR mts IS SELECT * FROM MeetingType;
+CREATE or REPLACE FUNCTION UC1_30_View_Meeting_Type RETURN SYS_REFCURSOR AS mtypes SYS_REFCURSOR;
+	mts Employee%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Meeting types');
-	OPEN mts;
+	OPEN mtypes for select * from MeetingType;
 	LOOP
-		Fetch mt into mts;
+		Fetch mtypes into mts;
 		Exit When mt%NOTFOUND;
 		dbms_output.put_line('Meeting type: '|| mt.MeetingType);
 	End Loop;
-	Return mts;
+	Return mtypes;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -611,18 +590,17 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type RETURN CURSOR AS
-	at AssessmentType%ROWTYPE;
-	CURSOR ats IS SELECT * FROM MeetingType;
+CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type RETURN SYS_REFCURSOR AS ats SYS_REFCURSOR;
+	a Employee%ROWTYPE;
 BEGIN
-	dbms_output.put_line('Listing All Meeting types');
-	OPEN ats;
+
+	OPEN ats for select * from AssessmentType;
 	LOOP
-		Fetch at into mts;
-		Exit When mt%NOTFOUND;
+		Fetch ats into a;
+		Exit When ats%NOTFOUND;
 		dbms_output.put_line('Meeting type: '|| mt.MeetingType);
 	End Loop;
-	Return mts;
+	Return ats;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -691,8 +669,7 @@ CREATE OR REPLACE PROCEDURE UC2_2_Update_Team
 	pRole varchar2) AS
 BEGIN
 	UPDATE Team
-	SET TeamID = pTeamID,
-		ProjID = pProjID,
+	SET ProjID = pProjID,
 		Semester = pSemester,
 		Year = pYear,
 		EmpId = pEmpID,
@@ -743,12 +720,11 @@ create or replace PROCEDURE UC2_6_Update_Project
 	pYear number) AS
 BEGIN
 	UPDATE Project
-	SET ProjID = pProjID,
-		ProjDesc = pProjDesc,
+	SET	ProjDesc = pProjDesc	
+	WHERE ProjID = pProjID
 		UnitID = pUnitID,
 		Semester = pSemester,
-		Year = pYear
-	WHERE ProjID = pProjID;
+		Year = pYear;
 	dbms_output.put_line('Project' || pProjID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -802,16 +778,15 @@ create or replace PROCEDURE UC2_10_Update_Assessment
 	pDueDate date) AS
 BEGIN
 	UPDATE Assessment
-	SET AssId = pAssID,
-		AssTitle = pAssTitle,
+	SET AssTitle = pAssTitle,
 		AssDesc = pAssDesc,
-		UnitId = pUnitID, 
-		Semester = pSemester,
-		Year = pYear,
 		MarkingGuide = pMarkingGuide,
 		AssType = pAssType,
 		DueDate = pDueDate
-	WHERE AssId = pAssID;
+	WHERE AssId = pAssID,
+		UnitId = pUnitID, 
+		Semester = pSemester,
+		Year = pYear;
 	dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -879,6 +854,45 @@ END;
 /
 
 
+CREATE or REPLACE FUNCTION UC2_15_View_Ass_allo 
+	RETURN SYS_REFCURSOR AS emps SYS_REFCURSOR;
+	e Employee%ROWTYPE;
+BEGIN
+	
+	
+	OPEN emps for select * from employee;
+
+	dbms_output.put_line('Listing All Employee Details');
+	LOOP
+		Fetch emps into e;
+		Exit When emps%NOTFOUND;
+		dbms_output.put_line('Employee ID: '|| e.EmpId --for testing
+						 || ' First Name: ' ||e.FirstName
+						 || ' Last Name: ' ||e.LastName
+						 || ' Email: ' || e.Email
+						 || ' ContactNo:' || e.ContactNo); 
+	End Loop;
+	return emps;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
+CREATE OR REPLACE PROCEDURE UC2_16_Delete_Ass_Allo
+		(pAssID varchar2, pUnitID) AS
+BEGIN
+	Delete Assessment
+	WHERE AssID = pAssID;
+	dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
 create or replace PROCEDURE UC2_17_Register_Team_Allo
 		(pTeamID varchar2,
 	pStuID varchar2,
@@ -944,7 +958,7 @@ BEGIN
 		Minutes = pMinutes,
 		EmpID = pEmpID,
 		ClientName = pClientName 
-	WHERE MeetingID = pMeetingID
+	WHERE MeetingID = pMeetingID;
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
