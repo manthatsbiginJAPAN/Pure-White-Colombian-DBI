@@ -14,8 +14,8 @@ namespace FrontEndV0._1.forms
     {
         private frmEmpDetails frmEmpDetails;
         private frmAdminOperations frmAdminOps;
-        private frmConvenorOperations frmConvOps;
-        private frmSupervisorOperations frmSupOps;
+        private frmConvenorOperations frmConvAssessMaster;
+        private frmSupervisorOperations frmSupMngMeetings;
 
         public frmEmpDashboard()
         {
@@ -24,8 +24,8 @@ namespace FrontEndV0._1.forms
             //Form load, instantiate subforms
             frmEmpDetails = null;
             frmAdminOps = null;
-            frmConvOps = null;
-            frmSupOps = null;
+            frmConvAssessMaster = null;
+            frmSupMngMeetings = null;
         }
 
        
@@ -67,36 +67,14 @@ namespace FrontEndV0._1.forms
             frmAdminOps = null;
         }
 
-        private void convenerFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmConvOps == null)
-            {
-                frmConvOps = new frmConvenorOperations();
-                frmConvOps.FormClosing += frmConvOpsClosing;
-                frmConvOps.MdiParent = this;
-                frmConvOps.Visible = true;
-            }
-        }
-
         private void frmConvOpsClosing(object sender, FormClosingEventArgs e)
         {
-            frmConvOps = null;
-        }
-
-        private void supervisorFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmSupOps == null)
-            {
-                frmSupOps = new frmSupervisorOperations();
-                frmSupOps.FormClosing += frmSupOpsClosing;
-                frmSupOps.MdiParent = this;
-                frmSupOps.Visible = true;
-            }
+            frmConvAssessMaster = null;
         }
 
         private void frmSupOpsClosing(object sender, FormClosingEventArgs e)
         {
-            frmSupOps = null;
+            frmSupMngMeetings = null;
         }
 
         private void displayPanel_Paint(object sender, PaintEventArgs e)
@@ -112,6 +90,28 @@ namespace FrontEndV0._1.forms
                 frmAdminOps.FormClosing += frmAdminOperationsClosing;
                 frmAdminOps.MdiParent = this;
                 frmAdminOps.Visible = true;
+            }
+        }
+
+        private void masterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmConvAssessMaster == null)
+            {
+                frmConvAssessMaster = new frmConvenorOperations();
+                frmConvAssessMaster.FormClosing += frmConvOpsClosing;
+                frmConvAssessMaster.MdiParent = this;
+                frmConvAssessMaster.Visible = true;
+            }
+        }
+
+        private void manageMeetingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmSupMngMeetings == null)
+            {
+                frmSupMngMeetings = new frmSupervisorOperations();
+                frmSupMngMeetings.FormClosing += frmSupOpsClosing;
+                frmSupMngMeetings.MdiParent = this;
+                frmSupMngMeetings.Visible = true;
             }
         }
 
