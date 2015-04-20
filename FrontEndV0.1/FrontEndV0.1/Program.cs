@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace FrontEndV0._1
+namespace FrontEndV0._1.forms
 {
     static class Program
     {
@@ -15,7 +15,7 @@ namespace FrontEndV0._1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmDBLogin());
+            Application.Run(new frmLogin());
         }
     }
 }

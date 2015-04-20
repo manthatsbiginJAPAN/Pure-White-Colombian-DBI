@@ -56,12 +56,6 @@
     <Compile Include="forms\frmAdminOperations.Designer.cs">
       <DependentUpon>frmAdminOperations.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmDBLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmDBLogin.Designer.cs">
-      <DependentUpon>frmDBLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="forms\frmEmpDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,9 +78,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\frmAdminOperations.resx">
       <DependentUpon>frmAdminOperations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmDBLogin.resx">
-      <DependentUpon>frmDBLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEmpDashboard.resx">
       <DependentUpon>frmEmpDashboard.cs</DependentUpon>

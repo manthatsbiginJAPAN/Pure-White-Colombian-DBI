@@ -7,27 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FrontEndV0._1
+namespace FrontEndV0._1.forms
 {
     public partial class frmLogin : Form
     {
+        private frmEmpDashboard frmEmpDashboard;
+
         public frmLogin()
         {
             InitializeComponent();
+            frmEmpDashboard = null;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            login();
+            if (textBox1.Text.ToLower() == "admin")
+            {
+                if (frmEmpDashboard == null)
+                {
+                    frmEmpDashboard = new frmEmpDashboard();
+                    frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
+                    frmEmpDashboard.Show();
+                }
+            }
         }
 
-        private void login()
+        private void frmEmpDashboardClosing(object sender, FormClosingEventArgs e)
         {
-            if (txtUsername.Text == "admin")
-            {
-                frmStudentOperations frm = new frmStudentOperations();
-                frm.Show();
-            }
+            frmEmpDashboard = null; 
         }
 
     }
