@@ -1,6 +1,6 @@
 ﻿namespace FrontEndV0._1
 {
-    partial class frmStudentOperations
+    partial class frmAdminOperations
     {
         /// <summary>
         /// Required designer variable.
@@ -551,7 +551,7 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // frmStudentOperations
+            // frmAdminOperations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -560,7 +560,7 @@
             this.Controls.Add(this.grpStudentControls);
             this.Controls.Add(this.grpEmployeeControls);
             this.Controls.Add(this.cmbSelection);
-            this.Name = "frmStudentOperations";
+            this.Name = "frmAdminOperations";
             this.Text = "Admin Operations";
             this.grpStudentControls.ResumeLayout(false);
             this.grpStudentControls.PerformLayout();

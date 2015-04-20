@@ -11,12 +11,12 @@ using Oracle.DataAccess.Types;
 
 namespace FrontEndV0._1
 {
-    public partial class frmStudentOperations : Form
+    public partial class frmAdminOperations : Form
     {
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
 
-        public frmStudentOperations()
+        public frmAdminOperations()
         {
             InitializeComponent();
 
