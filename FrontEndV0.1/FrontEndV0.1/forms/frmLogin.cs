@@ -24,15 +24,20 @@ namespace FrontEndV0._1.forms
             //Code here needs to be redone at some point to actually log people in
             //Will include logic to work out usertype
 
-            if (textBox1.Text.ToLower() == "admin")
+            if (frmEmpDashboard == null)
             {
-                if (frmEmpDashboard == null)
-                {
+                if (txtUsername.Text.ToLower() == "admin")
                     frmEmpDashboard = new frmEmpDashboard("admin");
-                    frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
-                    frmEmpDashboard.Show();
-                }
+                
+                if (txtUsername.Text.ToLower() == "supervisor")
+                    frmEmpDashboard = new frmEmpDashboard("supervisor");
+
+                if (txtUsername.Text.ToLower() == "convenor")
+                    frmEmpDashboard = new frmEmpDashboard("convenor");
             }
+
+            frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
+            frmEmpDashboard.Show();
         }
 
         private void frmEmpDashboardClosing(object sender, FormClosingEventArgs e)

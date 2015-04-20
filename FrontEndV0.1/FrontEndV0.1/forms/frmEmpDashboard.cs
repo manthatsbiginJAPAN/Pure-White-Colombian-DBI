@@ -23,13 +23,13 @@ namespace FrontEndV0._1.forms
 
             //Enable menus based on user's type
             if (usertype == "admin")
-            {
                 administratorFunctionsToolStripMenuItem.Enabled = true;
-            }
+
             if (usertype == "supervisor")
-            {
                 supervisorFunctionsToolStripMenuItem.Enabled = true;
-            }
+
+            if (usertype == "convenor")
+                convenerFunctionsToolStripMenuItem.Enabled = true;
 
             //Form load, instantiate subforms
             frmEmpDetails = null;
