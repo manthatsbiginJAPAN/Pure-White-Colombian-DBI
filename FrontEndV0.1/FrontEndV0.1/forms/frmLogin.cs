@@ -12,6 +12,15 @@ namespace FrontEndV0._1.forms
     public partial class frmLogin : Form
     {
         private frmEmpDashboard frmEmpDashboard;
+        private string _Username;
+
+        public string Username
+        {
+            get
+            {
+                return _Username;
+            }
+        }
 
         public frmLogin()
         {
@@ -21,14 +30,25 @@ namespace FrontEndV0._1.forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.ToLower() == "admin")
+            //only this way until we implement others' logins
+            if (txtUsername.Text.ToLower() == "admin")
             {
+                //verify password here...
+                _Username = "admin"; //note who will be logged in
+
+                
+
                 if (frmEmpDashboard == null)
                 {
                     frmEmpDashboard = new frmEmpDashboard();
                     frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
                     frmEmpDashboard.Show();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Invalid Login, please try again");
+                txtPassword.Focus();
             }
         }
 

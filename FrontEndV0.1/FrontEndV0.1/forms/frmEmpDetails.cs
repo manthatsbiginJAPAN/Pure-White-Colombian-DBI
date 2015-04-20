@@ -17,6 +17,11 @@ namespace FrontEndV0._1.forms
             InitializeComponent();
         }
 
+        private void frmEmpDetails_Load(object sender, EventArgs e)
+        {
+            
+        }
+
 
     }
 }

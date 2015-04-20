@@ -64,5 +64,17 @@ namespace FrontEndV0._1.forms
         {
 
         }
+
+        private void frmEmpDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void VerifyAccess()
+        {
+            //ask if emp is admin
+            //if Parent.
+            //Executor exe = new Executor();
+        }
     }
 }
