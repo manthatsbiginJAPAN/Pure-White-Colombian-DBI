@@ -199,22 +199,22 @@ END;
 
 
 
-CREATE or REPLACE FUNCTION UC1_11_View_Student RETURN CURSOR AS
+CREATE or REPLACE FUNCTION UC1_11_View_Student
+	RETURN SYS_REFCURSOR AS studs SYS_REFCURSOR;
 	s Student%ROWTYPE;
-	CURSOR students IS SELECT * FROM Student;
 BEGIN
 	dbms_output.put_line('Listing All Student Details');
 	OPEN students;
 	LOOP
-		Fetch students into s;
-		Exit When students%NOTFOUND;
+		Fetch studs into s;
+		Exit When studs%NOTFOUND;
 		dbms_output.put_line('Student ID: '|| s.StuId --for testing
 						 || ' FirstName: ' || s.FirstName
 						 || ' LastName: ' || s.LastName
 						 || ' Email: ' || s.Email
 						 || ' ContactNo: ' || s.ContactNo);
 	End Loop;
-	Return students;
+	Return studs;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -285,21 +285,20 @@ END;
 
 
 
-CREATE or REPLACE FUNCTION UC1_15_View_Enrolment RETURN CURSOR AS
-	e enrolmentt%ROWTYPE;
-	CURSOR enrolments IS SELECT * FROM Student;
+CREATE or REPLACE FUNCTION UC1_15_View_Enrolment RETURN SYS_REFCURSOR AS enrols SYS_REFCURSOR;
+	e Enrolment%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Student Enrolments');
-	OPEN enrolments;
+	OPEN enrols for select * from Enrolment;
 	LOOP
-		Fetch enrolments into e;
-		Exit When enrolments%NOTFOUND;
+		Fetch enrols into e;
+		Exit When enrols%NOTFOUND;
 		dbms_output.put_line('Student ID: '|| e.StuId --for testing
 						 || ' UnitID: ' || e.UnitID
 						 || ' Semester: ' || e.Semester
 						 || ' Year: ' || e.Year);
 	End Loop;
-	Return enrolments;
+	Return enrols;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -341,9 +340,8 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_18_View_Role_Type RETURN CURSOR AS
-	r RoleType%ROWTYPE;
-	CURSOR roles IS SELECT * FROM RoleType;
+CREATE or REPLACE FUNCTION UC1_18_View_Role_Type RETURN SYS_REFCURSOR AS roles SYS_REFCURSOR;
+	r Role%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Role types');
 	OPEN roles;
@@ -405,12 +403,11 @@ END;
 /
 
 
-CREATE or REPLACE PROCEDURE UC1_22_View_Unit_Offering AS
-	uo UnitOffering%ROWTYPE;
-	CURSOR uos IS SELECT * FROM UnitOffering;
+CREATE or REPLACE PROCEDURE UC1_22_View_Unit_Offering RETURN SYS_REFCURSOR AS unofs SYS_REFCURSOR;
+	unos UnitOffering%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Unit Offerings');
-	OPEN uos;
+	OPEN uos for select * from UnitOffering;
 	LOOP
 		Fetch uos into uo;
 		Exit When uos%NOTFOUND;
@@ -477,12 +474,11 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN CURSOR AS
-	er EmployeeRole%ROWTYPE;
-	CURSOR emproles IS SELECT * FROM EmployeeRole;
+CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN SYS_REFCURSOR AS emproles SYS_REFCURSOR;
+	e EmployeeRole%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Employee Details');
-	OPEN emproles;
+	OPEN emproles for select * from EmployeeRole;
 	LOOP
 		Fetch emproles into er;
 		Exit When emproles%NOTFOUND;
@@ -548,18 +544,17 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_30_View_Meeting_Type RETURN CURSOR AS
-	mt MeetingType%ROWTYPE;
-	CURSOR mts IS SELECT * FROM MeetingType;
+CREATE or REPLACE FUNCTION UC1_30_View_Meeting_Type RETURN SYS_REFCURSOR AS mtypes SYS_REFCURSOR;
+	mts Employee%ROWTYPE;
 BEGIN
 	dbms_output.put_line('Listing All Meeting types');
-	OPEN mts;
+	OPEN mtypes for select * from MeetingType;
 	LOOP
-		Fetch mt into mts;
+		Fetch mtypes into mts;
 		Exit When mt%NOTFOUND;
 		dbms_output.put_line('Meeting type: '|| mt.MeetingType);
 	End Loop;
-	Return mts;
+	Return mtypes;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -611,18 +606,17 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type RETURN CURSOR AS
-	at AssessmentType%ROWTYPE;
-	CURSOR ats IS SELECT * FROM MeetingType;
+CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type RETURN SYS_REFCURSOR AS ats SYS_REFCURSOR;
+	a Employee%ROWTYPE;
 BEGIN
-	dbms_output.put_line('Listing All Meeting types');
-	OPEN ats;
+
+	OPEN ats for select * from AssessmentType;
 	LOOP
-		Fetch at into mts;
-		Exit When mt%NOTFOUND;
+		Fetch ats into a;
+		Exit When ats%NOTFOUND;
 		dbms_output.put_line('Meeting type: '|| mt.MeetingType);
 	End Loop;
-	Return mts;
+	Return ats;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
