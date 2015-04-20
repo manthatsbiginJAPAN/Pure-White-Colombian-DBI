@@ -20,7 +20,7 @@ namespace FrontEndV0._1.forms
         {
             InitializeComponent();
 
-            //connection = conn.oraConn();
+            connection = conn.oraConn();
 
             //Set dropdown box default to student
             cmbSelection.SelectedIndex = 0;
