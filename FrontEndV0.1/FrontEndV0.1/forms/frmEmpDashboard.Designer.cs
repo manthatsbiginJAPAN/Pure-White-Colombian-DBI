@@ -131,14 +131,13 @@
             this.viewUnitOfferingsToolStripMenuItem});
             this.convenerFunctionsToolStripMenuItem.Enabled = false;
             this.convenerFunctionsToolStripMenuItem.Name = "convenerFunctionsToolStripMenuItem";
-<<<<<<< HEAD
+
             this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(241, 36);
             this.convenerFunctionsToolStripMenuItem.Text = "Convenor Functions";
-            this.convenerFunctionsToolStripMenuItem.Click += new System.EventHandler(this.convenerFunctionsToolStripMenuItem_Click);
-=======
+
             this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(191, 29);
             this.convenerFunctionsToolStripMenuItem.Text = "Convener Functions";
->>>>>>> origin/master
+
             // 
             // manageAssessmentsMasterToolStripMenuItem
             // 
@@ -165,11 +164,10 @@
             // manageAssessmentAllocationsToolStripMenuItem
             // 
             this.manageAssessmentAllocationsToolStripMenuItem.Name = "manageAssessmentAllocationsToolStripMenuItem";
-<<<<<<< HEAD
+
             this.manageAssessmentAllocationsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
-=======
+
             this.manageAssessmentAllocationsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
->>>>>>> origin/master
             this.manageAssessmentAllocationsToolStripMenuItem.Text = "Manage Projects";
             // 
             // manageTeamsToolStripMenuItem
@@ -197,17 +195,15 @@
             this.viewAssessmentsToolStripMenuItem,
             this.viewTeamsToolStripMenuItem,
             this.viewProjectsToolStripMenuItem});
-<<<<<<< HEAD
+
             this.supervisorFunctionsToolStripMenuItem.Enabled = false;
             this.supervisorFunctionsToolStripMenuItem.Name = "supervisorFunctionsToolStripMenuItem";
             this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(249, 36);
             this.supervisorFunctionsToolStripMenuItem.Text = "Supervisor Functions";
-            this.supervisorFunctionsToolStripMenuItem.Click += new System.EventHandler(this.supervisorFunctionsToolStripMenuItem_Click);
-=======
+
             this.supervisorFunctionsToolStripMenuItem.Name = "supervisorFunctionsToolStripMenuItem";
             this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(199, 29);
             this.supervisorFunctionsToolStripMenuItem.Text = "Supervisor Functions";
->>>>>>> origin/master
             // 
             // manageMeetingsToolStripMenuItem
             // 
@@ -240,11 +236,8 @@
             this.logoutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             this.logoutToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-<<<<<<< HEAD
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(89, 36);
-=======
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(71, 29);
->>>>>>> origin/master
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
