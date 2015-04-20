@@ -114,22 +114,24 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
 
 
+
 CREATE or REPLACE PROCEDURE UC1_7_View_Unit AS
+	RETURN SYS_REFCURSOR AS unts SYS_REFCURSOR;
 	u Unit%ROWTYPE;
-	CURSOR units IS SELECT * FROM Unit;
 BEGIN
-	dbms_output.put_line('Listing All Unit Details');
-	OPEN units;
+	OPEN unts for select * from Unit;
 	LOOP
-		Fetch units into u;
-		Exit When units%NOTFOUND;
+		Fetch unts into u;
+		Exit When unts%NOTFOUND;
 		dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
 						 || ' Unit Name: ' || u.UnitName
 						 || ' Unit Description: ' || u.UnitDesc);
 	End Loop;
+	return unts;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -266,7 +268,7 @@ CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment
 BEGIN
 	UPDATE Enrolment
 	SET
-		\
+		StuID = NewStuID
 		UnitID = NewUnitID,
 		Semester = NewSemester,
 		Year = NewYear
@@ -632,10 +634,12 @@ End;
 CREATE OR REPLACE PROCEDURE UC1_35_Update_Assessment_Type -- think we're going to have problems with this
 		(pAssType varchar2,
 		 pTypeDesc varchar2,
-		 NewAssType varchar2) AS
+		 NewAssType varchar2,
+		 NewTypeDesc varchar2) AS
 BEGIN
 	UPDATE AssessmentType
-	SET AssType = NewAssType
+	SET AssType = NewAssType,
+		TypeDesc = NewTypeDesc
 	WHERE AssType = pAssType;
 	dbms_output.put_line('Assessment type ' || pAssType || ' updated' ); --for testing
 EXCEPTION
@@ -909,7 +913,7 @@ BEGIN
 	INSERT INTO Meeting VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID);
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
 END;
@@ -942,9 +946,9 @@ BEGIN
 		ClientName = pClientName 
 	WHERE MeetingID = pMeetingID
 EXCEPTION
-	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID);
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
 END;
+
+
 
