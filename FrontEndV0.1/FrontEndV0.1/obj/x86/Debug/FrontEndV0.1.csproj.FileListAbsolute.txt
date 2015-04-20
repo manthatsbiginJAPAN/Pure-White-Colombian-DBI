@@ -37,7 +37,6 @@ C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\o
 C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmEmpDashboard.resources
 C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmEmpDetails.resources
 C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmLogin.resources
-H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.frmStudentOperations.resources
 H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmEmpDashboard.resources
 H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmEmpDetails.resources
 H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmLogin.resources
@@ -74,3 +73,7 @@ C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmLogin.resources
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisorOperations.resources
 H:\DBI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisor.resources
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmAdminOperations.resources
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmConvenorOperations.resources
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisor.resources
+H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisorOperations.resources
