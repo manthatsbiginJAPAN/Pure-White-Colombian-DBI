@@ -260,19 +260,14 @@ CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment
 		(pStuID varchar2,	
 		 pUnitID varchar2, 
        	 pSemester number,
-       	 pYear number,
-       	 NewStuID varchar2,	
-		 NewUnitID varchar2, 
-       	 NewSemester number,
-       	 NewYear number) AS
+       	 pYear number) AS
 BEGIN
 	UPDATE Enrolment
 	SET
-		StuID = NewStuID
-		UnitID = NewUnitID,
-		Semester = NewSemester,
-		Year = NewYear
-	WHERE StuID = pStuID AND UnitID = pUnitID AND Semester = pSemester AND Year = pYear;
+		UnitID = pUnitID,
+		Semester = pSemester,
+		Year = pYear
+	WHERE StuID = pStuID 
 	dbms_output.put_line('Enrolment of Student: ' || pStuID || 
 									 ' for unit ' || pUnitID ||
 									 ' semester ' || pSemester ||
@@ -426,14 +421,11 @@ create or replace PROCEDURE UC1_23_Update_Unit_Offering
 		(pUnitID varchar2, 
        	 pSemester number,
        	 pYear number,
-       	 NewUnitID varchar2, 
-       	 NewSemester number,
-       	 NewYear number) AS
+       	 pEmpID varchar2,
+) AS
 BEGIN
 	UPDATE UnitOffering
-	SET UnitID = NewUnitID, -- test this, idk it's possible to update the primary key of the row you've searched for USING it's original primary key...
-		Semester = NewSemester,
-		Year = NewYear
+	SET EmpID = pEmpID, -- Employee is the only thing we can change
 	WHERE UnitID = pUnitID AND Semester = pSemester AND Year = pYear;
 	dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' updated'); --for testing
 EXCEPTION
@@ -495,12 +487,10 @@ End;
 
 CREATE OR REPLACE PROCEDURE UC1_27_Update_Employee_Role
 		(pEmpID varchar2, 
-       	 pRole varchar2,
-       	 NewEmpID varchar2,
-       	 NewRole varchar2) AS
+       	 pRole varchar2) AS
 BEGIN
 	UPDATE EmployeeRole
-	SET EmpID = NewEmpID,
+	SET 
 		Role = NewRole
 	WHERE EmpID = pEmpID AND Role = pRole;
 	dbms_output.put_line('Employee ' || pEmpID || ' updated as ' || pRole); --for testing
@@ -522,12 +512,6 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
-
-
-
-
-
-	
 
 
 CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Role_Type
@@ -685,8 +669,7 @@ CREATE OR REPLACE PROCEDURE UC2_2_Update_Team
 	pRole varchar2) AS
 BEGIN
 	UPDATE Team
-	SET TeamID = pTeamID,
-		ProjID = pProjID,
+	SET ProjID = pProjID,
 		Semester = pSemester,
 		Year = pYear,
 		EmpId = pEmpID,
@@ -737,12 +720,11 @@ create or replace PROCEDURE UC2_6_Update_Project
 	pYear number) AS
 BEGIN
 	UPDATE Project
-	SET ProjID = pProjID,
-		ProjDesc = pProjDesc,
+	SET	ProjDesc = pProjDesc	
+	WHERE ProjID = pProjID
 		UnitID = pUnitID,
 		Semester = pSemester,
-		Year = pYear
-	WHERE ProjID = pProjID;
+		Year = pYear;
 	dbms_output.put_line('Project' || pProjID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -796,16 +778,15 @@ create or replace PROCEDURE UC2_10_Update_Assessment
 	pDueDate date) AS
 BEGIN
 	UPDATE Assessment
-	SET AssId = pAssID,
-		AssTitle = pAssTitle,
+	SET AssTitle = pAssTitle,
 		AssDesc = pAssDesc,
-		UnitId = pUnitID, 
-		Semester = pSemester,
-		Year = pYear,
 		MarkingGuide = pMarkingGuide,
 		AssType = pAssType,
 		DueDate = pDueDate
-	WHERE AssId = pAssID;
+	WHERE AssId = pAssID,
+		UnitId = pUnitID, 
+		Semester = pSemester,
+		Year = pYear;
 	dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -873,6 +854,45 @@ END;
 /
 
 
+CREATE or REPLACE FUNCTION UC2_15_View_Ass_allo 
+	RETURN SYS_REFCURSOR AS emps SYS_REFCURSOR;
+	e Employee%ROWTYPE;
+BEGIN
+	
+	
+	OPEN emps for select * from employee;
+
+	dbms_output.put_line('Listing All Employee Details');
+	LOOP
+		Fetch emps into e;
+		Exit When emps%NOTFOUND;
+		dbms_output.put_line('Employee ID: '|| e.EmpId --for testing
+						 || ' First Name: ' ||e.FirstName
+						 || ' Last Name: ' ||e.LastName
+						 || ' Email: ' || e.Email
+						 || ' ContactNo:' || e.ContactNo); 
+	End Loop;
+	return emps;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
+CREATE OR REPLACE PROCEDURE UC2_16_Delete_Ass_Allo
+		(pAssID varchar2, pUnitID) AS
+BEGIN
+	Delete Assessment
+	WHERE AssID = pAssID;
+	dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
 create or replace PROCEDURE UC2_17_Register_Team_Allo
 		(pTeamID varchar2,
 	pStuID varchar2,
@@ -938,7 +958,7 @@ BEGIN
 		Minutes = pMinutes,
 		EmpID = pEmpID,
 		ClientName = pClientName 
-	WHERE MeetingID = pMeetingID
+	WHERE MeetingID = pMeetingID;
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
