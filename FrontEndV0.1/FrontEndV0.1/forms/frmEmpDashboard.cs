@@ -17,9 +17,19 @@ namespace FrontEndV0._1.forms
         private frmConvenorOperations frmConvOps;
         private frmSupervisorOperations frmSupOps;
 
-        public frmEmpDashboard()
+        public frmEmpDashboard(string usertype)
         {
             InitializeComponent();
+
+            //Enable menus based on user's type
+            if (usertype == "admin")
+            {
+                administratorFunctionsToolStripMenuItem.Enabled = true;
+            }
+            if (usertype == "supervisor")
+            {
+                supervisorFunctionsToolStripMenuItem.Enabled = true;
+            }
 
             //Form load, instantiate subforms
             frmEmpDetails = null;

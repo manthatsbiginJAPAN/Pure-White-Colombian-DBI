@@ -21,11 +21,14 @@ namespace FrontEndV0._1.forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            //Code here needs to be redone at some point to actually log people in
+            //Will include logic to work out usertype
+
             if (textBox1.Text.ToLower() == "admin")
             {
                 if (frmEmpDashboard == null)
                 {
-                    frmEmpDashboard = new frmEmpDashboard();
+                    frmEmpDashboard = new frmEmpDashboard("admin");
                     frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
                     frmEmpDashboard.Show();
                 }
