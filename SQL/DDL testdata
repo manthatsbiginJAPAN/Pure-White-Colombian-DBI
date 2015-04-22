@@ -1,2 +1,33 @@
 begin
-	U
+	-------------------
+	--Clear all tables of values (reverse order of creation/entering)
+	-------------------
+	DELETE AgendaItem;
+	DELETE ActionItem;
+	DELETE MeetingAttendance;
+	DELETE Meeting;
+	DELETE MeetingType;
+	
+	DELETE AssessmentAllocation;
+	DELETE StudentTeamAllocation; 
+	DELETE Team;
+	DELETE Project;
+
+	DELETE Assessment;
+	DELETE AssessmentType;
+	
+	DELETE Enrolment;
+	DELETE UnitOffering;
+	DELETE Unit;
+	DELETE Student;
+	
+	DELETE EmployeeRole;
+	DELETE RoleType;
+	DELETE Employee;
+	
+
+
+	--------------------
+	--Insert Information
+	--------------------
+	
