@@ -1,6 +1,6 @@
 ﻿namespace FrontEndV0._1.forms
 {
-    partial class frmEmpDashboard
+    partial class frmStuDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.viewUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.personalDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,13 +37,12 @@
             this.manageUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageUnitOfferingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageEnrolmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.convenorFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convenerFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageAssessmentsMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageAssessmentAllocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageTeamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewUnitOfferingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supervisorFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageMeetingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,19 +53,25 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // viewUnitsToolStripMenuItem
+            // 
+            this.viewUnitsToolStripMenuItem.Name = "viewUnitsToolStripMenuItem";
+            this.viewUnitsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
+            this.viewUnitsToolStripMenuItem.Text = "View Units";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personalDetailsToolStripMenuItem,
             this.administratorFunctionsToolStripMenuItem,
-            this.convenorFunctionsToolStripMenuItem,
+            this.convenerFunctionsToolStripMenuItem,
             this.supervisorFunctionsToolStripMenuItem,
             this.logoutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 33);
-            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "msEmp";
             // 
             // personalDetailsToolStripMenuItem
@@ -87,28 +93,24 @@
             this.administratorFunctionsToolStripMenuItem.Name = "administratorFunctionsToolStripMenuItem";
             this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(225, 29);
             this.administratorFunctionsToolStripMenuItem.Text = "Administrator Functions";
-            this.administratorFunctionsToolStripMenuItem.Click += new System.EventHandler(this.administratorFunctionsToolStripMenuItem_Click);
             // 
             // manageToolStripMenuItem
             // 
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
             this.manageToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageToolStripMenuItem.Text = "Manage Students";
-            this.manageToolStripMenuItem.Click += new System.EventHandler(this.manageToolStripMenuItem_Click);
             // 
             // manageEmployeesToolStripMenuItem
             // 
             this.manageEmployeesToolStripMenuItem.Name = "manageEmployeesToolStripMenuItem";
             this.manageEmployeesToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageEmployeesToolStripMenuItem.Text = "Manage Employees";
-            this.manageEmployeesToolStripMenuItem.Click += new System.EventHandler(this.manageEmployeesToolStripMenuItem_Click);
             // 
             // manageUnitsToolStripMenuItem
             // 
             this.manageUnitsToolStripMenuItem.Name = "manageUnitsToolStripMenuItem";
             this.manageUnitsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageUnitsToolStripMenuItem.Text = "Manage Units";
-            this.manageUnitsToolStripMenuItem.Click += new System.EventHandler(this.manageUnitsToolStripMenuItem_Click);
             // 
             // manageUnitOfferingsToolStripMenuItem
             // 
@@ -122,18 +124,18 @@
             this.manageEnrolmentsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageEnrolmentsToolStripMenuItem.Text = "Manage Enrolments";
             // 
-            // convenorFunctionsToolStripMenuItem
+            // convenerFunctionsToolStripMenuItem
             // 
-            this.convenorFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.convenerFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manageAssessmentsMasterToolStripMenuItem,
             this.manageAssessmentAllocationsToolStripMenuItem,
             this.manageTeamsToolStripMenuItem,
             this.viewUnitsToolStripMenuItem,
             this.viewUnitOfferingsToolStripMenuItem});
-            this.convenorFunctionsToolStripMenuItem.Enabled = false;
-            this.convenorFunctionsToolStripMenuItem.Name = "convenorFunctionsToolStripMenuItem";
-            this.convenorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(192, 29);
-            this.convenorFunctionsToolStripMenuItem.Text = "Convenor Functions";
+            this.convenerFunctionsToolStripMenuItem.Enabled = false;
+            this.convenerFunctionsToolStripMenuItem.Name = "convenerFunctionsToolStripMenuItem";
+            this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(191, 29);
+            this.convenerFunctionsToolStripMenuItem.Text = "Convener Functions";
             // 
             // manageAssessmentsMasterToolStripMenuItem
             // 
@@ -149,7 +151,6 @@
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(177, 30);
             this.masterToolStripMenuItem.Text = "Master";
-            this.masterToolStripMenuItem.Click += new System.EventHandler(this.masterToolStripMenuItem_Click);
             // 
             // allocationsToolStripMenuItem
             // 
@@ -168,12 +169,6 @@
             this.manageTeamsToolStripMenuItem.Name = "manageTeamsToolStripMenuItem";
             this.manageTeamsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
             this.manageTeamsToolStripMenuItem.Text = "Manage Teams";
-            // 
-            // viewUnitsToolStripMenuItem
-            // 
-            this.viewUnitsToolStripMenuItem.Name = "viewUnitsToolStripMenuItem";
-            this.viewUnitsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
-            this.viewUnitsToolStripMenuItem.Text = "View Units";
             // 
             // viewUnitOfferingsToolStripMenuItem
             // 
@@ -198,7 +193,6 @@
             this.manageMeetingsToolStripMenuItem.Name = "manageMeetingsToolStripMenuItem";
             this.manageMeetingsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
             this.manageMeetingsToolStripMenuItem.Text = "Manage Meetings";
-            this.manageMeetingsToolStripMenuItem.Click += new System.EventHandler(this.manageMeetingsToolStripMenuItem_Click);
             // 
             // viewAssessmentsToolStripMenuItem
             // 
@@ -228,16 +222,15 @@
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
-            // frmEmpDashboard
+            // frmStuDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 609);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmEmpDashboard";
-            this.Text = "Employee Dashboard";
+            this.Name = "frmStuDashboard";
+            this.Text = "Student Dashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -248,27 +241,27 @@
 
         #endregion
 
+        private System.Windows.Forms.ToolStripMenuItem viewUnitsToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem personalDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administratorFunctionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem convenorFunctionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem supervisorFunctionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageEmployeesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageUnitsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageUnitOfferingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageEnrolmentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convenerFunctionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageAssessmentsMasterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manageAssessmentAllocationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allocationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageAssessmentAllocationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageTeamsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewUnitsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewUnitOfferingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supervisorFunctionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageMeetingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAssessmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewTeamsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewProjectsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }
 }

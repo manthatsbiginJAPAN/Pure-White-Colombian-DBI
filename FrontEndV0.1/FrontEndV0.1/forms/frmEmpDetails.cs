@@ -33,7 +33,6 @@ namespace FrontEndV0._1.forms
 
         private void getEmployees()
         {
-
             //Oracle Command to populate the dataset
             OracleCommand cmd = new OracleCommand("UC1_3_View_Employee", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -64,49 +63,64 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 object[] items = ds.Tables[0].Rows[i].ItemArray;
-                grdEmployeeInfo.Rows.Add(new object[] { items[0], items[1], items[2] });
+                grdEmployeeInfo.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4], items[5] });
             } 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //Logic and functions for save button
-            if (btnAdd.Text == "Save")
+            if (btnAdd.Text == "Save?")
             {
                 //Command to add employee
-                OracleCommand cmd = new OracleCommand("UC1_1_REGISTER_EMPLOYEE", connection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                if (FormValidated())
+                {
+                    OracleCommand cmd = new OracleCommand("UC1_1_REGISTER_EMPLOYEE", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("empid", txtEmpID.Text);
-                cmd.Parameters.Add("fname", txtEmpFName.Text);
-                cmd.Parameters.Add("sname", txtEmpSName.Text);
-                cmd.Parameters.Add("email", txtEmpEmail.Text);
-                cmd.Parameters.Add("phnum", txtEmpPhone.Text);
-                cmd.Parameters.Add("pword", txtEmpPass.Text);
+                    cmd.Parameters.Add("empid", txtEmpID.Text);
+                    cmd.Parameters.Add("fname", txtEmpFName.Text);
+                    cmd.Parameters.Add("sname", txtEmpSName.Text);
+                    cmd.Parameters.Add("email", txtEmpEmail.Text);
+                    cmd.Parameters.Add("phnum", txtEmpPhone.Text);
+                    cmd.Parameters.Add("pword", txtEmpPass.Text);
 
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
 
-                ds.Tables[0].Rows.Add(txtEmpID.Text
-                    , txtEmpFName.Text
-                    , txtEmpSName.Text
-                    , txtEmpEmail.Text
-                    , txtEmpPhone.Text);
+                    ds.Tables[0].Rows.Add(txtEmpID.Text
+                        , txtEmpFName.Text
+                        , txtEmpSName.Text
+                        , txtEmpEmail.Text
+                        , txtEmpPhone.Text);
 
-                //Repopulate Grid
-                populateEmpGrid();
+                    //Repopulate Grid
+                    populateEmpGrid();
 
-                //Disable buttons
-                txtEmpID.Enabled = false;
-                txtEmpFName.Enabled = false;
-                txtEmpSName.Enabled = false;
-                txtEmpEmail.Enabled = false;
-                txtEmpPhone.Enabled = false;
-                txtEmpPass.Enabled = false;
+                    //Disable buttons
+                    txtEmpID.Enabled = false;
+                    txtEmpFName.Enabled = false;
+                    txtEmpSName.Enabled = false;
+                    txtEmpEmail.Enabled = false;
+                    txtEmpPhone.Enabled = false;
+                    txtEmpPass.Enabled = false;
 
-                btnAdd.Text = ">> Add >>";
-                Console.WriteLine(btnAdd.Text);
+                    //Enable other buttons
+                    btnEdit.Enabled = true;
+                    btnDelete.Enabled = true;
+
+                    //Clear textboxes
+                    txtEmpID.Clear();
+                    txtEmpFName.Clear();
+                    txtEmpSName.Clear();
+                    txtEmpPhone.Clear();
+                    txtEmpEmail.Clear();
+                    txtEmpPass.Clear();
+
+                    btnAdd.Text = "Add";
+                    Console.WriteLine(btnAdd.Text); //wut
+                }
             }
             else
             {
@@ -117,12 +131,157 @@ namespace FrontEndV0._1.forms
                 txtEmpEmail.Enabled = true;
                 txtEmpPhone.Enabled = true;
                 txtEmpPass.Enabled = true;
+                
+                //Disable other buttons
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
 
-                btnAdd.Text = "Save";
+                //Change button text and deselect any employee from grid
+                btnAdd.Text = "Save?";
                 grdEmployeeInfo.ClearSelection();
             }
         }
 
 
+        private bool FormValidated()
+        {
+            //Track a cummulative error message, appending when a particular condition is not met
+            string ErrorMsg = null;
+
+            if (txtEmpID.Text.Length == 0)
+                ErrorMsg += Environment.NewLine + "Please enter a valid Employee ID. Max 10 Characters.";
+            if (txtEmpFName.Text.Length == 0)
+                ErrorMsg += Environment.NewLine + "Please enter a valid first name.";
+            if (txtEmpSName.Text.Length == 0)
+                ErrorMsg += Environment.NewLine + "Please enter a valid last name ID.";
+            if (txtEmpPhone.Text.Length == 0)
+               ErrorMsg += Environment.NewLine + "Please enter a valid Phone Number. Max 10 digits.";
+            if (txtEmpEmail.Text.Length == 0)
+                ErrorMsg += Environment.NewLine + "Please enter a valid email address.";
+            if (txtEmpPass.Text.Length == 0)
+                ErrorMsg += Environment.NewLine + "Please enter a valid password.";
+                
+            if (ErrorMsg != null)
+            {
+                MessageBox.Show(ErrorMsg, "Employee Information Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void grdEmployeeInfo_SelectionChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (grdEmployeeInfo.SelectedCells.Count == 0)
+            {
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+            }
+            else
+            {
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = true;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int selectedrowindex = grdEmployeeInfo.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
+            string selectedempid = grdEmployeeInfo.Rows[selectedrowindex].Cells[0].Value.ToString(); //fetch the ID in that row
+            DialogResult response = MessageBox.Show("Delete Employee: " + selectedempid + "?", //confirm with user
+                "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (response == DialogResult.Yes)
+            {
+                OracleCommand cmd = new OracleCommand("UC1_4_Delete_Employee", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("empid", selectedempid);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+                getEmployees();
+                populateEmpGrid();
+                MessageBox.Show("Employee Deleted");
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            //Logic and functions for save button
+            if (btnEdit.Text == "Update?")
+            {
+                //Command to add Employee
+                if (FormValidated())
+                {
+                    OracleCommand cmd = new OracleCommand("UC1_2_Update_Employee", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("Empid", txtEmpID.Text);
+                    cmd.Parameters.Add("fname", txtEmpFName.Text);
+                    cmd.Parameters.Add("sname", txtEmpSName.Text);
+                    cmd.Parameters.Add("email", txtEmpEmail.Text);
+                    cmd.Parameters.Add("phnum", txtEmpPhone.Text);
+                    cmd.Parameters.Add("pword", txtEmpPass.Text);
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+
+                    //Repopulate Grid and notify user
+                    getEmployees();
+                    populateEmpGrid();
+                    MessageBox.Show("Employee Updated");
+
+                    //Disable textboxes
+                    gbIdentifyingInformation.Enabled = false;
+                    gbDetails.Enabled = false;
+
+                    //Enable other buttons
+                    btnAdd.Enabled = true;
+                    btnDelete.Enabled = true;
+
+                    //Clear textboxes
+                    txtEmpID.Clear();
+                    txtEmpFName.Clear();
+                    txtEmpSName.Clear();
+                    txtEmpPhone.Clear();
+                    txtEmpEmail.Clear();
+                    txtEmpPass.Clear();
+
+                    grdEmployeeInfo.Enabled = true;
+                    btnEdit.Text = "Edit";
+                    Console.WriteLine(btnAdd.Text); //wut
+                }
+            }
+            else
+            {
+                //loading data into textboxes: find the row, load the data from the datagridset
+                int selectedrowindex = grdEmployeeInfo.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
+                txtEmpID.Text = grdEmployeeInfo.Rows[selectedrowindex].Cells[0].Value.ToString();
+                txtEmpFName.Text = grdEmployeeInfo.Rows[selectedrowindex].Cells[1].Value.ToString();
+                txtEmpSName.Text = grdEmployeeInfo.Rows[selectedrowindex].Cells[2].Value.ToString();
+                txtEmpEmail.Text = grdEmployeeInfo.Rows[selectedrowindex].Cells[3].Value.ToString();
+                txtEmpPhone.Text = grdEmployeeInfo.Rows[selectedrowindex].Cells[4].Value.ToString();
+                txtEmpPass.Text = grdEmployeeInfo.Rows[selectedrowindex].Cells[5].Value.ToString();
+
+                //Enable textboxes
+                gbIdentifyingInformation.Enabled = true;
+                gbDetails.Enabled = true;
+
+                //Disable other buttons
+                gbIdentifyingInformation.Enabled = false;
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+
+                //Change button text and deselect any employee from grid
+                btnEdit.Text = "Update?";
+                grdEmployeeInfo.ClearSelection();
+                grdEmployeeInfo.Enabled = false;
+            }
+        }
     }
 }
+

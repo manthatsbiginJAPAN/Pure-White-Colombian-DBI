@@ -30,22 +30,21 @@
         {
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbLogin = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.gbLogin.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(175, 438);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Location = new System.Drawing.Point(6, 159);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(389, 41);
-            this.btnLogin.TabIndex = 1;
+            this.btnLogin.Size = new System.Drawing.Size(280, 33);
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -53,29 +52,26 @@
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(193, 47);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Location = new System.Drawing.Point(144, 38);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(132, 30);
-            this.txtUsername.TabIndex = 2;
+            this.txtUsername.Size = new System.Drawing.Size(100, 26);
+            this.txtUsername.TabIndex = 0;
             // 
-            // textBox2
+            // txtPassword
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(193, 126);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(132, 30);
-            this.textBox2.TabIndex = 3;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(144, 102);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(100, 26);
+            this.txtPassword.TabIndex = 1;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(40, 50);
-            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUsername.Location = new System.Drawing.Point(45, 41);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(108, 25);
+            this.lblUsername.Size = new System.Drawing.Size(87, 20);
             this.lblUsername.TabIndex = 4;
             this.lblUsername.Text = "Username:";
             // 
@@ -83,51 +79,47 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(47, 129);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword.Location = new System.Drawing.Point(50, 105);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(104, 25);
+            this.lblPassword.Size = new System.Drawing.Size(82, 20);
             this.lblPassword.TabIndex = 5;
             this.lblPassword.Text = "Password:";
             // 
-            // groupBox1
+            // gbLogin
             // 
-            this.groupBox1.Controls.Add(this.lblPassword);
-            this.groupBox1.Controls.Add(this.txtUsername);
-            this.groupBox1.Controls.Add(this.lblUsername);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Location = new System.Drawing.Point(175, 236);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(389, 194);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
+            this.gbLogin.Controls.Add(this.lblPassword);
+            this.gbLogin.Controls.Add(this.txtUsername);
+            this.gbLogin.Controls.Add(this.btnLogin);
+            this.gbLogin.Controls.Add(this.lblUsername);
+            this.gbLogin.Controls.Add(this.txtPassword);
+            this.gbLogin.Location = new System.Drawing.Point(131, 192);
+            this.gbLogin.Name = "gbLogin";
+            this.gbLogin.Size = new System.Drawing.Size(292, 200);
+            this.gbLogin.TabIndex = 6;
+            this.gbLogin.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(119, 64);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(89, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(468, 41);
+            this.label1.Size = new System.Drawing.Size(383, 34);
             this.label1.TabIndex = 7;
             this.label1.Text = "Team Contribution System";
             // 
             // frmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 560);
+            this.ClientSize = new System.Drawing.Size(549, 455);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnLogin);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Controls.Add(this.gbLogin);
             this.Name = "frmLogin";
             this.Text = "TCS Login";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.gbLogin.ResumeLayout(false);
+            this.gbLogin.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,10 +129,10 @@
 
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbLogin;
         private System.Windows.Forms.Label label1;
     }
 }

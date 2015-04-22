@@ -80,11 +80,29 @@
     <Compile Include="forms\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmStuDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmStuDashboard.Designer.cs">
+      <DependentUpon>frmStuDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmStuDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmStuDetails.Designer.cs">
+      <DependentUpon>frmStuDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmSupervisorOperations.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmSupervisorOperations.Designer.cs">
       <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmUnits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmUnits.Designer.cs">
+      <DependentUpon>frmUnits.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,8 +121,17 @@
     <EmbeddedResource Include="forms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmStuDashboard.resx">
+      <DependentUpon>frmStuDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmStuDetails.resx">
+      <DependentUpon>frmStuDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSupervisorOperations.resx">
       <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmUnits.resx">
+      <DependentUpon>frmUnits.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -72,15 +72,20 @@ C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmEmpDetails.resources
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmLogin.resources
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisorOperations.resources
-H:\DBI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisor.resources
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmAdminOperations.resources
-H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmConvenorOperations.resources
-H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisor.resources
-H:\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisorOperations.resources
-=======
 C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisor.resources
->>>>>>> origin/master
->>>>>>> origin/master
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.exe
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.pdb
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\bin\Debug\FrontEndV0.1.exe
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\bin\Debug\FrontEndV0.1.pdb
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.csprojResolveAssemblyReference.cache
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmAdminOperations.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmConvenorOperations.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmEmpDashboard.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmEmpDetails.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmLogin.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmSupervisorOperations.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Properties.Resources.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.csproj.GenerateResource.Cache
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmStuDashboard.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmStuDetails.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmUnits.resources

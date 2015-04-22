@@ -10,16 +10,14 @@ using System.Windows.Forms;
 namespace FrontEndV0._1.forms
 {
 
-    public partial class frmEmpDashboard : Form
+    public partial class frmStuDashboard : Form
     {
-        private frmEmpDetails frmEmpDetails = null;
-        private frmStuDetails frmStuDetails = null;
-        private frmUnits frmUnits = null;
-        private frmAdminOperations frmAdminOps = null;
-        private frmConvenorOperations frmConvAssessMaster = null;
-        private frmSupervisorOperations frmSupMngMeetings = null;
+        private frmStuDetails frmStuDetails;
+        private frmAdminOperations frmAdminOps;
+        private frmConvenorOperations frmConvAssessMaster;
+        private frmSupervisorOperations frmSupMngMeetings;
 
-        public frmEmpDashboard(string usertype)
+        public frmStuDashboard(string usertype)
         {
             InitializeComponent();
 
@@ -31,41 +29,34 @@ namespace FrontEndV0._1.forms
                 supervisorFunctionsToolStripMenuItem.Enabled = true;
 
             if (usertype == "convenor")
-                convenorFunctionsToolStripMenuItem.Enabled = true;
+                convenerFunctionsToolStripMenuItem.Enabled = true;
 
-            ////Form load, instantiate subforms
-            //frmEmpDetails = null;
-            //frmStuDetails = null;
-            //frmUnits = null;
-            //frmAdminOps = null;
-            //frmConvAssessMaster = null;
-            //frmSupMngMeetings = null;
+            //Form load, instantiate subforms
+            frmStuDetails = null;
+            frmAdminOps = null;
+            frmConvAssessMaster = null;
+            frmSupMngMeetings = null;
         }
 
-       
+
 
         private void personalDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmEmpDetails == null)
+            if (frmStuDetails == null)
             {
-                frmEmpDetails = new frmEmpDetails();
-                frmEmpDetails.FormClosing += frmEmpDetailsClosing;
-                frmEmpDetails.MdiParent = this;
-                frmEmpDetails.Visible = true;
+                frmStuDetails = new frmStuDetails();
+                frmStuDetails.FormClosing += frmStuDetailsClosing;
+                frmStuDetails.MdiParent = this;
+                frmStuDetails.Visible = true;
             }
         }
 
-        private void frmEmpDetailsClosing(object sender, FormClosingEventArgs e)
+        private void frmStuDetailsClosing(object sender, FormClosingEventArgs e)
         {
-
-            //frmEmpDetails = null;
-            //frmEmpDetails.Visible = false;
+            frmStuDetails = null;
         }
 
-        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
 
         private void administratorFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -93,11 +84,6 @@ namespace FrontEndV0._1.forms
             frmSupMngMeetings = null;
         }
 
-        private void frmUnitsClosing(object sender, FormClosingEventArgs e)
-        {
-            frmUnits = null;
-        }
-
         private void displayPanel_Paint(object sender, PaintEventArgs e)
         {
 
@@ -105,25 +91,13 @@ namespace FrontEndV0._1.forms
 
         private void manageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmStuDetails == null)
-            {
-                frmStuDetails = new frmStuDetails();
-                frmStuDetails.FormClosing += frmAdminOperationsClosing;
-                frmStuDetails.MdiParent = this;
-                frmStuDetails.Visible = true;
-            }
-            else
-            {
-                frmStuDetails.Visible = true;
-            }
-
-            /*if (frmAdminOps == null)
+            if (frmAdminOps == null)
             {
                 frmAdminOps = new frmAdminOperations();
                 frmAdminOps.FormClosing += frmAdminOperationsClosing;
                 frmAdminOps.MdiParent = this;
                 frmAdminOps.Visible = true;
-            }*/
+            }
         }
 
         private void masterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,28 +122,9 @@ namespace FrontEndV0._1.forms
             }
         }
 
-        private void manageEmployeesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmEmpDetails == null)
-            {
-                frmEmpDetails = new frmEmpDetails();
-                frmEmpDetails.FormClosing += frmEmpDetailsClosing;
-                frmEmpDetails.MdiParent = this;
-                frmEmpDetails.Visible = true;
-            }
+            this.Close();
         }
-
-        private void manageUnitsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmUnits == null)
-            {
-                frmUnits = new frmUnits();
-                frmUnits.FormClosing += frmUnitsClosing;
-                frmUnits.MdiParent = this;
-                frmUnits.Visible = true;
-            }
-        }
-
-
     }
 }
