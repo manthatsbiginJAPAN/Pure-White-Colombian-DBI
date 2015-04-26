@@ -115,6 +115,7 @@
             this.manageUnitOfferingsToolStripMenuItem.Name = "manageUnitOfferingsToolStripMenuItem";
             this.manageUnitOfferingsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageUnitOfferingsToolStripMenuItem.Text = "Manage Unit Offerings";
+            this.manageUnitOfferingsToolStripMenuItem.Click += new System.EventHandler(this.manageUnitOfferingsToolStripMenuItem_Click);
             // 
             // manageEnrolmentsToolStripMenuItem
             // 

@@ -98,6 +98,12 @@
     <Compile Include="forms\frmSupervisorOperations.Designer.cs">
       <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmUnitOfferings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmUnitOfferings.Designer.cs">
+      <DependentUpon>frmUnitOfferings.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmUnits.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSupervisorOperations.resx">
       <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmUnitOfferings.resx">
+      <DependentUpon>frmUnitOfferings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUnits.resx">
       <DependentUpon>frmUnits.cs</DependentUpon>

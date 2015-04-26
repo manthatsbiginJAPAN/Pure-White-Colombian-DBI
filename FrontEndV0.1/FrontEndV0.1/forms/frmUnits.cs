@@ -242,7 +242,7 @@ namespace FrontEndV0._1.forms
                 gbDetails.Enabled = true;
 
                 //Disable other buttons
-                gbIdentifyingInformation.Enabled = false;
+                //gbIdentifyingInformation.Enabled = false;
                 btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
 

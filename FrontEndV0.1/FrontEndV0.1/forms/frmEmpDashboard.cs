@@ -15,7 +15,8 @@ namespace FrontEndV0._1.forms
         private frmEmpDetails frmEmpDetails = null;
         private frmStuDetails frmStuDetails = null;
         private frmUnits frmUnits = null;
-        private frmAdminOperations frmAdminOps = null;
+        private frmUnitOfferings frmUnitOfferings = null;
+        private frmAdminOperations frmAdminOps = null; //not used?
         private frmConvenorOperations frmConvAssessMaster = null;
         private frmSupervisorOperations frmSupMngMeetings = null;
 
@@ -98,6 +99,11 @@ namespace FrontEndV0._1.forms
             frmUnits = null;
         }
 
+        private void frmUnitOfferingsClosing(object sender, FormClosingEventArgs e)
+        {
+            frmUnits = null;
+        }
+
         private void displayPanel_Paint(object sender, PaintEventArgs e)
         {
 
@@ -167,6 +173,17 @@ namespace FrontEndV0._1.forms
                 frmUnits.FormClosing += frmUnitsClosing;
                 frmUnits.MdiParent = this;
                 frmUnits.Visible = true;
+            }
+        }
+
+        private void manageUnitOfferingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmUnitOfferings == null)
+            {
+                frmUnitOfferings = new frmUnitOfferings();
+                frmUnitOfferings.FormClosing += frmUnitOfferingsClosing;
+                frmUnitOfferings.MdiParent = this;
+                frmUnitOfferings.Visible = true;
             }
         }
 

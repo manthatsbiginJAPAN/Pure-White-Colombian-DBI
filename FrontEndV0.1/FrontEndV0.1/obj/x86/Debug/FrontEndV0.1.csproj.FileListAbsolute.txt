@@ -89,3 +89,4 @@ C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x
 C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmStuDashboard.resources
 C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmStuDetails.resources
 C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmUnits.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmUnitOfferings.resources
