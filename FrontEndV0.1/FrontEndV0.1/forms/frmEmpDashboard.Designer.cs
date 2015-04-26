@@ -122,6 +122,7 @@
             this.manageEnrolmentsToolStripMenuItem.Name = "manageEnrolmentsToolStripMenuItem";
             this.manageEnrolmentsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageEnrolmentsToolStripMenuItem.Text = "Manage Enrolments";
+            this.manageEnrolmentsToolStripMenuItem.Click += new System.EventHandler(this.manageEnrolmentsToolStripMenuItem_Click);
             // 
             // convenorFunctionsToolStripMenuItem
             // 

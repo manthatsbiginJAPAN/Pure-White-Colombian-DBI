@@ -16,7 +16,8 @@ namespace FrontEndV0._1.forms
         private frmStuDetails frmStuDetails = null;
         private frmUnits frmUnits = null;
         private frmUnitOfferings frmUnitOfferings = null;
-        private frmAdminOperations frmAdminOps = null; //not used?
+        private frmEnrolments frmEnrolments = null;
+        //private frmAdminOperations frmAdminOps = null; //not used?
         private frmConvenorOperations frmConvAssessMaster = null;
         private frmSupervisorOperations frmSupMngMeetings = null;
 
@@ -81,7 +82,7 @@ namespace FrontEndV0._1.forms
 
         private void frmAdminOperationsClosing(object sender, FormClosingEventArgs e)
         {
-            frmAdminOps = null;
+            //frmAdminOps = null;
         }
 
         private void frmConvOpsClosing(object sender, FormClosingEventArgs e)
@@ -104,10 +105,15 @@ namespace FrontEndV0._1.forms
             frmUnits = null;
         }
 
-        private void displayPanel_Paint(object sender, PaintEventArgs e)
+        private void frmEnrolmentsClosing(object sender, FormClosingEventArgs e)
         {
-
+            frmUnits = null;
         }
+        
+        //private void displayPanel_Paint(object sender, PaintEventArgs e) //wut?
+        //{
+        //
+        //}
 
         private void manageToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -184,6 +190,17 @@ namespace FrontEndV0._1.forms
                 frmUnitOfferings.FormClosing += frmUnitOfferingsClosing;
                 frmUnitOfferings.MdiParent = this;
                 frmUnitOfferings.Visible = true;
+            }
+        }
+
+        private void manageEnrolmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmEnrolments == null)
+            {
+                frmEnrolments = new frmEnrolments();
+                frmEnrolments.FormClosing += frmEnrolmentsClosing;
+                frmEnrolments.MdiParent = this;
+                frmEnrolments.Visible = true;
             }
         }
 

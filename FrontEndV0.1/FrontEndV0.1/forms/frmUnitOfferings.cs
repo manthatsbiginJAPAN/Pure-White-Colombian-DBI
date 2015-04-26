@@ -38,7 +38,7 @@ namespace FrontEndV0._1.forms
             grdUnitOfferings.ClearSelection();
             populateUnitOfferingsGrid();
             populateUnitIDs();
-            populateConvernors();
+            populateConvenors();
             cbConvenor.SelectedIndex = 0; //show the 'none' option for convenor as default
         }
 
@@ -121,7 +121,7 @@ namespace FrontEndV0._1.forms
             }
         }
 
-        private void populateConvernors()
+        private void populateConvenors()
         {
             //Clear the grid but add a blank/null option
             cbConvenor.Items.Clear();
