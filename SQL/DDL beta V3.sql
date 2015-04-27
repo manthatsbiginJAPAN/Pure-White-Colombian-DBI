@@ -131,7 +131,7 @@ AssType varchar2(20)
 CREATE TABLE Assessment ( --links an assessment to a unit offering - I think they would surely have to be able to alter assessments for each subject
 AssID varchar2(10) NOT NULL
 , AssTitle varchar2(50) NOT NULL
-, AssDesc varchar2(200) -- removed the NOT NULL
+, AssDesc varchar2(200) 
 , UnitID varchar2(10) NOT NULL
 , Semester number(2) NOT NULL
 , Year number(4) NOT NULL
@@ -197,7 +197,7 @@ AssID varchar2(10)
 , Year number(4)
 , StuID varchar2(10)
 , TeamID varchar2(10) --Nullable, Assessment may be an individual task
-, Submission varchar2(1000) UNIQUE --Unique, prevents plagarism (lol)
+, Submission varchar2(1000) UNIQUE --Unique, prevents plagarism 
 , PRIMARY KEY (AssID, UnitID, Semester, Year, StuID)
 , FOREIGN KEY (AssID, UnitID, Semester, Year) REFERENCES Assessment
 , FOREIGN KEY (StuID, UnitID, Semester, Year) REFERENCES Enrolment -- Does UnitID, Semester, Year need to reference all 3?

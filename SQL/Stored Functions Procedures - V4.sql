@@ -254,7 +254,7 @@ EXCEPTION
 END;
 /
 
-CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment -- TO BE DELETED
+CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment 
 		(pStuID varchar2,	
 		 pUnitID varchar2, 
        	 pSemester number,
@@ -762,11 +762,11 @@ END;
 
 create or replace PROCEDURE UC2_10_Update_Assessment
 		(pAssID varchar2,
-	pAssTitle varchar2,
-	pAssDesc varchar2,
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
+	pAssTitle varchar2,
+	pAssDesc varchar2,
 	pMarkingGuide varchar2,
 	pAssType varchar2,
 	pDueDate date) AS
@@ -947,17 +947,17 @@ CREATE or REPLACE PROCEDURE UC3_3_Update_Meeting
 		pClientName varchar2) AS
 BEGIN
 	UPDATE Meeting
-	SET TeamID = pTeamID,
-		UnitId = pUnitID,
-		Semester = pSemester,
-		Year = pYear,
-		MeetType = pMeetType,
+	SET MeetType = pMeetType,
 		StartTime = pStartTime,
 		FinishTime = pFinishTime,
 		Minutes = pMinutes,
 		EmpID = pEmpID,
 		ClientName = pClientName 
-	WHERE MeetingID = pMeetingID;
+	WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
