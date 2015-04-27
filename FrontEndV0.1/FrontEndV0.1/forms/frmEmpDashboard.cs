@@ -15,11 +15,8 @@ namespace FrontEndV0._1.forms
         private frmEmpDetails frmEmpDetails = null;
         private frmStuDetails frmStuDetails = null;
         private frmUnits frmUnits = null;
-        private frmUnitOfferings frmUnitOfferings = null;
         private frmEnrolments frmEnrolments = null;
-        //private frmAdminOperations frmAdminOps = null; //not used?
-        private frmConvenorOperations frmConvAssessMaster = null;
-        private frmSupervisorOperations frmSupMngMeetings = null;
+        private frmUnitOfferings frmUnitOfferings = null;
 
         public frmEmpDashboard(string usertype)
         {
@@ -35,179 +32,110 @@ namespace FrontEndV0._1.forms
             if (usertype == "convenor")
                 convenorFunctionsToolStripMenuItem.Enabled = true;
 
-            ////Form load, instantiate subforms
-            //frmEmpDetails = null;
-            //frmStuDetails = null;
-            //frmUnits = null;
-            //frmAdminOps = null;
-            //frmConvAssessMaster = null;
-            //frmSupMngMeetings = null;
+            //Form load, instantiate subforms
+            frmEmpDetails = new frmEmpDetails();
+            frmEmpDetails.MdiParent = this;
+
+            frmStuDetails = new frmStuDetails();
+            frmStuDetails.MdiParent = this;
+
+            frmUnits = new frmUnits();
+            frmUnits.MdiParent = this;
+
+            frmUnitOfferings = new frmUnitOfferings();
+            frmUnitOfferings.MdiParent = this;
+
+            frmEnrolments = new frmEnrolments();
+            frmEnrolments.MdiParent = this;
         }
 
-       
-
-        private void personalDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        #region Personal Details
+        private void personalDetailsMenu_Click(object sender, EventArgs e)
         {
-            if (frmEmpDetails == null)
-            {
-                frmEmpDetails = new frmEmpDetails();
-                frmEmpDetails.FormClosing += frmEmpDetailsClosing;
-                frmEmpDetails.MdiParent = this;
-                frmEmpDetails.Visible = true;
-            }
+            frmEmpDetails.FormClosing += frmEmpDetailsClosing;
+            frmEmpDetails.Show();
         }
 
         private void frmEmpDetailsClosing(object sender, FormClosingEventArgs e)
         {
-            frmEmpDetails = null;
-            frmEmpDetails.Visible = false; //error occurs here
+            e.Cancel = true;
+            frmEmpDetails.Hide();
+        }
+        #endregion
+
+        #region Admin Functions
+
+        #region Manage Students
+        private void adminDropdownManageStudents_Click(object sender, EventArgs e)
+        {
+            frmStuDetails.FormClosing += frmStuDetailsClosing;
+            frmStuDetails.Show();
         }
 
-        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void frmStuDetailsClosing(object sender, FormClosingEventArgs e)
         {
-            this.Close();
+            e.Cancel = true;
+            frmStuDetails.Hide();
+        }
+        #endregion
+
+        #region Manage Employees
+        private void adminDropdownManageEmployees_Click(object sender, EventArgs e)
+        {
+            frmEmpDetails.FormClosing += frmEmpDetailsClosing;
+            frmEmpDetails.Show();
         }
 
-        private void administratorFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            /*if (frmAdminOps == null)
-            {
-                frmAdminOps = new frmAdminOperations();
-                frmAdminOps.FormClosing += frmAdminOperationsClosing;
-                frmAdminOps.MdiParent = this;
-                frmAdminOps.Visible = true;
-            }*/
-        }
+        //When Manage Employees becomes separate to employee details, put the new event handler here - Eric
+        #endregion
 
-        private void frmAdminOperationsClosing(object sender, FormClosingEventArgs e)
+        #region Manage Units
+        private void adminDropdownManageUnits_Click(object sender, EventArgs e)
         {
-            //frmAdminOps = null;
-        }
-
-        private void frmConvOpsClosing(object sender, FormClosingEventArgs e)
-        {
-            frmConvAssessMaster = null;
-        }
-
-        private void frmSupOpsClosing(object sender, FormClosingEventArgs e)
-        {
-            frmSupMngMeetings = null;
+            frmUnits.FormClosing += frmUnitsClosing;
+            frmUnits.Show();
         }
 
         private void frmUnitsClosing(object sender, FormClosingEventArgs e)
         {
-            frmUnits = null;
+            e.Cancel = true;
+            frmUnits.Hide();
+        }
+        #endregion
+
+        #region Manage Unit Offerings
+        private void adminDropdownManageUnitOfferings_Click(object sender, EventArgs e)
+        {
+            frmUnitOfferings.FormClosing += frmUnitOfferingsClosing;
+            frmUnitOfferings.Show();
         }
 
         private void frmUnitOfferingsClosing(object sender, FormClosingEventArgs e)
         {
-            frmUnits = null;
+            e.Cancel = true;
+            frmUnitOfferings.Hide();
+        }
+        #endregion
+
+        #region Manage Enrolments
+        private void adminDropdownManageEnrolments_Click(object sender, EventArgs e)
+        {
+            frmEnrolments.FormClosing += frmEnrolmentsClosing;
+            frmEnrolments.Show();
         }
 
         private void frmEnrolmentsClosing(object sender, FormClosingEventArgs e)
         {
-            frmUnits = null;
+            e.Cancel = true;
+            frmEnrolments.Hide();
         }
-        
-        //private void displayPanel_Paint(object sender, PaintEventArgs e) //wut?
-        //{
-        //
-        //}
+        #endregion
 
-        private void manageToolStripMenuItem_Click(object sender, EventArgs e)
+        #endregion
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmStuDetails == null)
-            {
-                frmStuDetails = new frmStuDetails();
-                frmStuDetails.FormClosing += frmAdminOperationsClosing;
-                frmStuDetails.MdiParent = this;
-                frmStuDetails.Visible = true;
-            }
-            else
-            {
-                frmStuDetails.Visible = true;
-            }
-
-            /*if (frmAdminOps == null)
-            {
-                frmAdminOps = new frmAdminOperations();
-                frmAdminOps.FormClosing += frmAdminOperationsClosing;
-                frmAdminOps.MdiParent = this;
-                frmAdminOps.Visible = true;
-            }*/
+            this.Dispose();
         }
-
-        private void masterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmConvAssessMaster == null)
-            {
-                frmConvAssessMaster = new frmConvenorOperations();
-                frmConvAssessMaster.FormClosing += frmConvOpsClosing;
-                frmConvAssessMaster.MdiParent = this;
-                frmConvAssessMaster.Visible = true;
-            }
-        }
-
-        private void manageMeetingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmSupMngMeetings == null)
-            {
-                frmSupMngMeetings = new frmSupervisorOperations();
-                frmSupMngMeetings.FormClosing += frmSupOpsClosing;
-                frmSupMngMeetings.MdiParent = this;
-                frmSupMngMeetings.Visible = true;
-            }
-        }
-
-        private void manageEmployeesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmEmpDetails == null)
-            {
-                frmEmpDetails = new frmEmpDetails();
-                frmEmpDetails.FormClosing += frmEmpDetailsClosing;
-                frmEmpDetails.MdiParent = this;
-                frmEmpDetails.Visible = true;
-            }
-        }
-
-        private void manageUnitsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmUnits == null)
-            {
-                frmUnits = new frmUnits();
-                frmUnits.FormClosing += frmUnitsClosing;
-                frmUnits.MdiParent = this;
-                frmUnits.Visible = true;
-            }
-        }
-
-        private void manageUnitOfferingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmUnitOfferings == null)
-            {
-                frmUnitOfferings = new frmUnitOfferings();
-                frmUnitOfferings.FormClosing += frmUnitOfferingsClosing;
-                frmUnitOfferings.MdiParent = this;
-                frmUnitOfferings.Visible = true;
-            }
-        }
-
-        private void manageEnrolmentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmEnrolments == null)
-            {
-                frmEnrolments = new frmEnrolments();
-                frmEnrolments.FormClosing += frmEnrolmentsClosing;
-                frmEnrolments.MdiParent = this;
-                frmEnrolments.Visible = true;
-            }
-        }
-
-        private void frmEmpDashboard_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }
