@@ -42,13 +42,13 @@
             this.lblYear = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.txtProjDesc = new System.Windows.Forms.TextBox();
             this.lblProjDesc = new System.Windows.Forms.Label();
             this.gbIdentifyingInformation = new System.Windows.Forms.GroupBox();
             this.txtProjID = new System.Windows.Forms.TextBox();
             this.lblProjID = new System.Windows.Forms.Label();
             this.lblSem = new System.Windows.Forms.Label();
             this.lblUnitID = new System.Windows.Forms.Label();
-            this.txtProjDesc = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdProjects)).BeginInit();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
@@ -65,7 +65,7 @@
             "2018",
             "2019",
             "2020"});
-            this.cbYear.Location = new System.Drawing.Point(155, 191);
+            this.cbYear.Location = new System.Drawing.Point(155, 194);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 36;
@@ -169,7 +169,7 @@
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYear.Location = new System.Drawing.Point(97, 192);
+            this.lblYear.Location = new System.Drawing.Point(97, 195);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(52, 20);
             this.lblYear.TabIndex = 13;
@@ -197,6 +197,15 @@
             this.gbDetails.TabIndex = 38;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
+            // 
+            // txtProjDesc
+            // 
+            this.txtProjDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProjDesc.Location = new System.Drawing.Point(21, 74);
+            this.txtProjDesc.Multiline = true;
+            this.txtProjDesc.Name = "txtProjDesc";
+            this.txtProjDesc.Size = new System.Drawing.Size(427, 107);
+            this.txtProjDesc.TabIndex = 39;
             // 
             // lblProjDesc
             // 
@@ -265,15 +274,6 @@
             this.lblUnitID.TabIndex = 1;
             this.lblUnitID.Text = "Unit ID:";
             // 
-            // txtProjDesc
-            // 
-            this.txtProjDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProjDesc.Location = new System.Drawing.Point(21, 74);
-            this.txtProjDesc.Multiline = true;
-            this.txtProjDesc.Name = "txtProjDesc";
-            this.txtProjDesc.Size = new System.Drawing.Size(427, 107);
-            this.txtProjDesc.TabIndex = 39;
-            // 
             // frmProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +287,7 @@
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.gbIdentifyingInformation);
             this.Name = "frmProject";
+            this.Load += new System.EventHandler(this.frmProject_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdProjects)).EndInit();
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
