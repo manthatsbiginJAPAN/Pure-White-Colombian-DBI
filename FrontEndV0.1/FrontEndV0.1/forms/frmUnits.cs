@@ -226,7 +226,6 @@ namespace FrontEndV0._1.forms
                     
                     grdUnits.Enabled = true;
                     btnEdit.Text = "Edit";
-                    Console.WriteLine(btnAdd.Text); //wut
                 }
             }
             else
