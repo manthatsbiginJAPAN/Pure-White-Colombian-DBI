@@ -121,7 +121,6 @@ StuID varchar2(10) NOT NULL
 
 CREATE TABLE AssessmentType( -- Attribute entity for assessment types
 AssType varchar2(20)
-, TypeDesc varchar2(100)
 , PRIMARY KEY (AssType)
 );
 
