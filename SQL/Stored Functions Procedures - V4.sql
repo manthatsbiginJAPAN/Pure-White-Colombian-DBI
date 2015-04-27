@@ -981,5 +981,14 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
 END;
 
+/
+
+
+-------------------------------------------------------------------------------------
+Begin
+PROCEDURE UC1_33_Register_Ass_Type("Peer Assessment", "Submitted Individually by student");
+PROCEDURE UC1_33_Register_Ass_Type("Team Contribution", "Submitted as a Team" );
+
+End;
 
 
