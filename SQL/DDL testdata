@@ -1,33 +1,5 @@
-begin
-	-------------------
-	--Clear all tables of values (reverse order of creation/entering)
-	-------------------
-	DELETE AgendaItem;
-	DELETE ActionItem;
-	DELETE MeetingAttendance;
-	DELETE Meeting;
-	DELETE MeetingType;
-	
-	DELETE AssessmentAllocation;
-	DELETE StudentTeamAllocation; 
-	DELETE Team;
-	DELETE Project;
+INSERT INTO AssessmentType (AssType, TypeDesc) VALUES ("Peer Assessment", "Idividual Assessment");
+INSERT INTO AssessmentType (AssType, TypeDesc) VALUES ("Team Contribution", "Group Assessment");
 
-	DELETE Assessment;
-	DELETE AssessmentType;
-	
-	DELETE Enrolment;
-	DELETE UnitOffering;
-	DELETE Unit;
-	DELETE Student;
-	
-	DELETE EmployeeRole;
-	DELETE RoleType;
-	DELETE Employee;
-	
-
-
-	--------------------
-	--Insert Information
 	--------------------
 	

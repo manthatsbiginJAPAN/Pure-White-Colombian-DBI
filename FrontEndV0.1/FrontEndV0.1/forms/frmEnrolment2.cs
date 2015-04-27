@@ -12,7 +12,7 @@ using Oracle.DataAccess.Types;
 
 namespace FrontEndV0._1.forms
 {
-    public partial class frmUnitOfferings : Form
+    public partial class frmEnrolments2 : Form
     {
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
@@ -20,7 +20,7 @@ namespace FrontEndV0._1.forms
         private DataSet units;
         private DataSet emps;
 
-        public frmUnitOfferings()
+        public frmEnrolments2()
         {
             InitializeComponent();
 
@@ -37,9 +37,8 @@ namespace FrontEndV0._1.forms
             //prepare and display data
             grdUnitOfferings.ClearSelection();
             populateUnitOfferingsGrid();
+            populateEnrolmentsGrid();
             populateUnitIDs();
-            populateConvenors();
-            cbConvenor.SelectedIndex = 0; //show the 'none' option for convenor as default
         }
 
         private void getEmps()
@@ -63,7 +62,7 @@ namespace FrontEndV0._1.forms
         }
 
         private void getUnits()
-        {
+        {   
             //Oracle Command to populate the dataset
             OracleCommand cmd = new OracleCommand("UC1_7_View_Unit", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -100,44 +99,6 @@ namespace FrontEndV0._1.forms
             da.Fill(unitoffs, "unitoffcursor", (OracleRefCursor)(cmd.Parameters["unitoffcursor"].Value));
 
             connection.Close();
-        }
-
-        private void populateUnitIDs()
-        {
-            //Clear the grid
-            cbUnitID.Items.Clear();
-
-            //Populate the grid from the dataset
-            int rowcnt = units.Tables["unitcursor"].Rows.Count;
-            MessageBox.Show("Available Units: " + rowcnt.ToString());
-            object itm;
-            
-            for (int i = 0; i <= rowcnt - 1; i++)
-            {
-                itm = units.Tables["unitcursor"].Rows[i][0].ToString();
-                cbUnitID.Items.Add(itm);
-                //object[] items = units.Tables[0].Rows[i].ItemArray; 
-                //grdUnitOfferings.Rows.Add(new object[] { items[0], items[2], items[3] });
-            }
-        }
-
-        private void populateConvenors()
-        {
-            //Clear the grid but add a blank/null option
-            cbConvenor.Items.Clear();
-            //DataRow nullrow = null;
-            cbConvenor.Items.Insert(0, "[None]");
-
-            //Populate the grid from the dataset
-            int rowcnt = emps.Tables["empcursor"].Rows.Count;
-            MessageBox.Show("Available Convenors: " + rowcnt.ToString());
-            object itm;
-
-            for (int i = 0; i <= rowcnt - 1; i++)
-            {
-                itm = emps.Tables["empcursor"].Rows[i][0].ToString();
-                cbConvenor.Items.Add(itm);
-            }
         }
 
         private void populateUnitOfferingsGrid()
@@ -191,7 +152,7 @@ namespace FrontEndV0._1.forms
                     cmd.ExecuteNonQuery();
                     connection.Close();
 
-                    
+
 
                     //Repopulate Grid
                     populateUnitOfferingsGrid();
@@ -275,7 +236,7 @@ namespace FrontEndV0._1.forms
                 ", semester " + selectedsemester + ", " + selectedyear + "?", //confirm with user
                 "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (response == DialogResult.Yes)
-            {   
+            {
                 OracleCommand cmd = new OracleCommand("UC1_24_Delete_Unit_Offering", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("unitid", selectedunitid);
@@ -295,7 +256,7 @@ namespace FrontEndV0._1.forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-          //should not be available
+            //should not be available
         }
 
         private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
