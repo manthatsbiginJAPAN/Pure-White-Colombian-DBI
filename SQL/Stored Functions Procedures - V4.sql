@@ -447,7 +447,7 @@ CREATE OR REPLACE PROCEDURE UC1_24_Delete_UnitOffering
        	 pYear number) AS
 BEGIN
 	Delete UnitOffering
-	WHERE pUnitID = pUnitID AND Semester = pSemester AND Year = pYear;
+	WHERE UnitID = pUnitID AND Semester = pSemester AND Year = pYear;
 	dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' deleted'); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
