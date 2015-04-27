@@ -17,6 +17,7 @@ namespace FrontEndV0._1.forms
         private frmUnits frmUnits = null;
         private frmEnrolments frmEnrolments = null;
         private frmUnitOfferings frmUnitOfferings = null;
+        private frmAssessment frmAssessment = null;
 
         public frmEmpDashboard(string usertype)
         {
@@ -24,29 +25,36 @@ namespace FrontEndV0._1.forms
 
             //Enable menus based on user's type --> except a user may have many types
             if (usertype == "admin")
+            { 
                 administratorFunctionsToolStripMenuItem.Enabled = true;
+
+                frmStuDetails = new frmStuDetails();
+                frmStuDetails.MdiParent = this;
+
+                frmUnits = new frmUnits();
+                frmUnits.MdiParent = this;
+
+                frmUnitOfferings = new frmUnitOfferings();
+                frmUnitOfferings.MdiParent = this;
+
+                frmEnrolments = new frmEnrolments();
+                frmEnrolments.MdiParent = this;
+            }
 
             if (usertype == "supervisor")
                 supervisorFunctionsToolStripMenuItem.Enabled = true;
 
             if (usertype == "convenor")
+            {
                 convenorFunctionsToolStripMenuItem.Enabled = true;
 
-            //Form load, instantiate subforms
+                frmAssessment = new frmAssessment();
+                frmAssessment.MdiParent = this;
+            }
+
             frmEmpDetails = new frmEmpDetails();
             frmEmpDetails.MdiParent = this;
 
-            frmStuDetails = new frmStuDetails();
-            frmStuDetails.MdiParent = this;
-
-            frmUnits = new frmUnits();
-            frmUnits.MdiParent = this;
-
-            frmUnitOfferings = new frmUnitOfferings();
-            frmUnitOfferings.MdiParent = this;
-
-            frmEnrolments = new frmEnrolments();
-            frmEnrolments.MdiParent = this;
         }
 
         #region Personal Details
@@ -133,9 +141,24 @@ namespace FrontEndV0._1.forms
 
         #endregion
 
+        #region Convenor Functions 
+        private void convenorDropdownAssessmentMaster_Click(object sender, EventArgs e)
+        {
+            frmAssessment.FormClosing += frmAssessmentClosing;
+            frmAssessment.Show();
+        }
+        private void frmAssessmentClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            frmAssessment.Hide();
+        }
+
+        #endregion
+
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
+
     }
 }

@@ -151,6 +151,7 @@
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(206, 36);
             this.masterToolStripMenuItem.Text = "Master";
+            this.masterToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownAssessmentMaster_Click);
             // 
             // allocationsToolStripMenuItem
             // 
