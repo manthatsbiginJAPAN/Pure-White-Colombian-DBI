@@ -808,6 +808,28 @@ END;
 
 /
 
+
+CREATE or REPLACE FUNCTION UC2_11_View_Assessment
+	RETURN SYS_REFCURSOR AS ass SYS_REFCURSOR;
+	a Assessment%ROWTYPE;
+BEGIN
+	OPEN ass for select * from Assessment;
+	--LOOP
+	--	Fetch unts into u;
+	--	Exit When unts%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
+	--					 || ' Unit Name: ' || u.UnitName
+	--					 || ' Unit Description: ' || u.UnitDesc);
+	--End Loop;
+	return tm;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
+
 CREATE OR REPLACE PROCEDURE UC2_12_Delete_Assessment
 		(pAssID varchar2) AS
 BEGIN
