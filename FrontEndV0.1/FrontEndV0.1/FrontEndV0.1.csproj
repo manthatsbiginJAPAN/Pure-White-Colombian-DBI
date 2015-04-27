@@ -74,6 +74,12 @@
     <Compile Include="forms\frmEmpDetails.Designer.cs">
       <DependentUpon>frmEmpDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmEnrolment2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEnrolment2.Designer.cs">
+      <DependentUpon>frmEnrolment2.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmEnrolments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEmpDetails.resx">
       <DependentUpon>frmEmpDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEnrolment2.resx">
+      <DependentUpon>frmEnrolment2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEnrolments.resx">
       <DependentUpon>frmEnrolments.cs</DependentUpon>
