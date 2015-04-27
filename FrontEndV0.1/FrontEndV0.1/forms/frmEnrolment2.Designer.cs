@@ -37,14 +37,14 @@
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdEnrolments = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grdUnitOfferings = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbStudent = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdEnrolments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUnitOfferings)).BeginInit();
             this.SuspendLayout();
             // 
             // Year
@@ -130,23 +130,23 @@
             this.grdEnrolments.Size = new System.Drawing.Size(377, 569);
             this.grdEnrolments.TabIndex = 47;
             // 
-            // dataGridView1
+            // grdUnitOfferings
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdUnitOfferings.AllowUserToAddRows = false;
+            this.grdUnitOfferings.AllowUserToDeleteRows = false;
+            this.grdUnitOfferings.AllowUserToResizeColumns = false;
+            this.grdUnitOfferings.AllowUserToResizeRows = false;
+            this.grdUnitOfferings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdUnitOfferings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdUnitOfferings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 109);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(369, 524);
-            this.dataGridView1.TabIndex = 48;
+            this.grdUnitOfferings.Location = new System.Drawing.Point(12, 109);
+            this.grdUnitOfferings.Name = "grdUnitOfferings";
+            this.grdUnitOfferings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdUnitOfferings.Size = new System.Drawing.Size(369, 524);
+            this.grdUnitOfferings.TabIndex = 48;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -183,23 +183,24 @@
             this.label5.TabIndex = 49;
             this.label5.Text = "Student ID:";
             // 
-            // frmEnrolment2
+            // frmEnrolments2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 646);
             this.Controls.Add(this.cbStudent);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.grdUnitOfferings);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.grdEnrolments);
-            this.Name = "frmEnrolment2";
+            this.Name = "frmEnrolments2";
             this.Text = "frmEnrolment2";
+            this.Load += new System.EventHandler(this.frmEnrolments2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdEnrolments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUnitOfferings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,7 +217,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentID;
         public System.Windows.Forms.DataGridView grdEnrolments;
-        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView grdUnitOfferings;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;

@@ -47,6 +47,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.gbIdentifyingInformation = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdEnrolments)).BeginInit();
             this.gbIdentifyingInformation.SuspendLayout();
             this.SuspendLayout();
@@ -258,11 +259,22 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Unit ID:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(578, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 41;
+            this.button1.Text = "Enrolment 2";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmEnrolments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 646);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.grdEnrolments);
             this.Controls.Add(this.btnDelete);
@@ -301,5 +313,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Semester;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+        private System.Windows.Forms.Button button1;
     }
 }

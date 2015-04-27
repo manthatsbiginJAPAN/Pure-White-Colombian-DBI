@@ -59,9 +59,8 @@ namespace FrontEndV0._1.forms
 
         private void frmEmpDetailsClosing(object sender, FormClosingEventArgs e)
         {
-
-            //frmEmpDetails = null;
-            //frmEmpDetails.Visible = false;
+            frmEmpDetails = null;
+            frmEmpDetails.Visible = false; //error occurs here
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -202,6 +201,11 @@ namespace FrontEndV0._1.forms
                 frmEnrolments.MdiParent = this;
                 frmEnrolments.Visible = true;
             }
+        }
+
+        private void frmEmpDashboard_Load(object sender, EventArgs e)
+        {
+
         }
 
 

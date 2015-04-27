@@ -17,8 +17,8 @@ namespace FrontEndV0._1.forms
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
         private DataSet unitoffs;
-        private DataSet units;
-        private DataSet emps;
+        private DataSet enrolments;
+        private DataSet students;
 
         public frmEnrolments2()
         {
@@ -31,52 +31,52 @@ namespace FrontEndV0._1.forms
         {
             //Fetch data
             getUnitOfferings();
-            getUnits();
-            getEmps();
+            getEnrolments();
+            getStudents();
 
             //prepare and display data
             grdUnitOfferings.ClearSelection();
             populateUnitOfferingsGrid();
             populateEnrolmentsGrid();
-            populateUnitIDs();
+            populateStuIDs();
         }
 
-        private void getEmps()
+        private void getStudents()
         {
             //Oracle Command to populate the dataset
             OracleCommand cmd = new OracleCommand("UC1_3_View_Employee", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("empcursor", OracleDbType.RefCursor);
-            cmd.Parameters["empcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("stucursor", OracleDbType.RefCursor);
+            cmd.Parameters["stucursor"].Direction = ParameterDirection.ReturnValue;
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
 
-            emps = new DataSet();
+            students = new DataSet();
 
-            da.Fill(emps, "empcursor", (OracleRefCursor)(cmd.Parameters["empcursor"].Value));
+            da.Fill(students, "stucursor", (OracleRefCursor)(cmd.Parameters["stucursor"].Value));
 
             connection.Close();
         }
 
-        private void getUnits()
-        {   
+        private void getEnrolments()
+        {
             //Oracle Command to populate the dataset
-            OracleCommand cmd = new OracleCommand("UC1_7_View_Unit", connection);
+            OracleCommand cmd = new OracleCommand("UC1_15_View_Enrolment", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("unitcursor", OracleDbType.RefCursor);
-            cmd.Parameters["unitcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("enrcursor", OracleDbType.RefCursor);
+            cmd.Parameters["enrcursor"].Direction = ParameterDirection.ReturnValue;
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
 
-            units = new DataSet();
+            enrolments = new DataSet();
 
-            da.Fill(units, "unitcursor", (OracleRefCursor)(cmd.Parameters["unitcursor"].Value));
+            da.Fill(enrolments, "enrcursor", (OracleRefCursor)(cmd.Parameters["enrcursor"].Value));
 
             connection.Close();
         }
@@ -116,6 +116,38 @@ namespace FrontEndV0._1.forms
             }
         }
 
+        private void populateEnrolmentsGrid()
+        {
+            //Clear the grid
+            grdEnrolments.Rows.Clear();
+
+            //Populate the grid from the dataset
+            int rowcnt = enrolments.Tables["enrcursor"].Rows.Count;
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                object[] items = enrolments.Tables[0].Rows[i].ItemArray;
+                grdEnrolments.Rows.Add(new object[] { items[0], items[1], items[2], items[3] });
+            }
+        }
+
+        private void populateStuIDs()
+        {
+            //Clear the grid
+            cbStudent.Items.Clear();
+
+            //Populate the grid from the dataset
+            int rowcnt = students.Tables["stucursor"].Rows.Count;
+            MessageBox.Show("Available Student: " + rowcnt.ToString());
+            object itm;
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                itm = students.Tables["stucursor"].Rows[i][0].ToString();
+                cbStudent.Items.Add(itm);
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //Logic and functions for save button
@@ -127,47 +159,38 @@ namespace FrontEndV0._1.forms
                     OracleCommand cmd = new OracleCommand("UC1_21_Register_Unit_Offering", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
-                    cmd.Parameters.Add("semester", Convert.ToInt32(cbSemester.SelectedItem.ToString()));
-                    cmd.Parameters.Add("year", Convert.ToInt32(cbYear.SelectedItem.ToString()));
-                    if (cbConvenor.SelectedItem.ToString() != "[none]")
-                    {
-                        cmd.Parameters.Add("empid", cbConvenor.SelectedItem.ToString());
+                    cmd.Parameters.Add("stuid", cbStudent.SelectedItem.ToString());
+                    cmd.Parameters.Add("unitid", grdEnrolments.SelectedRows[0].Cells[0].ToString());
+                    cmd.Parameters.Add("semester", grdEnrolments.SelectedRows[0].Cells[1].ToString());
+                    cmd.Parameters.Add("year", grdEnrolments.SelectedRows[0].Cells[2].ToString());
+                    //cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
+                    //cmd.Parameters.Add("semester", Convert.ToInt32(cbSemester.SelectedItem.ToString()));
+                    //cmd.Parameters.Add("year", Convert.ToInt32(cbYear.SelectedItem.ToString()));
+                    
+                    unitoffs.Tables[0].Rows.Add(cbStudent.SelectedItem
+                        , grdEnrolments.SelectedRows[0].Cells[0].ToString()
+                        , grdEnrolments.SelectedRows[0].Cells[1].ToString()
+                        , grdEnrolments.SelectedRows[0].Cells[2].ToString());
 
-                        unitoffs.Tables[0].Rows.Add(cbUnitID.SelectedItem
-                        , cbSemester.SelectedItem
-                        , cbYear.SelectedItem
-                        , cbConvenor.SelectedItem);
-                    }
-                    else
-                    {
-                        cmd.Parameters.Add("empid", null);
-
-                        unitoffs.Tables[0].Rows.Add(cbUnitID.SelectedItem
-                        , cbSemester.SelectedItem
-                        , cbYear.SelectedItem
-                        , null);
-                    }
                     connection.Open();
                     cmd.ExecuteNonQuery();
                     connection.Close();
 
-
-
                     //Repopulate Grid
                     populateUnitOfferingsGrid();
 
-                    //Disable buttons
-                    gbIdentifyingInformation.Enabled = false;
-                    gbDetails.Enabled = false;
+                    //Disable fields
+                    cbStudent.Enabled = false;
 
                     //Enable other buttons
                     btnDelete.Enabled = true;
 
                     //Clear textboxes/fields
-                    cbUnitID.SelectedIndex = -1;
-                    cbSemester.SelectedIndex = -1;
-                    cbYear.SelectedIndex = -1;
+                    grdUnitOfferings.ClearSelection();
+                    //cbUnitID.SelectedIndex = -1;
+                    //cbSemester.SelectedIndex = -1;
+                    //cbYear.SelectedIndex = -1;
+                    
 
                     grdUnitOfferings.Enabled = true;
                     btnAdd.Text = "Add";
@@ -176,9 +199,8 @@ namespace FrontEndV0._1.forms
             }
             else
             {
-                //Enable group boxes
-                gbIdentifyingInformation.Enabled = true;
-                gbDetails.Enabled = true;
+                //Enable fields
+                cbStudent.Enabled = true;
 
                 //Disable other buttons
                 btnDelete.Enabled = false;
@@ -195,16 +217,12 @@ namespace FrontEndV0._1.forms
             //Track a cummulative error message, appending when a particular condition is not met
             string ErrorMsg = null;
 
-            if (cbUnitID.SelectedItem.ToString().Length == 0)
-                ErrorMsg += Environment.NewLine + "Please select a Unit ID.";
-            if (cbSemester.SelectedItem.ToString().Length == 0)
-                ErrorMsg += Environment.NewLine + "Please select a Semester.";
-            if (cbYear.SelectedItem.ToString().Length == 0)
-                ErrorMsg += Environment.NewLine + "Please select a Year.";
+            if (cbStudent.SelectedItem.ToString().Length == 0)
+                ErrorMsg += Environment.NewLine + "Please select a Student ID.";
 
             if (ErrorMsg != null)
             {
-                MessageBox.Show(ErrorMsg, "Unit Offering Information Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ErrorMsg, "Enrolment Information Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else
@@ -226,7 +244,7 @@ namespace FrontEndV0._1.forms
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
-        {
+        {   
             int selectedrowindex = grdUnitOfferings.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
             string selectedunitid = grdUnitOfferings.Rows[selectedrowindex].Cells[0].Value.ToString(); //fetch the ID in that row
             string selectedsemester = grdUnitOfferings.Rows[selectedrowindex].Cells[1].Value.ToString(); //fetch the semester in that row
@@ -256,19 +274,21 @@ namespace FrontEndV0._1.forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //should not be available
+            //should not be available //actually yes, but only unit offering parts can change, stuid is the same
         }
 
-        private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
+        private void frmEnrolments2_Load(object sender, EventArgs e)
         {
-            if (cbUnitID.SelectedIndex != -1)
-                cbSemester.Enabled = true;
-        }
+            //Fetch data
+            getEnrolments();
+            getUnitOfferings();
+            getStudents();
 
-        private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbSemester.SelectedIndex != -1)
-                cbYear.Enabled = true;
+            //prepare and display data
+            grdEnrolments.ClearSelection();
+            populateEnrolmentsGrid();
+            populateUnitOfferingsGrid();
+            populateStuIDs();
         }
     }
 }

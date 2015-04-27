@@ -19,6 +19,7 @@ namespace FrontEndV0._1.forms
         private DataSet unitoffs;
         private DataSet students;
         private DataSet enrolments;
+        private frmEnrolments2 frmEnrolments2;
 
         public frmEnrolments()
         {
@@ -317,6 +318,17 @@ namespace FrontEndV0._1.forms
         {
             if (cbSemester.SelectedIndex != -1)
                 cbYear.Enabled = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (frmEnrolments2 == null)
+            {
+                frmEnrolments2 = new frmEnrolments2();
+                frmEnrolments2.FormClosing += frmEnrolments2Closing;
+                frmEnrolments2.MdiParent = this;
+                frmEnrolments2.Visible = true;
+            }
         }
     }
 }
