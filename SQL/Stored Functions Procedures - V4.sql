@@ -532,7 +532,7 @@ BEGIN
 	--End Loop;
 	Return mtypes;
 EXCEPTION
-	When Others Then
+	When Others THEN
 		dbms_output.put_line(SQLERRM);
 End;
 /
@@ -909,7 +909,25 @@ EXCEPTION
 END;
 
 /
+CREATE or REPLACE FUNCTION UC3_1_View_Meeting
+	RETURN SYS_REFCURSOR AS uos SYS_REFCURSOR;
+BEGIN
+	
+	OPEN uos for select * from Meeting;
+	--LOOP
+	--	Fetch uos into uo;
+	--	Exit When uos%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
+	--					 || ' Semester: ' || uo.semester
+	--					 || ' Year: ' || uo.Year); 
+	--End Loop;
+	return uos;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
 
+/
 CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
 		(pMeetingID number,
 	pTeamID varchar2,
