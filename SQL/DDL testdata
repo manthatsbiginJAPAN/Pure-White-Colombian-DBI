@@ -1,5 +1,1 @@
-INSERT INTO AssessmentType (AssType, TypeDesc) VALUES ("Peer Assessment", "Idividual Assessment");
-INSERT INTO AssessmentType (AssType, TypeDesc) VALUES ("Team Contribution", "Group Assessment");
-
-	--------------------
-	
+UC2_9_Register_Assessment('ass1', 'Group Assignment', 'Company Analysis', 'ACC10003', 1, 2015,'90 marks', 'Team Contribution' , '2/June/2015');
