@@ -676,6 +676,25 @@ EXCEPTION
 END;
 /
 
+CREATE or REPLACE FUNCTION UC2_3_View_Unit
+	RETURN SYS_REFCURSOR AS tm SYS_REFCURSOR;
+	t Team%ROWTYPE;
+BEGIN
+	OPEN tm for select * from Team;
+	--LOOP
+	--	Fetch unts into u;
+	--	Exit When unts%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
+	--					 || ' Unit Name: ' || u.UnitName
+	--					 || ' Unit Description: ' || u.UnitDesc);
+	--End Loop;
+	return tm;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
 
 CREATE OR REPLACE PROCEDURE UC2_4_Delete_Team
 		(pTeamID varchar2) AS
@@ -1022,6 +1041,146 @@ END;
 /
 
 
+CREATE or REPLACE PROCEDURE UC3_4_Delete_Meeting
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number) AS
+BEGIN
+	Delete Meeting
+	WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
 
 
+CREATE or REPLACE PROCEDURE UC3_5_Add_Meeting_Attend
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pStuID varchar2) AS
+BEGIN
+	INSERT INTO MeetingAttendance VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pStuID);
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
+END;
 
+/
+
+CREATE or REPLACE PROCEDURE UC3_6_Delete_Meeting_Attend
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pStuID varchar2) AS
+BEGIN
+	Delete MeetingAttendance
+	WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear and
+		StuID = pStuID;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+
+/
+
+CREATE or REPLACE PROCEDURE UC3_9_Add_AgendaItem
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pAgendaNum number,
+	pAgendaDesc varchar2) AS
+BEGIN
+	INSERT INTO AgendaItem VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pAgendaNum, pAgendaDesc);
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
+END;
+
+/
+
+
+CREATE or REPLACE PROCEDURE UC3_10_Delete_AgendaItem
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pAgendaNum number) AS
+BEGIN
+	Delete AgendaItem
+	WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear and
+		AgendaNum = pAgendaNum;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+
+CREATE or REPLACE PROCEDURE UC3_12_Add_ActionItem
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pActionNum number,
+	pActionDesc varchar2) AS
+BEGIN
+	INSERT INTO ActionItem VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pActionNum, pActionDesc);
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
+END;
+
+/
+
+CREATE or REPLACE PROCEDURE UC3_13_Delete_ActionItem
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pActionNum number) AS
+BEGIN
+	Delete ActionItem
+	WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear and
+		ActionNum = pActionNum;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
