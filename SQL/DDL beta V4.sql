@@ -1,4 +1,4 @@
-DROP TABLE AgendaItem CASCADE CONSTRAINTS;
+DROP TABLE Seq_AgendaItemm CASCADE CONSTRAINTS;
 DROP TABLE ActionItem CASCADE CONSTRAINTS;
 DROP TABLE MeetingAttendance CASCADE CONSTRAINTS;
 DROP TABLE Meeting CASCADE CONSTRAINTS;
@@ -132,7 +132,7 @@ AssID varchar2(10) NOT NULL
 , AssTitle varchar2(50) NOT NULL
 , AssDesc varchar2(200) 
 , UnitID varchar2(10) NOT NULL
-, Semester number(2) NOT NULL
+, Semester number(1) NOT NULL
 , Year number(4) NOT NULL
 , MarkingGuide varchar2(1000) 
 , AssType varchar2 (20) NOT NULL
@@ -147,7 +147,7 @@ AssID varchar2(10) NOT NULL
 CREATE TABLE AssessmentTask( -- Attribute entity for assessment types
 AssID varchar2(10) NOT NULL
 , UnitID varchar2(10)
-, Semester number(2)
+, Semester number(1)
 , Year number(4)
 , AssTaskNum number(2)
 , AssGeneral varchar2(30)
@@ -181,7 +181,7 @@ TeamID varchar2(10) NOT NULL
 , Year number (4) NOT NULL
 , EmpID varchar2(10) --the supervisor
 , Role varchar2(20) -- we need to include it because it is part of the employee role PK
-, PRIMARY KEY (TeamID, UnitID, Semester, Year) --include UnitOffering PKs and maybe team ID like we have on BB, a two digit number?
+, PRIMARY KEY (TeamID, ProjID, UnitID, Semester, Year) --include UnitOffering PKs and maybe team ID like we have on BB, a two digit number?
 , FOREIGN KEY (ProjID, UnitID, Semester, Year) REFERENCES Project
 , FOREIGN KEY (EmpID, Role) REFERENCES EmployeeRole --need to test
 );
@@ -189,13 +189,14 @@ TeamID varchar2(10) NOT NULL
 /
 
 CREATE TABLE StudentTeamAllocation ( --links an enrolled student to a team (which is already assigned to a unit offering)
-TeamID varchar2(10) -- do we need 'not null'
-, StuID varchar2(10) -- 'can' be null
+TeamID varchar2(10) NOT NULL
+, ProjID varchar2(10) NOT NULL
+, StuID varchar2(10) NOT NULL
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
 , PRIMARY KEY (TeamID, UnitID, Semester, Year, StuID)
-, FOREIGN KEY (TeamID, UnitID, Semester, Year) REFERENCES Team
+, FOREIGN KEY (ProjID, TeamID, UnitID, Semester, Year) REFERENCES Team
 , FOREIGN KEY (StuID, UnitID, Semester, Year) REFERENCES Enrolment
 );
 
@@ -204,7 +205,7 @@ TeamID varchar2(10) -- do we need 'not null'
 CREATE TABLE AssessmentAllocation ( --links enrolled students to an assessment in an offered unit
 AssID varchar2(10)
 , UnitID varchar2(10)
-, Semester number(2)
+, Semester number(1)
 , Year number(4)
 , StuID varchar2(10)
 , TeamID varchar2(10) --Nullable, Assessment may be an individual task
@@ -227,19 +228,20 @@ MeetType varchar2(20)
 /
 
 CREATE TABLE Meeting ( --Links a team to a meeting for an offered unit
-TeamID varchar2(10) 
-, MeetingID number(3) NOT NULL --Limited to 999 Meetings
-, UnitID varchar2(10) NOT NULL
-, Semester number(1) NOT NULL
-, Year number(4) NOT NULL
-, MeetType varchar2(20)
+MeetingID number(3)
+, TeamID varchar2(10) 
+, ProjID varchar2(10)
+, UnitID varchar2(10) 
+, Semester number(1) 
+, Year number(4) 
+, MeetType varchar2(20) NOT NULL
 , StartTime Date NOT NULL
 , FinishTime Date 
 , Minutes varchar2(1000)
 , EmpID varchar2(10) NOT NULL --the supervisor (retrieved from the team table)
 , ClientName varchar2(30) --only if is a client meeting
-, PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year) --include MeetingID, UnitID, Semester, Year...?
-, FOREIGN KEY (TeamID, UnitID, Semester, Year) REFERENCES Team
+, PRIMARY KEY (MeetingID, TeamID, ProjID, UnitID, Semester, Year) --include MeetingID, UnitID, Semester, Year...?
+, FOREIGN KEY (TeamID, ProjID, UnitID, Semester, Year) REFERENCES Team
 , FOREIGN KEY (MeetType) REFERENCES MeetingType
 );
 
@@ -248,12 +250,13 @@ TeamID varchar2(10)
 CREATE TABLE MeetingAttendance ( --Links a student to a meeting
 MeetingID number(3)
 , TeamID varchar2(10)
+, ProjID varchar2(10)
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
 , StuID varchar2(10)
-, PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year, StuID)
-, FOREIGN KEY (MeetingID, TeamID, UnitID, Semester, Year) REFERENCES Meeting
+, PRIMARY KEY (MeetingID, TeamID, ProjID, UnitID, Semester, Year, StuID)
+, FOREIGN KEY (MeetingID, TeamID, ProjID, UnitID, Semester, Year) REFERENCES Meeting
 , FOREIGN KEY (TeamID, UnitID, Semester, Year, StuID) REFERENCES StudentTeamAllocation
 );
 
@@ -262,13 +265,14 @@ MeetingID number(3)
 CREATE TABLE ActionItem (
 MeetingID number(3)
 , TeamID varchar2(10)
+, ProjID varchar2(10)
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
 , ActionNum number(3)
 , ActionDesc varchar2(200)
-, PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year, ActionNum)
-, FOREIGN KEY (MeetingID, TeamID, UnitID, Semester, Year) REFERENCES Meeting
+, PRIMARY KEY (MeetingID, TeamID, ProjID, UnitID, Semester, Year, ActionNum)
+, FOREIGN KEY (MeetingID, TeamID, ProjID, UnitID, Semester, Year) REFERENCES Meeting
 );
 
 / 
@@ -276,13 +280,14 @@ MeetingID number(3)
 CREATE TABLE AgendaItem (
 MeetingID number(3)
 , TeamID varchar2(10)
+, ProjID varchar2(10)
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
 , AgendaNum number(3)
 , AgendaDesc varchar2(200)
-, PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year, AgendaNum)
-, FOREIGN KEY (MeetingID, TeamID, UnitID, Semester, Year) REFERENCES Meeting
+, PRIMARY KEY (MeetingID, TeamID, ProjID, UnitID, Semester, Year, AgendaNum)
+, FOREIGN KEY (MeetingID, TeamID, ProjID, UnitID, Semester, Year) REFERENCES Meeting
 );
 
 /
