@@ -64,6 +64,12 @@ namespace FrontEndV0._1.forms
 
                 frmUnits = new frmUnits(false);
                 frmUnits.MdiParent = this;
+
+                frmUnitOfferings = new frmUnitOfferings(true);
+                frmUnitOfferings.MdiParent = this;
+
+                frmProject = new frmProject(false);
+                frmProject.MdiParent = this;
             }
 
             frmEmpDetails = new frmEmpDetails();
@@ -81,6 +87,24 @@ namespace FrontEndV0._1.forms
         {
             frmAssessment.FormClosing += closeForm;
             frmAssessment.Show();
+        }
+
+        private void openTeamForm()
+        {
+            frmTeamDetails.FormClosing += closeForm;
+            frmTeamDetails.Show();
+        }
+
+        private void openProjectForm()
+        {
+            frmProject.FormClosing += closeForm;
+            frmProject.Show();
+        }
+
+        private void openUnitOfferingForm()
+        {
+            frmUnitOfferings.FormClosing += closeForm;
+            frmUnitOfferings.Show();
         }
 
         private void closeForm(object sender, FormClosingEventArgs e)
@@ -178,26 +202,7 @@ namespace FrontEndV0._1.forms
 
         private void convenorDropdownMngTeams_Click(object sender, EventArgs e)
         {
-            frmTeamDetails.FormClosing += frmTeamDetailsClosing;
-            frmTeamDetails.Show();
-        }
-
-        private void frmTeamDetailsClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            frmTeamDetails.Hide();
-        }
-
-        private void convenorDropdownMngProjects_Click(object sender, EventArgs e)
-        {
-            frmProject.FormClosing += frmProjectClosing;
-            frmProject.Show();
-        }
-
-        private void frmProjectClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            frmProject.Hide();
+            openTeamForm();
         }
 
         private void convenorDropdownViewUnits_Click(object sender, EventArgs e)
@@ -205,8 +210,15 @@ namespace FrontEndV0._1.forms
             openUnitForm();
         }
 
-        //frmUnits
-        //frmUnitOfferings
+        private void convenorDropdownUnitOfferings_Click(object sender, EventArgs e)
+        {
+            openUnitOfferingForm();
+        }
+        
+        private void convenorDropdownProjects_Click(object sender, EventArgs e)
+        {
+            openProjectForm();
+        }
 
         #endregion
 
@@ -228,9 +240,6 @@ namespace FrontEndV0._1.forms
             this.Close();
         }
 
-        private void viewProjectsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

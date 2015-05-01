@@ -64,15 +64,14 @@
             this.logoutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1344, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1008, 33);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "msEmp";
             // 
             // personalDetailsToolStripMenuItem
             // 
             this.personalDetailsToolStripMenuItem.Name = "personalDetailsToolStripMenuItem";
-            this.personalDetailsToolStripMenuItem.Size = new System.Drawing.Size(196, 36);
+            this.personalDetailsToolStripMenuItem.Size = new System.Drawing.Size(159, 29);
             this.personalDetailsToolStripMenuItem.Text = "Personal Details";
             this.personalDetailsToolStripMenuItem.Click += new System.EventHandler(this.personalDetailsMenu_Click);
             // 
@@ -86,41 +85,41 @@
             this.manageEnrolmentsToolStripMenuItem});
             this.administratorFunctionsToolStripMenuItem.Enabled = false;
             this.administratorFunctionsToolStripMenuItem.Name = "administratorFunctionsToolStripMenuItem";
-            this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(281, 36);
+            this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(225, 29);
             this.administratorFunctionsToolStripMenuItem.Text = "Administrator Functions";
             // 
             // manageToolStripMenuItem
             // 
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(334, 36);
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageToolStripMenuItem.Text = "Manage Students";
             this.manageToolStripMenuItem.Click += new System.EventHandler(this.adminDropdownManageStudents_Click);
             // 
             // manageEmployeesToolStripMenuItem
             // 
             this.manageEmployeesToolStripMenuItem.Name = "manageEmployeesToolStripMenuItem";
-            this.manageEmployeesToolStripMenuItem.Size = new System.Drawing.Size(334, 36);
+            this.manageEmployeesToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageEmployeesToolStripMenuItem.Text = "Manage Employees";
             this.manageEmployeesToolStripMenuItem.Click += new System.EventHandler(this.adminDropdownManageEmployees_Click);
             // 
             // manageUnitsToolStripMenuItem
             // 
             this.manageUnitsToolStripMenuItem.Name = "manageUnitsToolStripMenuItem";
-            this.manageUnitsToolStripMenuItem.Size = new System.Drawing.Size(334, 36);
+            this.manageUnitsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageUnitsToolStripMenuItem.Text = "Manage Units";
             this.manageUnitsToolStripMenuItem.Click += new System.EventHandler(this.adminDropdownManageUnits_Click);
             // 
             // manageUnitOfferingsToolStripMenuItem
             // 
             this.manageUnitOfferingsToolStripMenuItem.Name = "manageUnitOfferingsToolStripMenuItem";
-            this.manageUnitOfferingsToolStripMenuItem.Size = new System.Drawing.Size(334, 36);
+            this.manageUnitOfferingsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageUnitOfferingsToolStripMenuItem.Text = "Manage Unit Offerings";
             this.manageUnitOfferingsToolStripMenuItem.Click += new System.EventHandler(this.adminDropdownManageUnitOfferings_Click);
             // 
             // manageEnrolmentsToolStripMenuItem
             // 
             this.manageEnrolmentsToolStripMenuItem.Name = "manageEnrolmentsToolStripMenuItem";
-            this.manageEnrolmentsToolStripMenuItem.Size = new System.Drawing.Size(334, 36);
+            this.manageEnrolmentsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageEnrolmentsToolStripMenuItem.Text = "Manage Enrolments";
             this.manageEnrolmentsToolStripMenuItem.Click += new System.EventHandler(this.adminDropdownManageEnrolments_Click);
             // 
@@ -134,7 +133,7 @@
             this.viewUnitOfferingsToolStripMenuItem});
             this.convenorFunctionsToolStripMenuItem.Enabled = false;
             this.convenorFunctionsToolStripMenuItem.Name = "convenorFunctionsToolStripMenuItem";
-            this.convenorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(241, 36);
+            this.convenorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(192, 29);
             this.convenorFunctionsToolStripMenuItem.Text = "Convenor Functions";
             // 
             // manageAssessmentsMasterToolStripMenuItem
@@ -143,48 +142,49 @@
             this.masterToolStripMenuItem,
             this.allocationsToolStripMenuItem});
             this.manageAssessmentsMasterToolStripMenuItem.Name = "manageAssessmentsMasterToolStripMenuItem";
-            this.manageAssessmentsMasterToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
+            this.manageAssessmentsMasterToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
             this.manageAssessmentsMasterToolStripMenuItem.Text = "Manage Assessments";
             // 
             // masterToolStripMenuItem
             // 
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
-            this.masterToolStripMenuItem.Size = new System.Drawing.Size(206, 36);
+            this.masterToolStripMenuItem.Size = new System.Drawing.Size(177, 30);
             this.masterToolStripMenuItem.Text = "Master";
             this.masterToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownAssessmentMaster_Click);
             // 
             // allocationsToolStripMenuItem
             // 
             this.allocationsToolStripMenuItem.Name = "allocationsToolStripMenuItem";
-            this.allocationsToolStripMenuItem.Size = new System.Drawing.Size(206, 36);
+            this.allocationsToolStripMenuItem.Size = new System.Drawing.Size(177, 30);
             this.allocationsToolStripMenuItem.Text = "Allocations";
             // 
             // manageAssessmentAllocationsToolStripMenuItem
             // 
             this.manageAssessmentAllocationsToolStripMenuItem.Name = "manageAssessmentAllocationsToolStripMenuItem";
-            this.manageAssessmentAllocationsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
+            this.manageAssessmentAllocationsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
             this.manageAssessmentAllocationsToolStripMenuItem.Text = "Manage Projects";
-            this.manageAssessmentAllocationsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownMngProjects_Click);
+            this.manageAssessmentAllocationsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownProjects_Click);
             // 
             // manageTeamsToolStripMenuItem
             // 
             this.manageTeamsToolStripMenuItem.Name = "manageTeamsToolStripMenuItem";
-            this.manageTeamsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
+            this.manageTeamsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
             this.manageTeamsToolStripMenuItem.Text = "Manage Teams";
             this.manageTeamsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownMngTeams_Click);
             // 
             // viewUnitsToolStripMenuItem
             // 
             this.viewUnitsToolStripMenuItem.Name = "viewUnitsToolStripMenuItem";
-            this.viewUnitsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
+            this.viewUnitsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
             this.viewUnitsToolStripMenuItem.Text = "View Units";
             this.viewUnitsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownViewUnits_Click);
             // 
             // viewUnitOfferingsToolStripMenuItem
             // 
             this.viewUnitOfferingsToolStripMenuItem.Name = "viewUnitOfferingsToolStripMenuItem";
-            this.viewUnitOfferingsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
+            this.viewUnitOfferingsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
             this.viewUnitOfferingsToolStripMenuItem.Text = "View Unit Offerings";
+            this.viewUnitOfferingsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownUnitOfferings_Click);
             // 
             // supervisorFunctionsToolStripMenuItem
             // 
@@ -195,34 +195,33 @@
             this.viewProjectsToolStripMenuItem});
             this.supervisorFunctionsToolStripMenuItem.Enabled = false;
             this.supervisorFunctionsToolStripMenuItem.Name = "supervisorFunctionsToolStripMenuItem";
-            this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(249, 36);
+            this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(199, 29);
             this.supervisorFunctionsToolStripMenuItem.Text = "Supervisor Functions";
             // 
             // manageMeetingsToolStripMenuItem
             // 
             this.manageMeetingsToolStripMenuItem.Name = "manageMeetingsToolStripMenuItem";
-            this.manageMeetingsToolStripMenuItem.Size = new System.Drawing.Size(284, 36);
+            this.manageMeetingsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
             this.manageMeetingsToolStripMenuItem.Text = "Manage Meetings";
             this.manageMeetingsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownMngMeetings_Click);
             // 
             // viewAssessmentsToolStripMenuItem
             // 
             this.viewAssessmentsToolStripMenuItem.Name = "viewAssessmentsToolStripMenuItem";
-            this.viewAssessmentsToolStripMenuItem.Size = new System.Drawing.Size(284, 36);
+            this.viewAssessmentsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
             this.viewAssessmentsToolStripMenuItem.Text = "View Assessments";
             // 
             // viewTeamsToolStripMenuItem
             // 
             this.viewTeamsToolStripMenuItem.Name = "viewTeamsToolStripMenuItem";
-            this.viewTeamsToolStripMenuItem.Size = new System.Drawing.Size(284, 36);
+            this.viewTeamsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
             this.viewTeamsToolStripMenuItem.Text = "View Teams";
             // 
             // viewProjectsToolStripMenuItem
             // 
             this.viewProjectsToolStripMenuItem.Name = "viewProjectsToolStripMenuItem";
-            this.viewProjectsToolStripMenuItem.Size = new System.Drawing.Size(284, 36);
+            this.viewProjectsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
             this.viewProjectsToolStripMenuItem.Text = "View Projects";
-            this.viewProjectsToolStripMenuItem.Click += new System.EventHandler(this.viewProjectsToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
@@ -230,19 +229,18 @@
             this.logoutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             this.logoutToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(89, 36);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(71, 29);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // frmEmpDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 750);
+            this.ClientSize = new System.Drawing.Size(1008, 609);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmEmpDashboard";
             this.Text = "Employee Dashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
