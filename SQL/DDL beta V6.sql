@@ -287,6 +287,9 @@ MeetingID number(3)
 , Year number(4) NOT NULL
 , ActionNum number(3)
 , ActionDesc varchar2(200)
+, StuID varchar2(10)
+, DueDate date
+, Status varchar2(1)
 , PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year, ActionNum)
 , FOREIGN KEY (MeetingID, TeamID, UnitID, Semester, Year) REFERENCES Meeting
 );
@@ -301,6 +304,8 @@ MeetingID number(3)
 , Year number(4) NOT NULL
 , AgendaNum number(3)
 , AgendaDesc varchar2(200)
+, StuID varchar2(10)
+, DueDate date
 , PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year, AgendaNum)
 , FOREIGN KEY (MeetingID, TeamID, UnitID, Semester, Year) REFERENCES Meeting
 );
