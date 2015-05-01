@@ -391,9 +391,10 @@ CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
 		(pUnitID varchar2, 
        	 pSemester number,
        	 pYear number,
-       	 pEmpID varchar2) AS
+       	 pEmpID varchar2,
+       	 pRole) AS
 BEGIN
-	INSERT INTO UnitOffering VALUES (pUnitID, pSemester, pYear, pEmpID);
+	INSERT INTO UnitOffering VALUES (pUnitID, pSemester, pYear, pEmpID, pRole);
 	--dbms_output.put_line('Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -817,7 +818,7 @@ BEGIN
 	--					 || ' Unit Name: ' || u.UnitName
 	--					 || ' Unit Description: ' || u.UnitDesc);
 	--End Loop;
-	return tm;
+	return ass;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -1140,8 +1141,55 @@ END;
 
 /
 
+CREATE or REPLACE FUNCTION UC3_10_View_AgendaItem
+	RETURN SYS_REFCURSOR AS agi SYS_REFCURSOR;
+BEGIN
+	
+	OPEN agi for select * from AgendaItem;
+	--LOOP
+	--	Fetch uos into uo;
+	--	Exit When uos%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
+	--					 || ' Semester: ' || uo.semester
+	--					 || ' Year: ' || uo.Year); 
+	--End Loop;
+	return agi;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
 
-CREATE or REPLACE PROCEDURE UC3_10_Delete_AgendaItem
+CREATE OR REPLACE PROCEDURE UC3_11_Update_AgendaItem
+		(pMeetingID number,
+		pTeamID varchar2,
+		pUnitID varchar2,
+		pSemester number,
+		pYear number,
+		pAgendaNum number,
+		pAgendaDesc varchar2,
+		pStuID varchar2,
+		pDueDate date)
+BEGIN
+UPDATE AgendaNum
+SET AgendaDesc = pAgendaDesc,
+	StuID = pStuID,
+	DueDate = pDueDate
+WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear and
+		AgendaNum = pAgendaNum;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+
+
+CREATE or REPLACE PROCEDURE UC3_12_Delete_AgendaItem
 		(pMeetingID number,
 	pTeamID varchar2,
 	pUnitID varchar2,
@@ -1164,7 +1212,7 @@ END;
 /
 
 
-CREATE or REPLACE PROCEDURE UC3_12_Add_ActionItem
+CREATE or REPLACE PROCEDURE UC3_13_Add_ActionItem
 		(pMeetingID number,
 	pTeamID varchar2,
 	pUnitID varchar2,
@@ -1183,7 +1231,37 @@ END;
 
 /
 
-CREATE or REPLACE PROCEDURE UC3_13_Delete_ActionItem
+CREATE OR REPLACE PROCEDURE UC3_15_Update_ActionItem
+		(pMeetingID number,
+		pTeamID varchar2,
+		pUnitID varchar2,
+		pSemester number,
+		pYear number,
+		pAgendaNum number,
+		pAgendaDesc varchar2,
+		pStuID varchar2,
+		pDueDate date,
+		pStatus varchar2)
+BEGIN
+UPDATE ActionNum
+SET ActionDesc = pActionDesc,
+	StuID = pStuID,
+	DueDate = pDueDate
+	Status = pStatus
+WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear and
+		ActionNum = pActionNum;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+CREATE or REPLACE PROCEDURE UC3_16_Delete_ActionItem
 		(pMeetingID number,
 	pTeamID varchar2,
 	pUnitID varchar2,
