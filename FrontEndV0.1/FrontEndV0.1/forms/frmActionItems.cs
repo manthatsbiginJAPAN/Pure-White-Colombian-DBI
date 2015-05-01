@@ -9,21 +9,12 @@ using System.Windows.Forms;
 
 namespace FrontEndV0._1.forms
 {
-    public partial class frmMeeting : Form
+    public partial class frmActionItems : Form
     {
-        public frmMeeting()
+        public frmActionItems()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
