@@ -260,7 +260,7 @@ CREATE OR REPLACE PROCEDURE UC1_14_Update_Enrolment
        	 pSemester number,
        	 pYear number,
        	 newUnitID varchar2,
-       	 newSemester number,
+       	 newSemester varchar2,
        	 newYear varchar2) AS
 BEGIN
 	UPDATE Enrolment
@@ -391,9 +391,10 @@ CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
 		(pUnitID varchar2, 
        	 pSemester number,
        	 pYear number,
-       	 pEmpID varchar2) AS
+       	 pEmpID varchar2,
+       	 pRole varchar2) AS
 BEGIN
-	INSERT INTO UnitOffering VALUES (pUnitID, pSemester, pYear, pEmpID);
+	INSERT INTO UnitOffering VALUES (pUnitID, pSemester, pYear, pEmpID, pRole);
 	--dbms_output.put_line('Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -456,69 +457,64 @@ END;
 /
 
 
-
-
 CREATE OR REPLACE PROCEDURE UC1_25_Register_Employee_Role
 		( pEmpID varchar2, 
-       	 pRole varchar2) AS
+        	 pRole varchar2) AS
 BEGIN
-INSERT INTO EmployeeRole VALUES (pEmpID, pRole);
-dbms_output.put_line('Employee ' || pEmpID || ' added as ' || pRole); --for testing
+	INSERT INTO EmployeeRole VALUES (pEmpID, pRole);
+	dbms_output.put_line('Employee ' || pEmpID || ' added as ' || pRole); --for testing
 EXCEPTION
-WHEN DUP_VAL_ON_INDEX THEN
-	RAISE_APPLICATION_ERROR(-20001, 'Employee ' || pEmpID || ' already ' || pRole);
-WHEN OTHERS THEN
-	RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-
-/
-
-
-CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN SYS_REFCURSOR AS emproles SYS_REFCURSOR;
-BEGIN
-	dbms_output.put_line('Listing All Employee Details');
- 	OPEN emproles for select * from EmployeeRole;
- 	--LOOP
- 	--	Fetch emproles into er;
- 	--	Exit When emproles%NOTFOUND;
- 	--	dbms_output.put_line('Employee ID: '|| er.EmpId --for testing
- 	--					 || ' Role: ' || er.Role); 
- 	--End Loop;
- 	Return emproles;
- EXCEPTION
- 	When Others Then
- 		dbms_output.put_line(SQLERRM);
-End;
- /
-
-
-
-
- CREATE OR REPLACE PROCEDURE UC1_28_Delete_Employee_Role
- 		(pEmpID varchar2, pRole varchar2) AS
- BEGIN
- 	Delete EmployeeRole
- 	WHERE EmpID = pEmpID AND Role = pRole;
- 	--dbms_output.put_line('Employee ' || pEmpID || ' deleted as ' || pRole); --for testing
- EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Employee ' || pEmpID || ' already ' || pRole);
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
 
 
- CREATE OR REPLACE PROCEDURE UC1_29_Create_Meeting_Type
-		(pMeetType varchar2) AS
- BEGIN
- 	INSERT INTO MeetingType VALUES (pMeetType);
- 	--dbms_output.put_line(pMeetType || ' meeting type added'); --for testing
- EXCEPTION
- 	WHEN DUP_VAL_ON_INDEX THEN
- 		RAISE_APPLICATION_ERROR(-20001, 'Meeting type ' || pMeetType || ' already exists');
- 	WHEN OTHERS THEN
- 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
- END; 
+CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN SYS_REFCURSOR AS emproles SYS_REFCURSOR;
+BEGIN
+	--dbms_output.put_line('Listing All Employee Details');
+	OPEN emproles for select * from EmployeeRole;
+	--LOOP
+	--	Fetch emproles into er;
+	--	Exit When emproles%NOTFOUND;
+	--	dbms_output.put_line('Employee ID: '|| er.EmpId --for testing
+	--					 || ' Role: ' || er.Role); 
+	--End Loop;
+	Return emproles;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
 /
+
+
+CREATE OR REPLACE PROCEDURE UC1_28_Delete_Employee_Role
+		(pEmpID varchar2, pRole varchar2) AS
+BEGIN
+	Delete EmployeeRole
+	WHERE EmpID = pEmpID AND Role = pRole;
+	--dbms_output.put_line('Employee ' || pEmpID || ' deleted as ' || pRole); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+--CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Role_Type
+--		(pMeetType varchar2) AS
+--BEGIN
+-- 	INSERT INTO MeetingType VALUES (pMeetType);
+-- 	--dbms_output.put_line(pMeetType || ' meeting type added'); --for testing
+-- EXCEPTION
+-- 	WHEN DUP_VAL_ON_INDEX THEN
+-- 		RAISE_APPLICATION_ERROR(-20001, 'Meeting type ' || pMeetType || ' already exists');
+-- 	WHEN OTHERS THEN
+-- 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+-- END;
+-- /
 
 
 CREATE or REPLACE FUNCTION UC1_30_View_Meeting_Type
@@ -569,68 +565,68 @@ END;
 
 
 
-create or replace PROCEDURE UC1_33_Register_Ass_Type
-		(pAssType varchar2, pTypeDesc varchar2) AS
-BEGIN
-	INSERT INTO AssessmentType VALUES (pAssType, pTypeDesc);
-	--dbms_output.put_line(pAssType || ' Assessment type added'); --for testing
-EXCEPTION
-	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Assessment type ' || pAssType || ' already exists');
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-/
+--create or replace PROCEDURE UC1_33_Register_Ass_Type
+--		(pAssType varchar2, pTypeDesc varchar2) AS
+--BEGIN
+--	INSERT INTO AssessmentType VALUES (pAssType, pTypeDesc);
+--	--dbms_output.put_line(pAssType || ' Assessment type added'); --for testing
+--EXCEPTION
+--	WHEN DUP_VAL_ON_INDEX THEN
+--		RAISE_APPLICATION_ERROR(-20001, 'Assessment type ' || pAssType || ' already exists');
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--/
 
 
-CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type
-	RETURN SYS_REFCURSOR AS ats SYS_REFCURSOR;
-
-BEGIN
-	OPEN ats for select * from AssessmentType;
-	--LOOP
-	--	Fetch ats into a;
-	--	Exit When ats%NOTFOUND;
-	--	dbms_output.put_line('Meeting type: '|| mt.MeetingType);
-	--End Loop;
-	Return ats;
-EXCEPTION
-	When Others Then
-		dbms_output.put_line(SQLERRM);
-End;
-/
-
-
-
-CREATE OR REPLACE PROCEDURE UC1_35_Update_Assessment_Type -- think we're going to have problems with this
-		(pAssType varchar2,
-		 pTypeDesc varchar2,
-		 NewAssType varchar2,
-		 NewTypeDesc varchar2) AS
-BEGIN
-	UPDATE AssessmentType
-	SET AssType = NewAssType,
-		TypeDesc = NewTypeDesc
-	WHERE AssType = pAssType;
-	--dbms_output.put_line('Assessment type ' || pAssType || ' updated' ); --for testing
-EXCEPTION
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-/
+--CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type
+--	RETURN SYS_REFCURSOR AS ats SYS_REFCURSOR;
+--
+--BEGIN
+--	OPEN ats for select * from AssessmentType;
+--	--LOOP
+--	--	Fetch ats into a;
+--	--	Exit When ats%NOTFOUND;
+--	--	dbms_output.put_line('Meeting type: '|| mt.MeetingType);
+--	--End Loop;
+--	Return ats;
+--EXCEPTION
+--	When Others Then
+--		dbms_output.put_line(SQLERRM);
+--End;
+--/
 
 
-CREATE OR REPLACE PROCEDURE UC1_36_Delete_Assessment_Type
-		(pAssType varchar2) AS
-BEGIN
-	Delete AssessmentType
-	WHERE AssType = pAssType;
-	--dbms_output.put_line('Assessment type ' || pAssType || ' deleted' ); --for testing
-EXCEPTION
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-/
+
+--CREATE OR REPLACE PROCEDURE UC1_35_Update_Assessment_Type -- think we're going to have problems with this
+--		(pAssType varchar2,
+--		 pTypeDesc varchar2,
+--		 NewAssType varchar2,
+--		 NewTypeDesc varchar2) AS
+--BEGIN
+--	UPDATE AssessmentType
+--	SET AssType = NewAssType,
+--		TypeDesc = NewTypeDesc
+--	WHERE AssType = pAssType;
+--	--dbms_output.put_line('Assessment type ' || pAssType || ' updated' ); --for testing
+--EXCEPTION
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--/
+
+
+--CREATE OR REPLACE PROCEDURE UC1_36_Delete_Assessment_Type
+--		(pAssType varchar2) AS
+--BEGIN
+--	Delete AssessmentType
+--	WHERE AssType = pAssType;
+--	--dbms_output.put_line('Assessment type ' || pAssType || ' deleted' ); --for testing
+--EXCEPTION
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--/
 
 
 create or replace PROCEDURE UC2_1_Register_Team
@@ -639,7 +635,7 @@ create or replace PROCEDURE UC2_1_Register_Team
 	pUnitID varchar2,
 	pSemester number,
 	pYear number,
-	pEmpID varchar2
+	pEmpID varchar2,
 	pRole varchar2
 	) AS
 BEGIN
@@ -660,7 +656,7 @@ CREATE OR REPLACE PROCEDURE UC2_2_Update_Team
 	pSemester number,
 	pYear number,
 	pEmpID varchar2
-	pRole varchar2
+	--pRole varchar2
 	) AS
 BEGIN
 	UPDATE Team
@@ -668,7 +664,7 @@ BEGIN
 		Semester = pSemester,
 		Year = pYear,
 		EmpId = pEmpID
-		Role = pRole
+		--Role = pRole
 	WHERE TeamID = pTeamID;
 	--dbms_output.put_line('Team' || pTeamID || ' updated' ); --for testing
 EXCEPTION
@@ -822,7 +818,7 @@ BEGIN
 	--					 || ' Unit Name: ' || u.UnitName
 	--					 || ' Unit Description: ' || u.UnitDesc);
 	--End Loop;
-	return tm;
+	return ass;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -918,7 +914,7 @@ End;
 /
 
 CREATE OR REPLACE PROCEDURE UC2_16_Delete_Ass_Allo
-		(pAssID varchar2, pUnitID varchar2, pSemester number, pYear number, pStuID varchar2) AS
+		(pAssID varchar2, pUnitID varchar2, pSemester varchar2, pYear number, pStuID varchar2) AS
 BEGIN
 	Delete AssessmentAllocation
 	WHERE AssID = pAssID and
@@ -936,13 +932,12 @@ END;
 
 create or replace PROCEDURE UC2_17_Register_Team_Allo
 		(pTeamID varchar2,
-	pProjID varchar2,
 	pStuID varchar2,
 	pUnitID varchar2,
-	pSemester number,
+	pSemester varchar2,
 	pYear varchar2) AS
 BEGIN 
-	INSERT INTO StudentTeamAllocation VALUES (pTeamID, pProjID, pStuID, pUnitID, pSemester, pYear);
+	INSERT INTO StudentTeamAllocation VALUES (pTeamID, pStuID, pUnitID, pSemester, pYear);
 	--dbms_output.put_line('Registered Student: '|| pStuID || ' into Team: '|| pTeamID|| ' for unit: ' || pUnitID || 'added semester ' || pSemester || ', '|| pYear);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -972,10 +967,9 @@ End;
 /
 create or replace PROCEDURE UC2_20_Delete_Team_Allo
 		(pTeamID varchar2,
-	pProjID varchar2,
 	pStuID varchar2,
 	pUnitID varchar2,
-	pSemester number,
+	pSemester varchar2,
 	pYear varchar2) AS
 BEGIN
 	Delete StudentTeamAllocation
@@ -1012,8 +1006,7 @@ End;
 /
 CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
 		(pMeetingID number,
-	pTeamID varchar2, 
-	pProjID varchar2,
+	pTeamID varchar2,
 	pUnitID varchar2,
 	pSemester number,
 	pYear number,
@@ -1024,7 +1017,7 @@ CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
 	pEmpID varchar2,
 	pClientName varchar2) AS
 BEGIN
-	INSERT INTO Meeting VALUES (pMeetingID, pTeamID, pProjID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
+	INSERT INTO Meeting VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
@@ -1037,7 +1030,6 @@ END;
 CREATE or REPLACE PROCEDURE UC3_3_Update_Meeting
 		(pMeetingID number,
 		pTeamID varchar2,
-		pProjID varchar2,
 		pUnitID varchar2,
 		pSemester number,
 		pYear number,
@@ -1057,7 +1049,6 @@ BEGIN
 		ClientName = pClientName 
 	WHERE MeetingID = pMeetingID and
 		TeamID = pTeamID and
-		ProjID = pProjID and
 		UnitID = pUnitID and
 		Semester = pSemester and
 		Year = pYear;
@@ -1073,14 +1064,12 @@ CREATE or REPLACE PROCEDURE UC3_4_Delete_Meeting
 		(pMeetingID number,
 	pTeamID varchar2,
 	pUnitID varchar2,
-	pProjID varchar2,
 	pSemester number,
 	pYear number) AS
 BEGIN
 	Delete Meeting
 	WHERE MeetingID = pMeetingID and
 		TeamID = pTeamID and
-		ProjID = pProjID and
 		UnitID = pUnitID and
 		Semester = pSemester and
 		Year = pYear;
@@ -1152,8 +1141,55 @@ END;
 
 /
 
+CREATE or REPLACE FUNCTION UC3_10_View_AgendaItem
+	RETURN SYS_REFCURSOR AS agi SYS_REFCURSOR;
+BEGIN
+	
+	OPEN agi for select * from AgendaItem;
+	--LOOP
+	--	Fetch uos into uo;
+	--	Exit When uos%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
+	--					 || ' Semester: ' || uo.semester
+	--					 || ' Year: ' || uo.Year); 
+	--End Loop;
+	return agi;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
 
-CREATE or REPLACE PROCEDURE UC3_10_Delete_AgendaItem
+CREATE OR REPLACE PROCEDURE UC3_11_Update_AgendaItem
+		(pMeetingID number,
+		pTeamID varchar2,
+		pUnitID varchar2,
+		pSemester number,
+		pYear number,
+		pAgendaNum number,
+		pAgendaDesc varchar2,
+		pStuID varchar2,
+		pDueDate date)
+BEGIN
+UPDATE AgendaNum
+SET AgendaDesc = pAgendaDesc,
+	StuID = pStuID,
+	DueDate = pDueDate
+WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear and
+		AgendaNum = pAgendaNum;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+
+
+CREATE or REPLACE PROCEDURE UC3_12_Delete_AgendaItem
 		(pMeetingID number,
 	pTeamID varchar2,
 	pUnitID varchar2,
@@ -1176,7 +1212,7 @@ END;
 /
 
 
-CREATE or REPLACE PROCEDURE UC3_12_Add_ActionItem
+CREATE or REPLACE PROCEDURE UC3_13_Add_ActionItem
 		(pMeetingID number,
 	pTeamID varchar2,
 	pUnitID varchar2,
@@ -1195,7 +1231,37 @@ END;
 
 /
 
-CREATE or REPLACE PROCEDURE UC3_13_Delete_ActionItem
+CREATE OR REPLACE PROCEDURE UC3_15_Update_ActionItem
+		(pMeetingID number,
+		pTeamID varchar2,
+		pUnitID varchar2,
+		pSemester number,
+		pYear number,
+		pAgendaNum number,
+		pAgendaDesc varchar2,
+		pStuID varchar2,
+		pDueDate date,
+		pStatus varchar2)
+BEGIN
+UPDATE ActionNum
+SET ActionDesc = pActionDesc,
+	StuID = pStuID,
+	DueDate = pDueDate
+	Status = pStatus
+WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
+		UnitID = pUnitID and
+		Semester = pSemester and
+		Year = pYear and
+		ActionNum = pActionNum;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+CREATE or REPLACE PROCEDURE UC3_16_Delete_ActionItem
 		(pMeetingID number,
 	pTeamID varchar2,
 	pUnitID varchar2,

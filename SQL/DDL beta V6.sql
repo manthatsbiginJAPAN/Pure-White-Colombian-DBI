@@ -4,14 +4,15 @@ DROP TABLE MeetingAttendance CASCADE CONSTRAINTS;
 DROP TABLE Meeting CASCADE CONSTRAINTS;
 DROP TABLE MeetingType CASCADE CONSTRAINTS;
 
-DROP TABLE AssessmentAllocation CASCADE CONSTRAINTS;
+DROP TABLE StudentRatings CASCADE CONSTRAINTS;
+DROP TABLE StudentHours CASCADE CONSTRAINTS;
 DROP TABLE StudentTeamAllocation CASCADE CONSTRAINTS; 
 DROP TABLE Team CASCADE CONSTRAINTS;
 DROP TABLE Project CASCADE CONSTRAINTS;
 
+DROP TABLE AssessmentCriterion CASCADE CONSTRAINTS;
 DROP TABLE AssessmentTask CASCADE CONSTRAINTS;
 DROP TABLE Assessment CASCADE CONSTRAINTS;
-DROP TABLE AssessmentType CASCADE CONSTRAINTS;
 
 DROP TABLE Enrolment CASCADE CONSTRAINTS;
 DROP TABLE UnitOffering CASCADE CONSTRAINTS;
@@ -119,40 +120,42 @@ StuID varchar2(10) NOT NULL
 -------------------------------------------------------------------------------------
 
 
-CREATE TABLE AssessmentType( -- Attribute entity for assessment types
-AssType varchar2(20)
-, PRIMARY KEY (AssType)
-);
-
-/
-
-
-CREATE TABLE Assessment ( --links an assessment to a unit offering - I think they would surely have to be able to alter assessments for each subject
+CREATE TABLE Assessment ( --assessment feedback that incorporates both the peer assessment (individual) and team contribution (group)
 AssID varchar2(10) NOT NULL
 , AssTitle varchar2(50) NOT NULL
 , AssDesc varchar2(200) 
 , UnitID varchar2(10) NOT NULL
 , Semester number(2) NOT NULL
 , Year number(4) NOT NULL
-, MarkingGuide varchar2(1000) 
-, AssType varchar2 (20) NOT NULL
-, DueDate Date NOT NULL
+, MarkingGuide varchar2(1000) --DISCUSS/CLARIFY WITH ASHIR
 , PRIMARY KEY (AssID, UnitID, Semester, Year)
 , FOREIGN KEY (UnitID, Semester, Year) REFERENCES UnitOffering
-, FOREIGN KEY (AssType) REFERENCES AssessmentType
 );
 
 /
 
-CREATE TABLE AssessmentTask( -- Attribute entity for assessment types
-AssID varchar2(10) NOT NULL
+CREATE TABLE AssessmentTask( --stores master data for each task a convener sets for the group 'Team Contribution' document
+TaskID number(2)
+, AssID varchar2(10) NOT NULL
 , UnitID varchar2(10)
 , Semester number(2)
 , Year number(4)
-, AssTaskNum number(2)
-, AssGeneral varchar2(30)
-, AssSpecific varchar2(100)
-, PRIMARY KEY (AssID, UnitID, Semester, Year, AssTaskNum)
+, PRIMARY KEY (TaskID, AssID, UnitID, Semester, Year)
+, FOREIGN KEY (AssID, UnitID, Semester, Year) REFERENCES Assessment
+);
+
+/
+
+
+CREATE TABLE AssessmentCriterion( --stores master data for each criterion a convener sets for the individual 'Peer Assessment' document
+CriterionID number(2)
+, AssID varchar2(10)
+, UnitID varchar2(10)
+, Semester number(2)
+, Year number(4)
+, General varchar2(30)
+, Specific varchar2(100)
+, PRIMARY KEY (CriterionID, AssID, UnitID, Semester, Year)
 , FOREIGN KEY (AssID, UnitID, Semester, Year) REFERENCES Assessment
 );
 
@@ -201,18 +204,35 @@ TeamID varchar2(10) -- do we need 'not null'
 
 /
 
-CREATE TABLE AssessmentAllocation ( --links enrolled students to an assessment in an offered unit
-AssID varchar2(10)
+CREATE TABLE StudentHours( --an individual's scores of hours for each assessment task in a 'Team Contribution' document
+TaskID number(2)
+, StuID varchar2(10)
+, AssID varchar2(10)
 , UnitID varchar2(10)
 , Semester number(2)
 , Year number(4)
+, TeamID varchar2(10)
+, Period number(2)
+, Hours number(3)
+, PRIMARY KEY (TaskID, StuID, AssID, UnitID, Semester, Year)
+, FOREIGN KEY (TaskID, AssID, UnitID, Semester, Year) REFERENCES AssessmentTask
+, FOREIGN KEY (TeamID, UnitID, Semester, Year, StuID) REFERENCES StudentTeamAllocation
+);
+
+/
+
+CREATE TABLE StudentRatings( --an individual's ratings of effort for each assessment criterion in a 'Peer Assessment' document
+CriterionID number(2)
 , StuID varchar2(10)
-, TeamID varchar2(10) --Nullable, Assessment may be an individual task
-, Submission varchar2(1000) UNIQUE --Unique, prevents plagarism 
-, PRIMARY KEY (AssID, UnitID, Semester, Year, StuID)
-, FOREIGN KEY (AssID, UnitID, Semester, Year) REFERENCES Assessment
-, FOREIGN KEY (StuID, UnitID, Semester, Year) REFERENCES Enrolment -- Does UnitID, Semester, Year need to reference all 3?
-, FOREIGN KEY (TeamID, UnitID, Semester, Year) REFERENCES Team -- Should this reference StudentTeamAllocation to match ERD?
+, AssID varchar2(10)
+, UnitID varchar2(10)
+, Semester number(2)
+, Year number(4)
+, TeamID varchar2(10)
+, Rating number(1)
+, PRIMARY KEY (CriterionID, StuID, AssID, UnitID, Semester, Year)
+, FOREIGN KEY (CriterionID, AssID, UnitID, Semester, Year) REFERENCES AssessmentCriterion
+, FOREIGN KEY (TeamID, UnitID, Semester, Year, StuID) REFERENCES StudentTeamAllocation
 );
 
 /
@@ -267,6 +287,9 @@ MeetingID number(3)
 , Year number(4) NOT NULL
 , ActionNum number(3)
 , ActionDesc varchar2(200)
+, StuID varchar2(10)
+, DueDate date
+, Status varchar2(1)
 , PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year, ActionNum)
 , FOREIGN KEY (MeetingID, TeamID, UnitID, Semester, Year) REFERENCES Meeting
 );
@@ -281,6 +304,8 @@ MeetingID number(3)
 , Year number(4) NOT NULL
 , AgendaNum number(3)
 , AgendaDesc varchar2(200)
+, StuID varchar2(10)
+, DueDate date
 , PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year, AgendaNum)
 , FOREIGN KEY (MeetingID, TeamID, UnitID, Semester, Year) REFERENCES Meeting
 );

@@ -1,0 +1,8 @@
+List of things that need fixing:
+	1. Forms open below eachother
+	2. Logging out then back in doesn't work
+	3. Load the available unitid, semester and year into the drop down lists
+	4. Supervisor menus need connecting
+
+List of things that would be better changed:
+	1. Change window size of forms to allow more to be shown within each (eg unit + unit offering in 1)
