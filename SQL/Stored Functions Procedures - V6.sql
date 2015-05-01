@@ -392,7 +392,7 @@ CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
        	 pSemester number,
        	 pYear number,
        	 pEmpID varchar2,
-       	 pRole) AS
+       	 pRole varchar2) AS
 BEGIN
 	INSERT INTO UnitOffering VALUES (pUnitID, pSemester, pYear, pEmpID, pRole);
 	--dbms_output.put_line('Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
@@ -565,68 +565,68 @@ END;
 
 
 
-create or replace PROCEDURE UC1_33_Register_Ass_Type
-		(pAssType varchar2, pTypeDesc varchar2) AS
-BEGIN
-	INSERT INTO AssessmentType VALUES (pAssType, pTypeDesc);
-	--dbms_output.put_line(pAssType || ' Assessment type added'); --for testing
-EXCEPTION
-	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Assessment type ' || pAssType || ' already exists');
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-/
+--create or replace PROCEDURE UC1_33_Register_Ass_Type
+--		(pAssType varchar2, pTypeDesc varchar2) AS
+--BEGIN
+--	INSERT INTO AssessmentType VALUES (pAssType, pTypeDesc);
+--	--dbms_output.put_line(pAssType || ' Assessment type added'); --for testing
+--EXCEPTION
+--	WHEN DUP_VAL_ON_INDEX THEN
+--		RAISE_APPLICATION_ERROR(-20001, 'Assessment type ' || pAssType || ' already exists');
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--/
 
 
-CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type
-	RETURN SYS_REFCURSOR AS ats SYS_REFCURSOR;
-
-BEGIN
-	OPEN ats for select * from AssessmentType;
-	--LOOP
-	--	Fetch ats into a;
-	--	Exit When ats%NOTFOUND;
-	--	dbms_output.put_line('Meeting type: '|| mt.MeetingType);
-	--End Loop;
-	Return ats;
-EXCEPTION
-	When Others Then
-		dbms_output.put_line(SQLERRM);
-End;
-/
-
-
-
-CREATE OR REPLACE PROCEDURE UC1_35_Update_Assessment_Type -- think we're going to have problems with this
-		(pAssType varchar2,
-		 pTypeDesc varchar2,
-		 NewAssType varchar2,
-		 NewTypeDesc varchar2) AS
-BEGIN
-	UPDATE AssessmentType
-	SET AssType = NewAssType,
-		TypeDesc = NewTypeDesc
-	WHERE AssType = pAssType;
-	--dbms_output.put_line('Assessment type ' || pAssType || ' updated' ); --for testing
-EXCEPTION
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-/
+--CREATE or REPLACE FUNCTION UC1_34_View_Assessment_Type
+--	RETURN SYS_REFCURSOR AS ats SYS_REFCURSOR;
+--
+--BEGIN
+--	OPEN ats for select * from AssessmentType;
+--	--LOOP
+--	--	Fetch ats into a;
+--	--	Exit When ats%NOTFOUND;
+--	--	dbms_output.put_line('Meeting type: '|| mt.MeetingType);
+--	--End Loop;
+--	Return ats;
+--EXCEPTION
+--	When Others Then
+--		dbms_output.put_line(SQLERRM);
+--End;
+--/
 
 
-CREATE OR REPLACE PROCEDURE UC1_36_Delete_Assessment_Type
-		(pAssType varchar2) AS
-BEGIN
-	Delete AssessmentType
-	WHERE AssType = pAssType;
-	--dbms_output.put_line('Assessment type ' || pAssType || ' deleted' ); --for testing
-EXCEPTION
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-/
+
+--CREATE OR REPLACE PROCEDURE UC1_35_Update_Assessment_Type -- think we're going to have problems with this
+--		(pAssType varchar2,
+--		 pTypeDesc varchar2,
+--		 NewAssType varchar2,
+--		 NewTypeDesc varchar2) AS
+--BEGIN
+--	UPDATE AssessmentType
+--	SET AssType = NewAssType,
+--		TypeDesc = NewTypeDesc
+--	WHERE AssType = pAssType;
+--	--dbms_output.put_line('Assessment type ' || pAssType || ' updated' ); --for testing
+--EXCEPTION
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--/
+
+
+--CREATE OR REPLACE PROCEDURE UC1_36_Delete_Assessment_Type
+--		(pAssType varchar2) AS
+--BEGIN
+--	Delete AssessmentType
+--	WHERE AssType = pAssType;
+--	--dbms_output.put_line('Assessment type ' || pAssType || ' deleted' ); --for testing
+--EXCEPTION
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--/
 
 
 create or replace PROCEDURE UC2_1_Register_Team
@@ -635,11 +635,11 @@ create or replace PROCEDURE UC2_1_Register_Team
 	pUnitID varchar2,
 	pSemester number,
 	pYear number,
-	pEmpID varchar2
-	--pRole varchar2
+	pEmpID varchar2,
+	pRole varchar2
 	) AS
 BEGIN
-	INSERT INTO Team VALUES (pTeamID, pProjID, pUnitID, pSemester, pYear, pEmpID);
+	INSERT INTO Team VALUES (pTeamID, pProjID, pUnitID, pSemester, pYear, pEmpID, pRole);
 	--dbms_output.put_line('Team Id: ' || pTeamID || ' For the Project: ' || pProjID || ' Unit: ' || pUnitID ||' Semester: ' || pSemester || ' Year: ' || pYear || ' Supervisor Id ' || pEmpID);
 EXCEPTION
   WHEN DUP_VAL_ON_INDEX THEN
