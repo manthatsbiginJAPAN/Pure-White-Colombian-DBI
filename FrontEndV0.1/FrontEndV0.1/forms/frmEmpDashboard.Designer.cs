@@ -164,18 +164,21 @@
             this.manageAssessmentAllocationsToolStripMenuItem.Name = "manageAssessmentAllocationsToolStripMenuItem";
             this.manageAssessmentAllocationsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
             this.manageAssessmentAllocationsToolStripMenuItem.Text = "Manage Projects";
+            this.manageAssessmentAllocationsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownMngProjects_Click);
             // 
             // manageTeamsToolStripMenuItem
             // 
             this.manageTeamsToolStripMenuItem.Name = "manageTeamsToolStripMenuItem";
             this.manageTeamsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
             this.manageTeamsToolStripMenuItem.Text = "Manage Teams";
+            this.manageTeamsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownMngTeams_Click);
             // 
             // viewUnitsToolStripMenuItem
             // 
             this.viewUnitsToolStripMenuItem.Name = "viewUnitsToolStripMenuItem";
             this.viewUnitsToolStripMenuItem.Size = new System.Drawing.Size(318, 36);
             this.viewUnitsToolStripMenuItem.Text = "View Units";
+            this.viewUnitsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownViewUnits_Click);
             // 
             // viewUnitOfferingsToolStripMenuItem
             // 
@@ -200,6 +203,7 @@
             this.manageMeetingsToolStripMenuItem.Name = "manageMeetingsToolStripMenuItem";
             this.manageMeetingsToolStripMenuItem.Size = new System.Drawing.Size(284, 36);
             this.manageMeetingsToolStripMenuItem.Text = "Manage Meetings";
+            this.manageMeetingsToolStripMenuItem.Click += new System.EventHandler(this.convenorDropdownMngMeetings_Click);
             // 
             // viewAssessmentsToolStripMenuItem
             // 
@@ -218,6 +222,7 @@
             this.viewProjectsToolStripMenuItem.Name = "viewProjectsToolStripMenuItem";
             this.viewProjectsToolStripMenuItem.Size = new System.Drawing.Size(284, 36);
             this.viewProjectsToolStripMenuItem.Text = "View Projects";
+            this.viewProjectsToolStripMenuItem.Click += new System.EventHandler(this.viewProjectsToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 

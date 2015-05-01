@@ -18,6 +18,9 @@ namespace FrontEndV0._1.forms
         private frmEnrolments frmEnrolments = null;
         private frmUnitOfferings frmUnitOfferings = null;
         private frmAssessment frmAssessment = null;
+        private frmMeeting frmMeeting = null;
+        private frmTeamDetails frmTeamDetails = null;
+        private frmProject frmProject = null;
 
         public frmEmpDashboard(string usertype)
         {
@@ -31,10 +34,10 @@ namespace FrontEndV0._1.forms
                 frmStuDetails = new frmStuDetails();
                 frmStuDetails.MdiParent = this;
 
-                frmUnits = new frmUnits();
+                frmUnits = new frmUnits(true);
                 frmUnits.MdiParent = this;
 
-                frmUnitOfferings = new frmUnitOfferings();
+                frmUnitOfferings = new frmUnitOfferings(true);
                 frmUnitOfferings.MdiParent = this;
 
                 frmEnrolments = new frmEnrolments();
@@ -42,20 +45,53 @@ namespace FrontEndV0._1.forms
             }
 
             if (usertype == "supervisor")
+            {
                 supervisorFunctionsToolStripMenuItem.Enabled = true;
+
+                frmMeeting = new frmMeeting();
+                frmMeeting.MdiParent = this;
+            }   
 
             if (usertype == "convenor")
             {
                 convenorFunctionsToolStripMenuItem.Enabled = true;
 
-                frmAssessment = new frmAssessment();
+                frmAssessment = new frmAssessment(true);
                 frmAssessment.MdiParent = this;
+
+                frmTeamDetails = new frmTeamDetails(true);
+                frmTeamDetails.MdiParent = this;
+
+                frmUnits = new frmUnits(false);
+                frmUnits.MdiParent = this;
             }
 
             frmEmpDetails = new frmEmpDetails();
             frmEmpDetails.MdiParent = this;
 
         }
+
+        private void openUnitForm()
+        {
+            frmUnits.FormClosing += closeForm;
+            frmUnits.Show();
+        }
+
+        private void openAssessmentForm()
+        {
+            frmAssessment.FormClosing += closeForm;
+            frmAssessment.Show();
+        }
+
+        private void closeForm(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+
+            //Explicit casting sender to Form to allow use of Hide()
+            Form frm = (Form)sender;
+            frm.Hide();
+        }
+
 
         #region Personal Details
         private void personalDetailsMenu_Click(object sender, EventArgs e)
@@ -100,14 +136,7 @@ namespace FrontEndV0._1.forms
         #region Manage Units
         private void adminDropdownManageUnits_Click(object sender, EventArgs e)
         {
-            frmUnits.FormClosing += frmUnitsClosing;
-            frmUnits.Show();
-        }
-
-        private void frmUnitsClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            frmUnits.Hide();
+            openUnitForm();
         }
         #endregion
 
@@ -144,21 +173,64 @@ namespace FrontEndV0._1.forms
         #region Convenor Functions 
         private void convenorDropdownAssessmentMaster_Click(object sender, EventArgs e)
         {
-            frmAssessment.FormClosing += frmAssessmentClosing;
-            frmAssessment.Show();
-        }
-        private void frmAssessmentClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            frmAssessment.Hide();
+            openAssessmentForm();
         }
 
+        private void convenorDropdownMngTeams_Click(object sender, EventArgs e)
+        {
+            frmTeamDetails.FormClosing += frmTeamDetailsClosing;
+            frmTeamDetails.Show();
+        }
+
+        private void frmTeamDetailsClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            frmTeamDetails.Hide();
+        }
+
+        private void convenorDropdownMngProjects_Click(object sender, EventArgs e)
+        {
+            frmProject.FormClosing += frmProjectClosing;
+            frmProject.Show();
+        }
+
+        private void frmProjectClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            frmProject.Hide();
+        }
+
+        private void convenorDropdownViewUnits_Click(object sender, EventArgs e)
+        {
+            openUnitForm();
+        }
+
+        //frmUnits
+        //frmUnitOfferings
+
+        #endregion
+
+        #region Supervisor Functions
+        private void convenorDropdownMngMeetings_Click(object sender, EventArgs e)
+        {
+            frmMeeting.FormClosing += frmMeetingClosing;
+            frmMeeting.Show();
+        }
+        private void frmMeetingClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            frmMeeting.Hide();
+        }
         #endregion
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
+        private void viewProjectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

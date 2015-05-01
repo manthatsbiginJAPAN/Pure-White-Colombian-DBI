@@ -12,10 +12,11 @@ namespace FrontEndV0._1.forms
 {
     public partial class frmTeamDetails : Form
     {
-        public frmTeamDetails()
+        public frmTeamDetails(bool editable)
         {
             InitializeComponent();
 
         }
+
     }
 }

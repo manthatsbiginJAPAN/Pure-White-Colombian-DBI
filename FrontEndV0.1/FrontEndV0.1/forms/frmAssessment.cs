@@ -17,7 +17,7 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
         private DataSet ds;
 
-        public frmAssessment()
+        public frmAssessment(bool editable)
         {
             InitializeComponent();
 

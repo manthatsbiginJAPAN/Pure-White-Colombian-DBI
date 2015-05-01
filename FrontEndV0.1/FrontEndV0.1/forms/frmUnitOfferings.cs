@@ -20,7 +20,7 @@ namespace FrontEndV0._1.forms
         private DataSet units;
         private DataSet emps;
 
-        public frmUnitOfferings()
+        public frmUnitOfferings(bool editable)
         {
             InitializeComponent();
 
