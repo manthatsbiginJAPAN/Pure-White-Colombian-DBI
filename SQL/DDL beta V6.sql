@@ -140,6 +140,7 @@ TaskID number(2)
 , UnitID varchar2(10)
 , Semester number(2)
 , Year number(4)
+, TaskDesc varchar2(50)
 , PRIMARY KEY (TaskID, AssID, UnitID, Semester, Year)
 , FOREIGN KEY (AssID, UnitID, Semester, Year) REFERENCES Assessment
 );
