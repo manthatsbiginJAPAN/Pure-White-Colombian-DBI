@@ -762,11 +762,9 @@ create or replace PROCEDURE UC2_9_Register_Assessment
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
-	pMarkingGuide varchar2,
-	pAssType varchar2,
-	pDueDate date) AS
+	pMarkingGuide varchar2) AS
 BEGIN
-	INSERT INTO Assessment VALUES (pAssID, pAssTitle, pAssDesc, pUnitID, pSemester, pYear, pMarkingGuide, pAssType, pDueDate);
+	INSERT INTO Assessment VALUES (pAssID, pAssTitle, pAssDesc, pUnitID, pSemester, pYear, pMarkingGuide);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -783,16 +781,12 @@ create or replace PROCEDURE UC2_10_Update_Assessment
 	pYear number,
 	pAssTitle varchar2,
 	pAssDesc varchar2,
-	pMarkingGuide varchar2,
-	pAssType varchar2,
-	pDueDate date) AS
+	pMarkingGuide varchar2) AS
 BEGIN
 	UPDATE Assessment
 	SET AssTitle = pAssTitle,
 		AssDesc = pAssDesc,
-		MarkingGuide = pMarkingGuide,
-		AssType = pAssType,
-		DueDate = pDueDate
+		MarkingGuide = pMarkingGuide
 	WHERE AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
@@ -828,10 +822,16 @@ End;
 
 
 CREATE OR REPLACE PROCEDURE UC2_12_Delete_Assessment
-		(pAssID varchar2) AS
+		(pAssID varchar2
+		, pUnitID varchar2
+		, pSemester number
+		, pYear number) AS
 BEGIN
 	Delete Assessment
-	WHERE AssID = pAssID;
+	WHERE AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
 	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -840,95 +840,95 @@ END;
 /
 
 
-create or replace PROCEDURE UC2_13_Register_Ass_Allo
-		(pAssID varchar2,
-	pUnitID varchar2, 
-	pSemester number,
-	pYear number,
-	pStuID varchar2,
-	pTeamID varchar2,
-	pSubmission varchar2) AS
-BEGIN
-	INSERT INTO AssessmentAllocation VALUES (pAssID, pUnitID, pSemester, pYear, pStuID, pTeamID, pSubmission);
-	--dbms_output.put_line('Assessment: '|| pAssID ||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear|| ' Assigned to student: '|| pStuID || ' In team: '|| pTeamID); --for testing
-EXCEPTION
-	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Assessment ID ' || pAssID || ' already exists for: ' || pUnitID|| ', '|| pSemester || ', ' || pYear|| ' Student: '|| pStuID || ' Team: '|| pTeamID);
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-
-/
-
-
-create or replace PROCEDURE UC2_14_Update_Ass_Allo
-		(pAssID varchar2,
-	pUnitID varchar2, 
-	pSemester number,
-	pYear number,
-	pStuID varchar2,
-	pTeamID varchar2,
-	pSubmission varchar2) AS
-BEGIN
-	UPDATE AssessmentAllocation
-	SET Submission = pSubmission
-	WHERE AssId = pAssID and
-		  UnitId = pUnitID and
-		  Semester = pSemester and
-		  Year = pYear and
-		  StuID = pStuID and
-		  TeamID = pTeamID;
-	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
-EXCEPTION
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-
-/
+--create or replace PROCEDURE UC2_13_Register_Ass_Allo
+--		(pAssID varchar2,
+--	pUnitID varchar2, 
+--	pSemester number,
+--	pYear number,
+--	pStuID varchar2,
+--	pTeamID varchar2,
+--	pSubmission varchar2) AS
+--BEGIN
+--	INSERT INTO AssessmentAllocation VALUES (pAssID, pUnitID, pSemester, pYear, pStuID, pTeamID, pSubmission);
+--	--dbms_output.put_line('Assessment: '|| pAssID ||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear|| ' Assigned to student: '|| pStuID || ' In team: '|| pTeamID); --for testing
+--EXCEPTION
+--	WHEN DUP_VAL_ON_INDEX THEN
+--		RAISE_APPLICATION_ERROR(-20001, 'Assessment ID ' || pAssID || ' already exists for: ' || pUnitID|| ', '|| pSemester || ', ' || pYear|| ' Student: '|| pStuID || ' Team: '|| pTeamID);
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--
+--/
 
 
-CREATE or REPLACE FUNCTION UC2_15_View_Ass_allo 
-	RETURN SYS_REFCURSOR AS emps SYS_REFCURSOR;
-	e Employee%ROWTYPE;
-BEGIN
-	
-	
-	OPEN emps for select * from employee;
+--create or replace PROCEDURE UC2_14_Update_Ass_Allo
+--		(pAssID varchar2,
+--	pUnitID varchar2, 
+--	pSemester number,
+--	pYear number,
+--	pStuID varchar2,
+--	pTeamID varchar2,
+--	pSubmission varchar2) AS
+--BEGIN
+--	UPDATE AssessmentAllocation
+--	SET Submission = pSubmission
+--	WHERE AssId = pAssID and
+--		  UnitId = pUnitID and
+--		  Semester = pSemester and
+--		  Year = pYear and
+--		  StuID = pStuID and
+--		  TeamID = pTeamID;
+--	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
+--EXCEPTION
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--
+--/
 
-	--dbms_output.put_line('Listing All Employee Details');
-	--LOOP
-	--	Fetch emps into e;
-	--	Exit When emps%NOTFOUND;
-	--	dbms_output.put_line('Employee ID: '|| e.EmpId --for testing
-	--					 || ' First Name: ' ||e.FirstName
-	--					 || ' Last Name: ' ||e.LastName
-	--					 || ' Email: ' || e.Email
-	--					 || ' ContactNo:' || e.ContactNo); 
-	--End Loop;
-	return emps;
-EXCEPTION
-	When Others Then
-		dbms_output.put_line(SQLERRM);
-End;
 
-/
+--CREATE or REPLACE FUNCTION UC2_15_View_Ass_allo 
+--	RETURN SYS_REFCURSOR AS emps SYS_REFCURSOR;
+--	e Employee%ROWTYPE;
+--BEGIN
+--	
+--	
+--	OPEN emps for select * from employee;
+--
+--	--dbms_output.put_line('Listing All Employee Details');
+--	--LOOP
+--	--	Fetch emps into e;
+--	--	Exit When emps%NOTFOUND;
+--	--	dbms_output.put_line('Employee ID: '|| e.EmpId --for testing
+--	--					 || ' First Name: ' ||e.FirstName
+--	--					 || ' Last Name: ' ||e.LastName
+--	--					 || ' Email: ' || e.Email
+--	--					 || ' ContactNo:' || e.ContactNo); 
+--	--End Loop;
+--	return emps;
+--EXCEPTION
+--	When Others Then
+--		dbms_output.put_line(SQLERRM);
+--End;
+--
+--/
 
-CREATE OR REPLACE PROCEDURE UC2_16_Delete_Ass_Allo
-		(pAssID varchar2, pUnitID varchar2, pSemester varchar2, pYear number, pStuID varchar2) AS
-BEGIN
-	Delete AssessmentAllocation
-	WHERE AssID = pAssID and
-		UnitID = pUnitID and
-		Semester = pSemester and
-		Year = pYear and
-		StuID = pStuID;
-	--dbms_output.put_line('Assessment ' || pAssID || ' deleted for: '|| pUnitID || ', '|| pSemester || ', '|| pYear || ', '|| pStuID ); --for testing
-EXCEPTION
-	WHEN OTHERS THEN
-		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
-END;
-
-/
+--CREATE OR REPLACE PROCEDURE UC2_16_Delete_Ass_Allo
+--		(pAssID varchar2, pUnitID varchar2, pSemester varchar2, pYear number, pStuID varchar2) AS
+--BEGIN
+--	Delete AssessmentAllocation
+--	WHERE AssID = pAssID and
+--		UnitID = pUnitID and
+--		Semester = pSemester and
+--		Year = pYear and
+--		StuID = pStuID;
+--	--dbms_output.put_line('Assessment ' || pAssID || ' deleted for: '|| pUnitID || ', '|| pSemester || ', '|| pYear || ', '|| pStuID ); --for testing
+--EXCEPTION
+--	WHEN OTHERS THEN
+--		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+--END;
+--
+--/
 
 create or replace PROCEDURE UC2_17_Register_Team_Allo
 		(pTeamID varchar2,
@@ -1129,12 +1129,14 @@ CREATE or REPLACE PROCEDURE UC3_9_Add_AgendaItem
 	pSemester number,
 	pYear number,
 	pAgendaNum number,
-	pAgendaDesc varchar2) AS
+	pAgendaDesc varchar2,
+	pStuID varchar2,
+	pDueDate date) AS
 BEGIN
-	INSERT INTO AgendaItem VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pAgendaNum, pAgendaDesc);
+	INSERT INTO AgendaItem VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pAgendaNum, pAgendaDesc, pStuID, pDueDate);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
+		RAISE_APPLICATION_ERROR(-20001, 'AgendaItem: ' || pAgendaNum || ' already exists.');
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
 END;
@@ -1144,7 +1146,6 @@ END;
 CREATE or REPLACE FUNCTION UC3_10_View_AgendaItem
 	RETURN SYS_REFCURSOR AS agi SYS_REFCURSOR;
 BEGIN
-	
 	OPEN agi for select * from AgendaItem;
 	--LOOP
 	--	Fetch uos into uo;
