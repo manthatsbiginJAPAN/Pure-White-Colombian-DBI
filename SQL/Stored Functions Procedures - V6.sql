@@ -456,59 +456,55 @@ END;
 /
 
 
+CREATE OR REPLACE PROCEDURE UC1_25_Register_Employee_Role
+		( pEmpID varchar2, 
+        	 pRole varchar2) AS
+BEGIN
+	INSERT INTO EmployeeRole VALUES (pEmpID, pRole);
+	dbms_output.put_line('Employee ' || pEmpID || ' added as ' || pRole); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Employee ' || pEmpID || ' already ' || pRole);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
 
 
--- CREATE OR REPLACE PROCEDURE UC1_25_Register_Employee_Role
--- 		( pEmpID varchar2, 
---        	 pRole varchar2) AS
--- BEGIN
--- 	INSERT INTO EmployeeRole VALUES (pEmpID, pRole);
--- 	dbms_output.put_line('Employee ' || pEmpID || ' added as ' || pRole); --for testing
--- EXCEPTION
--- 	WHEN DUP_VAL_ON_INDEX THEN
--- 		RAISE_APPLICATION_ERROR(-20001, 'Employee ' || pEmpID || ' already ' || pRole);
--- 	WHEN OTHERS THEN
--- 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
--- END;
--- /
+CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN SYS_REFCURSOR AS emproles SYS_REFCURSOR;
+BEGIN
+	--dbms_output.put_line('Listing All Employee Details');
+	OPEN emproles for select * from EmployeeRole;
+	--LOOP
+	--	Fetch emproles into er;
+	--	Exit When emproles%NOTFOUND;
+	--	dbms_output.put_line('Employee ID: '|| er.EmpId --for testing
+	--					 || ' Role: ' || er.Role); 
+	--End Loop;
+	Return emproles;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+/
 
 
--- CREATE or REPLACE FUNCTION UC1_26_View_Employee_Role RETURN SYS_REFCURSOR AS emproles SYS_REFCURSOR;
--- BEGIN
--- 	--dbms_output.put_line('Listing All Employee Details');
--- 	OPEN emproles for select * from EmployeeRole;
--- 	--LOOP
--- 	--	Fetch emproles into er;
--- 	--	Exit When emproles%NOTFOUND;
--- 	--	dbms_output.put_line('Employee ID: '|| er.EmpId --for testing
--- 	--					 || ' Role: ' || er.Role); 
--- 	--End Loop;
--- 	Return emproles;
--- EXCEPTION
--- 	When Others Then
--- 		dbms_output.put_line(SQLERRM);
--- End;
--- /
+CREATE OR REPLACE PROCEDURE UC1_28_Delete_Employee_Role
+		(pEmpID varchar2, pRole varchar2) AS
+BEGIN
+	Delete EmployeeRole
+	WHERE EmpID = pEmpID AND Role = pRole;
+	--dbms_output.put_line('Employee ' || pEmpID || ' deleted as ' || pRole); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
 
 
-
-
--- CREATE OR REPLACE PROCEDURE UC1_28_Delete_Employee_Role
--- 		(pEmpID varchar2, pRole varchar2) AS
--- BEGIN
--- 	Delete EmployeeRole
--- 	WHERE EmpID = pEmpID AND Role = pRole;
--- 	--dbms_output.put_line('Employee ' || pEmpID || ' deleted as ' || pRole); --for testing
--- EXCEPTION
--- 	WHEN OTHERS THEN
--- 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
--- END;
--- /
-
-
--- CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Role_Type
--- 		(pMeetType varchar2) AS
--- BEGIN
+--CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Role_Type
+--		(pMeetType varchar2) AS
+--BEGIN
 -- 	INSERT INTO MeetingType VALUES (pMeetType);
 -- 	--dbms_output.put_line(pMeetType || ' meeting type added'); --for testing
 -- EXCEPTION
