@@ -990,9 +990,10 @@ create or replace PROCEDURE UC2_21_Register_AssTask
 	pAssID varchar2,
 	pUnitID varchar2, 
 	pSemester number,
-	pYear number) AS
+	pYear number,
+	pTaskDesc varchar2) AS
 BEGIN
-	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear);
+	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear, pTaskDesc);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1008,15 +1009,12 @@ create or replace PROCEDURE UC2_22_Update_AssTask
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
-	pAssTitle varchar2,
-	pAssDesc varchar2,
-	pMarkingGuide varchar2) AS
+	pTaskDesc varchar2) AS
 BEGIN
 	UPDATE AssessmentTask
-	SET AssTitle = pAssTitle,
-		AssDesc = pAssDesc,
-		MarkingGuide = pMarkingGuide
-	WHERE AssId = pAssID and
+	SET TaskDesc = pTaskDesc
+	WHERE TaskID = pTaskID and
+		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
 		Year = pYear;
@@ -1101,7 +1099,7 @@ BEGIN
 	UPDATE AssessmentCriterion
 	SET General = pGeneral,
 		Specific = pSpecific
-	WHERE CriterionID = pCriterionID
+	WHERE CriterionID = pCriterionID and
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
@@ -1116,9 +1114,9 @@ END;
 
 
 CREATE or REPLACE FUNCTION UC2_27_View_AssCrit
-	RETURN SYS_REFCURSOR AS asc SYS_REFCURSOR;
+	RETURN SYS_REFCURSOR AS ascr SYS_REFCURSOR;
 BEGIN
-	OPEN asc for select * from AssessmentCriterion;
+	OPEN ascr for select * from AssessmentCriterion;
 	--LOOP
 	--	Fetch unts into u;
 	--	Exit When unts%NOTFOUND;
@@ -1126,7 +1124,7 @@ BEGIN
 	--					 || ' Unit Name: ' || u.UnitName
 	--					 || ' Unit Description: ' || u.UnitDesc);
 	--End Loop;
-	return asc;
+	return ascr;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
@@ -1154,6 +1152,191 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
+
+create or replace PROCEDURE UC2_29_Register_StuHours
+	(pTaskID number,
+	pStuID varchar2,
+	pAssID varchar2,
+	pUnitID varchar2, 
+	pSemester number,
+	pYear number,
+	pTeamID varchar2,
+	pPeriod number,
+	pHours number) AS
+BEGIN
+	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pHours);
+	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Student Hours already exists for student ' || pStuID);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+create or replace PROCEDURE UC2_30_Update_StuHours
+		(pTaskID number,
+	pStuID varchar2,
+	pAssID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pTeamID varchar2,
+	pPeriod number,
+	pHours number) AS
+BEGIN
+	UPDATE StudentHours
+	SET Period = pPeriod,
+		Hours = pHours
+	WHERE TaskID = pTaskID and
+		StuID = pStuID and
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+
+CREATE or REPLACE FUNCTION UC2_31_View_StuHours
+	RETURN SYS_REFCURSOR AS sth SYS_REFCURSOR;
+BEGIN
+	OPEN sth for select * from StudentHours;
+	--LOOP
+	--	Fetch unts into u;
+	--	Exit When unts%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
+	--					 || ' Unit Name: ' || u.UnitName
+	--					 || ' Unit Description: ' || u.UnitDesc);
+	--End Loop;
+	return sth;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
+
+CREATE OR REPLACE PROCEDURE UC2_32_Delete_StuHours
+		(pTaskID number
+		, pStuID varchar2
+		, pAssID varchar2
+		, pUnitID varchar2
+		, pSemester number
+		, pYear number) AS
+BEGIN
+	Delete StudentHours
+	WHERE TaskID = pTaskID and
+		StuID = pStuID and
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+create or replace PROCEDURE UC2_33_Register_StuRatings
+	(pCriterionID number,
+	pStuID varchar2,
+	pAssID varchar2,
+	pUnitID varchar2, 
+	pSemester number,
+	pYear number,
+	pTeamID varchar2,
+	pRating number) AS
+BEGIN
+	INSERT INTO StudentRatings VALUES (pCriterionID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pRating);
+	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Student Rating already exists for student ' || pStuID);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+create or replace PROCEDURE UC2_34_Update_StuRatings
+		(pCriterionID number,
+	pStuID varchar2,
+	pAssID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pTeamID varchar2,
+	pRating number) AS
+BEGIN
+	UPDATE StudentRatings
+	SET Rating = pRating
+	WHERE CriterionID = pCriterionID and
+		StuID = pStuID and
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+
+CREATE or REPLACE FUNCTION UC2_35_View_StuRatings
+	RETURN SYS_REFCURSOR AS str SYS_REFCURSOR;
+BEGIN
+	OPEN str for select * from StudentRatings;
+	--LOOP
+	--	Fetch unts into u;
+	--	Exit When unts%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
+	--					 || ' Unit Name: ' || u.UnitName
+	--					 || ' Unit Description: ' || u.UnitDesc);
+	--End Loop;
+	return str;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
+
+CREATE OR REPLACE PROCEDURE UC2_36_Delete_StuRatings
+		(pCriterionID number
+		, pStuID varchar2
+		, pAssID varchar2
+		, pUnitID varchar2
+		, pSemester number
+		, pYear number) AS
+BEGIN
+	Delete StudentRatings
+	WHERE CriterionID = pCriterionID and
+		StuID = pStuID and
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
+
 
 
 CREATE or REPLACE FUNCTION UC3_1_View_Meeting
