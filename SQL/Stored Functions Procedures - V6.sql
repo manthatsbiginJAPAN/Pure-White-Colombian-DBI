@@ -985,10 +985,180 @@ END;
 
 /
 
+create or replace PROCEDURE UC2_21_Register_AssTask
+	(pTaskID number,
+	pAssID varchar2,
+	pUnitID varchar2, 
+	pSemester number,
+	pYear number) AS
+BEGIN
+	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear);
+	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Assessment Task ID ' || pAssID || ' already exists for: ' || pUnitID|| ', '|| pSemester || ', ' || pYear);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+create or replace PROCEDURE UC2_22_Update_AssTask
+		(pTaskID number,
+	pAssID varchar2,
+	pUnitID varchar2, 
+	pSemester number,
+	pYear number,
+	pAssTitle varchar2,
+	pAssDesc varchar2,
+	pMarkingGuide varchar2) AS
+BEGIN
+	UPDATE AssessmentTask
+	SET AssTitle = pAssTitle,
+		AssDesc = pAssDesc,
+		MarkingGuide = pMarkingGuide
+	WHERE AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+
+CREATE or REPLACE FUNCTION UC2_23_View_AssTask
+	RETURN SYS_REFCURSOR AS ast SYS_REFCURSOR;
+BEGIN
+	OPEN ast for select * from AssessmentTask;
+	--LOOP
+	--	Fetch unts into u;
+	--	Exit When unts%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
+	--					 || ' Unit Name: ' || u.UnitName
+	--					 || ' Unit Description: ' || u.UnitDesc);
+	--End Loop;
+	return ast;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
+
+CREATE OR REPLACE PROCEDURE UC2_24_Delete_AssTask
+		(pTaskID number
+		, pAssID varchar2
+		, pUnitID varchar2
+		, pSemester number
+		, pYear number) AS
+BEGIN
+	Delete AssessmentTask
+	WHERE TaskID = pTaskID and
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/	
+		
+
+create or replace PROCEDURE UC2_25_Register_AssCrit
+	(pCriterionID number,
+	pAssID varchar2,
+	pUnitID varchar2, 
+	pSemester number,
+	pYear number,
+	pGeneral varchar2,
+	pSpecific varchar2) AS
+BEGIN
+	INSERT INTO AssessmentCriterion VALUES (pCriterionID, pAssID, pUnitID, pSemester, pYear, pGeneral, pSpecific);
+	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
+EXCEPTION
+	WHEN DUP_VAL_ON_INDEX THEN
+		RAISE_APPLICATION_ERROR(-20001, 'Assessment Criterion ID ' || pCriterionID || ' already exists for: ' || pUnitID|| ', '|| pSemester || ', ' || pYear);
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+create or replace PROCEDURE UC2_26_Update_AssCrit
+		(pCriterionID number,
+	pAssID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pGeneral varchar2,
+	pSpecific varchar2) AS
+BEGIN
+	UPDATE AssessmentCriterion
+	SET General = pGeneral,
+		Specific = pSpecific
+	WHERE CriterionID = pCriterionID
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+
+/
+
+
+CREATE or REPLACE FUNCTION UC2_27_View_AssCrit
+	RETURN SYS_REFCURSOR AS asc SYS_REFCURSOR;
+BEGIN
+	OPEN asc for select * from AssessmentCriterion;
+	--LOOP
+	--	Fetch unts into u;
+	--	Exit When unts%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
+	--					 || ' Unit Name: ' || u.UnitName
+	--					 || ' Unit Description: ' || u.UnitDesc);
+	--End Loop;
+	return asc;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
+
+CREATE OR REPLACE PROCEDURE UC2_28_Delete_AssCrit
+		(pCriterionID number
+		, pAssID varchar2
+		, pUnitID varchar2
+		, pSemester number
+		, pYear number) AS
+BEGIN
+	Delete AssessmentCriterion
+	WHERE CriterionID = pCriterionID and
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
+
 CREATE or REPLACE FUNCTION UC3_1_View_Meeting
 	RETURN SYS_REFCURSOR AS uos SYS_REFCURSOR;
 BEGIN
-	
 	OPEN uos for select * from Meeting;
 	--LOOP
 	--	Fetch uos into uo;
@@ -1159,6 +1329,7 @@ EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
 End;
+/
 
 CREATE OR REPLACE PROCEDURE UC3_11_Update_AgendaItem
 		(pMeetingID number,
@@ -1169,9 +1340,9 @@ CREATE OR REPLACE PROCEDURE UC3_11_Update_AgendaItem
 		pAgendaNum number,
 		pAgendaDesc varchar2,
 		pStuID varchar2,
-		pDueDate date)
+		pDueDate date) AS
 BEGIN
-UPDATE AgendaNum
+UPDATE AgendaItem
 SET AgendaDesc = pAgendaDesc,
 	StuID = pStuID,
 	DueDate = pDueDate
@@ -1187,8 +1358,6 @@ EXCEPTION
 END;
 
 /
-
-
 
 CREATE or REPLACE PROCEDURE UC3_12_Delete_AgendaItem
 		(pMeetingID number,
@@ -1220,9 +1389,12 @@ CREATE or REPLACE PROCEDURE UC3_13_Add_ActionItem
 	pSemester number,
 	pYear number,
 	pActionNum number,
-	pActionDesc varchar2) AS
+	pActionDesc varchar2,
+	pStuID varchar2,
+	pDueDate date,
+	pStatus varchar2) AS
 BEGIN
-	INSERT INTO ActionItem VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pActionNum, pActionDesc);
+	INSERT INTO ActionItem VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pActionNum, pActionDesc, pStuID, pDueDate, pStatus);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
@@ -1238,16 +1410,16 @@ CREATE OR REPLACE PROCEDURE UC3_15_Update_ActionItem
 		pUnitID varchar2,
 		pSemester number,
 		pYear number,
-		pAgendaNum number,
-		pAgendaDesc varchar2,
+		pActionNum number,
+		pActionDesc varchar2,
 		pStuID varchar2,
 		pDueDate date,
-		pStatus varchar2)
+		pStatus varchar2) AS
 BEGIN
-UPDATE ActionNum
+UPDATE ActionItem
 SET ActionDesc = pActionDesc,
 	StuID = pStuID,
-	DueDate = pDueDate
+	DueDate = pDueDate,
 	Status = pStatus
 WHERE MeetingID = pMeetingID and
 		TeamID = pTeamID and
@@ -1283,4 +1455,3 @@ EXCEPTION
 END;
 
 /
-

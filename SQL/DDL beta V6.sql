@@ -121,12 +121,12 @@ StuID varchar2(10) NOT NULL
 
 
 CREATE TABLE Assessment ( --assessment feedback that incorporates both the peer assessment (individual) and team contribution (group)
-AssID varchar2(10) NOT NULL
+AssID varchar2(10)
 , AssTitle varchar2(50) NOT NULL
 , AssDesc varchar2(200) 
-, UnitID varchar2(10) NOT NULL
-, Semester number(2) NOT NULL
-, Year number(4) NOT NULL
+, UnitID varchar2(10)
+, Semester number(2)
+, Year number(4)
 , MarkingGuide varchar2(1000) --DISCUSS/CLARIFY WITH ASHIR
 , PRIMARY KEY (AssID, UnitID, Semester, Year)
 , FOREIGN KEY (UnitID, Semester, Year) REFERENCES UnitOffering
