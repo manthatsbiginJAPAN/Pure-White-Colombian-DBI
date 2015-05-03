@@ -50,6 +50,15 @@ namespace FrontEndV0._1.forms
 
                 frmMeeting = new frmMeeting();
                 frmMeeting.MdiParent = this;
+
+                frmAssessment = new frmAssessment(true);
+                frmAssessment.MdiParent = this;
+
+                frmTeamDetails = new frmTeamDetails(false);
+                frmTeamDetails.MdiParent = this;
+
+                frmProject = new frmProject(false);
+                frmProject.MdiParent = this;
             }   
 
             if (usertype == "convenor")
@@ -65,10 +74,10 @@ namespace FrontEndV0._1.forms
                 frmUnits = new frmUnits(false);
                 frmUnits.MdiParent = this;
 
-                frmUnitOfferings = new frmUnitOfferings(true);
+                frmUnitOfferings = new frmUnitOfferings(false);
                 frmUnitOfferings.MdiParent = this;
 
-                frmProject = new frmProject(false);
+                frmProject = new frmProject(true);
                 frmProject.MdiParent = this;
             }
 
@@ -105,6 +114,12 @@ namespace FrontEndV0._1.forms
         {
             frmUnitOfferings.FormClosing += closeForm;
             frmUnitOfferings.Show();
+        }
+
+        private void openMeetingForm()
+        {
+            frmMeeting.FormClosing += closeForm;
+            frmMeeting.Show();
         }
 
         private void closeForm(object sender, FormClosingEventArgs e)
@@ -225,14 +240,24 @@ namespace FrontEndV0._1.forms
         #region Supervisor Functions
         private void convenorDropdownMngMeetings_Click(object sender, EventArgs e)
         {
-            frmMeeting.FormClosing += frmMeetingClosing;
-            frmMeeting.Show();
+            openMeetingForm();
         }
-        private void frmMeetingClosing(object sender, FormClosingEventArgs e)
+
+        private void viewAssessmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            e.Cancel = true;
-            frmMeeting.Hide();
+            openAssessmentForm();
         }
+
+        private void viewTeamsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTeamForm();
+        }
+
+        private void viewProjectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openProjectForm();
+        }
+
         #endregion
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,6 +265,9 @@ namespace FrontEndV0._1.forms
             this.Close();
         }
 
+        
+
+        
         
     }
 }
