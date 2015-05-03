@@ -53,6 +53,10 @@
             this.empEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbAdmin = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbConvenor = new System.Windows.Forms.CheckBox();
+            this.cbSupervisor = new System.Windows.Forms.CheckBox();
             this.gbIdentifyingInformation.SuspendLayout();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdEmployeeInfo)).BeginInit();
@@ -81,6 +85,10 @@
             // 
             // gbIdentifyingInformation
             // 
+            this.gbIdentifyingInformation.Controls.Add(this.cbSupervisor);
+            this.gbIdentifyingInformation.Controls.Add(this.cbConvenor);
+            this.gbIdentifyingInformation.Controls.Add(this.label8);
+            this.gbIdentifyingInformation.Controls.Add(this.cbAdmin);
             this.gbIdentifyingInformation.Controls.Add(this.txtEmpID);
             this.gbIdentifyingInformation.Controls.Add(this.label2);
             this.gbIdentifyingInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -298,6 +306,46 @@
             this.empPassword.Name = "empPassword";
             this.empPassword.Visible = false;
             // 
+            // cbAdmin
+            // 
+            this.cbAdmin.AutoSize = true;
+            this.cbAdmin.Location = new System.Drawing.Point(135, 96);
+            this.cbAdmin.Name = "cbAdmin";
+            this.cbAdmin.Size = new System.Drawing.Size(86, 17);
+            this.cbAdmin.TabIndex = 3;
+            this.cbAdmin.Text = "Administrator";
+            this.cbAdmin.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(54, 92);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 20);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Role(s):";
+            // 
+            // cbConvenor
+            // 
+            this.cbConvenor.AutoSize = true;
+            this.cbConvenor.Location = new System.Drawing.Point(135, 128);
+            this.cbConvenor.Name = "cbConvenor";
+            this.cbConvenor.Size = new System.Drawing.Size(72, 17);
+            this.cbConvenor.TabIndex = 5;
+            this.cbConvenor.Text = "Convenor";
+            this.cbConvenor.UseVisualStyleBackColor = true;
+            // 
+            // cbSupervisor
+            // 
+            this.cbSupervisor.AutoSize = true;
+            this.cbSupervisor.Location = new System.Drawing.Point(135, 161);
+            this.cbSupervisor.Name = "cbSupervisor";
+            this.cbSupervisor.Size = new System.Drawing.Size(76, 17);
+            this.cbSupervisor.TabIndex = 6;
+            this.cbSupervisor.Text = "Supervisor";
+            this.cbSupervisor.UseVisualStyleBackColor = true;
+            // 
             // frmEmpDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,6 +401,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn empEmail;
         private System.Windows.Forms.DataGridViewTextBoxColumn empPhone;
         private System.Windows.Forms.DataGridViewTextBoxColumn empPassword;
+        private System.Windows.Forms.CheckBox cbSupervisor;
+        private System.Windows.Forms.CheckBox cbConvenor;
+        public System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox cbAdmin;
 
 
     }

@@ -30,16 +30,38 @@ namespace FrontEndV0._1.forms
             if (frmEmpDashboard == null)
             {
                 User = txtUsername.Text; //record the user
+                char UserLetter = Convert.ToChar(User.Substring(0, 1));
+
                 //will eventually validate user based on db
 
                 //check if a student
-                if (User.ToLower() == "student")
+                if (UserLetter == 's') //since student ids would start with an 's' like s748932
                 {
-                    frmStuDashboard = new frmStuDashboard(User);
-                    frmStuDashboard.FormClosing += frmStuDashboardClosing;
-                    frmStuDashboard.Show();
-                } //check if an employee
-                else if (User.ToLower() == "admin" || User.ToLower() == "convenor" || User.ToLower() == "supervisor")
+                    if (User.ToLower() == "student") //for ease of access at the moment...
+                    {
+                        frmStuDashboard = new frmStuDashboard(User);
+                        frmStuDashboard.FormClosing += frmStuDashboardClosing;
+                        frmStuDashboard.Show();
+                    } 
+                    else
+                    {
+                        //load in all student rows
+                        //search dataset by stuID (username), returning a row if it exists
+                        //check if password matches before confirming login
+                    }
+                }
+
+
+                //check if an employee
+                if (UserLetter == 'e')
+                {
+                    //load in all employee rows
+                    //search dataset by empID (username), returning a row if it exists
+                    //check if password matches before confirming login
+                }
+
+                //(for ease of access...)
+                if (User.ToLower() == "admin" || User.ToLower() == "convenor" || User.ToLower() == "supervisor")
                 {
                     frmEmpDashboard = new frmEmpDashboard(User);                  
                     frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
