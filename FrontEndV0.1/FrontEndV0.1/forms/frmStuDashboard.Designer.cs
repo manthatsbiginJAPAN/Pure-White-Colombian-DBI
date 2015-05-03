@@ -50,6 +50,9 @@
             this.viewTeamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewProjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.meetingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assessmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +70,10 @@
             this.administratorFunctionsToolStripMenuItem,
             this.convenerFunctionsToolStripMenuItem,
             this.supervisorFunctionsToolStripMenuItem,
-            this.logoutToolStripMenuItem});
+            this.logoutToolStripMenuItem,
+            this.meetingsToolStripMenuItem,
+            this.assessmentsToolStripMenuItem,
+            this.rightToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 33);
@@ -91,8 +97,8 @@
             this.manageEnrolmentsToolStripMenuItem});
             this.administratorFunctionsToolStripMenuItem.Enabled = false;
             this.administratorFunctionsToolStripMenuItem.Name = "administratorFunctionsToolStripMenuItem";
-            this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(225, 29);
-            this.administratorFunctionsToolStripMenuItem.Text = "Administrator Functions";
+            this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(119, 29);
+            this.administratorFunctionsToolStripMenuItem.Text = "Enrolments";
             // 
             // manageToolStripMenuItem
             // 
@@ -134,8 +140,8 @@
             this.viewUnitOfferingsToolStripMenuItem});
             this.convenerFunctionsToolStripMenuItem.Enabled = false;
             this.convenerFunctionsToolStripMenuItem.Name = "convenerFunctionsToolStripMenuItem";
-            this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(191, 29);
-            this.convenerFunctionsToolStripMenuItem.Text = "Convener Functions";
+            this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(91, 29);
+            this.convenerFunctionsToolStripMenuItem.Text = "Projects";
             // 
             // manageAssessmentsMasterToolStripMenuItem
             // 
@@ -185,8 +191,8 @@
             this.viewProjectsToolStripMenuItem});
             this.supervisorFunctionsToolStripMenuItem.Enabled = false;
             this.supervisorFunctionsToolStripMenuItem.Name = "supervisorFunctionsToolStripMenuItem";
-            this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(199, 29);
-            this.supervisorFunctionsToolStripMenuItem.Text = "Supervisor Functions";
+            this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
+            this.supervisorFunctionsToolStripMenuItem.Text = "Teams";
             // 
             // manageMeetingsToolStripMenuItem
             // 
@@ -221,6 +227,24 @@
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(71, 29);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
+            // meetingsToolStripMenuItem
+            // 
+            this.meetingsToolStripMenuItem.Name = "meetingsToolStripMenuItem";
+            this.meetingsToolStripMenuItem.Size = new System.Drawing.Size(102, 29);
+            this.meetingsToolStripMenuItem.Text = "Meetings";
+            // 
+            // assessmentsToolStripMenuItem
+            // 
+            this.assessmentsToolStripMenuItem.Name = "assessmentsToolStripMenuItem";
+            this.assessmentsToolStripMenuItem.Size = new System.Drawing.Size(129, 29);
+            this.assessmentsToolStripMenuItem.Text = "Assessments";
+            // 
+            // rightToolStripMenuItem
+            // 
+            this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
+            this.rightToolStripMenuItem.Size = new System.Drawing.Size(184, 29);
+            this.rightToolStripMenuItem.Text = "Makes sense right?";
             // 
             // frmStuDashboard
             // 
@@ -263,5 +287,8 @@
         private System.Windows.Forms.ToolStripMenuItem viewTeamsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewProjectsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem meetingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assessmentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rightToolStripMenuItem;
     }
 }
