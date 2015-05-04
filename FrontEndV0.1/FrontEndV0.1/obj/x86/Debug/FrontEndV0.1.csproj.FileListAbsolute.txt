@@ -136,3 +136,10 @@ D:\Swinburne\DI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug
 D:\Swinburne\DI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmUnits.resources
 D:\Swinburne\DI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.Properties.Resources.resources
 D:\Swinburne\DI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0.1.csproj.GenerateResource.Cache
+C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmActionItems.resources
+C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmAssessment.resources
+C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmMeeting.resources
+C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmMeetingAttendance.resources
+C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmProject.resources
+C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmTeamDetails.resources
+C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmAgenda.resources

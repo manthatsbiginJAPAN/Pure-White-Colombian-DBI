@@ -64,8 +64,7 @@
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.lblProjID = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).BeginInit();
@@ -82,7 +81,7 @@
             "2018",
             "2019",
             "2020"});
-            this.cbYear.Location = new System.Drawing.Point(156, 197);
+            this.cbYear.Location = new System.Drawing.Point(155, 179);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 36;
@@ -100,6 +99,7 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.button1);
             this.gbDetails.Controls.Add(this.btnActionItems);
             this.gbDetails.Controls.Add(this.btnAgenda);
             this.gbDetails.Controls.Add(this.textBox2);
@@ -259,8 +259,6 @@
             // 
             // gbIdentifyingInformation
             // 
-            this.gbIdentifyingInformation.Controls.Add(this.textBox3);
-            this.gbIdentifyingInformation.Controls.Add(this.lblProjID);
             this.gbIdentifyingInformation.Controls.Add(this.txtTeamID);
             this.gbIdentifyingInformation.Controls.Add(this.lblTeamID);
             this.gbIdentifyingInformation.Controls.Add(this.txtProjID);
@@ -283,7 +281,7 @@
             // txtTeamID
             // 
             this.txtTeamID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTeamID.Location = new System.Drawing.Point(156, 96);
+            this.txtTeamID.Location = new System.Drawing.Point(156, 70);
             this.txtTeamID.Name = "txtTeamID";
             this.txtTeamID.Size = new System.Drawing.Size(121, 26);
             this.txtTeamID.TabIndex = 40;
@@ -292,7 +290,7 @@
             // 
             this.lblTeamID.AutoSize = true;
             this.lblTeamID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeamID.Location = new System.Drawing.Point(61, 96);
+            this.lblTeamID.Location = new System.Drawing.Point(58, 70);
             this.lblTeamID.Name = "lblTeamID";
             this.lblTeamID.Size = new System.Drawing.Size(82, 20);
             this.lblTeamID.TabIndex = 39;
@@ -324,7 +322,7 @@
             this.cbSemester.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.cbSemester.Location = new System.Drawing.Point(156, 163);
+            this.cbSemester.Location = new System.Drawing.Point(155, 146);
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
             this.cbSemester.TabIndex = 35;
@@ -335,7 +333,7 @@
             this.cbUnitID.Items.AddRange(new object[] {
             "INF30011",
             "INF20011"});
-            this.cbUnitID.Location = new System.Drawing.Point(156, 131);
+            this.cbUnitID.Location = new System.Drawing.Point(156, 115);
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
             this.cbUnitID.TabIndex = 34;
@@ -344,7 +342,7 @@
             // 
             this.lblSem.AutoSize = true;
             this.lblSem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSem.Location = new System.Drawing.Point(52, 161);
+            this.lblSem.Location = new System.Drawing.Point(58, 144);
             this.lblSem.Name = "lblSem";
             this.lblSem.Size = new System.Drawing.Size(91, 20);
             this.lblSem.TabIndex = 11;
@@ -354,7 +352,7 @@
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYear.Location = new System.Drawing.Point(91, 198);
+            this.lblYear.Location = new System.Drawing.Point(91, 177);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(52, 20);
             this.lblYear.TabIndex = 13;
@@ -364,7 +362,7 @@
             // 
             this.lblUnitID.AutoSize = true;
             this.lblUnitID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitID.Location = new System.Drawing.Point(72, 129);
+            this.lblUnitID.Location = new System.Drawing.Point(72, 113);
             this.lblUnitID.Name = "lblUnitID";
             this.lblUnitID.Size = new System.Drawing.Size(71, 20);
             this.lblUnitID.TabIndex = 1;
@@ -448,23 +446,15 @@
             this.Year.HeaderText = "Year";
             this.Year.Name = "Year";
             // 
-            // textBox3
+            // button1
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(156, 61);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 26);
-            this.textBox3.TabIndex = 44;
-            // 
-            // lblProjID
-            // 
-            this.lblProjID.AutoSize = true;
-            this.lblProjID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjID.Location = new System.Drawing.Point(51, 61);
-            this.lblProjID.Name = "lblProjID";
-            this.lblProjID.Size = new System.Drawing.Size(99, 20);
-            this.lblProjID.TabIndex = 43;
-            this.lblProjID.Text = "Project ID: ";
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(336, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 42);
+            this.button1.TabIndex = 52;
+            this.button1.Text = "Attendance";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmMeeting
             // 
@@ -527,7 +517,6 @@
         public System.Windows.Forms.Button btnAgenda;
         public System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.Label lblMeetingMinutes;
-        public System.Windows.Forms.TextBox textBox3;
-        public System.Windows.Forms.Label lblProjID;
+        public System.Windows.Forms.Button button1;
     }
 }
