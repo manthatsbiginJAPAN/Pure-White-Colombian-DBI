@@ -30,12 +30,8 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbDetails = new System.Windows.Forms.GroupBox();
-            this.txtDueDate = new System.Windows.Forms.TextBox();
             this.txtMarkingGuide = new System.Windows.Forms.TextBox();
-            this.lblDueDate = new System.Windows.Forms.Label();
             this.lblMarkingGuide = new System.Windows.Forms.Label();
-            this.cmbAssType = new System.Windows.Forms.ComboBox();
-            this.lblAssType = new System.Windows.Forms.Label();
             this.lblAssTitle = new System.Windows.Forms.Label();
             this.txtAssDesc = new System.Windows.Forms.TextBox();
             this.txtAssTitle = new System.Windows.Forms.TextBox();
@@ -57,6 +53,9 @@
             this.colUnitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAssessmentInfo)).BeginInit();
@@ -74,12 +73,11 @@
             // 
             // gbDetails
             // 
-            this.gbDetails.Controls.Add(this.txtDueDate);
+            this.gbDetails.Controls.Add(this.label1);
+            this.gbDetails.Controls.Add(this.button2);
+            this.gbDetails.Controls.Add(this.button1);
             this.gbDetails.Controls.Add(this.txtMarkingGuide);
-            this.gbDetails.Controls.Add(this.lblDueDate);
             this.gbDetails.Controls.Add(this.lblMarkingGuide);
-            this.gbDetails.Controls.Add(this.cmbAssType);
-            this.gbDetails.Controls.Add(this.lblAssType);
             this.gbDetails.Controls.Add(this.lblAssTitle);
             this.gbDetails.Controls.Add(this.txtAssDesc);
             this.gbDetails.Controls.Add(this.txtAssTitle);
@@ -92,97 +90,56 @@
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
             // 
-            // txtDueDate
-            // 
-            this.txtDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDueDate.Location = new System.Drawing.Point(184, 265);
-            this.txtDueDate.Name = "txtDueDate";
-            this.txtDueDate.Size = new System.Drawing.Size(152, 26);
-            this.txtDueDate.TabIndex = 51;
-            // 
             // txtMarkingGuide
             // 
             this.txtMarkingGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarkingGuide.Location = new System.Drawing.Point(184, 169);
+            this.txtMarkingGuide.Location = new System.Drawing.Point(141, 195);
             this.txtMarkingGuide.Multiline = true;
             this.txtMarkingGuide.Name = "txtMarkingGuide";
-            this.txtMarkingGuide.Size = new System.Drawing.Size(282, 88);
+            this.txtMarkingGuide.Size = new System.Drawing.Size(302, 98);
             this.txtMarkingGuide.TabIndex = 50;
-            // 
-            // lblDueDate
-            // 
-            this.lblDueDate.AutoSize = true;
-            this.lblDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDueDate.Location = new System.Drawing.Point(14, 265);
-            this.lblDueDate.Name = "lblDueDate";
-            this.lblDueDate.Size = new System.Drawing.Size(91, 20);
-            this.lblDueDate.TabIndex = 49;
-            this.lblDueDate.Text = "Due Date:";
             // 
             // lblMarkingGuide
             // 
             this.lblMarkingGuide.AutoSize = true;
             this.lblMarkingGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarkingGuide.Location = new System.Drawing.Point(14, 169);
+            this.lblMarkingGuide.Location = new System.Drawing.Point(6, 195);
             this.lblMarkingGuide.Name = "lblMarkingGuide";
             this.lblMarkingGuide.Size = new System.Drawing.Size(130, 20);
             this.lblMarkingGuide.TabIndex = 48;
             this.lblMarkingGuide.Text = "Marking Guide:";
             // 
-            // cmbAssType
-            // 
-            this.cmbAssType.FormattingEnabled = true;
-            this.cmbAssType.Items.AddRange(new object[] {
-            "Peer Assessment",
-            "Team Contribution"});
-            this.cmbAssType.Location = new System.Drawing.Point(184, 129);
-            this.cmbAssType.Name = "cmbAssType";
-            this.cmbAssType.Size = new System.Drawing.Size(152, 21);
-            this.cmbAssType.TabIndex = 47;
-            // 
-            // lblAssType
-            // 
-            this.lblAssType.AutoSize = true;
-            this.lblAssType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAssType.Location = new System.Drawing.Point(14, 127);
-            this.lblAssType.Name = "lblAssType";
-            this.lblAssType.Size = new System.Drawing.Size(155, 20);
-            this.lblAssType.TabIndex = 24;
-            this.lblAssType.Text = "Assessment Type:";
-            // 
             // lblAssTitle
             // 
-            this.lblAssTitle.AutoSize = true;
             this.lblAssTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAssTitle.Location = new System.Drawing.Point(11, 43);
             this.lblAssTitle.Name = "lblAssTitle";
-            this.lblAssTitle.Size = new System.Drawing.Size(151, 20);
+            this.lblAssTitle.Size = new System.Drawing.Size(110, 45);
             this.lblAssTitle.TabIndex = 20;
             this.lblAssTitle.Text = "Assessment Title:";
             // 
             // txtAssDesc
             // 
             this.txtAssDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAssDesc.Location = new System.Drawing.Point(184, 88);
+            this.txtAssDesc.Location = new System.Drawing.Point(141, 88);
             this.txtAssDesc.Name = "txtAssDesc";
-            this.txtAssDesc.Size = new System.Drawing.Size(152, 26);
+            this.txtAssDesc.Size = new System.Drawing.Size(131, 26);
             this.txtAssDesc.TabIndex = 23;
             // 
             // txtAssTitle
             // 
             this.txtAssTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAssTitle.Location = new System.Drawing.Point(184, 37);
+            this.txtAssTitle.Location = new System.Drawing.Point(141, 43);
             this.txtAssTitle.Name = "txtAssTitle";
-            this.txtAssTitle.Size = new System.Drawing.Size(152, 26);
+            this.txtAssTitle.Size = new System.Drawing.Size(131, 26);
             this.txtAssTitle.TabIndex = 21;
             // 
             // lblAssDesc
             // 
-            this.lblAssDesc.AutoSize = true;
             this.lblAssDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAssDesc.Location = new System.Drawing.Point(11, 88);
             this.lblAssDesc.Name = "lblAssDesc";
-            this.lblAssDesc.Size = new System.Drawing.Size(158, 20);
+            this.lblAssDesc.Size = new System.Drawing.Size(110, 47);
             this.lblAssDesc.TabIndex = 22;
             this.lblAssDesc.Text = "Assessment Desc:";
             // 
@@ -357,11 +314,41 @@
             this.colYear.HeaderText = "Year";
             this.colYear.Name = "colYear";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(315, 75);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 47);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Team Cont.";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(316, 128);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(137, 47);
+            this.button2.TabIndex = 51;
+            this.button2.Text = "Peer Assess.";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(312, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "Create:";
+            // 
             // frmAssessment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 602);
+            this.ClientSize = new System.Drawing.Size(914, 646);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.grdAssessmentInfo);
             this.Controls.Add(this.gbDetails);
@@ -393,10 +380,7 @@
         public System.Windows.Forms.Button btnAdd;
         public System.Windows.Forms.Button btnEdit;
         public System.Windows.Forms.Button btnDelete;
-        public System.Windows.Forms.Label lblDueDate;
         public System.Windows.Forms.Label lblMarkingGuide;
-        private System.Windows.Forms.ComboBox cmbAssType;
-        public System.Windows.Forms.Label lblAssType;
         public System.Windows.Forms.Label lblAssTitle;
         public System.Windows.Forms.TextBox txtAssDesc;
         public System.Windows.Forms.TextBox txtAssTitle;
@@ -412,8 +396,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnitID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
-        public System.Windows.Forms.TextBox txtDueDate;
         public System.Windows.Forms.TextBox txtMarkingGuide;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Button button1;
 
     }
 }

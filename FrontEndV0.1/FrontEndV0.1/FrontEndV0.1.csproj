@@ -116,6 +116,12 @@
     <Compile Include="forms\frmMeetingAttendance.Designer.cs">
       <DependentUpon>frmMeetingAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmPeerAssessmentcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmPeerAssessmentcs.Designer.cs">
+      <DependentUpon>frmPeerAssessmentcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +145,12 @@
     </Compile>
     <Compile Include="forms\frmSupervisorOperations.Designer.cs">
       <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTeamContribution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmTeamContribution.Designer.cs">
+      <DependentUpon>frmTeamContribution.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\frmTeamDetails.cs">
       <SubType>Form</SubType>
@@ -196,6 +208,9 @@
     <EmbeddedResource Include="forms\frmMeetingAttendance.resx">
       <DependentUpon>frmMeetingAttendance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmPeerAssessmentcs.resx">
+      <DependentUpon>frmPeerAssessmentcs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmProject.resx">
       <DependentUpon>frmProject.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSupervisorOperations.resx">
       <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTeamContribution.resx">
+      <DependentUpon>frmTeamContribution.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTeamDetails.resx">
       <DependentUpon>frmTeamDetails.cs</DependentUpon>

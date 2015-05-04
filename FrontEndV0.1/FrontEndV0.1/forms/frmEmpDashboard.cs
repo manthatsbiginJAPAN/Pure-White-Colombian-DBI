@@ -83,15 +83,18 @@ namespace FrontEndV0._1.forms
 
             frmEmpDetails = new frmEmpDetails();
             frmEmpDetails.MdiParent = this;
-
         }
 
+<<<<<<< HEAD
         private void openEmpDetails()
         {
             frmEmpDetails.FormClosing += closeForm;
             frmEmpDetails.Show();
         }
 
+=======
+        #region Form Toggles
+>>>>>>> origin/master
         private void openUnitForm()
         {
             frmUnits.FormClosing += closeForm;
@@ -128,6 +131,18 @@ namespace FrontEndV0._1.forms
             frmMeeting.Show();
         }
 
+        private void openStudentForm()
+        {
+            frmStuDetails.FormClosing += closeForm;
+            frmStuDetails.Show();
+        }
+
+        private void openEmployeeForm()
+        {
+            frmEmpDetails.FormClosing += closeForm;
+            frmEmpDetails.Show();
+        }
+
         private void closeForm(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -136,12 +151,12 @@ namespace FrontEndV0._1.forms
             Form frm = (Form)sender;
             frm.Hide();
         }
-
+        #endregion
 
         #region Personal Details
         private void personalDetailsMenu_Click(object sender, EventArgs e)
         {
-            openEmpDetails();
+            openEmployeeForm();
         }
         #endregion
 
@@ -150,21 +165,15 @@ namespace FrontEndV0._1.forms
         #region Manage Students
         private void adminDropdownManageStudents_Click(object sender, EventArgs e)
         {
-            frmStuDetails.FormClosing += frmStuDetailsClosing;
-            frmStuDetails.Show();
+            openStudentForm();
         }
 
-        private void frmStuDetailsClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            frmStuDetails.Hide();
-        }
         #endregion
 
         #region Manage Employees
         private void adminDropdownManageEmployees_Click(object sender, EventArgs e)
         {
-            openEmpDetails();
+            openEmployeeForm();
         }
 
         //When Manage Employees becomes separate to employee details, put the new event handler here - Eric
@@ -180,15 +189,9 @@ namespace FrontEndV0._1.forms
         #region Manage Unit Offerings
         private void adminDropdownManageUnitOfferings_Click(object sender, EventArgs e)
         {
-            frmUnitOfferings.FormClosing += frmUnitOfferingsClosing;
-            frmUnitOfferings.Show();
+            openUnitOfferingForm();
         }
 
-        private void frmUnitOfferingsClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            frmUnitOfferings.Hide();
-        }
         #endregion
 
         #region Manage Enrolments
@@ -261,11 +264,7 @@ namespace FrontEndV0._1.forms
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        
-
-        
+        }       
         
     }
 }

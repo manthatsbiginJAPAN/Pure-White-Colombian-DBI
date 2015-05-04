@@ -28,10 +28,10 @@ UC1_25_Register_Employee_Role('1111111', 'Admin');
 UC1_25_Register_Employee_Role('1234567', 'Supervisor');
 UC1_25_Register_Employee_Role('1111111', 'Convenor');
 
-UC1_21_Register_Unit_Offering('INF10101', 1, 2015, '1111111', 'Admin');
-UC1_21_Register_Unit_Offering('INF10101', 1, 2014, '1111111', 'Admin');
-UC1_21_Register_Unit_Offering('INF20004', 2, 2015, '1111111', 'Admin');
-UC1_21_Register_Unit_Offering('INF20004', 2, 2014, '1111111', 'Admin');
+UC1_21_Register_Unit_Offering('INF10101', 1, 2015, '1111111', 'Convenor');
+UC1_21_Register_Unit_Offering('INF10101', 1, 2014, '1111111', 'Convenor');
+UC1_21_Register_Unit_Offering('INF20004', 2, 2015, '1111111', 'Convenor');
+UC1_21_Register_Unit_Offering('INF20004', 2, 2014, '1111111', 'Convenor');
 
 UC1_13_Register_Enrolment('7654321', 'INF10101', 1, 2015);
 UC1_13_Register_Enrolment('7668977', 'INF10101', 1, 2014);
