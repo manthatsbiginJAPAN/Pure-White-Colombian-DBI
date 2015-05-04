@@ -31,8 +31,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.cbConvenor = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gbIdentifyingInformation = new System.Windows.Forms.GroupBox();
+            this.cbYear = new System.Windows.Forms.ComboBox();
             this.cbSemester = new System.Windows.Forms.ComboBox();
             this.cbUnitID = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,8 +43,6 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.grdUnitOfferings = new System.Windows.Forms.DataGridView();
-            this.cbYear = new System.Windows.Forms.ComboBox();
-            this.cbConvenor = new System.Windows.Forms.ComboBox();
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,6 +87,15 @@
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
             // 
+            // cbConvenor
+            // 
+            this.cbConvenor.FormattingEnabled = true;
+            this.cbConvenor.Location = new System.Drawing.Point(156, 55);
+            this.cbConvenor.Name = "cbConvenor";
+            this.cbConvenor.Size = new System.Drawing.Size(121, 21);
+            this.cbConvenor.Sorted = true;
+            this.cbConvenor.TabIndex = 37;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -113,6 +122,22 @@
             this.gbIdentifyingInformation.TabIndex = 29;
             this.gbIdentifyingInformation.TabStop = false;
             this.gbIdentifyingInformation.Text = "Identifying Information";
+            // 
+            // cbYear
+            // 
+            this.cbYear.Enabled = false;
+            this.cbYear.FormattingEnabled = true;
+            this.cbYear.Items.AddRange(new object[] {
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020"});
+            this.cbYear.Location = new System.Drawing.Point(155, 159);
+            this.cbYear.Name = "cbYear";
+            this.cbYear.Size = new System.Drawing.Size(121, 21);
+            this.cbYear.TabIndex = 36;
             // 
             // cbSemester
             // 
@@ -209,31 +234,6 @@
             this.grdUnitOfferings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUnitOfferings.Size = new System.Drawing.Size(421, 569);
             this.grdUnitOfferings.TabIndex = 33;
-            // 
-            // cbYear
-            // 
-            this.cbYear.Enabled = false;
-            this.cbYear.FormattingEnabled = true;
-            this.cbYear.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
-            this.cbYear.Location = new System.Drawing.Point(155, 159);
-            this.cbYear.Name = "cbYear";
-            this.cbYear.Size = new System.Drawing.Size(121, 21);
-            this.cbYear.TabIndex = 36;
-            // 
-            // cbConvenor
-            // 
-            this.cbConvenor.FormattingEnabled = true;
-            this.cbConvenor.Location = new System.Drawing.Point(156, 55);
-            this.cbConvenor.Name = "cbConvenor";
-            this.cbConvenor.Size = new System.Drawing.Size(121, 21);
-            this.cbConvenor.Sorted = true;
-            this.cbConvenor.TabIndex = 37;
             // 
             // Unitid
             // 
