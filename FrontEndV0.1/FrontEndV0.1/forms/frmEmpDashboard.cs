@@ -86,6 +86,12 @@ namespace FrontEndV0._1.forms
 
         }
 
+        private void openEmpDetails()
+        {
+            frmEmpDetails.FormClosing += closeForm;
+            frmEmpDetails.Show();
+        }
+
         private void openUnitForm()
         {
             frmUnits.FormClosing += closeForm;
@@ -135,14 +141,7 @@ namespace FrontEndV0._1.forms
         #region Personal Details
         private void personalDetailsMenu_Click(object sender, EventArgs e)
         {
-            frmEmpDetails.FormClosing += frmEmpDetailsClosing;
-            frmEmpDetails.Show();
-        }
-
-        private void frmEmpDetailsClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            frmEmpDetails.Hide();
+            openEmpDetails();
         }
         #endregion
 
@@ -165,8 +164,7 @@ namespace FrontEndV0._1.forms
         #region Manage Employees
         private void adminDropdownManageEmployees_Click(object sender, EventArgs e)
         {
-            frmEmpDetails.FormClosing += frmEmpDetailsClosing;
-            frmEmpDetails.Show();
+            openEmpDetails();
         }
 
         //When Manage Employees becomes separate to employee details, put the new event handler here - Eric

@@ -187,6 +187,8 @@ namespace FrontEndV0._1.forms
                         , cbYear.SelectedItem
                         , null);
                     }
+                    cmd.Parameters.Add("role", "Convenor");
+
                     connection.Open();
                     cmd.ExecuteNonQuery();
                     connection.Close();

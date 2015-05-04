@@ -78,7 +78,8 @@ namespace FrontEndV0._1.forms
                     OracleCommand cmd = new OracleCommand("UC1_1_REGISTER_EMPLOYEE", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("empid", txtEmpID.Text);
+                    string empid = txtEmpID.Text;
+                    cmd.Parameters.Add("empid", empid);
                     cmd.Parameters.Add("fname", txtEmpFName.Text);
                     cmd.Parameters.Add("sname", txtEmpSName.Text);
                     cmd.Parameters.Add("email", txtEmpEmail.Text);
@@ -89,11 +90,42 @@ namespace FrontEndV0._1.forms
                     cmd.ExecuteNonQuery();
                     connection.Close();
 
+                    for (int i = 0; i < clbEmpRoles.Items.Count; i++)
+                    {
+                        cmd = new OracleCommand("UC1_25_REGISTER_EMPLOYEE_ROLE", connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("empid", empid);
+
+                        //Work out which employee type to add
+                        if (clbEmpRoles.GetItemCheckState(i) == CheckState.Checked)
+                        {
+                            switch (i)
+                            {
+                                case 0:
+                                    cmd.Parameters.Add("role", "Administrator");
+                                    break;
+                                case 1:
+                                    cmd.Parameters.Add("role", "Convenor");
+                                    break;
+                                case 2:
+                                    cmd.Parameters.Add("role", "Supervisor");
+                                    break;
+                            }
+                        }
+
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                        connection.Close();
+                    }
+
+
+
                     ds.Tables[0].Rows.Add(txtEmpID.Text
                         , txtEmpFName.Text
                         , txtEmpSName.Text
                         , txtEmpEmail.Text
                         , txtEmpPhone.Text);
+
 
                     //Repopulate Grid
                     populateEmpGrid();
@@ -119,7 +151,6 @@ namespace FrontEndV0._1.forms
                     txtEmpPass.Clear();
 
                     btnAdd.Text = "Add";
-                    Console.WriteLine(btnAdd.Text); //wut
                 }
             }
             else
@@ -131,7 +162,7 @@ namespace FrontEndV0._1.forms
                 txtEmpEmail.Enabled = true;
                 txtEmpPhone.Enabled = true;
                 txtEmpPass.Enabled = true;
-                
+
                 //Disable other buttons
                 btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
@@ -140,7 +171,9 @@ namespace FrontEndV0._1.forms
                 btnAdd.Text = "Save?";
                 grdEmployeeInfo.ClearSelection();
             }
-        }
+            }
+        
+            
 
 
         private bool FormValidated()
