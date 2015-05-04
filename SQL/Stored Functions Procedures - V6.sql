@@ -740,7 +740,29 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
 /
+
+create or replace FUNCTION UC2_7_View_Project
+	RETURN SYS_REFCURSOR AS pro SYS_REFCURSOR;
+BEGIN
+	--dbms_output.put_line('Listing All Unit Offerings');
+	OPEN pro for select * from Project;
+	--LOOP
+	--	Fetch uos into uo;
+	--	Exit When uos%NOTFOUND;
+	--	dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
+	--					 || ' Semester: ' || uo.semester
+	--					 || ' Year: ' || uo.Year); 
+	--End Loop;
+	return pro;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
 
 CREATE OR REPLACE PROCEDURE UC2_8_Delete_Project
 		(pProjID varchar2) AS
