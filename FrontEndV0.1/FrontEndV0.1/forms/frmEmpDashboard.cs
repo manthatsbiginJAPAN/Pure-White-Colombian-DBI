@@ -57,7 +57,7 @@ namespace FrontEndV0._1.forms
                 frmTeamDetails = new frmTeamDetails(false);
                 frmTeamDetails.MdiParent = this;
 
-                frmProject = new frmProject(false);
+                frmProject = new frmProject();
                 frmProject.MdiParent = this;
             }   
 
@@ -77,7 +77,7 @@ namespace FrontEndV0._1.forms
                 frmUnitOfferings = new frmUnitOfferings(false);
                 frmUnitOfferings.MdiParent = this;
 
-                frmProject = new frmProject(true);
+                frmProject = new frmProject();
                 frmProject.MdiParent = this;
             }
 
@@ -85,16 +85,8 @@ namespace FrontEndV0._1.forms
             frmEmpDetails.MdiParent = this;
         }
 
-<<<<<<< HEAD
-        private void openEmpDetails()
-        {
-            frmEmpDetails.FormClosing += closeForm;
-            frmEmpDetails.Show();
-        }
-
-=======
         #region Form Toggles
->>>>>>> origin/master
+
         private void openUnitForm()
         {
             frmUnits.FormClosing += closeForm;

@@ -172,13 +172,13 @@ namespace FrontEndV0._1.forms
                     cmd.ExecuteNonQuery();
                     connection.Close();
 
-                    projects.Tables[0].Rows.Add(txtProjID.SelectedItem
-                        , txtProjDesc.SelectedItem
-                        , cbYear.SelectedItem
-                        , cbConvenor.SelectedItem);
+                    projects.Tables[0].Rows.Add(txtProjID.Text
+                        , cbUnitID.SelectedItem
+                        , cbSemester.SelectedItem
+                        , cbYear.SelectedItem);
 
                     //Repopulate Grid
-                    populateUnitGrid();
+                    populateProjects();
 
                     //Disable buttons
                     gbIdentifyingInformation.Enabled = false;
@@ -189,11 +189,9 @@ namespace FrontEndV0._1.forms
                     btnDelete.Enabled = true;
 
                     //Clear textboxes
-                    txtUnitID.Clear();
-                    txtName.Clear();
-                    txtDescription.Clear();
+                    txtProjID.Clear();
 
-                    grdUnits.Enabled = true;
+                    grdProjects.Enabled = true;
                     btnAdd.Text = "Add";
                     Console.WriteLine(btnAdd.Text); //wut
                 //}

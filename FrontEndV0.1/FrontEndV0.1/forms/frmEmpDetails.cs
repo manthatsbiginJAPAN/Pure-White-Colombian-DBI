@@ -77,6 +77,7 @@ namespace FrontEndV0._1.forms
                 {
                     OracleCommand cmd = new OracleCommand("UC1_1_REGISTER_EMPLOYEE", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 100;
 
                     string empid = txtEmpID.Text;
                     cmd.Parameters.Add("empid", empid);
