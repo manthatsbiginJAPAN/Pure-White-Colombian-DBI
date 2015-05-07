@@ -1,5 +1,6 @@
 BEGIN
 delete from Studentteamallocation;
+delete from Meeting;
 delete from Team;
 delete from Meetingtype;
 delete from Enrolment;
@@ -51,13 +52,13 @@ UC2_5_Register_Project('PROJ2', 'Project 2', 'INF20004', 2, 2014);
 UC2_1_Register_Team('Team1', 'PROJ1', 'INF10101', 1, 2015, '1234567', 'Supervisor');
 UC2_1_Register_Team('Team1', 'PROJ2', 'INF20004', 2, 2014, '1234567', 'Supervisor');
 
---UC2_17_Register_Team_Allo('Team1', '7668977', 'INF10101', 1, 2015);
---UC2_17_Register_Team_Allo('Team1', '7654321', 'INF10101', 1, 2015);
---UC2_17_Register_Team_Allo('Team1', '7668977', 'INF20004', 2, 2014);
+UC2_17_Register_Team_Allo('Team1', '7668977', 'INF10101', 1, 2015);
+UC2_17_Register_Team_Allo('Team1', '7654321', 'INF10101', 1, 2015);
+UC2_17_Register_Team_Allo('Team1', '7668977', 'INF20004', 2, 2014);
 UC2_17_Register_Team_Allo('Team1', '7654321', 'INF20004', 2, 2014);
 
---UC3_2_Register_Meeting('MT1895', 'Team1', 'INF10101', 1, 2015, 'Student', 2015-03-04 13:34:21, 2015-03-04 15:27:17, 'minutes.exe #TODO', '1234567', null);
---UC3_2_Register_Meeting('MT1899', 'Team1', 'INF20004', 2, 2014, 'Student', 2014-08-04 15:30:41, 2014-08-04 18:22:11, 'minutes.exe #TODO', '1111111', null);
+UC3_2_Register_Meeting('MT1895', 'Team1', 'INF10101', 1, 2015, 'Student', 2015-03-04 13:34:21, 2015-03-04 15:27:17, 'minutes.exe #TODO', '1234567', null);
+UC3_2_Register_Meeting('MT1899', 'Team1', 'INF20004', 2, 2014, 'Student', 2014-08-04 15:30:41, 2014-08-04 18:22:11, 'minutes.exe #TODO', '1111111', null);
 
 
 

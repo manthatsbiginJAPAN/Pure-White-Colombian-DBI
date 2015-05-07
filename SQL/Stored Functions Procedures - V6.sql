@@ -503,7 +503,7 @@ END;
 /
 
 
---CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Role_Type
+--CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Type
 --		(pMeetType varchar2) AS
 --BEGIN
 -- 	INSERT INTO MeetingType VALUES (pMeetType);
@@ -956,8 +956,8 @@ create or replace PROCEDURE UC2_17_Register_Team_Allo
 		(pTeamID varchar2,
 	pStuID varchar2,
 	pUnitID varchar2,
-	pSemester varchar2,
-	pYear varchar2) AS
+	pSemester number,
+	pYear number) AS
 BEGIN 
 	INSERT INTO StudentTeamAllocation VALUES (pTeamID, pStuID, pUnitID, pSemester, pYear);
 	--dbms_output.put_line('Registered Student: '|| pStuID || ' into Team: '|| pTeamID|| ' for unit: ' || pUnitID || 'added semester ' || pSemester || ', '|| pYear);
@@ -991,8 +991,8 @@ create or replace PROCEDURE UC2_20_Delete_Team_Allo
 		(pTeamID varchar2,
 	pStuID varchar2,
 	pUnitID varchar2,
-	pSemester varchar2,
-	pYear varchar2) AS
+	pSemester number,
+	pYear number) AS
 BEGIN
 	Delete StudentTeamAllocation
 	WHERE TeamID = pTeamID and
