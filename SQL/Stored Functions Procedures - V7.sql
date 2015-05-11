@@ -78,7 +78,7 @@ END;
 
 /
 
-
+--------------------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE UC1_5_Register_Unit
 		( pUnitID varchar2, 
@@ -149,6 +149,7 @@ END;
 
 /
 
+--------------------------------------------------------------------------------------
 
 
 CREATE OR REPLACE PROCEDURE UC1_9_Register_Student
@@ -232,6 +233,8 @@ END;
 
 /
 
+
+--------------------------------------------------------------------------------------
 
 
 
@@ -340,6 +343,9 @@ END;
 /
 
 
+--------------------------------------------------------------------------------------
+
+
 CREATE or REPLACE FUNCTION UC1_18_View_Role_Type
 RETURN SYS_REFCURSOR AS roles SYS_REFCURSOR;
 BEGIN
@@ -387,8 +393,11 @@ END;
 /
 
 
+--------------------------------------------------------------------------------------
+
+
 CREATE OR REPLACE PROCEDURE UC1_21_Register_Unit_Offering
-		(pUnitID varchar2, 
+		(pUnitID varchar2,
        	 pSemester number,
        	 pYear number,
        	 pEmpID varchar2,
@@ -434,7 +443,9 @@ create or replace PROCEDURE UC1_23_Update_Unit_Offering
 BEGIN
 	UPDATE UnitOffering
 	SET EmpID = NewEmpID -- Employee is the only thing we can change
-	WHERE UnitID = pUnitID AND Semester = pSemester AND Year = pYear AND EmpID = pEmpID;
+	WHERE UnitID = pUnitID AND
+	Semester = pSemester AND
+	Year = pYear;
 	--dbms_output.put_line('Unit Offering ' || pUnitID || ' for semester ' || pSemester || ', ' || pYear || ' updated'); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -455,6 +466,9 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
+
+
+--------------------------------------------------------------------------------------
 
 
 CREATE OR REPLACE PROCEDURE UC1_25_Register_Employee_Role
@@ -502,6 +516,10 @@ EXCEPTION
 END;
 /
 
+
+--------------------------------------------------------------------------------------
+
+--...
 
 --CREATE OR REPLACE PROCEDURE UC1_29_Meeting_Type
 --		(pMeetType varchar2) AS
@@ -1660,3 +1678,7 @@ EXCEPTION
 END;
 
 /
+
+
+---------------------------------------------------------------------
+

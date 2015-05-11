@@ -35,15 +35,15 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.grdUnits = new System.Windows.Forms.DataGridView();
-            this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
+            this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnits)).BeginInit();
             this.gbDetails.SuspendLayout();
@@ -122,7 +122,7 @@
             this.grdUnits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdUnits.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Unitid,
-            this.Name,
+            this.UnitName,
             this.Description});
             this.grdUnits.Location = new System.Drawing.Point(486, 65);
             this.grdUnits.Name = "grdUnits";
@@ -130,24 +130,6 @@
             this.grdUnits.Size = new System.Drawing.Size(421, 569);
             this.grdUnits.TabIndex = 26;
             this.grdUnits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUnits_SelectionChanged);
-            // 
-            // Unitid
-            // 
-            this.Unitid.HeaderText = "Unit ID";
-            this.Unitid.Name = "Unitid";
-            this.Unitid.ReadOnly = true;
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            this.Name.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            this.Description.Visible = false;
             // 
             // btnAdd
             // 
@@ -211,6 +193,24 @@
             this.txtDescription.Size = new System.Drawing.Size(100, 26);
             this.txtDescription.TabIndex = 10;
             // 
+            // Unitid
+            // 
+            this.Unitid.HeaderText = "Unit ID";
+            this.Unitid.Name = "Unitid";
+            this.Unitid.ReadOnly = true;
+            // 
+            // UnitName
+            // 
+            this.UnitName.HeaderText = "Name";
+            this.UnitName.Name = "UnitName";
+            this.UnitName.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            this.Description.Visible = false;
+            // 
             // frmUnits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -223,6 +223,7 @@
             this.Controls.Add(this.grdUnits);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gbDetails);
+            this.Name = "frmUnits";
             this.Load += new System.EventHandler(this.frmUnits_Load);
             this.gbIdentifyingInformation.ResumeLayout(false);
             this.gbIdentifyingInformation.PerformLayout();
@@ -245,12 +246,12 @@
         public System.Windows.Forms.DataGridView grdUnits;
         public System.Windows.Forms.Button btnAdd;
         public System.Windows.Forms.GroupBox gbDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         public System.Windows.Forms.TextBox txtName;
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
     }
 }

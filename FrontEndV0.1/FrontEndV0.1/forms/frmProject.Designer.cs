@@ -35,6 +35,11 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.grdProjects = new System.Windows.Forms.DataGridView();
+            this.colProjID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projdesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblYear = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
@@ -45,11 +50,6 @@
             this.lblProjID = new System.Windows.Forms.Label();
             this.lblSem = new System.Windows.Forms.Label();
             this.lblUnitID = new System.Windows.Forms.Label();
-            this.colProjID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.projdesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdProjects)).BeginInit();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
@@ -145,6 +145,33 @@
             this.grdProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdProjects.Size = new System.Drawing.Size(421, 569);
             this.grdProjects.TabIndex = 40;
+            // 
+            // colProjID
+            // 
+            this.colProjID.HeaderText = "Project ID";
+            this.colProjID.Name = "colProjID";
+            // 
+            // projdesc
+            // 
+            this.projdesc.HeaderText = "Description";
+            this.projdesc.Name = "projdesc";
+            this.projdesc.Visible = false;
+            // 
+            // Unitid
+            // 
+            this.Unitid.HeaderText = "Unit ID";
+            this.Unitid.Name = "Unitid";
+            this.Unitid.ReadOnly = true;
+            // 
+            // Semester
+            // 
+            this.Semester.HeaderText = "Semester";
+            this.Semester.Name = "Semester";
+            // 
+            // Year
+            // 
+            this.Year.HeaderText = "Year";
+            this.Year.Name = "Year";
             // 
             // lblYear
             // 
@@ -255,33 +282,6 @@
             this.lblUnitID.Size = new System.Drawing.Size(71, 20);
             this.lblUnitID.TabIndex = 1;
             this.lblUnitID.Text = "Unit ID:";
-            // 
-            // colProjID
-            // 
-            this.colProjID.HeaderText = "Project ID";
-            this.colProjID.Name = "colProjID";
-            // 
-            // projdesc
-            // 
-            this.projdesc.HeaderText = "Description";
-            this.projdesc.Name = "projdesc";
-            this.projdesc.Visible = false;
-            // 
-            // Unitid
-            // 
-            this.Unitid.HeaderText = "Unit ID";
-            this.Unitid.Name = "Unitid";
-            this.Unitid.ReadOnly = true;
-            // 
-            // Semester
-            // 
-            this.Semester.HeaderText = "Semester";
-            this.Semester.Name = "Semester";
-            // 
-            // Year
-            // 
-            this.Year.HeaderText = "Year";
-            this.Year.Name = "Year";
             // 
             // frmProject
             // 

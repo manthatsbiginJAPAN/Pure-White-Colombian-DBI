@@ -99,25 +99,30 @@ namespace FrontEndV0._1.forms
                         cmd.Parameters.Add("empid", empid);
 
                         //Work out which employee type to add
-                        if (clbEmpRoles.GetItemCheckState(i) == CheckState.Checked)
+                        if (clbEmpRoles.GetItemChecked(i))
                         {
                             switch (i)
                             {
                                 case 0:
                                     cmd.Parameters.Add("role", "Administrator");
+                                    connection.Open();
+                                    cmd.ExecuteNonQuery();
+                                    connection.Close();
                                     break;
                                 case 1:
                                     cmd.Parameters.Add("role", "Convenor");
+                                    connection.Open();
+                                    cmd.ExecuteNonQuery();
+                                    connection.Close();
                                     break;
                                 case 2:
                                     cmd.Parameters.Add("role", "Supervisor");
+                                    connection.Open();
+                                    cmd.ExecuteNonQuery();
+                                    connection.Close();
                                     break;
                             }
                         }
-
-                        connection.Open();
-                        cmd.ExecuteNonQuery();
-                        connection.Close();
                     }
 
 
