@@ -278,7 +278,7 @@ namespace FrontEndV0._1.forms
                 "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (response == DialogResult.Yes)
             {   
-                OracleCommand cmd = new OracleCommand("UC1_24_Delete_Unit_Offering", connection);
+                OracleCommand cmd = new OracleCommand("UC1_24_Delete_UnitOffering", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("unitid", selectedunitid);
                 cmd.Parameters.Add("semester", selectedsemester);
@@ -295,11 +295,6 @@ namespace FrontEndV0._1.forms
 
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-          //should not be available
-        }
-
         private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbUnitID.SelectedIndex != -1)
@@ -310,6 +305,74 @@ namespace FrontEndV0._1.forms
         {
             if (cbSemester.SelectedIndex != -1)
                 cbYear.Enabled = true;
+        }
+
+        private String oldEmpID = null;
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (btnEdit.Text == "Update?")
+            {
+                //Command to edit convenor
+                if (FormValidated())
+                {
+                    OracleCommand cmd = new OracleCommand("UC1_23_Update_Unit_Offering", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("punitid", cbUnitID.SelectedItem.ToString());
+                    cmd.Parameters.Add("psemester", Convert.ToInt32(cbSemester.SelectedItem));
+                    cmd.Parameters.Add("pyear", Convert.ToInt32(cbYear.SelectedItem));
+                    cmd.Parameters.Add("pempID", oldEmpID);
+                    cmd.Parameters.Add("newempid", cbConvenor.SelectedItem.ToString());
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+
+                    //Repopulate Grid and notify user
+                    getUnitOfferings();
+                    populateUnitOfferingsGrid();
+                    
+                    MessageBox.Show("UnitOffering Updated");
+
+                    //Disable textboxes
+                    gbIdentifyingInformation.Enabled = false;
+                    gbDetails.Enabled = false;
+
+                    //Enable other buttons
+                    btnAdd.Enabled = true;
+                    btnDelete.Enabled = true;
+
+                    //Clear textboxes
+
+                    grdUnitOfferings.Enabled = true;
+                    btnEdit.Text = "Edit";
+                    Console.WriteLine(btnAdd.Text); //wut
+                }
+            }
+            else
+            {
+                //loading data into textboxes: find the row, load the data from the datagridset
+                int selectedrowindex = grdUnitOfferings.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
+                cbUnitID.SelectedIndex = cbUnitID.FindString(grdUnitOfferings.Rows[selectedrowindex].Cells[0].Value.ToString());
+                cbSemester.SelectedIndex = cbSemester.FindString(grdUnitOfferings.Rows[selectedrowindex].Cells[1].Value.ToString());
+                cbYear.SelectedIndex = cbYear.FindString(grdUnitOfferings.Rows[selectedrowindex].Cells[2].Value.ToString());
+                cbConvenor.SelectedIndex = cbConvenor.FindString(grdUnitOfferings.Rows[selectedrowindex].Cells[3].Value.ToString());
+                //tempSave the old empID before its changed
+                oldEmpID = cbConvenor.SelectedItem.ToString();
+
+                //Enable textboxes
+                gbIdentifyingInformation.Enabled = false;
+                gbDetails.Enabled = true;
+
+                //Disable other buttons
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+
+                //Change button text and deselect any employee from grid
+                btnEdit.Text = "Update?";
+                grdUnitOfferings.ClearSelection();
+                grdUnitOfferings.Enabled = false;
+            }
         }
     }
 }
