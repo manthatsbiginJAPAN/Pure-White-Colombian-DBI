@@ -43,7 +43,7 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("projcursor", OracleDbType.RefCursor);
-            cmd.Parameters["projoffcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters["projcursor"].Direction = ParameterDirection.ReturnValue;
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -51,7 +51,7 @@ namespace FrontEndV0._1.forms
 
             projects = new DataSet();
 
-            da.Fill(projects, "projoffcursor", (OracleRefCursor)(cmd.Parameters["projoffcursor"].Value));
+            da.Fill(projects, "projcursor", (OracleRefCursor)(cmd.Parameters["projcursor"].Value));
 
             connection.Close();
         }
@@ -91,6 +91,7 @@ namespace FrontEndV0._1.forms
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
+                //populate list box options...
                 unitid = cbUnitID.ToString();
                 sem = Convert.ToInt16(cbSemester.ToString());
                 year = Convert.ToInt16(cbYear.ToString());
@@ -99,6 +100,7 @@ namespace FrontEndV0._1.forms
                 //sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
                 //year = unitoffs.Tables["unitoffcursor"].Rows[i][2].ToString();
 
+                //ensures only one of each option
                 if (!cbUnitID.Items.Contains(unitid))
                     cbUnitID.Items.Add(unitid);
                 if (!cbSemester.Items.Contains(sem))
@@ -120,22 +122,28 @@ namespace FrontEndV0._1.forms
 
             //Populate the grid from the dataset
             int rowcnt = projects.Tables["projcursor"].Rows.Count;
-            MessageBox.Show("Available Enrolments: " + rowcnt.ToString());
-            string stuid;
+            MessageBox.Show("Available Projects: " + rowcnt.ToString());
+            string projid;
+            string projdesc;
             string unitid;
             int sem;
             int year;
+            object[] items;
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                stuid = txtProjID.Text.ToString();
-                unitid = cbUnitID.ToString();
-                sem = Convert.ToInt16(cbSemester.ToString());
-                year = Convert.ToInt16(cbYear.ToString());
+                //populate list box options...
+                //projid = txtProjID.Text.ToString();
+                //unitid = cbUnitID.ToString();
+                //sem = Convert.ToInt16(cbSemester.ToString());
+                //year = Convert.ToInt16(cbYear.ToString());
 
-                //unitid = unitoffs.Tables["unitoffcursor"].Rows[i][0].ToString();
-                //sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
-                //year = unitoffs.Tables["unitoffcursor"].Rows[i][2].ToString();
+                //populate the grid
+                //projid = projects.Tables["projcursor"].Rows[i][0].ToString();
+                //projdesc = projects.Tables["projcursor"].Rows[i][1].ToString();
+                //unitid = projects.Tables["projcursor"].Rows[i][2].ToString();
+                //sem = projects.Tables["projcursor"].Rows[i][3].ToString();
+                //year = projects.Tables["[projcursor"].Rows[i][4].ToString();
 
                 //if (!cbUnitID.Items.Contains(unitid))
                 //    cbUnitID.Items.Add(unitid);
@@ -143,6 +151,8 @@ namespace FrontEndV0._1.forms
                 //    cbSemester.Items.Add(sem);
                 //if (!cbYear.Items.Contains(year))
                 //    cbYear.Items.Add(year);
+                items = projects.Tables["projcursor"].Rows[i].ItemArray;
+                grdProjects.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4] });
 
                 //cbUnitID.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][0].ToString());
                 //cbSemester.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][1].ToString());
