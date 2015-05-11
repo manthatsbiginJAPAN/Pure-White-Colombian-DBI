@@ -30,6 +30,7 @@
         {
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.cbSupervisor = new System.Windows.Forms.ComboBox();
             this.lblEmpID = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.gbIdentifyingInformation = new System.Windows.Forms.GroupBox();
@@ -60,7 +61,6 @@
             this.btnAddStu = new System.Windows.Forms.Button();
             this.btnDeleteStu = new System.Windows.Forms.Button();
             this.txtStuID = new System.Windows.Forms.TextBox();
-            this.cbSupervisor = new System.Windows.Forms.ComboBox();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdTeamInfo)).BeginInit();
@@ -90,6 +90,23 @@
             this.gbDetails.TabIndex = 24;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
+            // 
+            // cbSupervisor
+            // 
+            this.cbSupervisor.Enabled = false;
+            this.cbSupervisor.FormattingEnabled = true;
+            this.cbSupervisor.Items.AddRange(new object[] {
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020"});
+            this.cbSupervisor.Location = new System.Drawing.Point(133, 38);
+            this.cbSupervisor.Name = "cbSupervisor";
+            this.cbSupervisor.Size = new System.Drawing.Size(121, 21);
+            this.cbSupervisor.TabIndex = 39;
             // 
             // lblEmpID
             // 
@@ -386,23 +403,6 @@
             this.txtStuID.Name = "txtStuID";
             this.txtStuID.Size = new System.Drawing.Size(100, 26);
             this.txtStuID.TabIndex = 30;
-            // 
-            // cbSupervisor
-            // 
-            this.cbSupervisor.Enabled = false;
-            this.cbSupervisor.FormattingEnabled = true;
-            this.cbSupervisor.Items.AddRange(new object[] {
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
-            this.cbSupervisor.Location = new System.Drawing.Point(133, 38);
-            this.cbSupervisor.Name = "cbSupervisor";
-            this.cbSupervisor.Size = new System.Drawing.Size(121, 21);
-            this.cbSupervisor.TabIndex = 39;
             // 
             // frmTeamDetails
             // 

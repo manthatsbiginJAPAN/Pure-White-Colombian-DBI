@@ -22,6 +22,11 @@ namespace FrontEndV0._1.forms
             connection = conn.oraConn();
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
 
     }

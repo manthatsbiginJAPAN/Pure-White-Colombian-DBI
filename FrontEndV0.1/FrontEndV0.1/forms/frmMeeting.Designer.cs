@@ -31,14 +31,14 @@
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnActionItems = new System.Windows.Forms.Button();
             this.btnAgenda = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtMeetingMinutes = new System.Windows.Forms.TextBox();
             this.lblMeetingMinutes = new System.Windows.Forms.Label();
             this.txtClientName = new System.Windows.Forms.TextBox();
             this.lblClientName = new System.Windows.Forms.Label();
-            this.txtEmpID = new System.Windows.Forms.TextBox();
-            this.lblEmpID = new System.Windows.Forms.Label();
+            this.lblSupervisor = new System.Windows.Forms.Label();
             this.txtFinish = new System.Windows.Forms.TextBox();
             this.lblFinish = new System.Windows.Forms.Label();
             this.txtStart = new System.Windows.Forms.TextBox();
@@ -46,9 +46,8 @@
             this.cmbMeetingType = new System.Windows.Forms.ComboBox();
             this.lblMeetingType = new System.Windows.Forms.Label();
             this.gbIdentifyingInformation = new System.Windows.Forms.GroupBox();
-            this.txtTeamID = new System.Windows.Forms.TextBox();
             this.lblTeamID = new System.Windows.Forms.Label();
-            this.txtProjID = new System.Windows.Forms.TextBox();
+            this.txtMeetID = new System.Windows.Forms.TextBox();
             this.lblMeetingID = new System.Windows.Forms.Label();
             this.cbSemester = new System.Windows.Forms.ComboBox();
             this.cbUnitID = new System.Windows.Forms.ComboBox();
@@ -64,7 +63,8 @@
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cmbTeamID = new System.Windows.Forms.ComboBox();
+            this.cmbSupervisor = new System.Windows.Forms.ComboBox();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).BeginInit();
@@ -99,15 +99,15 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.cmbSupervisor);
             this.gbDetails.Controls.Add(this.button1);
             this.gbDetails.Controls.Add(this.btnActionItems);
             this.gbDetails.Controls.Add(this.btnAgenda);
-            this.gbDetails.Controls.Add(this.textBox2);
+            this.gbDetails.Controls.Add(this.txtMeetingMinutes);
             this.gbDetails.Controls.Add(this.lblMeetingMinutes);
             this.gbDetails.Controls.Add(this.txtClientName);
             this.gbDetails.Controls.Add(this.lblClientName);
-            this.gbDetails.Controls.Add(this.txtEmpID);
-            this.gbDetails.Controls.Add(this.lblEmpID);
+            this.gbDetails.Controls.Add(this.lblSupervisor);
             this.gbDetails.Controls.Add(this.txtFinish);
             this.gbDetails.Controls.Add(this.lblFinish);
             this.gbDetails.Controls.Add(this.txtStart);
@@ -122,6 +122,16 @@
             this.gbDetails.TabIndex = 45;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(336, 131);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 42);
+            this.button1.TabIndex = 52;
+            this.button1.Text = "Attendance";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnActionItems
             // 
@@ -143,14 +153,14 @@
             this.btnAgenda.Text = "View Agenda";
             this.btnAgenda.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtMeetingMinutes
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(15, 225);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(434, 70);
-            this.textBox2.TabIndex = 49;
+            this.txtMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeetingMinutes.Location = new System.Drawing.Point(15, 225);
+            this.txtMeetingMinutes.Multiline = true;
+            this.txtMeetingMinutes.Name = "txtMeetingMinutes";
+            this.txtMeetingMinutes.Size = new System.Drawing.Size(434, 70);
+            this.txtMeetingMinutes.TabIndex = 49;
             // 
             // lblMeetingMinutes
             // 
@@ -180,23 +190,15 @@
             this.lblClientName.TabIndex = 46;
             this.lblClientName.Text = "Client Name:";
             // 
-            // txtEmpID
+            // lblSupervisor
             // 
-            this.txtEmpID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmpID.Location = new System.Drawing.Point(157, 131);
-            this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.Size = new System.Drawing.Size(121, 26);
-            this.txtEmpID.TabIndex = 41;
-            // 
-            // lblEmpID
-            // 
-            this.lblEmpID.AutoSize = true;
-            this.lblEmpID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpID.Location = new System.Drawing.Point(20, 137);
-            this.lblEmpID.Name = "lblEmpID";
-            this.lblEmpID.Size = new System.Drawing.Size(116, 20);
-            this.lblEmpID.TabIndex = 45;
-            this.lblEmpID.Text = "Employee ID:";
+            this.lblSupervisor.AutoSize = true;
+            this.lblSupervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupervisor.Location = new System.Drawing.Point(20, 137);
+            this.lblSupervisor.Name = "lblSupervisor";
+            this.lblSupervisor.Size = new System.Drawing.Size(123, 20);
+            this.lblSupervisor.TabIndex = 45;
+            this.lblSupervisor.Text = "Supervisor ID:";
             // 
             // txtFinish
             // 
@@ -259,9 +261,9 @@
             // 
             // gbIdentifyingInformation
             // 
-            this.gbIdentifyingInformation.Controls.Add(this.txtTeamID);
+            this.gbIdentifyingInformation.Controls.Add(this.cmbTeamID);
             this.gbIdentifyingInformation.Controls.Add(this.lblTeamID);
-            this.gbIdentifyingInformation.Controls.Add(this.txtProjID);
+            this.gbIdentifyingInformation.Controls.Add(this.txtMeetID);
             this.gbIdentifyingInformation.Controls.Add(this.lblMeetingID);
             this.gbIdentifyingInformation.Controls.Add(this.cbYear);
             this.gbIdentifyingInformation.Controls.Add(this.cbSemester);
@@ -278,14 +280,6 @@
             this.gbIdentifyingInformation.TabStop = false;
             this.gbIdentifyingInformation.Text = "Identifying Information";
             // 
-            // txtTeamID
-            // 
-            this.txtTeamID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTeamID.Location = new System.Drawing.Point(156, 70);
-            this.txtTeamID.Name = "txtTeamID";
-            this.txtTeamID.Size = new System.Drawing.Size(121, 26);
-            this.txtTeamID.TabIndex = 40;
-            // 
             // lblTeamID
             // 
             this.lblTeamID.AutoSize = true;
@@ -297,13 +291,13 @@
             this.lblTeamID.Text = "Team ID:";
             this.lblTeamID.Click += new System.EventHandler(this.label1_Click);
             // 
-            // txtProjID
+            // txtMeetID
             // 
-            this.txtProjID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProjID.Location = new System.Drawing.Point(156, 25);
-            this.txtProjID.Name = "txtProjID";
-            this.txtProjID.Size = new System.Drawing.Size(121, 26);
-            this.txtProjID.TabIndex = 38;
+            this.txtMeetID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeetID.Location = new System.Drawing.Point(156, 25);
+            this.txtMeetID.Name = "txtMeetID";
+            this.txtMeetID.Size = new System.Drawing.Size(121, 26);
+            this.txtMeetID.TabIndex = 38;
             // 
             // lblMeetingID
             // 
@@ -446,15 +440,32 @@
             this.Year.HeaderText = "Year";
             this.Year.Name = "Year";
             // 
-            // button1
+            // cmbTeamID
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(336, 131);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 42);
-            this.button1.TabIndex = 52;
-            this.button1.Text = "Attendance";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cmbTeamID.FormattingEnabled = true;
+            this.cmbTeamID.Items.AddRange(new object[] {
+            "INF30011",
+            "INF20011"});
+            this.cmbTeamID.Location = new System.Drawing.Point(156, 72);
+            this.cmbTeamID.Name = "cmbTeamID";
+            this.cmbTeamID.Size = new System.Drawing.Size(121, 21);
+            this.cmbTeamID.TabIndex = 41;
+            // 
+            // cmbSupervisor
+            // 
+            this.cmbSupervisor.Enabled = false;
+            this.cmbSupervisor.FormattingEnabled = true;
+            this.cmbSupervisor.Items.AddRange(new object[] {
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020"});
+            this.cmbSupervisor.Location = new System.Drawing.Point(157, 137);
+            this.cmbSupervisor.Name = "cmbSupervisor";
+            this.cmbSupervisor.Size = new System.Drawing.Size(121, 21);
+            this.cmbSupervisor.TabIndex = 42;
             // 
             // frmMeeting
             // 
@@ -485,7 +496,7 @@
         public System.Windows.Forms.Button btnAdd;
         public System.Windows.Forms.GroupBox gbDetails;
         public System.Windows.Forms.GroupBox gbIdentifyingInformation;
-        public System.Windows.Forms.TextBox txtProjID;
+        public System.Windows.Forms.TextBox txtMeetID;
         public System.Windows.Forms.Label lblMeetingID;
         private System.Windows.Forms.ComboBox cbSemester;
         private System.Windows.Forms.ComboBox cbUnitID;
@@ -504,19 +515,19 @@
         public System.Windows.Forms.Label lblTeamID;
         public System.Windows.Forms.Label lblMeetingType;
         private System.Windows.Forms.ComboBox cmbMeetingType;
-        public System.Windows.Forms.TextBox txtTeamID;
         public System.Windows.Forms.Label lblStart;
         public System.Windows.Forms.TextBox txtStart;
         public System.Windows.Forms.TextBox txtClientName;
         public System.Windows.Forms.Label lblClientName;
-        public System.Windows.Forms.TextBox txtEmpID;
-        public System.Windows.Forms.Label lblEmpID;
+        public System.Windows.Forms.Label lblSupervisor;
         public System.Windows.Forms.TextBox txtFinish;
         public System.Windows.Forms.Label lblFinish;
         public System.Windows.Forms.Button btnActionItems;
         public System.Windows.Forms.Button btnAgenda;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox txtMeetingMinutes;
         public System.Windows.Forms.Label lblMeetingMinutes;
         public System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cmbSupervisor;
+        private System.Windows.Forms.ComboBox cmbTeamID;
     }
 }
