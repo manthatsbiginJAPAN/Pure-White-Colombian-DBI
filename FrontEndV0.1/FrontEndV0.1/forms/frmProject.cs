@@ -80,29 +80,24 @@ namespace FrontEndV0._1.forms
         private void populateUnitOfferings()
         {
             //Clear the grid
-            grdProjects.ClearSelection();
+            cbUnitID.Items.Clear();
+            cbSemester.Items.Clear();
+            cbYear.Items.Clear();
 
             //Populate the grid from the dataset
             int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
-            MessageBox.Show("Available Unit Offerings: " + rowcnt.ToString());
-            string unitid;
-            int sem;
-            int year;
+            object unitid = new object();
+            object sem = new object();
+            object year = new object();
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                //populate list box options...
-                unitid = cbUnitID.ToString();
-                sem = Convert.ToInt16(cbSemester.ToString());
-                year = Convert.ToInt16(cbYear.ToString());
+                unitid = unitoffs.Tables["unitoffcursor"].Rows[i][0].ToString();
+                sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
+                year = unitoffs.Tables["unitoffcursor"].Rows[i][2].ToString();
 
-                //unitid = unitoffs.Tables["unitoffcursor"].Rows[i][0].ToString();
-                //sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
-                //year = unitoffs.Tables["unitoffcursor"].Rows[i][2].ToString();
-
-                //ensures only one of each option
-                if (!cbUnitID.Items.Contains(unitid))
-                    cbUnitID.Items.Add(unitid);
+                if (!cbUnitID.Items.Contains(unitid.ToString()))
+                    cbUnitID.Items.Add(unitid.ToString());
                 if (!cbSemester.Items.Contains(sem))
                     cbSemester.Items.Add(sem);
                 if (!cbYear.Items.Contains(year))
@@ -164,11 +159,11 @@ namespace FrontEndV0._1.forms
         {
 
             //Logic and functions for save button
-          //  if (btnAdd.Text == "Save?")
-           // {
+            if (btnAdd.Text == "Save?")
+            {
                 //Command to add Unit
-             //   if (FormValidated())
-               // {
+                if (FormValidated())
+                {
                     OracleCommand cmd = new OracleCommand("UC1_5_Register_Unit", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -203,24 +198,49 @@ namespace FrontEndV0._1.forms
 
                     grdProjects.Enabled = true;
                     btnAdd.Text = "Add";
-                    Console.WriteLine(btnAdd.Text); //wut
-                //}
-            //}
-            //else
-            //{
+
+                }
+            }
+            else
+            {
                 //Enable buttons
-              //  gbIdentifyingInformation.Enabled = true;
-                //gbDetails.Enabled = true;
+                gbIdentifyingInformation.Enabled = true;
+                gbDetails.Enabled = true;
 
                 //Disable other buttons
-                //btnEdit.Enabled = false;
-                //btnDelete.Enabled = false;
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
 
                 //Change button text and deselect any unit from grid
-                //btnAdd.Text = "Save?";
-                //grdUnits.ClearSelection();
-                //grdUnits.Enabled = false;
-            //}
+                btnAdd.Text = "Save?";
+                grdProjects.ClearSelection();
+                grdProjects.Enabled = false;
+            }
+        }
+
+        private bool FormValidated()
+        {
+            //Track a cummulative error message, appending when a particular condition is not met
+            string ErrorMsg = null;
+
+            if (txtProjID == null)
+                ErrorMsg += Environment.NewLine + "Please enter a Project ID.";
+            if (cbUnitID.SelectedItem == null)
+                ErrorMsg += Environment.NewLine + "Please select a Unit ID.";
+            if (cbSemester.SelectedIndex == -1)
+                ErrorMsg += Environment.NewLine + "Please select a Semester.";
+            if (cbYear.SelectedItem == null)
+                ErrorMsg += Environment.NewLine + "Please select a Year.";
+
+            if (ErrorMsg != null)
+            {
+                MessageBox.Show(ErrorMsg, "Project Information Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
