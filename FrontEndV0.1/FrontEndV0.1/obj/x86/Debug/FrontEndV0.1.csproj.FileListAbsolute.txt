@@ -149,3 +149,6 @@ C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.
 D:\Swinburne\DI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmAgenda.resources
 D:\Swinburne\DI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmPeerAssessmentcs.resources
 D:\Swinburne\DI\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmTeamContribution.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmAgenda.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmPeerAssessmentcs.resources
+C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmTeamContribution.resources

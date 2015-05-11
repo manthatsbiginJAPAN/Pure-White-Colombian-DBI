@@ -110,7 +110,6 @@ namespace FrontEndV0._1.forms
 
             //Populate the grid from the dataset
             int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
-            MessageBox.Show("Available Unit offerings: " + rowcnt.ToString());
             object unitid = new object();
             object sem = new object();
             object year = new object();
@@ -141,7 +140,6 @@ namespace FrontEndV0._1.forms
 
             //Populate the grid from the dataset
             int rowcnt = students.Tables["stucursor"].Rows.Count;
-            MessageBox.Show("Available Student: " + rowcnt.ToString());
             object itm;
 
             for (int i = 0; i <= rowcnt - 1; i++)
