@@ -64,7 +64,7 @@
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(463, 91);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(183, 46);
             this.btnAdd.TabIndex = 0;
@@ -91,9 +91,9 @@
             this.gbIdentifyingInformation.Controls.Add(this.label2);
             this.gbIdentifyingInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbIdentifyingInformation.Location = new System.Drawing.Point(17, 81);
-            this.gbIdentifyingInformation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbIdentifyingInformation.Margin = new System.Windows.Forms.Padding(4);
             this.gbIdentifyingInformation.Name = "gbIdentifyingInformation";
-            this.gbIdentifyingInformation.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbIdentifyingInformation.Padding = new System.Windows.Forms.Padding(4);
             this.gbIdentifyingInformation.Size = new System.Drawing.Size(433, 347);
             this.gbIdentifyingInformation.TabIndex = 9;
             this.gbIdentifyingInformation.TabStop = false;
@@ -103,7 +103,7 @@
             // 
             this.clbEmpRoles.FormattingEnabled = true;
             this.clbEmpRoles.Items.AddRange(new object[] {
-            "Administrator",
+            "Admin",
             "Convenor",
             "Supervisor"});
             this.clbEmpRoles.Location = new System.Drawing.Point(176, 118);
@@ -127,7 +127,7 @@
             // 
             this.txtEmpID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmpID.Location = new System.Drawing.Point(176, 28);
-            this.txtEmpID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmpID.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmpID.Name = "txtEmpID";
             this.txtEmpID.Size = new System.Drawing.Size(132, 30);
             this.txtEmpID.TabIndex = 2;
@@ -147,7 +147,7 @@
             // 
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(463, 146);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(183, 46);
             this.btnEdit.TabIndex = 10;
@@ -159,7 +159,7 @@
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(463, 199);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(183, 46);
             this.btnDelete.TabIndex = 11;
@@ -181,9 +181,9 @@
             this.gbDetails.Controls.Add(this.label3);
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDetails.Location = new System.Drawing.Point(16, 450);
-            this.gbDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDetails.Margin = new System.Windows.Forms.Padding(4);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDetails.Padding = new System.Windows.Forms.Padding(4);
             this.gbDetails.Size = new System.Drawing.Size(629, 341);
             this.gbDetails.TabIndex = 10;
             this.gbDetails.TabStop = false;
@@ -193,7 +193,7 @@
             // 
             this.txtEmpPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmpPhone.Location = new System.Drawing.Point(467, 162);
-            this.txtEmpPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmpPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmpPhone.Name = "txtEmpPhone";
             this.txtEmpPhone.Size = new System.Drawing.Size(132, 30);
             this.txtEmpPhone.TabIndex = 7;
@@ -213,7 +213,7 @@
             // 
             this.txtEmpSName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmpSName.Location = new System.Drawing.Point(467, 57);
-            this.txtEmpSName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmpSName.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmpSName.Name = "txtEmpSName";
             this.txtEmpSName.Size = new System.Drawing.Size(132, 30);
             this.txtEmpSName.TabIndex = 5;
@@ -233,7 +233,7 @@
             // 
             this.txtEmpPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmpPass.Location = new System.Drawing.Point(152, 274);
-            this.txtEmpPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmpPass.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmpPass.Name = "txtEmpPass";
             this.txtEmpPass.Size = new System.Drawing.Size(132, 30);
             this.txtEmpPass.TabIndex = 8;
@@ -254,7 +254,7 @@
             // 
             this.txtEmpEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmpEmail.Location = new System.Drawing.Point(152, 162);
-            this.txtEmpEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmpEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmpEmail.Name = "txtEmpEmail";
             this.txtEmpEmail.Size = new System.Drawing.Size(132, 30);
             this.txtEmpEmail.TabIndex = 6;
@@ -274,7 +274,7 @@
             // 
             this.txtEmpFName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmpFName.Location = new System.Drawing.Point(155, 57);
-            this.txtEmpFName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmpFName.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmpFName.Name = "txtEmpFName";
             this.txtEmpFName.Size = new System.Drawing.Size(132, 30);
             this.txtEmpFName.TabIndex = 4;
@@ -306,7 +306,7 @@
             this.empPhone,
             this.empPassword});
             this.grdEmployeeInfo.Location = new System.Drawing.Point(655, 91);
-            this.grdEmployeeInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdEmployeeInfo.Margin = new System.Windows.Forms.Padding(4);
             this.grdEmployeeInfo.Name = "grdEmployeeInfo";
             this.grdEmployeeInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdEmployeeInfo.Size = new System.Drawing.Size(561, 700);
@@ -360,7 +360,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdd);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(394, 356);
             this.Name = "frmEmpDetails";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;

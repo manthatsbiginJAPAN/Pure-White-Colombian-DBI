@@ -104,7 +104,7 @@ namespace FrontEndV0._1.forms
                             switch (i)
                             {
                                 case 0:
-                                    cmd.Parameters.Add("role", "Administrator");
+                                    cmd.Parameters.Add("role", "Admin");
                                     connection.Open();
                                     cmd.ExecuteNonQuery();
                                     connection.Close();
@@ -234,6 +234,18 @@ namespace FrontEndV0._1.forms
                 "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (response == DialogResult.Yes)
             {
+                foreach (object role in clbEmpRoles.Items)
+                {
+                    OracleCommand cmd1 = new OracleCommand("UC1_28_Delete_Employee_Role", connection);
+                    cmd1.CommandType = CommandType.StoredProcedure;
+                    cmd1.Parameters.Add("empid", selectedempid);
+                    cmd1.Parameters.Add("role", role.ToString());
+
+                    connection.Open();
+                    cmd1.ExecuteNonQuery();
+                    connection.Close();
+                }
+
                 OracleCommand cmd = new OracleCommand("UC1_4_Delete_Employee", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("empid", selectedempid);
