@@ -102,10 +102,6 @@ namespace FrontEndV0._1.forms
                     cbSemester.Items.Add(sem);
                 if (!cbYear.Items.Contains(year))
                     cbYear.Items.Add(year);
-
-                //cbUnitID.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][0].ToString());
-                //cbSemester.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][1].ToString());
-                //cbYear.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][2]);
             }
         }
 
@@ -117,41 +113,12 @@ namespace FrontEndV0._1.forms
 
             //Populate the grid from the dataset
             int rowcnt = projects.Tables["projcursor"].Rows.Count;
-            MessageBox.Show("Available Projects: " + rowcnt.ToString());
-            string projid;
-            string projdesc;
-            string unitid;
-            int sem;
-            int year;
             object[] items;
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                //populate list box options...
-                //projid = txtProjID.Text.ToString();
-                //unitid = cbUnitID.ToString();
-                //sem = Convert.ToInt16(cbSemester.ToString());
-                //year = Convert.ToInt16(cbYear.ToString());
-
-                //populate the grid
-                //projid = projects.Tables["projcursor"].Rows[i][0].ToString();
-                //projdesc = projects.Tables["projcursor"].Rows[i][1].ToString();
-                //unitid = projects.Tables["projcursor"].Rows[i][2].ToString();
-                //sem = projects.Tables["projcursor"].Rows[i][3].ToString();
-                //year = projects.Tables["[projcursor"].Rows[i][4].ToString();
-
-                //if (!cbUnitID.Items.Contains(unitid))
-                //    cbUnitID.Items.Add(unitid);
-                //if (!cbSemester.Items.Contains(sem))
-                //    cbSemester.Items.Add(sem);
-                //if (!cbYear.Items.Contains(year))
-                //    cbYear.Items.Add(year);
                 items = projects.Tables["projcursor"].Rows[i].ItemArray;
                 grdProjects.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4] });
-
-                //cbUnitID.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][0].ToString());
-                //cbSemester.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][1].ToString());
-                //cbYear.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][2]);
             }
         }
 
@@ -241,6 +208,18 @@ namespace FrontEndV0._1.forms
             {
                 return true;
             }
+        }
+
+        private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbUnitID.SelectedIndex != -1)
+                cbSemester.Enabled = true;
+        }
+
+        private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbSemester.SelectedIndex != -1)
+                cbYear.Enabled = true;
         }
     }
 }
