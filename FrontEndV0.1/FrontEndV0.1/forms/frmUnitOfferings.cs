@@ -45,7 +45,7 @@ namespace FrontEndV0._1.forms
         private void getEmps()
         {
             //Oracle Command to populate the dataset
-            OracleCommand cmd = new OracleCommand("UC1_3_View_Employee", connection);
+            OracleCommand cmd = new OracleCommand("UC1_26_View_Employee_Role", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("empcursor", OracleDbType.RefCursor);
@@ -135,8 +135,12 @@ namespace FrontEndV0._1.forms
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                itm = emps.Tables["empcursor"].Rows[i][0].ToString();
-                cbConvenor.Items.Add(itm);
+                //add only employees who are listed as convenors
+                if (emps.Tables[0].Rows[i][1].ToString() == "Convenor")
+                {
+                    itm = emps.Tables["empcursor"].Rows[i][0].ToString();
+                    cbConvenor.Items.Add(itm);
+                }
             }
         }
 
@@ -307,7 +311,12 @@ namespace FrontEndV0._1.forms
                 cbYear.Enabled = true;
         }
 
-        private String oldEmpID = null;
+
+     
+        private String oldEmpID = null; //??? Wos dis?
+        
+
+        
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (btnEdit.Text == "Update?")
