@@ -109,7 +109,7 @@ namespace FrontEndV0._1.forms
         private void populateProjects()
         {
             //Clear the grid
-            grdProjects.ClearSelection();
+            grdProjects.Rows.Clear();
 
             //Populate the grid from the dataset
             int rowcnt = projects.Tables["projcursor"].Rows.Count;
@@ -131,7 +131,7 @@ namespace FrontEndV0._1.forms
                 //Command to add Unit
                 if (FormValidated())
                 {
-                    OracleCommand cmd = new OracleCommand("UC1_5_Register_Unit", connection);
+                    OracleCommand cmd = new OracleCommand("UC2_5_Register_Project", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("projid", txtProjID.Text);
@@ -145,6 +145,7 @@ namespace FrontEndV0._1.forms
                     connection.Close();
 
                     projects.Tables[0].Rows.Add(txtProjID.Text
+                        , txtProjDesc.Text
                         , cbUnitID.SelectedItem
                         , cbSemester.SelectedItem
                         , cbYear.SelectedItem);
@@ -162,10 +163,13 @@ namespace FrontEndV0._1.forms
 
                     //Clear textboxes
                     txtProjID.Clear();
+                    txtProjDesc.Clear();
+                    cbUnitID.SelectedIndex = -1;
+                    cbSemester.SelectedIndex = -1;
+                    cbYear.SelectedIndex = -1;
 
                     grdProjects.Enabled = true;
                     btnAdd.Text = "Add";
-
                 }
             }
             else
@@ -220,6 +224,115 @@ namespace FrontEndV0._1.forms
         {
             if (cbSemester.SelectedIndex != -1)
                 cbYear.Enabled = true;
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            //allows you to edit only the project description
+
+            //Logic and functions for save button
+            if (btnEdit.Text == "Update?")
+            {
+                //Command to add Employee
+                if (FormValidated())
+                {
+                    OracleCommand cmd = new OracleCommand("UC2_6_Update_Project", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("Projid", txtProjID.Text);
+                    cmd.Parameters.Add("ProjDesc", txtProjDesc.Text);
+                    cmd.Parameters.Add("UnitID", cbUnitID.Text);
+                    cmd.Parameters.Add("Semester", Convert.ToInt16(cbSemester.Text));
+                    cmd.Parameters.Add("Year", Convert.ToInt16(cbYear.Text));
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+
+                    //Repopulate Grid and notify user
+                    getProjects();
+                    populateProjects();
+                    MessageBox.Show("Project Updated");
+
+                    //Disable textboxes
+                    gbIdentifyingInformation.Enabled = false;
+                    gbDetails.Enabled = false;
+
+                    //Enable other buttons
+                    btnAdd.Enabled = true;
+                    btnDelete.Enabled = true;
+
+                    //Clear text- and combo-boxes
+                    txtProjID.Clear();
+                    txtProjDesc.Clear();
+                    cbUnitID.SelectedIndex = -1;
+                    cbSemester.SelectedIndex = -1;
+                    cbYear.SelectedIndex = -1;
+
+                    grdProjects.Enabled = true;
+                    btnEdit.Text = "Edit";
+                    Console.WriteLine(btnAdd.Text); //wut
+                }
+            }
+            else
+            {
+                //loading data into textboxes: find the row, load the data from the datagridset
+                int selectedrowindex = grdProjects.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
+                txtProjID.Text = grdProjects.Rows[selectedrowindex].Cells[0].Value.ToString();
+                txtProjDesc.Text = grdProjects.Rows[selectedrowindex].Cells[1].Value.ToString();
+                cbUnitID.SelectedItem = grdProjects.Rows[selectedrowindex].Cells[2].Value;
+                cbSemester.SelectedItem = grdProjects.Rows[selectedrowindex].Cells[3].Value.ToString();
+                cbYear.SelectedItem = grdProjects.Rows[selectedrowindex].Cells[4].Value.ToString();
+
+                //Enable textboxes
+                gbIdentifyingInformation.Enabled = true;
+                gbDetails.Enabled = true;
+
+                //Disable other buttons
+                gbIdentifyingInformation.Enabled = false;
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+
+                //Change button text and deselect any employee from grid
+                btnEdit.Text = "Update?";
+                grdProjects.ClearSelection();
+                grdProjects.Enabled = false;
+            }
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int selectedrowindex = grdProjects.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
+            string selectedprojid = grdProjects.Rows[selectedrowindex].Cells[0].Value.ToString(); //fetch the ID in that row
+            string selectedunitid = grdProjects.Rows[selectedrowindex].Cells[2].Value.ToString(); //fetch the ID in that row
+            string selectedsemester = grdProjects.Rows[selectedrowindex].Cells[3].Value.ToString(); //fetch the semester in that row
+            string selectedyear = grdProjects.Rows[selectedrowindex].Cells[4].Value.ToString(); //fetch the year in that row
+
+            DialogResult response = MessageBox.Show("Delete Project of " + selectedprojid +
+                    " for unit " + selectedunitid +
+                    ", semester " + selectedsemester +
+                    ", " + selectedyear + "?", //confirm with user
+                "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (response == DialogResult.Yes)
+            {
+                OracleCommand cmd = new OracleCommand("UC2_8_Delete_Project", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("projid", selectedprojid);
+                cmd.Parameters.Add("unitid", selectedunitid);
+                cmd.Parameters.Add("semester", selectedsemester);
+                cmd.Parameters.Add("year", selectedyear);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+                getUnitOfferings();
+                getProjects();
+                populateProjects();
+                MessageBox.Show("Project Deleted");
+            }
         }
     }
 }

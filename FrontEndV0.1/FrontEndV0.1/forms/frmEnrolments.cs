@@ -320,14 +320,22 @@ namespace FrontEndV0._1.forms
 
            // if (unitoffs.Tables[0].Columns[0].ToString() == cbUnitID.SelectedValue.ToString())
             {
-                cbSemester.Items.Add(unitoffs.Tables[0].Columns[1].ToString());
+                cbSemester.Items.Clear();
 
                 for (int i = 0; i <= rowcnt - 1; i++)
                 {
-                    sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
+                    //find the semesters where the unitID matches the selected one
+                    if (unitoffs.Tables[0].Rows[i][0].ToString() == cbUnitID.SelectedValue.ToString())
+                    {
+                        sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
 
-                    if (!cbSemester.Items.Contains(sem))
-                        cbSemester.Items.Add(sem);
+                        //only note one option for semesters once per instance
+                        if (!cbSemester.Items.Contains(sem))
+                            cbSemester.Items.Add(sem);
+
+                        //sort the list numerically/alphabetically
+                        cbSemester.Sorted = true;
+                    }
                 }
             }
         }
