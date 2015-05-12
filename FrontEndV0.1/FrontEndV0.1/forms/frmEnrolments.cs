@@ -127,11 +127,16 @@ namespace FrontEndV0._1.forms
                 if (!cbYear.Items.Contains(year))
                     cbYear.Items.Add(year);
 
+
                 //cbUnitID.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][0].ToString());
                 //cbSemester.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][1].ToString());
                 //cbYear.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][2]);
             }
+
+
+
         }
+
 
         private void populateStuIDs()
         {
@@ -309,6 +314,22 @@ namespace FrontEndV0._1.forms
         {
             if (cbUnitID.SelectedIndex != -1)
                 cbSemester.Enabled = true;
+
+            int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
+            object sem = new object();
+
+           // if (unitoffs.Tables[0].Columns[0].ToString() == cbUnitID.SelectedValue.ToString())
+            {
+                cbSemester.Items.Add(unitoffs.Tables[0].Columns[1].ToString());
+
+                for (int i = 0; i <= rowcnt - 1; i++)
+                {
+                    sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
+
+                    if (!cbSemester.Items.Contains(sem))
+                        cbSemester.Items.Add(sem);
+                }
+            }
         }
 
         private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
