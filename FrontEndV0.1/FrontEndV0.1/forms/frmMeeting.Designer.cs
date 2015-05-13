@@ -74,13 +74,6 @@
             // 
             this.cbYear.Enabled = false;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
             this.cbYear.Location = new System.Drawing.Point(155, 102);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
@@ -127,13 +120,6 @@
             // 
             this.cbSupervisor.Enabled = false;
             this.cbSupervisor.FormattingEnabled = true;
-            this.cbSupervisor.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
             this.cbSupervisor.Location = new System.Drawing.Point(157, 137);
             this.cbSupervisor.Name = "cbSupervisor";
             this.cbSupervisor.Size = new System.Drawing.Size(121, 21);
@@ -299,9 +285,6 @@
             // cbTeamID
             // 
             this.cbTeamID.FormattingEnabled = true;
-            this.cbTeamID.Items.AddRange(new object[] {
-            "INF30011",
-            "INF20011"});
             this.cbTeamID.Location = new System.Drawing.Point(156, 138);
             this.cbTeamID.Name = "cbTeamID";
             this.cbTeamID.Size = new System.Drawing.Size(121, 21);
@@ -311,9 +294,6 @@
             // 
             this.cbSemester.Enabled = false;
             this.cbSemester.FormattingEnabled = true;
-            this.cbSemester.Items.AddRange(new object[] {
-            "1",
-            "2"});
             this.cbSemester.Location = new System.Drawing.Point(155, 69);
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
@@ -323,7 +303,7 @@
             // 
             this.lblTeamID.AutoSize = true;
             this.lblTeamID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeamID.Location = new System.Drawing.Point(58, 136);
+            this.lblTeamID.Location = new System.Drawing.Point(67, 136);
             this.lblTeamID.Name = "lblTeamID";
             this.lblTeamID.Size = new System.Drawing.Size(82, 20);
             this.lblTeamID.TabIndex = 39;
@@ -333,9 +313,6 @@
             // cbUnitID
             // 
             this.cbUnitID.FormattingEnabled = true;
-            this.cbUnitID.Items.AddRange(new object[] {
-            "INF30011",
-            "INF20011"});
             this.cbUnitID.Location = new System.Drawing.Point(156, 38);
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
@@ -354,16 +331,16 @@
             // txtMeetID
             // 
             this.txtMeetID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetID.Location = new System.Drawing.Point(155, 175);
+            this.txtMeetID.Location = new System.Drawing.Point(220, 175);
             this.txtMeetID.Name = "txtMeetID";
-            this.txtMeetID.Size = new System.Drawing.Size(121, 26);
+            this.txtMeetID.Size = new System.Drawing.Size(56, 26);
             this.txtMeetID.TabIndex = 38;
             // 
             // lblYear
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYear.Location = new System.Drawing.Point(91, 100);
+            this.lblYear.Location = new System.Drawing.Point(97, 102);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(52, 20);
             this.lblYear.TabIndex = 13;
@@ -373,17 +350,17 @@
             // 
             this.lblMeetingID.AutoSize = true;
             this.lblMeetingID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingID.Location = new System.Drawing.Point(40, 178);
+            this.lblMeetingID.Location = new System.Drawing.Point(67, 181);
             this.lblMeetingID.Name = "lblMeetingID";
-            this.lblMeetingID.Size = new System.Drawing.Size(102, 20);
+            this.lblMeetingID.Size = new System.Drawing.Size(145, 20);
             this.lblMeetingID.TabIndex = 37;
-            this.lblMeetingID.Text = "Meeting ID:";
+            this.lblMeetingID.Text = "Meeting Number:";
             // 
             // lblUnitID
             // 
             this.lblUnitID.AutoSize = true;
             this.lblUnitID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitID.Location = new System.Drawing.Point(72, 36);
+            this.lblUnitID.Location = new System.Drawing.Point(78, 36);
             this.lblUnitID.Name = "lblUnitID";
             this.lblUnitID.Size = new System.Drawing.Size(71, 20);
             this.lblUnitID.TabIndex = 1;

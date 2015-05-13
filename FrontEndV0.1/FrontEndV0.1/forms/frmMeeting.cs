@@ -43,6 +43,26 @@ namespace FrontEndV0._1.forms
         }
 
 
+        private void getTeams()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_3_View_Team", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
+            cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            tms = new DataSet();
+
+            da.Fill(tms, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
+
+            connection.Close();
+        }
+
         private void getMeetings()
         {
             //Oracle Command to populate the dataset
@@ -64,25 +84,7 @@ namespace FrontEndV0._1.forms
             connection.Close();
         }
 
-        private void getTeams()
-        {
-            //Oracle Command to populate the dataset
-            OracleCommand cmd = new OracleCommand("UC2_3_View_Team", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
-            cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
-
-            connection.Open();
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            cmd.ExecuteNonQuery();
-
-            tms = new DataSet();
-
-            da.Fill(tms, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
-
-            connection.Close();
-        }
+       
 
        /* DONT NEED I THINK
         * private void getEmps()
@@ -133,6 +135,10 @@ namespace FrontEndV0._1.forms
         {
             //Clear boxes
             cbTeamID.Items.Clear();
+            cbUnitID.Items.Clear();
+            cbSemester.Items.Clear();
+            cbYear.Items.Clear();
+            cbSupervisor.Items.Clear();
 
             //Populate the boxes from the dataset
             int rowcnt = tms.Tables["teamcursor"].Rows.Count;
@@ -144,13 +150,13 @@ namespace FrontEndV0._1.forms
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                teamid = tms.Tables["teamcursor"].Rows[i][0].ToString();
+               // teamid = tms.Tables["teamcursor"].Rows[i][0].ToString();
                 unitid = tms.Tables["teamcursor"].Rows[i][2].ToString();
-                sem = tms.Tables["teamcursor"].Rows[i][3].ToString();
-                year = tms.Tables["teamcursor"].Rows[i][4].ToString();
-                sup = tms.Tables["teamcursor"].Rows[i][5].ToString();
+              //  sem = tms.Tables["teamcursor"].Rows[i][3].ToString();
+              //  year = tms.Tables["teamcursor"].Rows[i][4].ToString();
+              //  sup = tms.Tables["teamcursor"].Rows[i][5].ToString();
 
-                if (!cbUnitID.Items.Contains(unitid.ToString()))
+               // if (!cbUnitID.Items.Contains(unitid.ToString()))
                     cbUnitID.Items.Add(unitid.ToString());
 
               //uneeded:
@@ -181,45 +187,95 @@ namespace FrontEndV0._1.forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            OracleCommand cmd = new OracleCommand("UC3_2_Register_Meeting", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
+            //Logic and functions for save button
+            if (btnAdd.Text == "Save?")
+            {
+                //Command to add Unit
+                if (FormValidated())
+                {
+                    OracleCommand cmd = new OracleCommand("UC3_2_Register_Meeting", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("teamid", cbTeamID.SelectedItem.ToString());
-            cmd.Parameters.Add("meetingid", txtMeetID.Text);
-            cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
-            cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
-            cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem.ToString()));
-            cmd.Parameters.Add("meettype", cbMeetingType.SelectedItem.ToString());
-            cmd.Parameters.Add("starttime", Convert.ToDateTime(txtStart.Text));
-            cmd.Parameters.Add("finishtime",Convert.ToDateTime(txtFinish.Text));
-            cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
-            cmd.Parameters.Add("clientname", txtClientName.Text);
+                    cmd.Parameters.Add("teamid", cbTeamID.SelectedItem.ToString());
+                    cmd.Parameters.Add("meetingid", txtMeetID.Text);
+                    cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
+                    cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
+                    cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem.ToString()));
+                    cmd.Parameters.Add("meettype", cbMeetingType.SelectedItem.ToString());
+                    cmd.Parameters.Add("starttime", Convert.ToDateTime(txtStart.Text));
+                    cmd.Parameters.Add("finishtime", Convert.ToDateTime(txtFinish.Text));
+                    cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
+                    cmd.Parameters.Add("clientname", txtClientName.Text);
 
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
 
-            //Repopulate Dataset then Grid
-            getMeetings();
-            populateMeetingsGrid();
+                    //Repopulate Dataset then Grid
+                    getMeetings();
+                    populateMeetingsGrid();
 
-            //Disable buttons
-            gbIdentifyingInformation.Enabled = false;
+                    //Disable buttons
+                    gbIdentifyingInformation.Enabled = false;
 
-            //Enable other buttons
-            btnDelete.Enabled = true;
+                    //Enable other buttons
+                    btnDelete.Enabled = true;
 
-            //Clear textboxes/fields
-            cbTeamID.SelectedIndex = -1;
-            cbUnitID.SelectedIndex = -1;
-            cbSemester.SelectedIndex = -1;
-            cbYear.SelectedIndex = -1;
-            txtMeetID.Clear();
+                    //Clear textboxes/fields
+                    cbTeamID.SelectedIndex = -1;
+                    cbUnitID.SelectedIndex = -1;
+                    cbSemester.SelectedIndex = -1;
+                    cbYear.SelectedIndex = -1;
+                    txtMeetID.Clear();
 
-            grdMeetings.Enabled = true;
-            btnAdd.Text = "Add";
+                    grdMeetings.Enabled = true;
+                    btnAdd.Text = "Add";
+                }
+            } 
+
+            else
+            {
+                //Enable group boxes
+                gbIdentifyingInformation.Enabled = true;
+                gbDetails.Enabled = true;
+
+                //Disable other buttons
+                btnDelete.Enabled = false;
+                btnEdit.Enabled = false;
+
+                //Change button text and deselect any unit offering from grid
+                btnAdd.Text = "Save?";
+                grdMeetings.ClearSelection();
+                grdMeetings.Enabled = false;
+            }
         }
 
+        private bool FormValidated()
+        {
+            //Track a cummulative error message, appending when a particular condition is not met
+            string ErrorMsg = null;
+
+            if (cbUnitID.SelectedItem == null)
+                ErrorMsg += Environment.NewLine + "Please select a Unit ID.";
+            if (cbSemester.SelectedIndex == -1)
+                ErrorMsg += Environment.NewLine + "Please select a Semester.";
+            if (cbYear.SelectedItem == null)
+                ErrorMsg += Environment.NewLine + "Please select a Year.";
+            if (cbTeamID.SelectedItem == null)
+                ErrorMsg += Environment.NewLine + "Please select a Team ID.";
+            if (txtMeetID.Text == null)
+                ErrorMsg += Environment.NewLine + "Please enter a Meeting Number.";
+
+            if (ErrorMsg != null)
+            {
+                MessageBox.Show(ErrorMsg, "Meeting Information Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
         {
