@@ -1,4 +1,4 @@
-namespace FrontEndV0._1.forms
+﻿namespace FrontEndV0._1.forms
 {
     partial class frmStuDashboard
     {
@@ -28,28 +28,52 @@ namespace FrontEndV0._1.forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.viewUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.personalDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enrolmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.projectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.teamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administratorFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageEmployeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageUnitOfferingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageEnrolmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convenerFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageAssessmentsMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageAssessmentAllocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageTeamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewUnitOfferingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supervisorFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageMeetingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAssessmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewTeamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewProjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meetingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assessmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // viewUnitsToolStripMenuItem
+            // 
+            this.viewUnitsToolStripMenuItem.Name = "viewUnitsToolStripMenuItem";
+            this.viewUnitsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
+            this.viewUnitsToolStripMenuItem.Text = "View Units";
             // 
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personalDetailsToolStripMenuItem,
-            this.enrolmentsToolStripMenuItem,
-            this.projectsToolStripMenuItem,
-            this.teamsToolStripMenuItem,
+            this.administratorFunctionsToolStripMenuItem,
+            this.convenerFunctionsToolStripMenuItem,
+            this.supervisorFunctionsToolStripMenuItem,
             this.logoutToolStripMenuItem,
             this.meetingsToolStripMenuItem,
-            this.assessmentsToolStripMenuItem});
+            this.assessmentsToolStripMenuItem,
+            this.rightToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 33);
@@ -63,26 +87,136 @@ namespace FrontEndV0._1.forms
             this.personalDetailsToolStripMenuItem.Text = "Personal Details";
             this.personalDetailsToolStripMenuItem.Click += new System.EventHandler(this.personalDetailsToolStripMenuItem_Click);
             // 
-            // enrolmentsToolStripMenuItem
+            // administratorFunctionsToolStripMenuItem
             // 
-            this.enrolmentsToolStripMenuItem.Name = "enrolmentsToolStripMenuItem";
-            this.enrolmentsToolStripMenuItem.Size = new System.Drawing.Size(119, 29);
-            this.enrolmentsToolStripMenuItem.Text = "Enrolments";
-            this.enrolmentsToolStripMenuItem.Click += new System.EventHandler(this.enrolmentsToolStripMenuItem_Click);
+            this.administratorFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageToolStripMenuItem,
+            this.manageEmployeesToolStripMenuItem,
+            this.manageUnitsToolStripMenuItem,
+            this.manageUnitOfferingsToolStripMenuItem,
+            this.manageEnrolmentsToolStripMenuItem});
+            this.administratorFunctionsToolStripMenuItem.Enabled = false;
+            this.administratorFunctionsToolStripMenuItem.Name = "administratorFunctionsToolStripMenuItem";
+            this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(119, 29);
+            this.administratorFunctionsToolStripMenuItem.Text = "Enrolments";
             // 
-            // projectsToolStripMenuItem
+            // manageToolStripMenuItem
             // 
-            this.projectsToolStripMenuItem.Name = "projectsToolStripMenuItem";
-            this.projectsToolStripMenuItem.Size = new System.Drawing.Size(91, 29);
-            this.projectsToolStripMenuItem.Text = "Projects";
-            this.projectsToolStripMenuItem.Click += new System.EventHandler(this.projectsToolStripMenuItem_Click);
+            this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageToolStripMenuItem.Text = "Manage Students";
             // 
-            // teamsToolStripMenuItem
+            // manageEmployeesToolStripMenuItem
             // 
-            this.teamsToolStripMenuItem.Name = "teamsToolStripMenuItem";
-            this.teamsToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
-            this.teamsToolStripMenuItem.Text = "Teams";
-            this.teamsToolStripMenuItem.Click += new System.EventHandler(this.teamsToolStripMenuItem_Click);
+            this.manageEmployeesToolStripMenuItem.Name = "manageEmployeesToolStripMenuItem";
+            this.manageEmployeesToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageEmployeesToolStripMenuItem.Text = "Manage Employees";
+            // 
+            // manageUnitsToolStripMenuItem
+            // 
+            this.manageUnitsToolStripMenuItem.Name = "manageUnitsToolStripMenuItem";
+            this.manageUnitsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageUnitsToolStripMenuItem.Text = "Manage Units";
+            // 
+            // manageUnitOfferingsToolStripMenuItem
+            // 
+            this.manageUnitOfferingsToolStripMenuItem.Name = "manageUnitOfferingsToolStripMenuItem";
+            this.manageUnitOfferingsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageUnitOfferingsToolStripMenuItem.Text = "Manage Unit Offerings";
+            // 
+            // manageEnrolmentsToolStripMenuItem
+            // 
+            this.manageEnrolmentsToolStripMenuItem.Name = "manageEnrolmentsToolStripMenuItem";
+            this.manageEnrolmentsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageEnrolmentsToolStripMenuItem.Text = "Manage Enrolments";
+            // 
+            // convenerFunctionsToolStripMenuItem
+            // 
+            this.convenerFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageAssessmentsMasterToolStripMenuItem,
+            this.manageAssessmentAllocationsToolStripMenuItem,
+            this.manageTeamsToolStripMenuItem,
+            this.viewUnitsToolStripMenuItem,
+            this.viewUnitOfferingsToolStripMenuItem});
+            this.convenerFunctionsToolStripMenuItem.Enabled = false;
+            this.convenerFunctionsToolStripMenuItem.Name = "convenerFunctionsToolStripMenuItem";
+            this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(91, 29);
+            this.convenerFunctionsToolStripMenuItem.Text = "Projects";
+            // 
+            // manageAssessmentsMasterToolStripMenuItem
+            // 
+            this.manageAssessmentsMasterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.masterToolStripMenuItem,
+            this.allocationsToolStripMenuItem});
+            this.manageAssessmentsMasterToolStripMenuItem.Name = "manageAssessmentsMasterToolStripMenuItem";
+            this.manageAssessmentsMasterToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
+            this.manageAssessmentsMasterToolStripMenuItem.Text = "Manage Assessments";
+            // 
+            // masterToolStripMenuItem
+            // 
+            this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
+            this.masterToolStripMenuItem.Size = new System.Drawing.Size(177, 30);
+            this.masterToolStripMenuItem.Text = "Master";
+            // 
+            // allocationsToolStripMenuItem
+            // 
+            this.allocationsToolStripMenuItem.Name = "allocationsToolStripMenuItem";
+            this.allocationsToolStripMenuItem.Size = new System.Drawing.Size(177, 30);
+            this.allocationsToolStripMenuItem.Text = "Allocations";
+            // 
+            // manageAssessmentAllocationsToolStripMenuItem
+            // 
+            this.manageAssessmentAllocationsToolStripMenuItem.Name = "manageAssessmentAllocationsToolStripMenuItem";
+            this.manageAssessmentAllocationsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
+            this.manageAssessmentAllocationsToolStripMenuItem.Text = "Manage Projects";
+            // 
+            // manageTeamsToolStripMenuItem
+            // 
+            this.manageTeamsToolStripMenuItem.Name = "manageTeamsToolStripMenuItem";
+            this.manageTeamsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
+            this.manageTeamsToolStripMenuItem.Text = "Manage Teams";
+            // 
+            // viewUnitOfferingsToolStripMenuItem
+            // 
+            this.viewUnitOfferingsToolStripMenuItem.Name = "viewUnitOfferingsToolStripMenuItem";
+            this.viewUnitOfferingsToolStripMenuItem.Size = new System.Drawing.Size(263, 30);
+            this.viewUnitOfferingsToolStripMenuItem.Text = "View Unit Offerings";
+            // 
+            // supervisorFunctionsToolStripMenuItem
+            // 
+            this.supervisorFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageMeetingsToolStripMenuItem,
+            this.viewAssessmentsToolStripMenuItem,
+            this.viewTeamsToolStripMenuItem,
+            this.viewProjectsToolStripMenuItem});
+            this.supervisorFunctionsToolStripMenuItem.Enabled = false;
+            this.supervisorFunctionsToolStripMenuItem.Name = "supervisorFunctionsToolStripMenuItem";
+            this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
+            this.supervisorFunctionsToolStripMenuItem.Text = "Teams";
+            // 
+            // manageMeetingsToolStripMenuItem
+            // 
+            this.manageMeetingsToolStripMenuItem.Name = "manageMeetingsToolStripMenuItem";
+            this.manageMeetingsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
+            this.manageMeetingsToolStripMenuItem.Text = "Manage Meetings";
+            // 
+            // viewAssessmentsToolStripMenuItem
+            // 
+            this.viewAssessmentsToolStripMenuItem.Name = "viewAssessmentsToolStripMenuItem";
+            this.viewAssessmentsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
+            this.viewAssessmentsToolStripMenuItem.Text = "View Assessments";
+            // 
+            // viewTeamsToolStripMenuItem
+            // 
+            this.viewTeamsToolStripMenuItem.Name = "viewTeamsToolStripMenuItem";
+            this.viewTeamsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
+            this.viewTeamsToolStripMenuItem.Text = "View Teams";
+            // 
+            // viewProjectsToolStripMenuItem
+            // 
+            this.viewProjectsToolStripMenuItem.Name = "viewProjectsToolStripMenuItem";
+            this.viewProjectsToolStripMenuItem.Size = new System.Drawing.Size(236, 30);
+            this.viewProjectsToolStripMenuItem.Text = "View Projects";
             // 
             // logoutToolStripMenuItem
             // 
@@ -99,14 +233,18 @@ namespace FrontEndV0._1.forms
             this.meetingsToolStripMenuItem.Name = "meetingsToolStripMenuItem";
             this.meetingsToolStripMenuItem.Size = new System.Drawing.Size(102, 29);
             this.meetingsToolStripMenuItem.Text = "Meetings";
-            this.meetingsToolStripMenuItem.Click += new System.EventHandler(this.meetingsToolStripMenuItem_Click);
             // 
             // assessmentsToolStripMenuItem
             // 
             this.assessmentsToolStripMenuItem.Name = "assessmentsToolStripMenuItem";
             this.assessmentsToolStripMenuItem.Size = new System.Drawing.Size(129, 29);
             this.assessmentsToolStripMenuItem.Text = "Assessments";
-            this.assessmentsToolStripMenuItem.Click += new System.EventHandler(this.assessmentsToolStripMenuItem_Click);
+            // 
+            // rightToolStripMenuItem
+            // 
+            this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
+            this.rightToolStripMenuItem.Size = new System.Drawing.Size(184, 29);
+            this.rightToolStripMenuItem.Text = "Makes sense right?";
             // 
             // frmStuDashboard
             // 
@@ -127,13 +265,30 @@ namespace FrontEndV0._1.forms
 
         #endregion
 
+        private System.Windows.Forms.ToolStripMenuItem viewUnitsToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem personalDetailsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem enrolmentsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem projectsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teamsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem administratorFunctionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageEmployeesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageUnitsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageUnitOfferingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageEnrolmentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convenerFunctionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageAssessmentsMasterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allocationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageAssessmentAllocationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageTeamsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewUnitOfferingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supervisorFunctionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageMeetingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewAssessmentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewTeamsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewProjectsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem meetingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assessmentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rightToolStripMenuItem;
     }
 }

@@ -13,6 +13,7 @@ namespace FrontEndV0._1.forms
 {
     public partial class frmTeamContribution : Form
     {
+
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
 
