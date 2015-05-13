@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -52,37 +52,46 @@ namespace FrontEndV0._1.forms
             frm.Hide();
         }
 
-
-
-        private void openTeamForm()
-        {
-            frmTeamDetails.FormClosing += closeForm;
-            frmTeamDetails.Show();
-        }
-
-        private void openProjectForm()
-        {
-            frmProject.FormClosing += closeForm;
-            frmProject.Show();
-        }
-
-        private void openAssessmentForm()
-        {
-            frmAssessment.FormClosing += closeForm;
-            frmAssessment.Show();
-        }
-
-
         private void personalDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmStuDetails.FormClosing += closeForm;
             frmStuDetails.Show();
         }
 
+        private void enrolmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEnrolments.FormClosing += closeForm;
+            frmEnrolments.Show();
+        }
+
+        private void projectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProject.FormClosing += closeForm;
+            frmProject.Show();
+        }
+
+        private void teamsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTeamDetails.FormClosing += closeForm;
+            frmTeamDetails.Show();
+        }
+
+        private void meetingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMeeting.FormClosing += closeForm;
+            frmMeeting.Show();
+        }
+
+        private void assessmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAssessment.FormClosing += closeForm;
+            frmAssessment.Show();
+        }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
     }
 }
