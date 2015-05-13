@@ -11,9 +11,17 @@ namespace FrontEndV0._1.forms
 {
     public partial class frmTeamContribution : Form
     {
-        public frmTeamContribution()
+        private frmAssessment _parent;
+
+        public frmTeamContribution(frmAssessment parent)
         {
             InitializeComponent();
+
+            _parent = parent;
+
+            _parent.populateAssGrid(this.grdAssessmentsInfo);
         }
+
+
     }
 }
