@@ -1031,10 +1031,9 @@ create or replace PROCEDURE UC2_21_Register_AssTask
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
-	pTaskDesc varchar2,
-	pDueDate date) AS
+	pTaskDesc varchar2) AS
 BEGIN
-	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear, pTaskDesc, pDueDate);
+	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear, pTaskDesc);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1050,12 +1049,10 @@ create or replace PROCEDURE UC2_22_Update_AssTask
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
-	pTaskDesc varchar2,
-	pDueDate date) AS
+	pTaskDesc varchar2) AS
 BEGIN
 	UPDATE AssessmentTask
-	SET TaskDesc = pTaskDesc,
-		DueDate = pDueDate
+	SET TaskDesc = pTaskDesc
 	WHERE TaskID = pTaskID and
 		AssId = pAssID and
 		UnitId = pUnitID and
@@ -1118,10 +1115,9 @@ create or replace PROCEDURE UC2_25_Register_AssCrit
 	pSemester number,
 	pYear number,
 	pGeneral varchar2,
-	pSpecific varchar2,
-	pDueDate date) AS
+	pSpecific varchar2) AS
 BEGIN
-	INSERT INTO AssessmentCriterion VALUES (pCriterionID, pAssID, pUnitID, pSemester, pYear, pGeneral, pSpecific, pDueDate);
+	INSERT INTO AssessmentCriterion VALUES (pCriterionID, pAssID, pUnitID, pSemester, pYear, pGeneral, pSpecific);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1138,13 +1134,11 @@ create or replace PROCEDURE UC2_26_Update_AssCrit
 	pSemester number,
 	pYear number,
 	pGeneral varchar2,
-	pSpecific varchar2,
-	pDueDate date) AS
+	pSpecific varchar2) AS
 BEGIN
 	UPDATE AssessmentCriterion
 	SET General = pGeneral,
-		Specific = pSpecific,
-		DueDate = pDueDate
+		Specific = pSpecific
 	WHERE CriterionID = pCriterionID and
 		AssId = pAssID and
 		UnitId = pUnitID and
@@ -1208,10 +1202,9 @@ create or replace PROCEDURE UC2_29_Register_StuHours
 	pYear number,
 	pTeamID varchar2,
 	pPeriod number,
-	pHours number,
-	pDateSubmitted date) AS
+	pHours number) AS
 BEGIN
-	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pHours, pDateSubmitted);
+	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pHours);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1230,13 +1223,11 @@ create or replace PROCEDURE UC2_30_Update_StuHours
 	pYear number,
 	pTeamID varchar2,
 	pPeriod number,
-	pHours number,
-	pDateSubmitted date) AS
+	pHours number) AS
 BEGIN
 	UPDATE StudentHours
 	SET Period = pPeriod,
-		Hours = pHours,
-		DateSubmitted = pDateSubmitted
+		Hours = pHours
 	WHERE TaskID = pTaskID and
 		StuID = pStuID and
 		AssId = pAssID and
@@ -1303,10 +1294,9 @@ create or replace PROCEDURE UC2_33_Register_StuRatings
 	pSemester number,
 	pYear number,
 	pTeamID varchar2,
-	pRating number,
-	pDateSubmitted date) AS
+	pRating number) AS
 BEGIN
-	INSERT INTO StudentRatings VALUES (pCriterionID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pRating, pDateSubmitted);
+	INSERT INTO StudentRatings VALUES (pCriterionID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pRating);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1324,12 +1314,10 @@ create or replace PROCEDURE UC2_34_Update_StuRatings
 	pSemester number,
 	pYear number,
 	pTeamID varchar2,
-	pRating number,
-	pDateSubmitted date) AS
+	pRating number) AS
 BEGIN
 	UPDATE StudentRatings
-	SET Rating = pRating,
-		DateSubmitted = pDateSubmitted
+	SET Rating = pRating
 	WHERE CriterionID = pCriterionID and
 		StuID = pStuID and
 		AssId = pAssID and
@@ -1410,8 +1398,8 @@ End;
 
 /
 CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
-		(pTeamID varchar2,
-	pMeetingID number,
+		(pMeetingID number,
+	pTeamID varchar2,
 	pUnitID varchar2,
 	pSemester number,
 	pYear number,
@@ -1422,10 +1410,10 @@ CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
 	pEmpID varchar2,
 	pClientName varchar2) AS
 BEGIN
-	INSERT INTO Meeting VALUES (pTeamID, pMeetingID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
+	INSERT INTO Meeting VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists for '|| pUnitID|| ', '|| pSemester|| ', '|| pYear);
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
 END;
@@ -1433,17 +1421,17 @@ END;
 /
 
 CREATE or REPLACE PROCEDURE UC3_3_Update_Meeting
-		(pTeamID varchar2,
-	pMeetingID number,
-	pUnitID varchar2,
-	pSemester number,
-	pYear number,
-	pMeetType varchar2,
-	pStartTime date,
-	pFinishTime date,
-	pMinutes varchar2,
-	pEmpID varchar2,
-	pClientName varchar2) AS
+		(pMeetingID number,
+		pTeamID varchar2,
+		pUnitID varchar2,
+		pSemester number,
+		pYear number,
+		pMeetType varchar2,
+		pStartTime date,
+		pFinishTime date,
+		pMinutes varchar2,
+		pEmpID varchar2,
+		pClientName varchar2) AS
 BEGIN
 	UPDATE Meeting
 	SET MeetType = pMeetType,
@@ -1452,8 +1440,8 @@ BEGIN
 		Minutes = pMinutes,
 		EmpID = pEmpID,
 		ClientName = pClientName 
-	WHERE TeamID = pTeamID and
-		MeetingID = pMeetingID and
+	WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
 		UnitID = pUnitID and
 		Semester = pSemester and
 		Year = pYear;
@@ -1466,15 +1454,15 @@ END;
 
 
 CREATE or REPLACE PROCEDURE UC3_4_Delete_Meeting
-		(pTeamID varchar2,
-	pMeetingID number,
+		(pMeetingID number,
+	pTeamID varchar2,
 	pUnitID varchar2,
 	pSemester number,
 	pYear number) AS
 BEGIN
 	Delete Meeting
-	WHERE TeamID = pTeamID and
-		MeetingID = pMeetingID and
+	WHERE MeetingID = pMeetingID and
+		TeamID = pTeamID and
 		UnitID = pUnitID and
 		Semester = pSemester and
 		Year = pYear;

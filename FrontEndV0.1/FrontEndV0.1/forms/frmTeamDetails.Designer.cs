@@ -412,7 +412,6 @@
             this.btnAddStu.TabIndex = 28;
             this.btnAddStu.Text = "Add Student";
             this.btnAddStu.UseVisualStyleBackColor = true;
-            this.btnAddStu.Click += new System.EventHandler(this.btnAddStu_Click);
             // 
             // btnDeleteStu
             // 
@@ -424,7 +423,6 @@
             this.btnDeleteStu.TabIndex = 29;
             this.btnDeleteStu.Text = "Delete Student";
             this.btnDeleteStu.UseVisualStyleBackColor = true;
-            this.btnDeleteStu.Click += new System.EventHandler(this.btnDeleteStu_Click);
             // 
             // txtStuID
             // 

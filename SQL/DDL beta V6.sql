@@ -141,7 +141,6 @@ TaskID number(2)
 , Semester number(2)
 , Year number(4)
 , TaskDesc varchar2(50)
-, DueDate date
 , PRIMARY KEY (TaskID, AssID, UnitID, Semester, Year)
 , FOREIGN KEY (AssID, UnitID, Semester, Year) REFERENCES Assessment
 );
@@ -157,7 +156,6 @@ CriterionID number(2)
 , Year number(4)
 , General varchar2(30)
 , Specific varchar2(100)
-, DueDate date
 , PRIMARY KEY (CriterionID, AssID, UnitID, Semester, Year)
 , FOREIGN KEY (AssID, UnitID, Semester, Year) REFERENCES Assessment
 );
@@ -217,7 +215,6 @@ TaskID number(2)
 , TeamID varchar2(10)
 , Period number(2)
 , Hours number(3)
-, DateSubmitted date
 , PRIMARY KEY (TaskID, StuID, AssID, UnitID, Semester, Year)
 , FOREIGN KEY (TaskID, AssID, UnitID, Semester, Year) REFERENCES AssessmentTask
 , FOREIGN KEY (TeamID, UnitID, Semester, Year, StuID) REFERENCES StudentTeamAllocation
@@ -234,7 +231,6 @@ CriterionID number(2)
 , Year number(4)
 , TeamID varchar2(10)
 , Rating number(1)
-, DateSubmitted date
 , PRIMARY KEY (CriterionID, StuID, AssID, UnitID, Semester, Year)
 , FOREIGN KEY (CriterionID, AssID, UnitID, Semester, Year) REFERENCES AssessmentCriterion
 , FOREIGN KEY (TeamID, UnitID, Semester, Year, StuID) REFERENCES StudentTeamAllocation
