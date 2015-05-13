@@ -17,6 +17,7 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
         private DataSet ds;
         private DataSet teams;
+        private DataSet teamallocs;
         private DataSet unitoffs;
         private DataSet projects;
 
@@ -32,11 +33,13 @@ namespace FrontEndV0._1.forms
             getProjects();
             getUnitOfferings();
             getEmployees();
+            getTeamAllocs();
 
             populateTeamGrid();
             populateSupervisors();
             populateProjects();
             populateUnitOfferings();
+            populateTeamAllocs();
         }
 
         #region getData
@@ -116,6 +119,26 @@ namespace FrontEndV0._1.forms
             ds = new DataSet();
 
             da.Fill(ds, "empcursor", (OracleRefCursor)(cmd.Parameters["empcursor"].Value));
+
+            connection.Close();
+        }
+
+        private void getTeamAllocs()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_18_View_Team_Allo", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("talloccursor", OracleDbType.RefCursor);
+            cmd.Parameters["talloccursor"].Direction = ParameterDirection.ReturnValue;
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            teamallocs = new DataSet();
+
+            da.Fill(teamallocs, "talloccursor", (OracleRefCursor)(cmd.Parameters["talloccursor"].Value));
 
             connection.Close();
         }
@@ -206,6 +229,21 @@ namespace FrontEndV0._1.forms
                 }
             }
         }
+
+        private void populateTeamAllocs()
+        {
+            //Clear the grid
+            grdTeamAllocation.Rows.Clear();
+
+            //Populate the grid from the dataset
+            int rowcnt = teamallocs.Tables["talloccursor"].Rows.Count;
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                object[] items = teamallocs.Tables[0].Rows[i].ItemArray;
+                grdTeamAllocation.Rows.Add(new object[] { items[0], items[1]});
+            }
+        }
         #endregion
 
         #region BtnPress
@@ -220,14 +258,14 @@ namespace FrontEndV0._1.forms
                     OracleCommand cmd = new OracleCommand("UC2_1_REGISTER_TEAM", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 100;
-
+                    
                     cmd.Parameters.Add("teamID", txtTeamID.Text);
                     cmd.Parameters.Add("projID", cbProjID.SelectedItem);
                     cmd.Parameters.Add("unitID", cbUnitID.SelectedItem);
-                    cmd.Parameters.Add("semester", cbSemester.SelectedItem);
-                    cmd.Parameters.Add("year", cbYear.SelectedItem);
+                    cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
+                    cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem.ToString()));
                     cmd.Parameters.Add("empID", cbSupervisor.SelectedItem);
-                    cmd.Parameters.Add("role", "supervisor");
+                    cmd.Parameters.Add("role", "Supervisor");
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
@@ -271,6 +309,8 @@ namespace FrontEndV0._1.forms
                 cbUnitID.Enabled = true;
                 cbSemester.Enabled = true;
                 cbYear.Enabled = true;
+
+                gbDetails.Enabled = true;
                 cbSupervisor.Enabled = true;
                 txtStuID.Enabled = true;
 
@@ -400,12 +440,86 @@ namespace FrontEndV0._1.forms
                 grdTeamInfo.Enabled = false;
             }
         }
+
+        private void btnAddStu_Click(object sender, EventArgs e)
+        {
+            //Logic and functions for save button
+            if (btnAddStu.Text == "Save?")
+            {
+                //Command to add team
+                if (FormValidated() && txtStuID.Text.Length>0)
+                {
+                    OracleCommand cmd = new OracleCommand("UC2_17_Register_Team_Allo", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 100;
+
+                    cmd.Parameters.Add("teamID", txtTeamID.Text);
+                    cmd.Parameters.Add("stuID", txtStuID.Text);
+                    cmd.Parameters.Add("unitID", cbUnitID.SelectedItem);
+                    cmd.Parameters.Add("semester", cbSemester.SelectedItem);
+                    cmd.Parameters.Add("year", cbYear.SelectedItem);
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+
+                    teams.Tables[0].Rows.Add(txtTeamID.Text
+                        , txtStuID.Text);
+
+
+                    //Repopulate Grid
+                    populateTeamAllocs();
+
+                    //Disable buttons
+                    txtTeamID.Enabled = false;
+                    txtStuID.Enabled = false;
+
+                    //Enable other buttons
+                    btnEdit.Enabled = true;
+                    btnDelete.Enabled = true;
+
+                    //Clear textboxes
+                    txtTeamID.Clear();
+                    txtStuID.Clear();
+
+                    btnAddStu.Text = "Add";
+                }
+            }
+            else
+            {
+                gbIdentifyingInformation.Enabled = true;
+                //Enable buttons
+                txtTeamID.Enabled = true;
+                cbUnitID.Enabled = true;
+                cbSemester.Enabled = true;
+                cbYear.Enabled = true;
+
+                gbDetails.Enabled = true;
+                cbSupervisor.Enabled = true;
+                txtStuID.Enabled = true;
+
+                //Disable other buttons
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+
+                //Change button text and deselect any employee from grid
+                btnAdd.Text = "Save?";
+                grdTeamInfo.ClearSelection();
+            }
+        }
+
+        private void btnDeleteStu_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
 
         private bool FormValidated()
         {
             return true;
         }
+
 
     }
 }
