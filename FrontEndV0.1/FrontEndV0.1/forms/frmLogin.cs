@@ -61,8 +61,13 @@ namespace FrontEndV0._1.forms
                     else
                     {
                         //load in all student rows
+                        getStudents();
+
                         //search dataset by stuID (username), returning a row if it exists
+                        //
                         //check if password matches before confirming login
+
+
                     }
                 }
 
@@ -118,6 +123,26 @@ namespace FrontEndV0._1.forms
             students = new DataSet();
 
             da.Fill(students, "stucursor", (OracleRefCursor)(cmd.Parameters["stucursor"].Value));
+
+            connection.Close();
+        }
+
+        private void getEmployees()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC1_3_View_Employee", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("empcursor", OracleDbType.RefCursor);
+            cmd.Parameters["empcursor"].Direction = ParameterDirection.ReturnValue;
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            employees = new DataSet();
+
+            da.Fill(employees, "empcursor", (OracleRefCursor)(cmd.Parameters["empcursor"].Value));
 
             connection.Close();
         }
