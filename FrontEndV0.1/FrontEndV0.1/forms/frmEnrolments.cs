@@ -120,18 +120,16 @@ namespace FrontEndV0._1.forms
                 sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
                 year = unitoffs.Tables["unitoffcursor"].Rows[i][2].ToString();
 
+                //add the available unitID to the combo box
                 if (!cbUnitID.Items.Contains(unitid.ToString()))
                     cbUnitID.Items.Add(unitid.ToString());
-                if (!cbSemester.Items.Contains(sem))
-                    cbSemester.Items.Add(sem);
-                if (!cbYear.Items.Contains(year))
-                    cbYear.Items.Add(year);
-
+                
                 //cbUnitID.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][0].ToString());
                 //cbSemester.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][1].ToString());
                 //cbYear.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][2]);
             }
         }
+
 
         private void populateStuIDs()
         {
@@ -189,7 +187,8 @@ namespace FrontEndV0._1.forms
                     //    , cbSemester.SelectedItem
                     //    , cbYear.SelectedItem);
 
-                    //Repopulate Grid
+                    //Repopulate Dataset then Grid
+                    getEnrolments();
                     populateEnrolmentsGrid();
 
                     //Disable buttons
@@ -205,7 +204,6 @@ namespace FrontEndV0._1.forms
 
                     grdEnrolments.Enabled = true;
                     btnAdd.Text = "Add";
-                    //Console.WriteLine(btnAdd.Text); //wut
                 }
             }
             else
@@ -309,12 +307,52 @@ namespace FrontEndV0._1.forms
         {
             if (cbUnitID.SelectedIndex != -1)
                 cbSemester.Enabled = true;
+
+            int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
+            object sem = new object();
+            cbSemester.Items.Clear();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                //find the semesters where the unitID matches the selected one
+                if (unitoffs.Tables[0].Rows[i][0].ToString() == cbUnitID.SelectedItem.ToString())
+                {
+                    sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
+
+                    //only note one option for semesters once per instance
+                    if (!cbSemester.Items.Contains(sem))
+                        cbSemester.Items.Add(sem);
+
+                    //sort the list numerically/alphabetically
+                    cbSemester.Sorted = true;
+                }
+            }
         }
 
         private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbSemester.SelectedIndex != -1)
                 cbYear.Enabled = true;
+
+            int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
+            object year = new object();
+            cbYear.Items.Clear();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                //find the semesters where the unitID matches the selected one
+                if (unitoffs.Tables[0].Rows[i][0].ToString() == cbUnitID.SelectedItem.ToString() && unitoffs.Tables[0].Rows[i][1].ToString() == cbSemester.SelectedItem.ToString())
+                {
+                    year = unitoffs.Tables["unitoffcursor"].Rows[i][2].ToString();
+
+                    //only note one option for semesters once per instance
+                    if (!cbYear.Items.Contains(year))
+                        cbYear.Items.Add(year);
+
+                    //sort the list numerically/alphabetically
+                    cbYear.Sorted = true;
+                }
+            }
         }
     }
 }

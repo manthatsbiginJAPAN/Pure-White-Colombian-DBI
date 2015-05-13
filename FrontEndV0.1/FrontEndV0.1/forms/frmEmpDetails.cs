@@ -17,7 +17,7 @@ namespace FrontEndV0._1.forms
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
         private DataSet ds;
-        private DataSet emproles; //to be used for storing emp roles when we implement it...
+        //private DataSet emproles; //to be used for storing emp roles when we implement it...
 
         public frmEmpDetails()
         {

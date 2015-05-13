@@ -66,13 +66,6 @@
             // 
             this.cbYear.Enabled = false;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
             this.cbYear.Location = new System.Drawing.Point(155, 204);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);

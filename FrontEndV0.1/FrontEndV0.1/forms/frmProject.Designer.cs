@@ -93,6 +93,7 @@
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
             this.cbSemester.TabIndex = 35;
+            this.cbSemester.SelectedIndexChanged += new System.EventHandler(this.cbSemester_SelectedIndexChanged);
             // 
             // cbUnitID
             // 
@@ -104,10 +105,10 @@
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
             this.cbUnitID.TabIndex = 34;
+            this.cbUnitID.SelectedIndexChanged += new System.EventHandler(this.cbUnitID_SelectedIndexChanged);
             // 
             // btnEdit
             // 
-            this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(342, 109);
             this.btnEdit.Name = "btnEdit";
@@ -115,6 +116,7 @@
             this.btnEdit.TabIndex = 37;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -125,6 +127,7 @@
             this.btnDelete.TabIndex = 39;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // grdProjects
             // 

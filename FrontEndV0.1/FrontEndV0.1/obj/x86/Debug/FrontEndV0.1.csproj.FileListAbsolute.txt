@@ -152,3 +152,5 @@ C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x
 C:\Users\Nathan\Desktop\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmTeamContribution.resources
 C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmPeerAssessmentcs.resources
 C:\Users\S\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmTeamContribution.resources
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmPeerAssessmentcs.resources
+C:\Users\Eric\Documents\GitHub\Pure-White-Colombian-DBI\FrontEndV0.1\FrontEndV0.1\obj\x86\Debug\FrontEndV0._1.forms.frmTeamContribution.resources
