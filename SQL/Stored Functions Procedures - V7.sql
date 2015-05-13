@@ -1031,9 +1031,10 @@ create or replace PROCEDURE UC2_21_Register_AssTask
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
-	pTaskDesc varchar2) AS
+	pTaskDesc varchar2,
+	pDueDate date) AS
 BEGIN
-	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear, pTaskDesc);
+	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear, pTaskDesc, pDueDate);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1049,10 +1050,12 @@ create or replace PROCEDURE UC2_22_Update_AssTask
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
-	pTaskDesc varchar2) AS
+	pTaskDesc varchar2,
+	pDueDate date) AS
 BEGIN
 	UPDATE AssessmentTask
-	SET TaskDesc = pTaskDesc
+	SET TaskDesc = pTaskDesc,
+		DueDate = pDueDate
 	WHERE TaskID = pTaskID and
 		AssId = pAssID and
 		UnitId = pUnitID and
@@ -1115,9 +1118,10 @@ create or replace PROCEDURE UC2_25_Register_AssCrit
 	pSemester number,
 	pYear number,
 	pGeneral varchar2,
-	pSpecific varchar2) AS
+	pSpecific varchar2,
+	pDueDate date) AS
 BEGIN
-	INSERT INTO AssessmentCriterion VALUES (pCriterionID, pAssID, pUnitID, pSemester, pYear, pGeneral, pSpecific);
+	INSERT INTO AssessmentCriterion VALUES (pCriterionID, pAssID, pUnitID, pSemester, pYear, pGeneral, pSpecific, pDueDate);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1134,11 +1138,13 @@ create or replace PROCEDURE UC2_26_Update_AssCrit
 	pSemester number,
 	pYear number,
 	pGeneral varchar2,
-	pSpecific varchar2) AS
+	pSpecific varchar2,
+	pDueDate date) AS
 BEGIN
 	UPDATE AssessmentCriterion
 	SET General = pGeneral,
-		Specific = pSpecific
+		Specific = pSpecific,
+		DueDate = pDueDate
 	WHERE CriterionID = pCriterionID and
 		AssId = pAssID and
 		UnitId = pUnitID and
@@ -1202,9 +1208,10 @@ create or replace PROCEDURE UC2_29_Register_StuHours
 	pYear number,
 	pTeamID varchar2,
 	pPeriod number,
-	pHours number) AS
+	pHours number,
+	pDateSubmitted date) AS
 BEGIN
-	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pHours);
+	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pHours, pDateSubmitted);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1223,11 +1230,13 @@ create or replace PROCEDURE UC2_30_Update_StuHours
 	pYear number,
 	pTeamID varchar2,
 	pPeriod number,
-	pHours number) AS
+	pHours number,
+	pDateSubmitted date) AS
 BEGIN
 	UPDATE StudentHours
 	SET Period = pPeriod,
-		Hours = pHours
+		Hours = pHours,
+		DateSubmitted = pDateSubmitted
 	WHERE TaskID = pTaskID and
 		StuID = pStuID and
 		AssId = pAssID and
@@ -1294,9 +1303,10 @@ create or replace PROCEDURE UC2_33_Register_StuRatings
 	pSemester number,
 	pYear number,
 	pTeamID varchar2,
-	pRating number) AS
+	pRating number,
+	pDateSubmitted date) AS
 BEGIN
-	INSERT INTO StudentRatings VALUES (pCriterionID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pRating);
+	INSERT INTO StudentRatings VALUES (pCriterionID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pRating, pDateSubmitted);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1314,10 +1324,12 @@ create or replace PROCEDURE UC2_34_Update_StuRatings
 	pSemester number,
 	pYear number,
 	pTeamID varchar2,
-	pRating number) AS
+	pRating number,
+	pDateSubmitted date) AS
 BEGIN
 	UPDATE StudentRatings
-	SET Rating = pRating
+	SET Rating = pRating,
+		DateSubmitted = pDateSubmitted
 	WHERE CriterionID = pCriterionID and
 		StuID = pStuID and
 		AssId = pAssID and
