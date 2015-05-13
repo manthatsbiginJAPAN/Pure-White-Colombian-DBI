@@ -44,9 +44,7 @@ namespace FrontEndV0._1.forms
 
             if (frmEmpDashboard == null)
             {
-                
-
-                //will eventually validate user based on db
+                //will validate user based on db
 
                 //check if a student
                 if (UserLetter == 's') //since student ids would start with an 's' like s748932
@@ -57,52 +55,66 @@ namespace FrontEndV0._1.forms
                         frmStuDashboard.FormClosing += frmStuDashboardClosing;
                         frmStuDashboard.Show();
                         return;
-                    } 
+                    }
                     else
                     {
                         //load in all student rows
                         getStudents();
+                        int rowcnt = students.Tables[0].Rows.Count;
 
                         //search dataset by stuID (username), returning a row if it exists
-                        //
-                        //check if password matches before confirming login
-
-
+                        for (int i = 0; i <= rowcnt - 1; i++)
+                        {
+                            //search for username
+                            if (User == students.Tables[0].Rows[i][0].ToString())
+                            {
+                                //check if password matches before confirming login
+                                if (txtPassword.Text == students.Tables[0].Rows[i][5].ToString())
+                                {
+                                    frmStuDashboard = new frmStuDashboard(User);
+                                    frmStuDashboard.FormClosing += frmStuDashboardClosing;
+                                    frmStuDashboard.Show();
+                                    return;
+                                }
+                                MessageBox.Show("Incorrect Password, please try again");
+                            }
+                            MessageBox.Show("Student Login not recognised, please try again");
+                        }
                     }
-                }
 
 
-                //check if an employee
-                if (UserLetter == 'e')
-                {
-                    //load in all employee rows
-                    //search dataset by empID (username), returning a row if it exists
-                    //check if password matches before confirming login
-                }
+                    //check if an employee
+                    if (UserLetter == 'e')
+                    {
+                        //load in all employee rows
+                        //search dataset by empID (username), returning a row if it exists
+                        //check if password matches before confirming login
+                    }
 
-                //(for ease of access...)
-                if (User.ToLower() == "admin" || User.ToLower() == "convenor" || User.ToLower() == "supervisor")
-                {
-                    frmEmpDashboard = new frmEmpDashboard(User);                  
-                    frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
-                    frmEmpDashboard.Show();
+                    //(for ease of access...)
+                    if (User.ToLower() == "admin" || User.ToLower() == "convenor" || User.ToLower() == "supervisor")
+                    {
+                        frmEmpDashboard = new frmEmpDashboard(User);
+                        frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
+                        frmEmpDashboard.Show();
 
-                    //old code:
-                    /*if (User.ToLower() == "admin")
-                        frmEmpDashboard = new frmEmpDashboard("admin");
+                        //old code:
+                        /*if (User.ToLower() == "admin")
+                            frmEmpDashboard = new frmEmpDashboard("admin");
 
-                    if (User.ToLower() == "supervisor")
-                        frmEmpDashboard = new frmEmpDashboard("supervisor");
+                        if (User.ToLower() == "supervisor")
+                            frmEmpDashboard = new frmEmpDashboard("supervisor");
 
-                    if (User.ToLower() == "convenor")
-                        frmEmpDashboard = new frmEmpDashboard("convenor");
-                    */
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a valid username and password", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtPassword.Focus();
-                    return;
+                        if (User.ToLower() == "convenor")
+                            frmEmpDashboard = new frmEmpDashboard("convenor");
+                        */
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter a valid username and password", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtPassword.Focus();
+                        return;
+                    }
                 }
             }
         }
