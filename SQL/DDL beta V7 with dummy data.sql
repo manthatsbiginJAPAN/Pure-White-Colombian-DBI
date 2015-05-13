@@ -1027,10 +1027,11 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC2_23_View_AssTask
+create or replace FUNCTION UC2_23_View_AssTask
+  (pAssId varchar2)
 	RETURN SYS_REFCURSOR AS ast SYS_REFCURSOR;
 BEGIN
-	OPEN ast for select * from AssessmentTask;
+	OPEN ast for select * from AssessmentTask WHERE AssID = pAssId;
 	--LOOP
 	--	Fetch unts into u;
 	--	Exit When unts%NOTFOUND;

@@ -32,10 +32,15 @@
             this.grdTaskInfo = new System.Windows.Forms.DataGridView();
             this.colTaskId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTaskDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duedate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.txtTaskId = new System.Windows.Forms.TextBox();
+            this.lblTaskId = new System.Windows.Forms.Label();
+            this.lblDueDate = new System.Windows.Forms.Label();
+            this.dtDue = new System.Windows.Forms.DateTimePicker();
             this.txtTaskDesc = new System.Windows.Forms.TextBox();
             this.lblTaskDesc = new System.Windows.Forms.Label();
             this.grdAssessmentsInfo = new System.Windows.Forms.DataGridView();
@@ -68,9 +73,10 @@
             this.grdTaskInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdTaskInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTaskId,
-            this.colTaskDesc});
+            this.colTaskDesc,
+            this.Duedate});
             this.grdTaskInfo.Location = new System.Drawing.Point(648, 80);
-            this.grdTaskInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdTaskInfo.Margin = new System.Windows.Forms.Padding(4);
             this.grdTaskInfo.Name = "grdTaskInfo";
             this.grdTaskInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdTaskInfo.Size = new System.Drawing.Size(561, 677);
@@ -88,22 +94,29 @@
             this.colTaskDesc.HeaderText = "Task Description";
             this.colTaskDesc.Name = "colTaskDesc";
             // 
+            // Duedate
+            // 
+            this.Duedate.HeaderText = "Due Date";
+            this.Duedate.Name = "Duedate";
+            this.Duedate.ReadOnly = true;
+            // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(30, 425);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Location = new System.Drawing.Point(30, 711);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(183, 46);
             this.btnAdd.TabIndex = 20;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(221, 425);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEdit.Location = new System.Drawing.Point(241, 711);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(183, 46);
             this.btnEdit.TabIndex = 23;
@@ -113,8 +126,8 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(412, 425);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Location = new System.Drawing.Point(441, 711);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(183, 46);
             this.btnDelete.TabIndex = 25;
@@ -123,32 +136,70 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.txtTaskId);
+            this.gbDetails.Controls.Add(this.lblTaskId);
+            this.gbDetails.Controls.Add(this.lblDueDate);
+            this.gbDetails.Controls.Add(this.dtDue);
             this.gbDetails.Controls.Add(this.txtTaskDesc);
             this.gbDetails.Controls.Add(this.lblTaskDesc);
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDetails.Location = new System.Drawing.Point(11, 495);
-            this.gbDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDetails.Location = new System.Drawing.Point(3, 414);
+            this.gbDetails.Margin = new System.Windows.Forms.Padding(4);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDetails.Padding = new System.Windows.Forms.Padding(4);
             this.gbDetails.Size = new System.Drawing.Size(629, 254);
             this.gbDetails.TabIndex = 27;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
             // 
+            // txtTaskId
+            // 
+            this.txtTaskId.Location = new System.Drawing.Point(165, 20);
+            this.txtTaskId.Name = "txtTaskId";
+            this.txtTaskId.Size = new System.Drawing.Size(212, 23);
+            this.txtTaskId.TabIndex = 54;
+            // 
+            // lblTaskId
+            // 
+            this.lblTaskId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTaskId.Location = new System.Drawing.Point(22, 20);
+            this.lblTaskId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTaskId.Name = "lblTaskId";
+            this.lblTaskId.Size = new System.Drawing.Size(143, 57);
+            this.lblTaskId.TabIndex = 53;
+            this.lblTaskId.Text = "Task ID:";
+            // 
+            // lblDueDate
+            // 
+            this.lblDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDueDate.Location = new System.Drawing.Point(8, 219);
+            this.lblDueDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDueDate.Name = "lblDueDate";
+            this.lblDueDate.Size = new System.Drawing.Size(143, 57);
+            this.lblDueDate.TabIndex = 52;
+            this.lblDueDate.Text = "Date Due:";
+            // 
+            // dtDue
+            // 
+            this.dtDue.Location = new System.Drawing.Point(165, 220);
+            this.dtDue.Name = "dtDue";
+            this.dtDue.Size = new System.Drawing.Size(256, 23);
+            this.dtDue.TabIndex = 51;
+            // 
             // txtTaskDesc
             // 
             this.txtTaskDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTaskDesc.Location = new System.Drawing.Point(165, 195);
-            this.txtTaskDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTaskDesc.Location = new System.Drawing.Point(165, 101);
+            this.txtTaskDesc.Margin = new System.Windows.Forms.Padding(4);
             this.txtTaskDesc.Multiline = true;
             this.txtTaskDesc.Name = "txtTaskDesc";
-            this.txtTaskDesc.Size = new System.Drawing.Size(456, 212);
+            this.txtTaskDesc.Size = new System.Drawing.Size(456, 112);
             this.txtTaskDesc.TabIndex = 50;
             // 
             // lblTaskDesc
             // 
             this.lblTaskDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTaskDesc.Location = new System.Drawing.Point(14, 199);
+            this.lblTaskDesc.Location = new System.Drawing.Point(14, 105);
             this.lblTaskDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTaskDesc.Name = "lblTaskDesc";
             this.lblTaskDesc.Size = new System.Drawing.Size(143, 57);
@@ -166,11 +217,13 @@
             this.Year,
             this.Semester});
             this.grdAssessmentsInfo.Location = new System.Drawing.Point(30, 80);
+            this.grdAssessmentsInfo.MultiSelect = false;
             this.grdAssessmentsInfo.Name = "grdAssessmentsInfo";
             this.grdAssessmentsInfo.RowTemplate.Height = 24;
             this.grdAssessmentsInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdAssessmentsInfo.Size = new System.Drawing.Size(602, 327);
             this.grdAssessmentsInfo.TabIndex = 28;
+            this.grdAssessmentsInfo.SelectionChanged += new System.EventHandler(this.grdAssessmentsInfo_SelectionChanged);
             // 
             // AssID
             // 
@@ -208,7 +261,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTeamContribution";
             ((System.ComponentModel.ISupportInitialize)(this.grdTaskInfo)).EndInit();
             this.gbDetails.ResumeLayout(false);
@@ -236,5 +289,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.DataGridViewTextBoxColumn Semester;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Duedate;
+        private System.Windows.Forms.DateTimePicker dtDue;
+        public System.Windows.Forms.Label lblDueDate;
+        private System.Windows.Forms.TextBox txtTaskId;
+        public System.Windows.Forms.Label lblTaskId;
     }
 }

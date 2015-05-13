@@ -90,31 +90,30 @@ namespace FrontEndV0._1.forms
                         //search dataset by empID (username), returning a row if it exists
                         //check if password matches before confirming login
                     }
+                }
+                //(for ease of access...)
+                else if (User.ToLower() == "admin" || User.ToLower() == "convenor" || User.ToLower() == "supervisor")
+                {
+                    frmEmpDashboard = new frmEmpDashboard(User);
+                    frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
+                    frmEmpDashboard.Show();
 
-                    //(for ease of access...)
-                    if (User.ToLower() == "admin" || User.ToLower() == "convenor" || User.ToLower() == "supervisor")
-                    {
-                        frmEmpDashboard = new frmEmpDashboard(User);
-                        frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
-                        frmEmpDashboard.Show();
+                    //old code:
+                    /*if (User.ToLower() == "admin")
+                        frmEmpDashboard = new frmEmpDashboard("admin");
 
-                        //old code:
-                        /*if (User.ToLower() == "admin")
-                            frmEmpDashboard = new frmEmpDashboard("admin");
+                    if (User.ToLower() == "supervisor")
+                        frmEmpDashboard = new frmEmpDashboard("supervisor");
 
-                        if (User.ToLower() == "supervisor")
-                            frmEmpDashboard = new frmEmpDashboard("supervisor");
-
-                        if (User.ToLower() == "convenor")
-                            frmEmpDashboard = new frmEmpDashboard("convenor");
-                        */
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please enter a valid username and password", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtPassword.Focus();
-                        return;
-                    }
+                    if (User.ToLower() == "convenor")
+                        frmEmpDashboard = new frmEmpDashboard("convenor");
+                    */
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid username and password", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPassword.Focus();
+                    return;
                 }
             }
         }
