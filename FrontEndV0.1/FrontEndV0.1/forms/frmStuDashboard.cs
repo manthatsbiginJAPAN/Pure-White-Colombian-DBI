@@ -13,114 +13,72 @@ namespace FrontEndV0._1.forms
     public partial class frmStuDashboard : Form
     {
         private frmStuDetails frmStuDetails;
-        private frmAdminOperations frmAdminOps;
-        private frmConvenorOperations frmConvAssessMaster;
-        private frmSupervisorOperations frmSupMngMeetings;
+        private frmEnrolments frmEnrolments;
+        private frmProject frmProject;
+        private frmTeamDetails frmTeamDetails;
+        private frmMeeting frmMeeting;
+        private frmAssessment frmAssessment;
 
         public frmStuDashboard(string usertype)
         {
             InitializeComponent();
 
-            //Enable menus based on user's type --> except a user may have many types
-            if (usertype == "admin")
-                administratorFunctionsToolStripMenuItem.Enabled = true;
-
-            if (usertype == "supervisor")
-                supervisorFunctionsToolStripMenuItem.Enabled = true;
-
-            if (usertype == "convenor")
-                convenerFunctionsToolStripMenuItem.Enabled = true;
-
             //Form load, instantiate subforms
-            frmStuDetails = null;
-            frmAdminOps = null;
-            frmConvAssessMaster = null;
-            frmSupMngMeetings = null;
+            frmStuDetails = new frmStuDetails();
+            frmStuDetails.MdiParent = this;
+
+            frmEnrolments = new frmEnrolments();
+            frmEnrolments.MdiParent = this;
+
+            frmProject = new frmProject();
+            frmProject.MdiParent = this;
+
+            frmTeamDetails = new frmTeamDetails(false);
+            frmTeamDetails.MdiParent = this;
+
+            frmMeeting = new frmMeeting();
+            frmMeeting.MdiParent = this;
+
+            frmAssessment = new frmAssessment(false);
+            frmAssessment.MdiParent = this;
         }
 
+        private void closeForm(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+
+            //Explicit casting sender to Form to allow use of Hide()
+            Form frm = (Form)sender;
+            frm.Hide();
+        }
+
+
+
+        private void openTeamForm()
+        {
+            frmTeamDetails.FormClosing += closeForm;
+            frmTeamDetails.Show();
+        }
+
+        private void openProjectForm()
+        {
+            frmProject.FormClosing += closeForm;
+            frmProject.Show();
+        }
+
+        private void openAssessmentForm()
+        {
+            frmAssessment.FormClosing += closeForm;
+            frmAssessment.Show();
+        }
 
 
         private void personalDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmStuDetails == null)
-            {
-                frmStuDetails = new frmStuDetails();
-                frmStuDetails.FormClosing += frmStuDetailsClosing;
-                frmStuDetails.MdiParent = this;
-                frmStuDetails.Visible = true;
-            }
+            frmStuDetails.FormClosing += closeForm;
+            frmStuDetails.Show();
         }
 
-        private void frmStuDetailsClosing(object sender, FormClosingEventArgs e)
-        {
-            frmStuDetails = null;
-        }
-
-        
-
-        private void administratorFunctionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            /*if (frmAdminOps == null)
-            {
-                frmAdminOps = new frmAdminOperations();
-                frmAdminOps.FormClosing += frmAdminOperationsClosing;
-                frmAdminOps.MdiParent = this;
-                frmAdminOps.Visible = true;
-            }*/
-        }
-
-        private void frmAdminOperationsClosing(object sender, FormClosingEventArgs e)
-        {
-            frmAdminOps = null;
-        }
-
-        private void frmConvOpsClosing(object sender, FormClosingEventArgs e)
-        {
-            frmConvAssessMaster = null;
-        }
-
-        private void frmSupOpsClosing(object sender, FormClosingEventArgs e)
-        {
-            frmSupMngMeetings = null;
-        }
-
-        private void displayPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void manageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmAdminOps == null)
-            {
-                frmAdminOps = new frmAdminOperations();
-                frmAdminOps.FormClosing += frmAdminOperationsClosing;
-                frmAdminOps.MdiParent = this;
-                frmAdminOps.Visible = true;
-            }
-        }
-
-        private void masterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmConvAssessMaster == null)
-            {
-                frmConvAssessMaster = new frmConvenorOperations();
-                frmConvAssessMaster.FormClosing += frmConvOpsClosing;
-                frmConvAssessMaster.MdiParent = this;
-                frmConvAssessMaster.Visible = true;
-            }
-        }
-
-        private void manageMeetingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (frmSupMngMeetings == null)
-            {
-                frmSupMngMeetings = new frmSupervisorOperations();
-                frmSupMngMeetings.FormClosing += frmSupOpsClosing;
-                frmSupMngMeetings.MdiParent = this;
-                frmSupMngMeetings.Visible = true;
-            }
-        }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
