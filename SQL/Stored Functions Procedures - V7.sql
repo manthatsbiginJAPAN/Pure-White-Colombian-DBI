@@ -1398,8 +1398,8 @@ End;
 
 /
 CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
-		(pMeetingID number,
-	pTeamID varchar2,
+		(pTeamID varchar2,
+	pMeetingID number,
 	pUnitID varchar2,
 	pSemester number,
 	pYear number,
@@ -1410,10 +1410,10 @@ CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
 	pEmpID varchar2,
 	pClientName varchar2) AS
 BEGIN
-	INSERT INTO Meeting VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
+	INSERT INTO Meeting VALUES (pTeamID, pMeetingID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists for '|| pUnitID|| ', '|| pSemester|| ', '|| pYear);
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
 END;
@@ -1421,17 +1421,17 @@ END;
 /
 
 CREATE or REPLACE PROCEDURE UC3_3_Update_Meeting
-		(pMeetingID number,
-		pTeamID varchar2,
-		pUnitID varchar2,
-		pSemester number,
-		pYear number,
-		pMeetType varchar2,
-		pStartTime date,
-		pFinishTime date,
-		pMinutes varchar2,
-		pEmpID varchar2,
-		pClientName varchar2) AS
+		(pTeamID varchar2,
+	pMeetingID number,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number,
+	pMeetType varchar2,
+	pStartTime date,
+	pFinishTime date,
+	pMinutes varchar2,
+	pEmpID varchar2,
+	pClientName varchar2) AS
 BEGIN
 	UPDATE Meeting
 	SET MeetType = pMeetType,
@@ -1440,8 +1440,8 @@ BEGIN
 		Minutes = pMinutes,
 		EmpID = pEmpID,
 		ClientName = pClientName 
-	WHERE MeetingID = pMeetingID and
-		TeamID = pTeamID and
+	WHERE TeamID = pTeamID and
+		MeetingID = pMeetingID and
 		UnitID = pUnitID and
 		Semester = pSemester and
 		Year = pYear;
@@ -1454,15 +1454,15 @@ END;
 
 
 CREATE or REPLACE PROCEDURE UC3_4_Delete_Meeting
-		(pMeetingID number,
-	pTeamID varchar2,
+		(pTeamID varchar2,
+	pMeetingID number,
 	pUnitID varchar2,
 	pSemester number,
 	pYear number) AS
 BEGIN
 	Delete Meeting
-	WHERE MeetingID = pMeetingID and
-		TeamID = pTeamID and
+	WHERE TeamID = pTeamID and
+		MeetingID = pMeetingID and
 		UnitID = pUnitID and
 		Semester = pSemester and
 		Year = pYear;
