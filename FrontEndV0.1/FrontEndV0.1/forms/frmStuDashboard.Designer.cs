@@ -32,6 +32,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.personalDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageEmployeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageUnitOfferingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageEnrolmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convenerFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageAssessmentsMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +52,7 @@
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meetingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assessmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +72,8 @@
             this.supervisorFunctionsToolStripMenuItem,
             this.logoutToolStripMenuItem,
             this.meetingsToolStripMenuItem,
-            this.assessmentsToolStripMenuItem});
+            this.assessmentsToolStripMenuItem,
+            this.rightToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 33);
@@ -82,9 +89,46 @@
             // 
             // administratorFunctionsToolStripMenuItem
             // 
+            this.administratorFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageToolStripMenuItem,
+            this.manageEmployeesToolStripMenuItem,
+            this.manageUnitsToolStripMenuItem,
+            this.manageUnitOfferingsToolStripMenuItem,
+            this.manageEnrolmentsToolStripMenuItem});
+            this.administratorFunctionsToolStripMenuItem.Enabled = false;
             this.administratorFunctionsToolStripMenuItem.Name = "administratorFunctionsToolStripMenuItem";
             this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(119, 29);
             this.administratorFunctionsToolStripMenuItem.Text = "Enrolments";
+            // 
+            // manageToolStripMenuItem
+            // 
+            this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageToolStripMenuItem.Text = "Manage Students";
+            // 
+            // manageEmployeesToolStripMenuItem
+            // 
+            this.manageEmployeesToolStripMenuItem.Name = "manageEmployeesToolStripMenuItem";
+            this.manageEmployeesToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageEmployeesToolStripMenuItem.Text = "Manage Employees";
+            // 
+            // manageUnitsToolStripMenuItem
+            // 
+            this.manageUnitsToolStripMenuItem.Name = "manageUnitsToolStripMenuItem";
+            this.manageUnitsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageUnitsToolStripMenuItem.Text = "Manage Units";
+            // 
+            // manageUnitOfferingsToolStripMenuItem
+            // 
+            this.manageUnitOfferingsToolStripMenuItem.Name = "manageUnitOfferingsToolStripMenuItem";
+            this.manageUnitOfferingsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageUnitOfferingsToolStripMenuItem.Text = "Manage Unit Offerings";
+            // 
+            // manageEnrolmentsToolStripMenuItem
+            // 
+            this.manageEnrolmentsToolStripMenuItem.Name = "manageEnrolmentsToolStripMenuItem";
+            this.manageEnrolmentsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.manageEnrolmentsToolStripMenuItem.Text = "Manage Enrolments";
             // 
             // convenerFunctionsToolStripMenuItem
             // 
@@ -94,6 +138,7 @@
             this.manageTeamsToolStripMenuItem,
             this.viewUnitsToolStripMenuItem,
             this.viewUnitOfferingsToolStripMenuItem});
+            this.convenerFunctionsToolStripMenuItem.Enabled = false;
             this.convenerFunctionsToolStripMenuItem.Name = "convenerFunctionsToolStripMenuItem";
             this.convenerFunctionsToolStripMenuItem.Size = new System.Drawing.Size(91, 29);
             this.convenerFunctionsToolStripMenuItem.Text = "Projects";
@@ -144,6 +189,7 @@
             this.viewAssessmentsToolStripMenuItem,
             this.viewTeamsToolStripMenuItem,
             this.viewProjectsToolStripMenuItem});
+            this.supervisorFunctionsToolStripMenuItem.Enabled = false;
             this.supervisorFunctionsToolStripMenuItem.Name = "supervisorFunctionsToolStripMenuItem";
             this.supervisorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             this.supervisorFunctionsToolStripMenuItem.Text = "Teams";
@@ -194,6 +240,12 @@
             this.assessmentsToolStripMenuItem.Size = new System.Drawing.Size(129, 29);
             this.assessmentsToolStripMenuItem.Text = "Assessments";
             // 
+            // rightToolStripMenuItem
+            // 
+            this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
+            this.rightToolStripMenuItem.Size = new System.Drawing.Size(184, 29);
+            this.rightToolStripMenuItem.Text = "Makes sense right?";
+            // 
             // frmStuDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +269,11 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem personalDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administratorFunctionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageEmployeesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageUnitsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageUnitOfferingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageEnrolmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem convenerFunctionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageAssessmentsMasterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
@@ -232,5 +289,6 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem meetingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assessmentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rightToolStripMenuItem;
     }
 }
