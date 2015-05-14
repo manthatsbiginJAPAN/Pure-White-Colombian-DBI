@@ -26,7 +26,7 @@ namespace FrontEndV0._1.forms
 
             //Set up current assessments in form
             getAssessments();
-            populateAssGrid();
+            populateAssGrid(this.grdAssessmentInfo);
             
             //Fill in Comboboxes
             getUnitOfferings();
@@ -52,10 +52,10 @@ namespace FrontEndV0._1.forms
             connection.Close();
         }
 
-        private void populateAssGrid()
+        public void populateAssGrid(DataGridView thegrid)
         {
             //Empty the grid
-            grdAssessmentInfo.Rows.Clear();
+            thegrid.Rows.Clear();
 
             //Populate grid
             int rowcnt = ds.Tables["asscursor"].Rows.Count;
@@ -63,7 +63,7 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 object[] items = ds.Tables[0].Rows[i].ItemArray;
-                grdAssessmentInfo.Rows.Add(new object[] {items[0], items[3], items[4] ,items[5]} );
+                thegrid.Rows.Add(new object[] { items[0], items[3], items[4], items[5] });
             }
         }
 
@@ -159,7 +159,7 @@ namespace FrontEndV0._1.forms
             connection.Close();
 
             getAssessments();
-            populateAssGrid();
+            populateAssGrid(this.grdAssessmentInfo);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -180,7 +180,7 @@ namespace FrontEndV0._1.forms
             MessageBox.Show("Entry Deleted");
 
             getAssessments();
-            populateAssGrid();
+            populateAssGrid(this.grdAssessmentInfo);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
