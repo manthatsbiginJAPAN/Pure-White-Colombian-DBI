@@ -261,7 +261,7 @@ MeetingID number(3) NOT NULL
 , StartTime Date NOT NULL
 , FinishTime Date 
 , Minutes varchar2(1000)
-, EmpID varchar2(10) NOT NULL --the supervisor (retrieved from the team table)
+, EmpID varchar2(10) 
 , ClientName varchar2(30) --only if is a client meeting
 , PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year) --include MeetingID, UnitID, Semester, Year...?
 , FOREIGN KEY (TeamID, UnitID, Semester, Year) REFERENCES Team
@@ -271,8 +271,8 @@ MeetingID number(3) NOT NULL
 /
 
 CREATE TABLE MeetingAttendance ( --Links a student to a meeting
-MeetingID number(3)
-, TeamID varchar2(10)
+MeetingID number(3) NOT NULL
+, TeamID varchar2(10) NOT NULL
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
@@ -285,8 +285,8 @@ MeetingID number(3)
 /
 
 CREATE TABLE ActionItem (
-MeetingID number(3)
-, TeamID varchar2(10)
+MeetingID number(3) NOT NULL
+, TeamID varchar2(10) NOT NULL
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
@@ -302,8 +302,8 @@ MeetingID number(3)
 / 
 
 CREATE TABLE AgendaItem (
-MeetingID number(3)
-, TeamID varchar2(10)
+MeetingID number(3) NOT NULL
+, TeamID varchar2(10) NOT NULL
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
