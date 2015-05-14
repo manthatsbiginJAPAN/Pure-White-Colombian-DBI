@@ -112,7 +112,8 @@ namespace FrontEndV0._1.forms
                             //check if password matches before confirming login
                             if (txtPassword.Text == employees.Tables[0].Rows[i][5].ToString())
                             {
-                                frmEmpDashboard = new frmEmpDashboard(User);
+                                ValidateEmployeeStatus(User);
+                                frmEmpDashboard = new frmEmpDashboard(User, isAdmin, isConvenor, isSupervisor);
                                 frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
                                 frmEmpDashboard.Show();
                                 return;
@@ -133,7 +134,7 @@ namespace FrontEndV0._1.forms
                 //(for ease of access, we can use admin convenor or supervisor to access these)
                 if (User.ToLower() == "admin" || User.ToLower() == "convenor" || User.ToLower() == "supervisor")
                 {
-                    frmEmpDashboard = new frmEmpDashboard(User);
+                    frmEmpDashboard = new frmEmpDashboard(User, true, true, true);
                     frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
                     frmEmpDashboard.Show();
                 }
@@ -203,8 +204,25 @@ namespace FrontEndV0._1.forms
 
         private void ValidateEmployeeStatus(string empid)
         {
+            //search through all employeeroles by empid
             getEmployeeRoles();
-            //if...
+            int errowcnt = emproles.Tables[0].Rows.Count;
+            for (int i = 0; i < errowcnt; i++)
+            {
+                //find only rows for the individual employee
+                if (emproles.Tables[0].Rows[i][0].ToString().ToLower() == empid.ToLower())
+                {
+                    //check if admin
+                    if (emproles.Tables[0].Rows[i][1].ToString().ToLower() == "administrator")
+                        isAdmin = true;
+                    //check if convenor
+                    if (emproles.Tables[0].Rows[i][1].ToString().ToLower() == "convenor")
+                        isConvenor = true;
+                    //check if supervisor
+                    if (emproles.Tables[0].Rows[i][1].ToString().ToLower() == "supervisor")
+                        isSupervisor = true;
+                }
+            }
         }
 
         private void frmEmpDashboardClosing(object sender, FormClosingEventArgs e)

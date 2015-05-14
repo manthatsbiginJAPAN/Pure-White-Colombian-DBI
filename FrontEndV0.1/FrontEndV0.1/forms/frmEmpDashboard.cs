@@ -22,16 +22,16 @@ namespace FrontEndV0._1.forms
         private frmTeamDetails frmTeamDetails = null;
         private frmProject frmProject = null;
 
-        public frmEmpDashboard(string usertype)
+        public frmEmpDashboard(string user, bool isAdmin, bool isConvenor, bool isSupervisor)
         {
             InitializeComponent();
 
             //Enable menus based on user's type --> except a user may have many types
-            if (usertype == "admin")
+            if (user == "admin")
             {   
                 administratorFunctionsToolStripMenuItem.Enabled = true;
 
-                frmStuDetails = new frmStuDetails(usertype); //to be updated soon...
+                frmStuDetails = new frmStuDetails(user); //to be updated soon...
                 frmStuDetails.MdiParent = this;
 
                 frmUnits = new frmUnits(true);
@@ -44,7 +44,7 @@ namespace FrontEndV0._1.forms
                 frmEnrolments.MdiParent = this;
             }
 
-            if (usertype == "supervisor")
+            if (user == "supervisor")
             {
                 supervisorFunctionsToolStripMenuItem.Enabled = true;
 
@@ -61,7 +61,7 @@ namespace FrontEndV0._1.forms
                 frmProject.MdiParent = this;
             }   
 
-            if (usertype == "convenor")
+            if (user == "convenor")
             {
                 convenorFunctionsToolStripMenuItem.Enabled = true;
 
@@ -257,6 +257,5 @@ namespace FrontEndV0._1.forms
         {
             this.Close();
         }       
-        
     }
 }
