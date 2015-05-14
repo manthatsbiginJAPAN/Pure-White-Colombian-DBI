@@ -24,7 +24,7 @@ namespace FrontEndV0._1.forms
             InitializeComponent();
 
             //Form load, instantiate subforms
-            frmStuDetails = new frmStuDetails(user);
+            frmStuDetails = new frmStuDetails(user, false);
             frmStuDetails.MdiParent = this;
 
             frmEnrolments = new frmEnrolments();

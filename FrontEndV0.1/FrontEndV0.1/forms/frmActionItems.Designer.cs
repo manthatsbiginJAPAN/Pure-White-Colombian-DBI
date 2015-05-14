@@ -224,7 +224,6 @@
             this.grdMeetings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdMeetings.Size = new System.Drawing.Size(500, 239);
             this.grdMeetings.TabIndex = 75;
-            this.grdMeetings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMeetings_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
