@@ -33,13 +33,12 @@ namespace FrontEndV0._1.forms
             //Fetch data
             getTeams();
             getMeetings();
-         //   getEmps();
+            //getEmps();
 
             //Prepare and display data
             populateTeams();
             populateMeetingsGrid();
-          //  populateSupervisors();
-            
+            //populateSupervisors();
         }
 
         #region getData
@@ -169,17 +168,16 @@ namespace FrontEndV0._1.forms
         private void populateMeetingsGrid()
         {
             //Clear the grid
-          //  grdMeetings.Rows.Clear();
+            grdMeetings.Rows.Clear();
 
             //Populate the grid from the dataset
-            int rowcnt = meets.Tables["meetcursor"].Rows.Count;
+            int rowcnt = meets.Tables[0].Rows.Count;
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 object[] items = meets.Tables[0].Rows[i].ItemArray;
-                grdMeetings.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4] });
+                grdMeetings.Rows.Add(new object[] { items[1], items[0], items[2], items[3], items[4] });
             }
-            
         }
 
         #endregion
@@ -353,7 +351,12 @@ namespace FrontEndV0._1.forms
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
         {
 
         }

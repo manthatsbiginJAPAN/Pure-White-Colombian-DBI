@@ -308,7 +308,6 @@
             this.lblTeamID.Size = new System.Drawing.Size(82, 20);
             this.lblTeamID.TabIndex = 39;
             this.lblTeamID.Text = "Team ID:";
-            this.lblTeamID.Click += new System.EventHandler(this.label1_Click);
             // 
             // cbUnitID
             // 
@@ -387,6 +386,7 @@
             this.btnEdit.TabIndex = 44;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -397,6 +397,7 @@
             this.btnDelete.TabIndex = 46;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // grdMeetings
             // 
@@ -457,6 +458,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.grdMeetings);
             this.Name = "frmMeeting";
+            this.Load += new System.EventHandler(this.frmMeeting_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
             this.gbIdentifyingInformation.ResumeLayout(false);
