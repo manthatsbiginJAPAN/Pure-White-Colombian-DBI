@@ -194,8 +194,8 @@ namespace FrontEndV0._1.forms
                     OracleCommand cmd = new OracleCommand("UC3_2_Register_Meeting", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("teamid", cbTeamID.SelectedItem.ToString());
                     cmd.Parameters.Add("meetingid", txtMeetID.Text);
+                    cmd.Parameters.Add("teamid", cbTeamID.SelectedItem.ToString());         
                     cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
                     cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
                     cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem.ToString()));
@@ -204,8 +204,26 @@ namespace FrontEndV0._1.forms
                     cmd.Parameters.Add("finishtime", dtFinishTime.Value.ToString("dd/MMM/yyyy"));
                   //  cmd.Parameters.Add("starttime", Convert.ToDateTime(txtStart.Text));
                    // cmd.Parameters.Add("finishtime", Convert.ToDateTime(txtFinish.Text));
-                    cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
-                    cmd.Parameters.Add("clientname", txtClientName.Text);
+
+                    if (cbSupervisor.Enabled == true) 
+                    {
+                        cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
+                    }
+                    else
+                    {                     
+                        cmd.Parameters.Add("supid", null);
+                    }
+
+                    if (txtClientName.Enabled == true)
+                    {
+                        cmd.Parameters.Add("clientname", txtClientName.Text);
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("clientname", null);
+                    }
+
+                   
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
@@ -391,6 +409,25 @@ namespace FrontEndV0._1.forms
             {
                 cbSupervisor.Enabled = true;
                 txtClientName.Enabled = false;
+
+                int rowcnt = teams.Tables["teamcursor"].Rows.Count;
+                object team = new object();
+
+
+                for (int i = 0; i <= rowcnt - 1; i++)
+                {
+                    if (teams.Tables[0].Rows[i][2].ToString() == cbUnitID.SelectedItem.ToString() && teams.Tables[0].Rows[i][3].ToString() == cbSemester.SelectedItem.ToString() && teams.Tables[0].Rows[i][4].ToString() == cbYear.SelectedItem.ToString() && teams.Tables[0].Rows[i][0].ToString() == cbTeamID.SelectedItem.ToString())
+                    {
+                        team = teams.Tables["teamcursor"].Rows[i][5].ToString();
+
+                        //only note one option for supervisor once per instance
+                        if (!cbSupervisor.Items.Contains(team))
+                            cbSupervisor.Items.Add(team);
+
+                        //sort the list numerically/alphabetically
+                        cbSupervisor.Sorted = true;
+                    }
+                }
             }
 
             if (cbMeetingType.SelectedItem.ToString() == "Client")
