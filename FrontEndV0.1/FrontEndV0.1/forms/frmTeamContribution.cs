@@ -39,11 +39,10 @@ namespace FrontEndV0._1.forms
             cmd.Parameters.Add("Task ID", txtTaskId.Text);
             cmd.Parameters.Add("AssID", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
             cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semseter", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
+            cmd.Parameters.Add("Semester", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
             cmd.Parameters.Add("Year", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
             cmd.Parameters.Add("Task Desc", txtTaskDesc.Text);
             cmd.Parameters.Add("Due Date", dtDue.Value.ToString("dd/MMM/yyyy"));
-            //
 
 
             connection.Open();

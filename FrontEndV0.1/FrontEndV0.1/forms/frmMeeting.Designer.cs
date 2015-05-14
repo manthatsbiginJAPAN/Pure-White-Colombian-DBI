@@ -31,6 +31,8 @@
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.dtFinishTime = new System.Windows.Forms.DateTimePicker();
+            this.dtStartTime = new System.Windows.Forms.DateTimePicker();
             this.cbSupervisor = new System.Windows.Forms.ComboBox();
             this.btnAttendance = new System.Windows.Forms.Button();
             this.btnActionItems = new System.Windows.Forms.Button();
@@ -63,8 +65,6 @@
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtStartTime = new System.Windows.Forms.DateTimePicker();
-            this.dtFinishTime = new System.Windows.Forms.DateTimePicker();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).BeginInit();
@@ -116,6 +116,24 @@
             this.gbDetails.TabIndex = 45;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
+            // 
+            // dtFinishTime
+            // 
+            this.dtFinishTime.Enabled = false;
+            this.dtFinishTime.Location = new System.Drawing.Point(130, 103);
+            this.dtFinishTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtFinishTime.Name = "dtFinishTime";
+            this.dtFinishTime.Size = new System.Drawing.Size(193, 20);
+            this.dtFinishTime.TabIndex = 53;
+            // 
+            // dtStartTime
+            // 
+            this.dtStartTime.Enabled = false;
+            this.dtStartTime.Location = new System.Drawing.Point(130, 62);
+            this.dtStartTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtStartTime.Name = "dtStartTime";
+            this.dtStartTime.Size = new System.Drawing.Size(193, 20);
+            this.dtStartTime.TabIndex = 52;
             // 
             // cbSupervisor
             // 
@@ -232,7 +250,7 @@
             this.cbMeetingType.Items.AddRange(new object[] {
             "Supervisor",
             "Client",
-            "Team"});
+            "Student"});
             this.cbMeetingType.Location = new System.Drawing.Point(157, 30);
             this.cbMeetingType.Name = "cbMeetingType";
             this.cbMeetingType.Size = new System.Drawing.Size(121, 21);
@@ -436,24 +454,6 @@
             // 
             this.Year.HeaderText = "Year";
             this.Year.Name = "Year";
-            // 
-            // dtStartTime
-            // 
-            this.dtStartTime.Enabled = false;
-            this.dtStartTime.Location = new System.Drawing.Point(130, 62);
-            this.dtStartTime.Margin = new System.Windows.Forms.Padding(2);
-            this.dtStartTime.Name = "dtStartTime";
-            this.dtStartTime.Size = new System.Drawing.Size(193, 20);
-            this.dtStartTime.TabIndex = 52;
-            // 
-            // dtFinishTime
-            // 
-            this.dtFinishTime.Enabled = false;
-            this.dtFinishTime.Location = new System.Drawing.Point(130, 103);
-            this.dtFinishTime.Margin = new System.Windows.Forms.Padding(2);
-            this.dtFinishTime.Name = "dtFinishTime";
-            this.dtFinishTime.Size = new System.Drawing.Size(193, 20);
-            this.dtFinishTime.TabIndex = 53;
             // 
             // frmMeeting
             // 

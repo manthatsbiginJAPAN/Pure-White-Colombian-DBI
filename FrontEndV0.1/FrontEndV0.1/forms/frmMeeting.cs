@@ -176,7 +176,7 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 object[] items = meets.Tables[0].Rows[i].ItemArray;
-                grdMeetings.Rows.Add(new object[] { items[1], items[0], items[2], items[3], items[4] });
+                grdMeetings.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4] });
             }
         }
 
@@ -194,7 +194,7 @@ namespace FrontEndV0._1.forms
                     OracleCommand cmd = new OracleCommand("UC3_2_Register_Meeting", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("meetingid", txtMeetID.Text);
+                    cmd.Parameters.Add("meetingid", Convert.ToInt16(txtMeetID.Text));
                     cmd.Parameters.Add("teamid", cbTeamID.SelectedItem.ToString());         
                     cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
                     cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
@@ -202,8 +202,9 @@ namespace FrontEndV0._1.forms
                     cmd.Parameters.Add("meettype", cbMeetingType.SelectedItem.ToString());
                     cmd.Parameters.Add("starttime", dtStartTime.Value.ToString("dd/MMM/yyyy"));
                     cmd.Parameters.Add("finishtime", dtFinishTime.Value.ToString("dd/MMM/yyyy"));
-                  //  cmd.Parameters.Add("starttime", Convert.ToDateTime(txtStart.Text));
-                   // cmd.Parameters.Add("finishtime", Convert.ToDateTime(txtFinish.Text));
+                    cmd.Parameters.Add("minutes", txtMeetingMinutes.Text);
+                    //cmd.Parameters.Add("starttime", Convert.ToDateTime(txtStart.Text));
+                    //cmd.Parameters.Add("finishtime", Convert.ToDateTime(txtFinish.Text));
 
                     if (cbSupervisor.Enabled == true) 
                     {
@@ -223,7 +224,20 @@ namespace FrontEndV0._1.forms
                         cmd.Parameters.Add("clientname", null);
                     }
 
-                   
+
+                    /*hard-coded test data
+                    cmd.Parameters.Add("meetingid", txtMeetID.Text);
+                    cmd.Parameters.Add("teamid", "Team1");
+                    cmd.Parameters.Add("unitid", "INF10101");
+                    cmd.Parameters.Add("semester", 1);
+                    cmd.Parameters.Add("year", 2015);
+                    cmd.Parameters.Add("meettype", "Student");
+                    cmd.Parameters.Add("starttime", dtStartTime.Value.ToString("dd/MMM/yyyy"));
+                    cmd.Parameters.Add("finishtime", dtFinishTime.Value.ToString("dd/MMM/yyyy"));
+                    cmd.Parameters.Add("minutes", txtMeetingMinutes.Text);
+                    cmd.Parameters.Add("supid", null);
+                    cmd.Parameters.Add("clientname", null);
+                    */
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
@@ -312,6 +326,8 @@ namespace FrontEndV0._1.forms
         {
             if (cbUnitID.SelectedIndex != -1)
                 cbSemester.Enabled = true;
+            else
+                return;
 
             int rowcnt = teams.Tables["teamcursor"].Rows.Count;
             object sem = new object();
@@ -338,6 +354,8 @@ namespace FrontEndV0._1.forms
         {
             if (cbSemester.SelectedIndex != -1)
                 cbYear.Enabled = true;
+            else
+                return;
 
             int rowcnt = teams.Tables["teamcursor"].Rows.Count;
             object year = new object();
@@ -363,6 +381,8 @@ namespace FrontEndV0._1.forms
         {
             if (cbYear.SelectedIndex != -1)
                 cbTeamID.Enabled = true;
+            else
+                return;
 
             int rowcnt = teams.Tables["teamcursor"].Rows.Count;
             object team = new object();

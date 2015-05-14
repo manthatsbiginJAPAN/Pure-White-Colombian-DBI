@@ -252,8 +252,8 @@ MeetType varchar2(20)
 /
 
 CREATE TABLE Meeting ( --Links a team to a meeting for an offered unit
-TeamID varchar2(10) 
-, MeetingID number(3) NOT NULL --Limited to 999 Meetings
+MeetingID number(3) NOT NULL
+, TeamID varchar2(10) NOT NULL
 , UnitID varchar2(10) NOT NULL
 , Semester number(1) NOT NULL
 , Year number(4) NOT NULL
