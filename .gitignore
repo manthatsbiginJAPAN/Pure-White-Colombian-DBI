@@ -4,3 +4,5 @@
 *.pdb
 *.exe
 FrontEndV0.1/FrontEndV0.1/bin/Debug/FrontEndV0.1.vshost.exe
+*.suo
+FrontEndV0.1/FrontEndV0.1/obj/x86/Debug/DesignTimeResolveAssemblyReferences.cache
