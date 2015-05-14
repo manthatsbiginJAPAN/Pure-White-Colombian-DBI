@@ -18,6 +18,8 @@ namespace FrontEndV0._1.forms
         private DataSet ds;
         private DataSet unitoffs;
 
+        private frmTeamContribution frmTeamCont;
+
         public frmAssessment(bool editable)
         {
             InitializeComponent();
@@ -206,6 +208,12 @@ namespace FrontEndV0._1.forms
             {
                 
             }
+        }
+
+        private void btnTeamCont_Click(object sender, EventArgs e)
+        {
+            frmTeamCont = new frmTeamContribution(this);
+            frmTeamCont.Show();
         }
     }
 }

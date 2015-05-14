@@ -58,7 +58,7 @@ namespace FrontEndV0._1.forms
 
         private void displayTasks(string assid)
         {
-            //Doesn't quite work but it's close... im tired pls do it for me lol
+            //Doesn't work for who knows what reason.. trying to figure it out
 
             grdTaskInfo.Rows.Clear();
 
@@ -66,12 +66,15 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("assid", assid);
+            cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
+            cmd.Parameters.Add("Semseter", Convert.ToInt32( grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value) );
+            cmd.Parameters.Add("Year", Convert.ToInt32 ( grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value) );
             cmd.Parameters.Add("taskcursor", OracleDbType.RefCursor);
             cmd.Parameters["taskcursor"].Direction = ParameterDirection.ReturnValue;
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
             tasks = new DataSet();
 

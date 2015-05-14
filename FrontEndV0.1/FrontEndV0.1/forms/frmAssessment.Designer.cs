@@ -32,7 +32,7 @@
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTeamCont = new System.Windows.Forms.Button();
             this.txtMarkingGuide = new System.Windows.Forms.TextBox();
             this.lblMarkingGuide = new System.Windows.Forms.Label();
             this.lblAssTitle = new System.Windows.Forms.Label();
@@ -76,7 +76,7 @@
             // 
             this.gbDetails.Controls.Add(this.label1);
             this.gbDetails.Controls.Add(this.button2);
-            this.gbDetails.Controls.Add(this.button1);
+            this.gbDetails.Controls.Add(this.btnTeamCont);
             this.gbDetails.Controls.Add(this.txtMarkingGuide);
             this.gbDetails.Controls.Add(this.lblMarkingGuide);
             this.gbDetails.Controls.Add(this.lblAssTitle);
@@ -115,16 +115,17 @@
             this.button2.Text = "Peer Assess.";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnTeamCont
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(420, 92);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(183, 58);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Team Cont.";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnTeamCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeamCont.Location = new System.Drawing.Point(420, 92);
+            this.btnTeamCont.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTeamCont.Name = "btnTeamCont";
+            this.btnTeamCont.Size = new System.Drawing.Size(183, 58);
+            this.btnTeamCont.TabIndex = 20;
+            this.btnTeamCont.Text = "Team Cont.";
+            this.btnTeamCont.UseVisualStyleBackColor = true;
+            this.btnTeamCont.Click += new System.EventHandler(this.btnTeamCont_Click);
             // 
             // txtMarkingGuide
             // 
@@ -421,7 +422,7 @@
         public System.Windows.Forms.TextBox txtMarkingGuide;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button button2;
-        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button btnTeamCont;
 
     }
 }
