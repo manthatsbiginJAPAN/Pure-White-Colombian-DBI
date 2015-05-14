@@ -17,11 +17,12 @@ namespace FrontEndV0._1.forms
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
         private DataSet ds;
+        private string User;
 
-        public frmStuDetails()
+        public frmStuDetails(string user)
         {
             InitializeComponent();
-
+            User = user;
             connection = conn.oraConn();
         }
 

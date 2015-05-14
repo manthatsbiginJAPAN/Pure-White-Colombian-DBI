@@ -19,18 +19,25 @@ namespace FrontEndV0._1.forms
         private frmEmpDashboard frmEmpDashboard;
         private frmStuDashboard frmStuDashboard;
         private DataSet employees;
+        private DataSet emproles;
         private DataSet students;
+
         private string User;
+        private bool isAdmin;
+        private bool isConvenor;
+        private bool isSupervisor;
 
         public frmLogin()
         {
             InitializeComponent();
             connection = conn.oraConn();
 
-            //Form load, without yet instantiating subforms
+            User = null;
+            isAdmin = false;
+            isConvenor = false;
+            isSupervisor = false;
             frmStuDashboard = null;
             frmEmpDashboard = null;
-            User = null;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -48,7 +55,7 @@ namespace FrontEndV0._1.forms
                 //will validate user based on db
 
                 //check if a student
-                if (Char.ToLower(UserLetter) == 's') //since student ids would start with an 's' like s748932
+                if (Char.ToLower(UserLetter) == 's' && User.ToLower() != "supervisor") //since student ids would start with an 's' like s748932
                 {
                     if (User.ToLower() == "student") //for ease of access at the moment...
                     {
@@ -61,10 +68,10 @@ namespace FrontEndV0._1.forms
                     {
                         //load in all student rows
                         getStudents();
-                        int rowcnt = students.Tables[0].Rows.Count;
 
                         //search dataset by stuID (username), returning a row if it exists
-                        for (int i = 0; i <= rowcnt - 1; i++)
+                        int srowcnt = students.Tables[0].Rows.Count;
+                        for (int i = 0; i <= srowcnt - 1; i++)
                         {
                             //search for username
                             if (User == students.Tables[0].Rows[i][0].ToString())
@@ -80,6 +87,7 @@ namespace FrontEndV0._1.forms
                                 else
                                 {
                                     MessageBox.Show("Incorrect Password, please try again");
+                                    return;
                                 }
                             }
                         }
@@ -93,11 +101,36 @@ namespace FrontEndV0._1.forms
                 {
                     //load in all employee rows
                     getEmployees();
+
                     //search dataset by empID (username), returning a row if it exists
-                    //check if password matches before confirming login
+                    int erowcnt = employees.Tables[0].Rows.Count;
+                    for (int i = 0; i < erowcnt; i++)
+                    {
+                        //search for username
+                        if (User == employees.Tables[0].Rows[i][0].ToString())
+                        {
+                            //check if password matches before confirming login
+                            if (txtPassword.Text == employees.Tables[0].Rows[i][5].ToString())
+                            {
+                                frmEmpDashboard = new frmEmpDashboard(User);
+                                frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
+                                frmEmpDashboard.Show();
+                                return;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Incorrect Password, please try again");
+                                return;
+                            }
+                        }
+                    }
+                    MessageBox.Show("Employee Login not recognised, please try again");
+                    return;
                 }
 
-                //(for ease of access...)
+
+
+                //(for ease of access, we can use admin convenor or supervisor to access these)
                 if (User.ToLower() == "admin" || User.ToLower() == "convenor" || User.ToLower() == "supervisor")
                 {
                     frmEmpDashboard = new frmEmpDashboard(User);
@@ -147,10 +180,31 @@ namespace FrontEndV0._1.forms
             cmd.ExecuteNonQuery();
 
             employees = new DataSet();
-
             da.Fill(employees, "empcursor", (OracleRefCursor)(cmd.Parameters["empcursor"].Value));
-
             connection.Close();
+        }
+
+        private void getEmployeeRoles()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC1_26_View_Employee_Role", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("emprolescursor", OracleDbType.RefCursor);
+            cmd.Parameters["emprolescursor"].Direction = ParameterDirection.ReturnValue;
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            emproles = new DataSet();
+            da.Fill(emproles, "emprolescursor", (OracleRefCursor)(cmd.Parameters["emprolescursor"].Value));
+            connection.Close();
+        }
+
+        private void ValidateEmployeeStatus(string empid)
+        {
+            getEmployeeRoles();
+            //if...
         }
 
         private void frmEmpDashboardClosing(object sender, FormClosingEventArgs e)

@@ -28,10 +28,10 @@ namespace FrontEndV0._1.forms
 
             //Enable menus based on user's type --> except a user may have many types
             if (usertype == "admin")
-            { 
+            {   
                 administratorFunctionsToolStripMenuItem.Enabled = true;
 
-                frmStuDetails = new frmStuDetails();
+                frmStuDetails = new frmStuDetails(usertype); //to be updated soon...
                 frmStuDetails.MdiParent = this;
 
                 frmUnits = new frmUnits(true);
