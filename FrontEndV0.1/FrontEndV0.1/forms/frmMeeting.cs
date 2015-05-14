@@ -182,6 +182,7 @@ namespace FrontEndV0._1.forms
 
         #endregion
 
+        #region buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //Logic and functions for save button
@@ -193,16 +194,36 @@ namespace FrontEndV0._1.forms
                     OracleCommand cmd = new OracleCommand("UC3_2_Register_Meeting", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("teamid", cbTeamID.SelectedItem.ToString());
                     cmd.Parameters.Add("meetingid", txtMeetID.Text);
+                    cmd.Parameters.Add("teamid", cbTeamID.SelectedItem.ToString());         
                     cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
                     cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
                     cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem.ToString()));
                     cmd.Parameters.Add("meettype", cbMeetingType.SelectedItem.ToString());
-                    cmd.Parameters.Add("starttime", Convert.ToDateTime(txtStart.Text));
-                    cmd.Parameters.Add("finishtime", Convert.ToDateTime(txtFinish.Text));
-                    cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
-                    cmd.Parameters.Add("clientname", txtClientName.Text);
+                    cmd.Parameters.Add("starttime", dtStartTime.Value.ToString("dd/MMM/yyyy"));
+                    cmd.Parameters.Add("finishtime", dtFinishTime.Value.ToString("dd/MMM/yyyy"));
+                  //  cmd.Parameters.Add("starttime", Convert.ToDateTime(txtStart.Text));
+                   // cmd.Parameters.Add("finishtime", Convert.ToDateTime(txtFinish.Text));
+
+                    if (cbSupervisor.Enabled == true) 
+                    {
+                        cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
+                    }
+                    else
+                    {                     
+                        cmd.Parameters.Add("supid", null);
+                    }
+
+                    if (txtClientName.Enabled == true)
+                    {
+                        cmd.Parameters.Add("clientname", txtClientName.Text);
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("clientname", null);
+                    }
+
+                   
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
@@ -247,6 +268,17 @@ namespace FrontEndV0._1.forms
             }
         }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+#endregion 
+
         private bool FormValidated()
         {
             //Track a cummulative error message, appending when a particular condition is not met
@@ -262,6 +294,8 @@ namespace FrontEndV0._1.forms
                 ErrorMsg += Environment.NewLine + "Please select a Team ID.";
             if (txtMeetID.Text == null)
                 ErrorMsg += Environment.NewLine + "Please enter a Meeting Number.";
+            if (cbMeetingType.SelectedItem == null)
+                ErrorMsg += Environment.NewLine + "Please select a Meeting Type.";
 
             if (ErrorMsg != null)
             {
@@ -286,9 +320,9 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 //find the semesters where the unitID matches the selected one
-                if (teams.Tables[0].Rows[i][0].ToString() == cbUnitID.SelectedItem.ToString())
+                if (teams.Tables[0].Rows[i][2].ToString() == cbUnitID.SelectedItem.ToString())
                 {
-                    sem = teams.Tables["teamcursor"].Rows[i][1].ToString();
+                    sem = teams.Tables["teamcursor"].Rows[i][3].ToString();
 
                     //only note one option for semesters once per instance
                     if (!cbSemester.Items.Contains(sem))
@@ -312,9 +346,9 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 //find the years where the semester matches the selected one
-                if (teams.Tables[0].Rows[i][0].ToString() == cbUnitID.SelectedItem.ToString() && teams.Tables[0].Rows[i][1].ToString() == cbSemester.SelectedItem.ToString())
+                if (teams.Tables[0].Rows[i][2].ToString() == cbUnitID.SelectedItem.ToString() && teams.Tables[0].Rows[i][3].ToString() == cbSemester.SelectedItem.ToString())
                 {
-                    year = teams.Tables["teamcursor"].Rows[i][2].ToString();
+                    year = teams.Tables["teamcursor"].Rows[i][4].ToString();
 
                     if (!cbYear.Items.Contains(year))
                         cbYear.Items.Add(year);
@@ -332,14 +366,13 @@ namespace FrontEndV0._1.forms
 
             int rowcnt = teams.Tables["teamcursor"].Rows.Count;
             object team = new object();
-            cbYear.Items.Clear();
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                //find the semesters where the unitID matches the selected one
- //FIX               if (tms.Tables[0].Rows[i][0].ToString() == cbUnitID.SelectedItem.ToString() && tms.Tables[0].Rows[i][1].ToString() == cbSemester.SelectedItem.ToString() && tms.Tables[0].Rows[i][2].ToString() == cbYear.SelectedItem.ToString())
+                //find the years where the semester matches the selected one
+                if (teams.Tables[0].Rows[i][2].ToString() == cbUnitID.SelectedItem.ToString() && teams.Tables[0].Rows[i][3].ToString() == cbSemester.SelectedItem.ToString() && teams.Tables[0].Rows[i][4].ToString() == cbYear.SelectedItem.ToString())
                 {
-                    team = teams.Tables["teamcursor"].Rows[i][3].ToString();
+                    team = teams.Tables["teamcursor"].Rows[i][0].ToString();
 
                     //only note one option for semesters once per instance
                     if (!cbTeamID.Items.Contains(team))
@@ -351,14 +384,63 @@ namespace FrontEndV0._1.forms
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
+        
 
+        private void cbTeamID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTeamID.SelectedIndex != -1)
+                txtMeetID.Enabled = true;
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void txtMeetID_TextChanged(object sender, EventArgs e)
         {
+            cbMeetingType.Enabled = true;
+        }
 
+        private void cbMeetingType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //txtStart.Enabled = true;
+            //txtFinish.Enabled = true;
+            dtStartTime.Enabled = true;
+            dtFinishTime.Enabled = true;
+            txtMeetingMinutes.Enabled = true;
+
+            if (cbMeetingType.SelectedItem.ToString() == "Supervisor")
+            {
+                cbSupervisor.Enabled = true;
+                txtClientName.Enabled = false;
+
+                int rowcnt = teams.Tables["teamcursor"].Rows.Count;
+                object team = new object();
+
+
+                for (int i = 0; i <= rowcnt - 1; i++)
+                {
+                    if (teams.Tables[0].Rows[i][2].ToString() == cbUnitID.SelectedItem.ToString() && teams.Tables[0].Rows[i][3].ToString() == cbSemester.SelectedItem.ToString() && teams.Tables[0].Rows[i][4].ToString() == cbYear.SelectedItem.ToString() && teams.Tables[0].Rows[i][0].ToString() == cbTeamID.SelectedItem.ToString())
+                    {
+                        team = teams.Tables["teamcursor"].Rows[i][5].ToString();
+
+                        //only note one option for supervisor once per instance
+                        if (!cbSupervisor.Items.Contains(team))
+                            cbSupervisor.Items.Add(team);
+
+                        //sort the list numerically/alphabetically
+                        cbSupervisor.Sorted = true;
+                    }
+                }
+            }
+
+            if (cbMeetingType.SelectedItem.ToString() == "Client")
+            {
+                txtClientName.Enabled = true;
+                cbSupervisor.Enabled = false;
+            }
+
+            if (cbMeetingType.SelectedItem.ToString() == "Team")
+            {
+                txtClientName.Enabled = false;
+                cbSupervisor.Enabled = false;
+            }
         }
     }
 }

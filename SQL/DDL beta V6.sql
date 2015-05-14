@@ -261,7 +261,7 @@ TeamID varchar2(10)
 , StartTime Date NOT NULL
 , FinishTime Date 
 , Minutes varchar2(1000)
-, EmpID varchar2(10) NOT NULL --the supervisor (retrieved from the team table)
+, EmpID varchar2(10) 
 , ClientName varchar2(30) --only if is a client meeting
 , PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year) --include MeetingID, UnitID, Semester, Year...?
 , FOREIGN KEY (TeamID, UnitID, Semester, Year) REFERENCES Team
