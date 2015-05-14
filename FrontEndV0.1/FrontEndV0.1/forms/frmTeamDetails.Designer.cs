@@ -60,7 +60,7 @@
             this.lblStuID = new System.Windows.Forms.Label();
             this.btnAddStu = new System.Windows.Forms.Button();
             this.btnDeleteStu = new System.Windows.Forms.Button();
-            this.txtStuID = new System.Windows.Forms.TextBox();
+            this.txtStuID = new System.Windows.Forms.ComboBox();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdTeamInfo)).BeginInit();
@@ -309,6 +309,7 @@
             this.grdTeamInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdTeamInfo.Size = new System.Drawing.Size(561, 700);
             this.grdTeamInfo.TabIndex = 26;
+            this.grdTeamInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTeamInfo_CellClicked);
             // 
             // colTeamId
             // 
@@ -428,12 +429,21 @@
             // 
             // txtStuID
             // 
-            this.txtStuID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStuID.Location = new System.Drawing.Point(177, 698);
+            this.txtStuID.Enabled = false;
+            this.txtStuID.FormattingEnabled = true;
+            this.txtStuID.Items.AddRange(new object[] {
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020"});
+            this.txtStuID.Location = new System.Drawing.Point(205, 701);
             this.txtStuID.Margin = new System.Windows.Forms.Padding(4);
             this.txtStuID.Name = "txtStuID";
-            this.txtStuID.Size = new System.Drawing.Size(245, 30);
-            this.txtStuID.TabIndex = 30;
+            this.txtStuID.Size = new System.Drawing.Size(217, 24);
+            this.txtStuID.TabIndex = 40;
             // 
             // frmTeamDetails
             // 
@@ -497,11 +507,11 @@
         public System.Windows.Forms.Label lblStuID;
         public System.Windows.Forms.Button btnAddStu;
         public System.Windows.Forms.Button btnDeleteStu;
-        public System.Windows.Forms.TextBox txtStuID;
         private System.Windows.Forms.ComboBox cbUnitID;
         private System.Windows.Forms.ComboBox cbSemester;
         private System.Windows.Forms.ComboBox cbYear;
         private System.Windows.Forms.ComboBox cbProjID;
         private System.Windows.Forms.ComboBox cbSupervisor;
+        private System.Windows.Forms.ComboBox txtStuID;
     }
 }

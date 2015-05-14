@@ -20,6 +20,7 @@ namespace FrontEndV0._1.forms
         private DataSet teamallocs;
         private DataSet unitoffs;
         private DataSet projects;
+        private DataSet enrolments;
 
         public frmTeamDetails(bool editable)
         {
@@ -34,12 +35,15 @@ namespace FrontEndV0._1.forms
             getUnitOfferings();
             getEmployees();
             getTeamAllocs();
+            getEnrolments();
 
             populateTeamGrid();
             populateSupervisors();
             populateProjects();
             populateUnitOfferings();
-            populateTeamAllocs();
+            //populateTeamAllocs();
+
+            
         }
 
         #region getData
@@ -142,6 +146,30 @@ namespace FrontEndV0._1.forms
 
             connection.Close();
         }
+
+        private void getEnrolments()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC1_15_View_Enrolment", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("enrolcursor", OracleDbType.RefCursor);
+            cmd.Parameters["enrolcursor"].Direction = ParameterDirection.ReturnValue;
+
+            if (connection.State == ConnectionState.Open)
+            {
+                connection.Close();
+            }
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            enrolments = new DataSet();
+
+            da.Fill(enrolments, "enrolcursor", (OracleRefCursor)(cmd.Parameters["enrolcursor"].Value));
+
+            connection.Close();
+        }
         #endregion
 
         #region populateWithData
@@ -241,7 +269,41 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 object[] items = teamallocs.Tables[0].Rows[i].ItemArray;
-                grdTeamAllocation.Rows.Add(new object[] { items[0], items[1]});
+                if (items[0].ToString().Equals(txtTeamID.Text) && items[2].ToString().Equals(cbUnitID.SelectedItem.ToString())
+                    && items[3].ToString().Equals(cbSemester.SelectedItem.ToString())
+                    && items[4].ToString().Equals(cbYear.SelectedItem.ToString()))
+                {
+                    grdTeamAllocation.Rows.Add(new object[] { items[0], items[1]});
+                }
+            }
+        }
+
+        private void populateEnrolledStus()
+        {
+            //Clear the grid
+            txtStuID.Items.Clear();
+
+            //Populate the grid from the dataset
+            int rowcnt = enrolments.Tables["enrolcursor"].Rows.Count;
+            object items = new object();
+            object unit = new object();
+            object semester = new object();
+            object year = new object();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                items = enrolments.Tables["enrolcursor"].Rows[i][0].ToString();
+                unit = enrolments.Tables["enrolcursor"].Rows[i][1].ToString();
+                semester = enrolments.Tables["enrolcursor"].Rows[i][2].ToString();
+                year = enrolments.Tables["enrolcursor"].Rows[i][3].ToString();
+                if (unit.Equals(cbUnitID.SelectedItem)) {
+                    if (semester.Equals(cbSemester.SelectedItem)) {
+                        if (year.Equals(cbYear.SelectedItem)) {
+                            if (!txtStuID.Items.Contains(items.ToString()))
+                                txtStuID.Items.Add(items.ToString());
+                        }
+                    }
+                }
             }
         }
         #endregion
@@ -480,30 +542,31 @@ namespace FrontEndV0._1.forms
 
                     //Clear textboxes
                     txtTeamID.Clear();
-                    txtStuID.Clear();
+                    txtStuID.SelectedIndex = -1;
 
                     btnAddStu.Text = "Add";
                 }
             }
             else
             {
-                gbIdentifyingInformation.Enabled = true;
+                gbIdentifyingInformation.Enabled = false;
                 //Enable buttons
-                txtTeamID.Enabled = true;
-                cbUnitID.Enabled = true;
-                cbSemester.Enabled = true;
-                cbYear.Enabled = true;
+                txtTeamID.Enabled = false;
+                cbUnitID.Enabled = false;
+                cbSemester.Enabled = false;
+                cbYear.Enabled = false;
 
                 gbDetails.Enabled = true;
-                cbSupervisor.Enabled = true;
+                cbSupervisor.Enabled = false;
                 txtStuID.Enabled = true;
 
                 //Disable other buttons
                 btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
+                btnDeleteStu.Enabled = false;
 
                 //Change button text and deselect any employee from grid
-                btnAdd.Text = "Save?";
+                btnAddStu.Text = "Save?";
                 grdTeamInfo.ClearSelection();
             }
         }
@@ -518,6 +581,20 @@ namespace FrontEndV0._1.forms
         private bool FormValidated()
         {
             return true;
+        }
+
+        private void grdTeamInfo_CellClicked(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedrowindex = grdTeamInfo.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
+            txtTeamID.Text = grdTeamInfo.Rows[selectedrowindex].Cells[0].Value.ToString();
+            cbProjID.SelectedIndex = cbProjID.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[1].Value.ToString());
+            cbUnitID.SelectedIndex = cbUnitID.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[2].Value.ToString());
+            cbSemester.SelectedIndex = cbSemester.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[3].Value.ToString());
+            cbYear.SelectedIndex = cbYear.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[4].Value.ToString());
+            cbSupervisor.SelectedIndex = cbSupervisor.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[5].Value.ToString());
+            getEnrolments();
+            populateEnrolledStus();
+            populateTeamAllocs();
         }
 
 
