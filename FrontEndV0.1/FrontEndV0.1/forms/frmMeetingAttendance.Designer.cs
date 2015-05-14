@@ -120,6 +120,7 @@
             this.cbStuID.Name = "cbStuID";
             this.cbStuID.Size = new System.Drawing.Size(121, 21);
             this.cbStuID.TabIndex = 42;
+            this.cbStuID.SelectedIndexChanged += new System.EventHandler(this.cbStuID_SelectedIndexChanged);
             // 
             // grdMeetings
             // 

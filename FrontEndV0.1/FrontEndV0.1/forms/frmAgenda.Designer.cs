@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lblStuID = new System.Windows.Forms.Label();
-            this.txtDueDate = new System.Windows.Forms.TextBox();
             this.lblDueDate = new System.Windows.Forms.Label();
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.lblMeetingMinutes = new System.Windows.Forms.Label();
@@ -40,6 +39,9 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.grdAgendatems = new System.Windows.Forms.DataGridView();
+            this.colAgendaNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.grdMeetings = new System.Windows.Forms.DataGridView();
@@ -48,9 +50,9 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAgendaNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblAgendaNum = new System.Windows.Forms.Label();
+            this.txtAgendaNum = new System.Windows.Forms.TextBox();
+            this.dtDue = new System.Windows.Forms.DateTimePicker();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAgendatems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).BeginInit();
@@ -65,19 +67,11 @@
             this.lblStuID.TabIndex = 46;
             this.lblStuID.Text = "Student Assigned:";
             // 
-            // txtDueDate
-            // 
-            this.txtDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDueDate.Location = new System.Drawing.Point(108, 143);
-            this.txtDueDate.Name = "txtDueDate";
-            this.txtDueDate.Size = new System.Drawing.Size(121, 26);
-            this.txtDueDate.TabIndex = 45;
-            // 
             // lblDueDate
             // 
             this.lblDueDate.AutoSize = true;
             this.lblDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDueDate.Location = new System.Drawing.Point(11, 143);
+            this.lblDueDate.Location = new System.Drawing.Point(11, 228);
             this.lblDueDate.Name = "lblDueDate";
             this.lblDueDate.Size = new System.Drawing.Size(91, 20);
             this.lblDueDate.TabIndex = 45;
@@ -85,11 +79,13 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.dtDue);
+            this.gbDetails.Controls.Add(this.txtAgendaNum);
+            this.gbDetails.Controls.Add(this.lblAgendaNum);
             this.gbDetails.Controls.Add(this.lblMeetingMinutes);
             this.gbDetails.Controls.Add(this.txtMeetingMinutes);
             this.gbDetails.Controls.Add(this.txtStuID);
             this.gbDetails.Controls.Add(this.lblStuID);
-            this.gbDetails.Controls.Add(this.txtDueDate);
             this.gbDetails.Controls.Add(this.lblDueDate);
             this.gbDetails.Controls.Add(this.lblActionDesc);
             this.gbDetails.Controls.Add(this.txtAgendaDesc);
@@ -105,7 +101,7 @@
             // lblMeetingMinutes
             // 
             this.lblMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingMinutes.Location = new System.Drawing.Point(11, 233);
+            this.lblMeetingMinutes.Location = new System.Drawing.Point(11, 257);
             this.lblMeetingMinutes.Name = "lblMeetingMinutes";
             this.lblMeetingMinutes.Size = new System.Drawing.Size(91, 66);
             this.lblMeetingMinutes.TabIndex = 49;
@@ -114,10 +110,10 @@
             // txtMeetingMinutes
             // 
             this.txtMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetingMinutes.Location = new System.Drawing.Point(108, 230);
+            this.txtMeetingMinutes.Location = new System.Drawing.Point(108, 257);
             this.txtMeetingMinutes.Multiline = true;
             this.txtMeetingMinutes.Name = "txtMeetingMinutes";
-            this.txtMeetingMinutes.Size = new System.Drawing.Size(375, 106);
+            this.txtMeetingMinutes.Size = new System.Drawing.Size(375, 79);
             this.txtMeetingMinutes.TabIndex = 48;
             // 
             // txtStuID
@@ -131,7 +127,7 @@
             // lblActionDesc
             // 
             this.lblActionDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActionDesc.Location = new System.Drawing.Point(19, 16);
+            this.lblActionDesc.Location = new System.Drawing.Point(19, 69);
             this.lblActionDesc.Name = "lblActionDesc";
             this.lblActionDesc.Size = new System.Drawing.Size(83, 40);
             this.lblActionDesc.TabIndex = 45;
@@ -140,7 +136,7 @@
             // txtAgendaDesc
             // 
             this.txtAgendaDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendaDesc.Location = new System.Drawing.Point(108, 13);
+            this.txtAgendaDesc.Location = new System.Drawing.Point(108, 66);
             this.txtAgendaDesc.Multiline = true;
             this.txtAgendaDesc.Name = "txtAgendaDesc";
             this.txtAgendaDesc.Size = new System.Drawing.Size(375, 106);
@@ -149,7 +145,7 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(526, 312);
+            this.btnAdd.Location = new System.Drawing.Point(526, 307);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(137, 37);
             this.btnAdd.TabIndex = 62;
@@ -160,7 +156,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(353, 9);
+            this.lblTitle.Location = new System.Drawing.Point(342, 9);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(204, 34);
             this.lblTitle.TabIndex = 63;
@@ -185,11 +181,26 @@
             this.grdAgendatems.Size = new System.Drawing.Size(376, 239);
             this.grdAgendatems.TabIndex = 68;
             // 
+            // colAgendaNum
+            // 
+            this.colAgendaNum.HeaderText = "Agenda Number";
+            this.colAgendaNum.Name = "colAgendaNum";
+            // 
+            // colStuID
+            // 
+            this.colStuID.HeaderText = "Student ID";
+            this.colStuID.Name = "colStuID";
+            // 
+            // colDueDate
+            // 
+            this.colDueDate.HeaderText = "Due Date";
+            this.colDueDate.Name = "colDueDate";
+            // 
             // btnEdit
             // 
             this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(526, 370);
+            this.btnEdit.Location = new System.Drawing.Point(526, 365);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(137, 37);
             this.btnEdit.TabIndex = 65;
@@ -199,7 +210,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(526, 425);
+            this.btnDelete.Location = new System.Drawing.Point(526, 428);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(137, 37);
             this.btnDelete.TabIndex = 67;
@@ -252,20 +263,31 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Year";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
-            // colAgendaNum
+            // lblAgendaNum
             // 
-            this.colAgendaNum.HeaderText = "Agenda Number";
-            this.colAgendaNum.Name = "colAgendaNum";
+            this.lblAgendaNum.AutoSize = true;
+            this.lblAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAgendaNum.Location = new System.Drawing.Point(19, 31);
+            this.lblAgendaNum.Name = "lblAgendaNum";
+            this.lblAgendaNum.Size = new System.Drawing.Size(117, 20);
+            this.lblAgendaNum.TabIndex = 50;
+            this.lblAgendaNum.Text = "Agenda Num:";
             // 
-            // colStuID
+            // txtAgendaNum
             // 
-            this.colStuID.HeaderText = "Student ID";
-            this.colStuID.Name = "colStuID";
+            this.txtAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAgendaNum.Location = new System.Drawing.Point(142, 28);
+            this.txtAgendaNum.Name = "txtAgendaNum";
+            this.txtAgendaNum.Size = new System.Drawing.Size(121, 26);
+            this.txtAgendaNum.TabIndex = 51;
             // 
-            // colDueDate
+            // dtDue
             // 
-            this.colDueDate.HeaderText = "Due Date";
-            this.colDueDate.Name = "colDueDate";
+            this.dtDue.Location = new System.Drawing.Point(108, 228);
+            this.dtDue.Margin = new System.Windows.Forms.Padding(2);
+            this.dtDue.Name = "dtDue";
+            this.dtDue.Size = new System.Drawing.Size(193, 20);
+            this.dtDue.TabIndex = 79;
             // 
             // frmAgenda
             // 
@@ -292,7 +314,6 @@
         #endregion
 
         public System.Windows.Forms.Label lblStuID;
-        public System.Windows.Forms.TextBox txtDueDate;
         public System.Windows.Forms.Label lblDueDate;
         public System.Windows.Forms.GroupBox gbDetails;
         public System.Windows.Forms.TextBox txtStuID;
@@ -314,5 +335,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        public System.Windows.Forms.TextBox txtAgendaNum;
+        public System.Windows.Forms.Label lblAgendaNum;
+        private System.Windows.Forms.DateTimePicker dtDue;
     }
 }
