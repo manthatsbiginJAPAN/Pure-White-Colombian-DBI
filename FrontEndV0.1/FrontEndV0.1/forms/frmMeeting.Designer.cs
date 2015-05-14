@@ -60,8 +60,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.grdMeetings = new System.Windows.Forms.DataGridView();
-            this.colTeamID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMeetID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTeamID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,13 +74,6 @@
             // 
             this.cbYear.Enabled = false;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
             this.cbYear.Location = new System.Drawing.Point(155, 102);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
@@ -127,13 +120,6 @@
             // 
             this.cbSupervisor.Enabled = false;
             this.cbSupervisor.FormattingEnabled = true;
-            this.cbSupervisor.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
             this.cbSupervisor.Location = new System.Drawing.Point(157, 137);
             this.cbSupervisor.Name = "cbSupervisor";
             this.cbSupervisor.Size = new System.Drawing.Size(121, 21);
@@ -299,9 +285,6 @@
             // cbTeamID
             // 
             this.cbTeamID.FormattingEnabled = true;
-            this.cbTeamID.Items.AddRange(new object[] {
-            "INF30011",
-            "INF20011"});
             this.cbTeamID.Location = new System.Drawing.Point(156, 138);
             this.cbTeamID.Name = "cbTeamID";
             this.cbTeamID.Size = new System.Drawing.Size(121, 21);
@@ -311,9 +294,6 @@
             // 
             this.cbSemester.Enabled = false;
             this.cbSemester.FormattingEnabled = true;
-            this.cbSemester.Items.AddRange(new object[] {
-            "1",
-            "2"});
             this.cbSemester.Location = new System.Drawing.Point(155, 69);
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
@@ -333,9 +313,6 @@
             // cbUnitID
             // 
             this.cbUnitID.FormattingEnabled = true;
-            this.cbUnitID.Items.AddRange(new object[] {
-            "INF30011",
-            "INF20011"});
             this.cbUnitID.Location = new System.Drawing.Point(156, 38);
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
@@ -430,8 +407,8 @@
             this.grdMeetings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdMeetings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdMeetings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colTeamID,
             this.colMeetID,
+            this.colTeamID,
             this.Unitid,
             this.Semester,
             this.Year});
@@ -441,15 +418,15 @@
             this.grdMeetings.Size = new System.Drawing.Size(421, 569);
             this.grdMeetings.TabIndex = 47;
             // 
-            // colTeamID
-            // 
-            this.colTeamID.HeaderText = "Team ID";
-            this.colTeamID.Name = "colTeamID";
-            // 
             // colMeetID
             // 
             this.colMeetID.HeaderText = "Meeting ID";
             this.colMeetID.Name = "colMeetID";
+            // 
+            // colTeamID
+            // 
+            this.colTeamID.HeaderText = "Team ID";
+            this.colTeamID.Name = "colTeamID";
             // 
             // Unitid
             // 
@@ -524,8 +501,8 @@
         public System.Windows.Forms.Button btnAttendance;
         private System.Windows.Forms.ComboBox cbSupervisor;
         private System.Windows.Forms.ComboBox cbTeamID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTeamID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMeetID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTeamID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Semester;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
