@@ -53,41 +53,39 @@ namespace FrontEndV0._1.forms
 
         private void grdAssessmentsInfo_SelectionChanged(object sender, EventArgs e)
         {
-            displayTasks(grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
+            displayTasks();
         }
 
-        private void displayTasks(string assid)
+        private void displayTasks()
         {
-            //Doesn't work for who knows what reason.. trying to figure it out
-
             grdTaskInfo.Rows.Clear();
 
             OracleCommand cmd = new OracleCommand("UC2_23_VIEW_ASSTASK", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("assid", assid);
-            cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semseter", Convert.ToInt32( grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value) );
-            cmd.Parameters.Add("Year", Convert.ToInt32 ( grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value) );
+            cmd.CommandType = CommandType.StoredProcedure;         
             cmd.Parameters.Add("taskcursor", OracleDbType.RefCursor);
             cmd.Parameters["taskcursor"].Direction = ParameterDirection.ReturnValue;
-
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
-                cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
 
             tasks = new DataSet();
-
             da.Fill(tasks, "taskcursor", (OracleRefCursor)(cmd.Parameters["taskcursor"].Value));
-
             connection.Close();
 
             int rowcnt = tasks.Tables["taskcursor"].Rows.Count;
-
             for (int i = 0; i <= rowcnt - 1; i++)
             {
+                //only add tasks where they belong to the current selected assessment
+                string AssID = grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString();
+                string UnitID = grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString();
+                int Semester = Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value);
+                int Year = Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value);
                 object[] items = tasks.Tables[0].Rows[i].ItemArray;
-                grdTaskInfo.Rows.Add(new object[] { items[0], items[5], items[6] });
+
+                if (AssID == items[1].ToString() && UnitID == items[2].ToString() && Semester == Convert.ToInt32(items[3]) && Year == Convert.ToInt32(items[4]))
+                {
+                    grdTaskInfo.Rows.Add(new object[] { items[0], items[5], items[6] });
+                }
             }
         }
 
