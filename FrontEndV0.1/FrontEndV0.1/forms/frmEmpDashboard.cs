@@ -22,16 +22,18 @@ namespace FrontEndV0._1.forms
         private frmTeamDetails frmTeamDetails = null;
         private frmProject frmProject = null;
 
-        public frmEmpDashboard(string usertype)
+        public frmEmpDashboard(string user, bool isAdmin, bool isConvenor, bool isSupervisor)
         {
             InitializeComponent();
 
+            //for testing: MessageBox.Show("Form initialised. isAdmin: " + isAdmin + "; isConvenor: " + isConvenor + "; isSupervisor: " + isSupervisor);
+
             //Enable menus based on user's type --> except a user may have many types
-            if (usertype == "admin")
-            { 
+            if (isAdmin) //(user == "admin")
+            {
                 administratorFunctionsToolStripMenuItem.Enabled = true;
 
-                frmStuDetails = new frmStuDetails();
+                frmStuDetails = new frmStuDetails(user, isAdmin); //to be updated soon...
                 frmStuDetails.MdiParent = this;
 
                 frmUnits = new frmUnits(true);
@@ -43,8 +45,12 @@ namespace FrontEndV0._1.forms
                 frmEnrolments = new frmEnrolments();
                 frmEnrolments.MdiParent = this;
             }
+            else
+            {
+                administratorFunctionsToolStripMenuItem.Enabled = false;
+            }
 
-            if (usertype == "supervisor")
+            if (isSupervisor) //(user == "supervisor")
             {
                 supervisorFunctionsToolStripMenuItem.Enabled = true;
 
@@ -59,9 +65,13 @@ namespace FrontEndV0._1.forms
 
                 frmProject = new frmProject();
                 frmProject.MdiParent = this;
-            }   
+            }
+            else
+            {
+                supervisorFunctionsToolStripMenuItem.Enabled = false;
+            }
 
-            if (usertype == "convenor")
+            if (isConvenor) //(user == "convenor")
             {
                 convenorFunctionsToolStripMenuItem.Enabled = true;
 
@@ -80,8 +90,12 @@ namespace FrontEndV0._1.forms
                 frmProject = new frmProject();
                 frmProject.MdiParent = this;
             }
+            else
+            {
+                convenorFunctionsToolStripMenuItem.Enabled = false;
+            }
 
-            frmEmpDetails = new frmEmpDetails();
+            frmEmpDetails = new frmEmpDetails(user, isAdmin);
             frmEmpDetails.MdiParent = this;
         }
 
@@ -257,6 +271,5 @@ namespace FrontEndV0._1.forms
         {
             this.Close();
         }       
-        
     }
 }

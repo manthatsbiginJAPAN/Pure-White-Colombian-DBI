@@ -6,14 +6,23 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace FrontEndV0._1.forms
 {
     public partial class frmMeetingAttendance : Form
     {
+        private OracleConnection connection;
+        private Connection conn = new Connection("s7663285", "123");
+
+        private frmMeeting _parent;
+
         public frmMeetingAttendance()
         {
             InitializeComponent();
+
+            connection = conn.oraConn();
         }
 
         private void frmMeetingAttendance_Load(object sender, EventArgs e)
@@ -49,6 +58,11 @@ namespace FrontEndV0._1.forms
         }
 
         private void grdProjects_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cbStuID_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -40,9 +40,7 @@
             this.txtClientName = new System.Windows.Forms.TextBox();
             this.lblClientName = new System.Windows.Forms.Label();
             this.lblSupervisor = new System.Windows.Forms.Label();
-            this.txtFinish = new System.Windows.Forms.TextBox();
             this.lblFinish = new System.Windows.Forms.Label();
-            this.txtStart = new System.Windows.Forms.TextBox();
             this.lblStart = new System.Windows.Forms.Label();
             this.cbMeetingType = new System.Windows.Forms.ComboBox();
             this.lblMeetingType = new System.Windows.Forms.Label();
@@ -60,11 +58,13 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.grdMeetings = new System.Windows.Forms.DataGridView();
-            this.colTeamID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMeetID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTeamID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtStartTime = new System.Windows.Forms.DateTimePicker();
+            this.dtFinishTime = new System.Windows.Forms.DateTimePicker();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).BeginInit();
@@ -74,17 +74,11 @@
             // 
             this.cbYear.Enabled = false;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
             this.cbYear.Location = new System.Drawing.Point(155, 102);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 36;
+            this.cbYear.SelectedIndexChanged += new System.EventHandler(this.cbYear_SelectedIndexChanged);
             // 
             // btnAdd
             // 
@@ -99,6 +93,8 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.dtFinishTime);
+            this.gbDetails.Controls.Add(this.dtStartTime);
             this.gbDetails.Controls.Add(this.cbSupervisor);
             this.gbDetails.Controls.Add(this.btnAttendance);
             this.gbDetails.Controls.Add(this.btnActionItems);
@@ -108,9 +104,7 @@
             this.gbDetails.Controls.Add(this.txtClientName);
             this.gbDetails.Controls.Add(this.lblClientName);
             this.gbDetails.Controls.Add(this.lblSupervisor);
-            this.gbDetails.Controls.Add(this.txtFinish);
             this.gbDetails.Controls.Add(this.lblFinish);
-            this.gbDetails.Controls.Add(this.txtStart);
             this.gbDetails.Controls.Add(this.lblStart);
             this.gbDetails.Controls.Add(this.cbMeetingType);
             this.gbDetails.Controls.Add(this.lblMeetingType);
@@ -127,13 +121,6 @@
             // 
             this.cbSupervisor.Enabled = false;
             this.cbSupervisor.FormattingEnabled = true;
-            this.cbSupervisor.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
             this.cbSupervisor.Location = new System.Drawing.Point(157, 137);
             this.cbSupervisor.Name = "cbSupervisor";
             this.cbSupervisor.Size = new System.Drawing.Size(121, 21);
@@ -171,6 +158,7 @@
             // 
             // txtMeetingMinutes
             // 
+            this.txtMeetingMinutes.Enabled = false;
             this.txtMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMeetingMinutes.Location = new System.Drawing.Point(15, 225);
             this.txtMeetingMinutes.Multiline = true;
@@ -190,6 +178,7 @@
             // 
             // txtClientName
             // 
+            this.txtClientName.Enabled = false;
             this.txtClientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClientName.Location = new System.Drawing.Point(157, 163);
             this.txtClientName.Name = "txtClientName";
@@ -200,7 +189,7 @@
             // 
             this.lblClientName.AutoSize = true;
             this.lblClientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientName.Location = new System.Drawing.Point(25, 169);
+            this.lblClientName.Location = new System.Drawing.Point(20, 169);
             this.lblClientName.Name = "lblClientName";
             this.lblClientName.Size = new System.Drawing.Size(111, 20);
             this.lblClientName.TabIndex = 46;
@@ -216,37 +205,21 @@
             this.lblSupervisor.TabIndex = 45;
             this.lblSupervisor.Text = "Supervisor ID:";
             // 
-            // txtFinish
-            // 
-            this.txtFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFinish.Location = new System.Drawing.Point(157, 97);
-            this.txtFinish.Name = "txtFinish";
-            this.txtFinish.Size = new System.Drawing.Size(121, 26);
-            this.txtFinish.TabIndex = 44;
-            // 
             // lblFinish
             // 
             this.lblFinish.AutoSize = true;
             this.lblFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinish.Location = new System.Drawing.Point(31, 100);
+            this.lblFinish.Location = new System.Drawing.Point(20, 100);
             this.lblFinish.Name = "lblFinish";
             this.lblFinish.Size = new System.Drawing.Size(105, 20);
             this.lblFinish.TabIndex = 43;
             this.lblFinish.Text = "Finish Time:";
             // 
-            // txtStart
-            // 
-            this.txtStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStart.Location = new System.Drawing.Point(157, 62);
-            this.txtStart.Name = "txtStart";
-            this.txtStart.Size = new System.Drawing.Size(121, 26);
-            this.txtStart.TabIndex = 41;
-            // 
             // lblStart
             // 
             this.lblStart.AutoSize = true;
             this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStart.Location = new System.Drawing.Point(39, 62);
+            this.lblStart.Location = new System.Drawing.Point(20, 62);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(97, 20);
             this.lblStart.TabIndex = 42;
@@ -264,6 +237,7 @@
             this.cbMeetingType.Name = "cbMeetingType";
             this.cbMeetingType.Size = new System.Drawing.Size(121, 21);
             this.cbMeetingType.TabIndex = 41;
+            this.cbMeetingType.SelectedIndexChanged += new System.EventHandler(this.cbMeetingType_SelectedIndexChanged);
             // 
             // lblMeetingType
             // 
@@ -299,25 +273,21 @@
             // cbTeamID
             // 
             this.cbTeamID.FormattingEnabled = true;
-            this.cbTeamID.Items.AddRange(new object[] {
-            "INF30011",
-            "INF20011"});
             this.cbTeamID.Location = new System.Drawing.Point(156, 138);
             this.cbTeamID.Name = "cbTeamID";
             this.cbTeamID.Size = new System.Drawing.Size(121, 21);
             this.cbTeamID.TabIndex = 41;
+            this.cbTeamID.SelectedIndexChanged += new System.EventHandler(this.cbTeamID_SelectedIndexChanged);
             // 
             // cbSemester
             // 
             this.cbSemester.Enabled = false;
             this.cbSemester.FormattingEnabled = true;
-            this.cbSemester.Items.AddRange(new object[] {
-            "1",
-            "2"});
             this.cbSemester.Location = new System.Drawing.Point(155, 69);
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
             this.cbSemester.TabIndex = 35;
+            this.cbSemester.SelectedIndexChanged += new System.EventHandler(this.cbSemester_SelectedIndexChanged);
             // 
             // lblTeamID
             // 
@@ -328,18 +298,15 @@
             this.lblTeamID.Size = new System.Drawing.Size(82, 20);
             this.lblTeamID.TabIndex = 39;
             this.lblTeamID.Text = "Team ID:";
-            this.lblTeamID.Click += new System.EventHandler(this.label1_Click);
             // 
             // cbUnitID
             // 
             this.cbUnitID.FormattingEnabled = true;
-            this.cbUnitID.Items.AddRange(new object[] {
-            "INF30011",
-            "INF20011"});
             this.cbUnitID.Location = new System.Drawing.Point(156, 38);
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
             this.cbUnitID.TabIndex = 34;
+            this.cbUnitID.SelectedIndexChanged += new System.EventHandler(this.cbUnitID_SelectedIndexChanged);
             // 
             // lblSem
             // 
@@ -358,6 +325,7 @@
             this.txtMeetID.Name = "txtMeetID";
             this.txtMeetID.Size = new System.Drawing.Size(121, 26);
             this.txtMeetID.TabIndex = 38;
+            this.txtMeetID.TextChanged += new System.EventHandler(this.txtMeetID_TextChanged);
             // 
             // lblYear
             // 
@@ -410,6 +378,7 @@
             this.btnEdit.TabIndex = 44;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -420,6 +389,7 @@
             this.btnDelete.TabIndex = 46;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // grdMeetings
             // 
@@ -430,8 +400,8 @@
             this.grdMeetings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdMeetings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdMeetings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colTeamID,
             this.colMeetID,
+            this.colTeamID,
             this.Unitid,
             this.Semester,
             this.Year});
@@ -441,15 +411,15 @@
             this.grdMeetings.Size = new System.Drawing.Size(421, 569);
             this.grdMeetings.TabIndex = 47;
             // 
-            // colTeamID
-            // 
-            this.colTeamID.HeaderText = "Team ID";
-            this.colTeamID.Name = "colTeamID";
-            // 
             // colMeetID
             // 
             this.colMeetID.HeaderText = "Meeting ID";
             this.colMeetID.Name = "colMeetID";
+            // 
+            // colTeamID
+            // 
+            this.colTeamID.HeaderText = "Team ID";
+            this.colTeamID.Name = "colTeamID";
             // 
             // Unitid
             // 
@@ -467,6 +437,24 @@
             this.Year.HeaderText = "Year";
             this.Year.Name = "Year";
             // 
+            // dtStartTime
+            // 
+            this.dtStartTime.Enabled = false;
+            this.dtStartTime.Location = new System.Drawing.Point(130, 62);
+            this.dtStartTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtStartTime.Name = "dtStartTime";
+            this.dtStartTime.Size = new System.Drawing.Size(193, 20);
+            this.dtStartTime.TabIndex = 52;
+            // 
+            // dtFinishTime
+            // 
+            this.dtFinishTime.Enabled = false;
+            this.dtFinishTime.Location = new System.Drawing.Point(130, 103);
+            this.dtFinishTime.Margin = new System.Windows.Forms.Padding(2);
+            this.dtFinishTime.Name = "dtFinishTime";
+            this.dtFinishTime.Size = new System.Drawing.Size(193, 20);
+            this.dtFinishTime.TabIndex = 53;
+            // 
             // frmMeeting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,6 +468,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.grdMeetings);
             this.Name = "frmMeeting";
+            this.Load += new System.EventHandler(this.frmMeeting_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
             this.gbIdentifyingInformation.ResumeLayout(false);
@@ -511,11 +500,9 @@
         public System.Windows.Forms.Label lblMeetingType;
         private System.Windows.Forms.ComboBox cbMeetingType;
         public System.Windows.Forms.Label lblStart;
-        public System.Windows.Forms.TextBox txtStart;
         public System.Windows.Forms.TextBox txtClientName;
         public System.Windows.Forms.Label lblClientName;
         public System.Windows.Forms.Label lblSupervisor;
-        public System.Windows.Forms.TextBox txtFinish;
         public System.Windows.Forms.Label lblFinish;
         public System.Windows.Forms.Button btnActionItems;
         public System.Windows.Forms.Button btnAgenda;
@@ -524,10 +511,12 @@
         public System.Windows.Forms.Button btnAttendance;
         private System.Windows.Forms.ComboBox cbSupervisor;
         private System.Windows.Forms.ComboBox cbTeamID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTeamID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMeetID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTeamID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Semester;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+        private System.Windows.Forms.DateTimePicker dtFinishTime;
+        private System.Windows.Forms.DateTimePicker dtStartTime;
     }
 }

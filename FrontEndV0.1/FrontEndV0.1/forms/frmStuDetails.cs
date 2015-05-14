@@ -17,11 +17,14 @@ namespace FrontEndV0._1.forms
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
         private DataSet ds;
+        private string User;
+        private bool isAdmin;
 
-        public frmStuDetails()
+        public frmStuDetails(string user, bool isAdministrator)
         {
             InitializeComponent();
-
+            User = user;
+            isAdmin = isAdministrator;
             connection = conn.oraConn();
         }
 
@@ -30,6 +33,14 @@ namespace FrontEndV0._1.forms
             grdStudentInfo.ClearSelection();
             getStudents();
             populateStuGrid();
+
+            if (!isAdmin)
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                gbDetails.Enabled = false;
+                gbIdentifyingInformation.Enabled = false;
+            }
         }
 
         private void getStudents()
@@ -62,8 +73,20 @@ namespace FrontEndV0._1.forms
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                object[] items = ds.Tables[0].Rows[i].ItemArray;
-                grdStudentInfo.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4], items[5] });
+                //if user is an admin then load each student row to view, add to and edit
+                if (isAdmin)
+                {
+                    object[] items = ds.Tables[0].Rows[i].ItemArray;
+                    grdStudentInfo.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4], items[5] });
+                }
+                else //otherwise if they are not an admin, they're a student and should only load their own details to view
+                {
+                    if (ds.Tables[0].Rows[i][0].ToString().ToLower() == User.ToLower())
+                    {
+                        object[] items = ds.Tables[0].Rows[i].ItemArray;
+                        grdStudentInfo.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4], items[5] });
+                    }
+                }
             }
         }
 
@@ -98,7 +121,7 @@ namespace FrontEndV0._1.forms
                     //Repopulate Grid
                     populateStuGrid();
 
-                    //Disable buttons
+                    //Disable group boxes
                     gbIdentifyingInformation.Enabled = false;
                     gbDetails.Enabled = false;
 
@@ -199,12 +222,15 @@ namespace FrontEndV0._1.forms
                 getStudents();
                 populateStuGrid();
                 MessageBox.Show("Student Deleted");
-            }
-            
+            }   
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            //check that there are rows in the grid to edit before proceeding, to prevent db errors
+            if (grdStudentInfo.Rows.Count == 0)
+                return;
+
             //Logic and functions for save button
             if (btnEdit.Text == "Update?")
             {
@@ -247,8 +273,8 @@ namespace FrontEndV0._1.forms
                     txtStuPass.Clear();
 
                     grdStudentInfo.Enabled = true;
+                    //reset button text
                     btnEdit.Text = "Edit";
-                    Console.WriteLine(btnAdd.Text); //wut
                 }
             }
             else
@@ -263,11 +289,16 @@ namespace FrontEndV0._1.forms
                 txtStuPass.Text = grdStudentInfo.Rows[selectedrowindex].Cells[5].Value.ToString();
 
                 //Enable textboxes
-                gbIdentifyingInformation.Enabled = true;
                 gbDetails.Enabled = true;
 
+                //prevent changing the name fields if employee is not an admin
+                if (!isAdmin)
+                {
+                    txtStuFName.Enabled = false;
+                    txtStuSName.Enabled = false;
+                }
+
                 //Disable other buttons
-                gbIdentifyingInformation.Enabled = false;
                 btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
 

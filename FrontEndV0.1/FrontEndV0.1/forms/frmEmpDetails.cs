@@ -17,18 +17,30 @@ namespace FrontEndV0._1.forms
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
         private DataSet ds;
+        private bool isAdmin;
+        private string User;
         //private DataSet emproles; //to be used for storing emp roles when we implement it...
 
-        public frmEmpDetails()
+        public frmEmpDetails(string user, bool isAdministrator)
         {
             InitializeComponent();
             connection = conn.oraConn();
+            isAdmin = isAdministrator;
+            User = user;
         }
 
         private void frmEmpDetails_Load(object sender, EventArgs e)
         {
             getEmployees();
             populateEmpGrid();
+
+            if (!isAdmin)
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                gbDetails.Enabled = false;
+                gbIdentifyingInformation.Enabled = false;
+            }
         }
 
         private void getEmployees()
@@ -62,9 +74,21 @@ namespace FrontEndV0._1.forms
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                object[] items = ds.Tables[0].Rows[i].ItemArray;
-                grdEmployeeInfo.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4], items[5] });
-            } 
+                //if employee is an admin then load each employee row to view, add to and edit
+                if (isAdmin)
+                {
+                    object[] items = ds.Tables[0].Rows[i].ItemArray;
+                    grdEmployeeInfo.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4], items[5] });
+                }
+                else //otherwise if they are not an admin, only load their own details to view
+                {
+                    if (ds.Tables[0].Rows[i][0].ToString().ToLower() == User.ToLower())
+                    {
+                        object[] items = ds.Tables[0].Rows[i].ItemArray;
+                        grdEmployeeInfo.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4], items[5] });
+                    }
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -136,13 +160,9 @@ namespace FrontEndV0._1.forms
                     //Repopulate Grid
                     populateEmpGrid();
 
-                    //Disable buttons
-                    txtEmpID.Enabled = false;
-                    txtEmpFName.Enabled = false;
-                    txtEmpSName.Enabled = false;
-                    txtEmpEmail.Enabled = false;
-                    txtEmpPhone.Enabled = false;
-                    txtEmpPass.Enabled = false;
+                    //Disable group boxes
+                    gbIdentifyingInformation.Enabled = false;
+                    gbDetails.Enabled = false;
 
                     //Enable other buttons
                     btnEdit.Enabled = true;
@@ -156,18 +176,21 @@ namespace FrontEndV0._1.forms
                     txtEmpEmail.Clear();
                     txtEmpPass.Clear();
 
+                    //clear checkboxes
+                    for (int i = 0; i < clbEmpRoles.Items.Count; i++)
+                    {
+                        clbEmpRoles.SetItemCheckState(i, CheckState.Unchecked);
+                    }
+
+                    //reset button text
                     btnAdd.Text = "Add";
                 }
             }
             else
             {
                 //Enable buttons
-                txtEmpID.Enabled = true;
-                txtEmpFName.Enabled = true;
-                txtEmpSName.Enabled = true;
-                txtEmpEmail.Enabled = true;
-                txtEmpPhone.Enabled = true;
-                txtEmpPass.Enabled = true;
+                gbIdentifyingInformation.Enabled = true;
+                gbDetails.Enabled = true;
 
                 //Disable other buttons
                 btnEdit.Enabled = false;
@@ -321,6 +344,13 @@ namespace FrontEndV0._1.forms
                 //Enable textboxes
                 gbIdentifyingInformation.Enabled = true;
                 gbDetails.Enabled = true;
+
+                //prevent changing the name fields if employee is not an admin
+                if (!isAdmin)
+                {
+                    txtEmpFName.Enabled = false;
+                    txtEmpSName.Enabled = false;
+                }
 
                 //Disable other buttons
                 gbIdentifyingInformation.Enabled = false;

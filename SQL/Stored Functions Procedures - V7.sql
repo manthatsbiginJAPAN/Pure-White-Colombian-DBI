@@ -1438,7 +1438,7 @@ CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
 	pEmpID varchar2,
 	pClientName varchar2) AS
 BEGIN
-	INSERT INTO Meeting VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
+	INSERT INTO Meeting (MeetingID, TeamID, UnitID, Semester, Year, MeetType, StartTime, FinishTime, Minutes, EmpID, ClientName) VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');

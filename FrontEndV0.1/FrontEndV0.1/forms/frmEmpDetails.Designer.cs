@@ -87,6 +87,7 @@
             this.gbIdentifyingInformation.Controls.Add(this.label8);
             this.gbIdentifyingInformation.Controls.Add(this.txtEmpID);
             this.gbIdentifyingInformation.Controls.Add(this.label2);
+            this.gbIdentifyingInformation.Enabled = false;
             this.gbIdentifyingInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbIdentifyingInformation.Location = new System.Drawing.Point(13, 66);
             this.gbIdentifyingInformation.Name = "gbIdentifyingInformation";
@@ -103,7 +104,7 @@
             "Convenor",
             "Supervisor"});
             this.clbEmpRoles.Location = new System.Drawing.Point(132, 96);
-            this.clbEmpRoles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clbEmpRoles.Margin = new System.Windows.Forms.Padding(2);
             this.clbEmpRoles.Name = "clbEmpRoles";
             this.clbEmpRoles.Size = new System.Drawing.Size(100, 49);
             this.clbEmpRoles.TabIndex = 7;
@@ -170,6 +171,7 @@
             this.gbDetails.Controls.Add(this.label4);
             this.gbDetails.Controls.Add(this.txtEmpFName);
             this.gbDetails.Controls.Add(this.label3);
+            this.gbDetails.Enabled = false;
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDetails.Location = new System.Drawing.Point(12, 366);
             this.gbDetails.Name = "gbDetails";
@@ -217,7 +219,7 @@
             // txtEmpPass
             // 
             this.txtEmpPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmpPass.Location = new System.Drawing.Point(114, 223);
+            this.txtEmpPass.Location = new System.Drawing.Point(116, 217);
             this.txtEmpPass.Name = "txtEmpPass";
             this.txtEmpPass.Size = new System.Drawing.Size(100, 26);
             this.txtEmpPass.TabIndex = 8;
@@ -227,7 +229,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(17, 226);
+            this.label5.Location = new System.Drawing.Point(17, 220);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 20);
             this.label5.TabIndex = 7;
@@ -329,7 +331,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 617);
+            this.ClientSize = new System.Drawing.Size(924, 656);
             this.Controls.Add(this.grdEmployeeInfo);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.btnDelete);
