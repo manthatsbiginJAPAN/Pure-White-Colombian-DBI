@@ -147,7 +147,7 @@ namespace FrontEndV0._1.forms
                 //Enable buttons
                 gbIdentifyingInformation.Enabled = true;
                 gbDetails.Enabled = true;
-
+                
                 //Disable other buttons
                 btnEdit.Enabled = false;
                 btnDelete.Enabled = false;

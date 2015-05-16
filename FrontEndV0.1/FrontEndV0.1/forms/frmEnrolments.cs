@@ -305,6 +305,10 @@ namespace FrontEndV0._1.forms
 
         private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Fixes it crashing when you actually add an enrolment
+            if (cbUnitID.SelectedItem == null)
+                return;
+
             if (cbUnitID.SelectedIndex != -1)
                 cbSemester.Enabled = true;
 
@@ -314,6 +318,7 @@ namespace FrontEndV0._1.forms
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
+
                 //find the semesters where the unitID matches the selected one
                 if (unitoffs.Tables[0].Rows[i][0].ToString() == cbUnitID.SelectedItem.ToString())
                 {
@@ -331,6 +336,10 @@ namespace FrontEndV0._1.forms
 
         private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Fixes it crashing when you actually add an enrolment
+            if (cbUnitID.SelectedItem == null)
+                return;
+
             if (cbSemester.SelectedIndex != -1)
                 cbYear.Enabled = true;
 
