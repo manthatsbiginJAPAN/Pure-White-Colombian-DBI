@@ -31,7 +31,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnPeerAss = new System.Windows.Forms.Button();
             this.btnTeamCont = new System.Windows.Forms.Button();
             this.txtMarkingGuide = new System.Windows.Forms.TextBox();
             this.lblMarkingGuide = new System.Windows.Forms.Label();
@@ -75,7 +75,7 @@
             // gbDetails
             // 
             this.gbDetails.Controls.Add(this.label1);
-            this.gbDetails.Controls.Add(this.button2);
+            this.gbDetails.Controls.Add(this.btnPeerAss);
             this.gbDetails.Controls.Add(this.btnTeamCont);
             this.gbDetails.Controls.Add(this.txtMarkingGuide);
             this.gbDetails.Controls.Add(this.lblMarkingGuide);
@@ -104,16 +104,17 @@
             this.label1.TabIndex = 49;
             this.label1.Text = "Create:";
             // 
-            // button2
+            // btnPeerAss
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(421, 158);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(183, 58);
-            this.button2.TabIndex = 51;
-            this.button2.Text = "Peer Assess.";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPeerAss.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPeerAss.Location = new System.Drawing.Point(421, 158);
+            this.btnPeerAss.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPeerAss.Name = "btnPeerAss";
+            this.btnPeerAss.Size = new System.Drawing.Size(183, 58);
+            this.btnPeerAss.TabIndex = 51;
+            this.btnPeerAss.Text = "Peer Assess.";
+            this.btnPeerAss.UseVisualStyleBackColor = true;
+            this.btnPeerAss.Click += new System.EventHandler(this.btnPeerAss_Click);
             // 
             // btnTeamCont
             // 
@@ -350,21 +351,25 @@
             // 
             this.colAssID.HeaderText = "Assessment ID";
             this.colAssID.Name = "colAssID";
+            this.colAssID.ReadOnly = true;
             // 
             // colUnitID
             // 
             this.colUnitID.HeaderText = "Unit ID";
             this.colUnitID.Name = "colUnitID";
+            this.colUnitID.ReadOnly = true;
             // 
             // colSem
             // 
             this.colSem.HeaderText = "Semester";
             this.colSem.Name = "colSem";
+            this.colSem.ReadOnly = true;
             // 
             // colYear
             // 
             this.colYear.HeaderText = "Year";
             this.colYear.Name = "colYear";
+            this.colYear.ReadOnly = true;
             // 
             // frmAssessment
             // 
@@ -415,14 +420,14 @@
         public System.Windows.Forms.Label label4;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.DataGridView grdAssessmentInfo;
+        public System.Windows.Forms.TextBox txtMarkingGuide;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button btnPeerAss;
+        public System.Windows.Forms.Button btnTeamCont;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAssID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnitID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
-        public System.Windows.Forms.TextBox txtMarkingGuide;
-        public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Button button2;
-        public System.Windows.Forms.Button btnTeamCont;
 
     }
 }

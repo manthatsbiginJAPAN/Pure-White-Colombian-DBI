@@ -19,6 +19,7 @@ namespace FrontEndV0._1.forms
         private DataSet unitoffs;
 
         private frmTeamContribution frmTeamCont;
+        private frmPeerAssessmentcs frmPeerAss;
 
         public frmAssessment(bool editable)
         {
@@ -187,26 +188,63 @@ namespace FrontEndV0._1.forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (btnDelete.Text == "Save")
+            if (btnEdit.Text == "Save")
             {
                 OracleCommand cmd = new OracleCommand("UC2_10_UPDATE_ASSESSMENT", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("ASSid", txtAssID.Text);
+                cmd.Parameters.Add("unitID", cmbUnitId.SelectedItem.ToString());
+                cmd.Parameters.Add("semester", Convert.ToInt32(cmbSem.SelectedItem));
+                cmd.Parameters.Add("year", Convert.ToInt32(cmbYear.SelectedItem));
                 cmd.Parameters.Add("ASSTitle", txtAssTitle.Text);
                 cmd.Parameters.Add("ASSdesc", txtAssDesc.Text);
-                cmd.Parameters.Add("unitID", cmbUnitId.SelectedItem.ToString());
-                cmd.Parameters.Add("semester", cmbSem.SelectedItem.ToString());
-                cmd.Parameters.Add("year", cmbYear.SelectedItem.ToString());
                 cmd.Parameters.Add("marking guide", txtMarkingGuide.Text);
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
                 connection.Close();
+
+                getAssessments();
+                
+                txtAssID.Enabled = true;
+
+                btnEdit.Text = "Edit";
             }
             else
             {
-                
+                btnEdit.Text = "Save";
+                int selectedrow = grdAssessmentInfo.SelectedCells[0].RowIndex;
+
+                txtAssID.Text = grdAssessmentInfo.Rows[selectedrow].Cells[0].Value.ToString();
+                cmbUnitId.Text = grdAssessmentInfo.Rows[selectedrow].Cells[1].Value.ToString();
+                cmbSem.Text = grdAssessmentInfo.Rows[selectedrow].Cells[2].Value.ToString();
+                cmbYear.Text = grdAssessmentInfo.Rows[selectedrow].Cells[3].Value.ToString();
+
+                int rowcnt = ds.Tables["asscursor"].Rows.Count;
+
+                for (int i = 0; i <= rowcnt - 1; i++)
+                {
+                    object[] items = ds.Tables[0].Rows[i].ItemArray;
+
+                    //Checking if selected assessment matches in the dataset
+                    if ( Convert.ToString(items[0]) == grdAssessmentInfo.Rows[selectedrow].Cells[0].Value.ToString()
+                        && Convert.ToString(items[3]) == grdAssessmentInfo.Rows[selectedrow].Cells[1].Value.ToString()
+                        && Convert.ToString(items[4]) == grdAssessmentInfo.Rows[selectedrow].Cells[2].Value.ToString()
+                        && Convert.ToString(items[5]) == grdAssessmentInfo.Rows[selectedrow].Cells[3].Value.ToString())
+                    {
+                        //Fill form controls with data to be updated
+                        txtAssID.Text = items[0].ToString();
+                        txtAssID.Enabled = false;
+
+                        txtAssTitle.Text = items[1].ToString();
+                        txtAssDesc.Text = items[2].ToString();
+                        cmbUnitId.SelectedValue = items[3].ToString();
+                        cmbSem.SelectedValue = items[4].ToString();
+                        cmbYear.SelectedValue = items[5].ToString();
+                        txtMarkingGuide.Text = items[6].ToString();
+                    }
+                }
             }
         }
 
@@ -214,6 +252,12 @@ namespace FrontEndV0._1.forms
         {
             frmTeamCont = new frmTeamContribution(this);
             frmTeamCont.Show();
+        }
+
+        private void btnPeerAss_Click(object sender, EventArgs e)
+        {
+            frmPeerAss = new frmPeerAssessmentcs(this);
+            frmPeerAss.Show();
         }
     }
 }

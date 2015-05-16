@@ -48,6 +48,8 @@ namespace FrontEndV0._1.forms
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
+
+            displayTasks();
         }
 
         private void grdAssessmentsInfo_SelectionChanged(object sender, EventArgs e)
@@ -81,11 +83,76 @@ namespace FrontEndV0._1.forms
                 int Year = Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value);
                 object[] items = tasks.Tables[0].Rows[i].ItemArray;
 
-                if (AssID == items[1].ToString() && UnitID == items[2].ToString() && Semester == Convert.ToInt32(items[3]) && Year == Convert.ToInt32(items[4]))
+                if (AssID == items[1].ToString() 
+                    && UnitID == items[2].ToString() 
+                    && Semester == Convert.ToInt32(items[3]) 
+                    && Year == Convert.ToInt32(items[4]))
                 {
                     grdTaskInfo.Rows.Add(new object[] { items[0], items[5], items[6] });
                 }
             }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (btnEdit.Text == "Save")
+            {
+                OracleCommand cmd = new OracleCommand("UC2_22_UPDATE_ASSTASK", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("Task ID", txtTaskId.Text);
+                cmd.Parameters.Add("Ass ID", grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString());
+                cmd.Parameters.Add("Unit ID", grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString());
+                cmd.Parameters.Add("Semester", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value));
+                cmd.Parameters.Add("Year", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value));
+                cmd.Parameters.Add("Task Desc", txtTaskDesc.Text);
+                cmd.Parameters.Add("Due Date", dtDue.Value.ToString("dd/MMM/yyyy"));
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+                btnEdit.Text = "Edit";
+
+                txtTaskId.Enabled = true;
+                grdAssessmentsInfo.Enabled = true;
+
+                displayTasks();
+            }
+            else
+            {
+                txtTaskId.Text = grdTaskInfo.SelectedRows[0].Cells[0].Value.ToString();
+                txtTaskId.Enabled = false;
+
+                txtTaskDesc.Text = grdTaskInfo.SelectedRows[0].Cells[1].Value.ToString();
+                dtDue.Value = Convert.ToDateTime(grdTaskInfo.SelectedRows[0].Cells[2].Value);
+
+                btnEdit.Text = "Save";
+
+                grdAssessmentsInfo.Enabled = false;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("UC2_24_DELETE_ASSTASK", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            string taskid = grdTaskInfo.SelectedRows[0].Cells[0].Value.ToString();
+
+            cmd.Parameters.Add("Task ID", taskid);
+            cmd.Parameters.Add("Ass ID", grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString());
+            cmd.Parameters.Add("Unit ID", grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString());
+            cmd.Parameters.Add("Semester", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value));
+            cmd.Parameters.Add("Year", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value));
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            MessageBox.Show("Task " + taskid + " deleted.");
+
+            displayTasks();
         }
 
     }
