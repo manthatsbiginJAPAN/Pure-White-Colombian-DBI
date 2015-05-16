@@ -109,7 +109,6 @@ namespace FrontEndV0._1.forms
 
             //Populate the grid from the dataset
             int rowcnt = units.Tables["unitcursor"].Rows.Count;
-            MessageBox.Show("Available Units: " + rowcnt.ToString());
             object itm;
             
             for (int i = 0; i <= rowcnt - 1; i++)
@@ -130,7 +129,6 @@ namespace FrontEndV0._1.forms
 
             //Populate the grid from the dataset
             int rowcnt = emps.Tables["empcursor"].Rows.Count;
-            MessageBox.Show("Available Convenors: " + rowcnt.ToString());
             object itm;
 
             for (int i = 0; i <= rowcnt - 1; i++)
