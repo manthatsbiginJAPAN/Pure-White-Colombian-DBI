@@ -783,10 +783,16 @@ End;
 
 
 CREATE OR REPLACE PROCEDURE UC2_8_Delete_Project
-		(pProjID varchar2) AS
+		(pProjID varchar2,
+		pUnitID varchar2,
+		pSemester number,
+		pYear number) AS
 BEGIN
 	Delete Project
-	WHERE ProjID = pProjID;
+	WHERE ProjID = pProjID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
 	--dbms_output.put_line('Project ' || pProjID || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN

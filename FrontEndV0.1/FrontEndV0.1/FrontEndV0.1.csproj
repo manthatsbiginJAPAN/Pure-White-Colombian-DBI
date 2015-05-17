@@ -146,6 +146,18 @@
     <Compile Include="forms\frmStuDetails.Designer.cs">
       <DependentUpon>frmStuDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmStuPeerAssessment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmStuPeerAssessment.Designer.cs">
+      <DependentUpon>frmStuPeerAssessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmStuTeamContribution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmStuTeamContribution.Designer.cs">
+      <DependentUpon>frmStuTeamContribution.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmSupervisorOperations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +240,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmStuDetails.resx">
       <DependentUpon>frmStuDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmStuPeerAssessment.resx">
+      <DependentUpon>frmStuPeerAssessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmStuTeamContribution.resx">
+      <DependentUpon>frmStuTeamContribution.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSupervisorOperations.resx">
       <DependentUpon>frmSupervisorOperations.cs</DependentUpon>
