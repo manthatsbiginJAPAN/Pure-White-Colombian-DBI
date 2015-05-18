@@ -129,7 +129,7 @@
             this.grdUnits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdUnits.Size = new System.Drawing.Size(421, 569);
             this.grdUnits.TabIndex = 26;
-            this.grdUnits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUnits_SelectionChanged);
+            //this.grdUnits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUnits_SelectionChanged);
             // 
             // btnAdd
             // 

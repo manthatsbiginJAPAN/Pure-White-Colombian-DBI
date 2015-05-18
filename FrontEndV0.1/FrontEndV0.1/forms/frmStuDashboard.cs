@@ -27,7 +27,7 @@ namespace FrontEndV0._1.forms
             frmStuDetails = new frmStuDetails(user, false);
             frmStuDetails.MdiParent = this;
 
-            frmEnrolments = new frmEnrolments();
+            frmEnrolments = new frmEnrolments(user, false);
             frmEnrolments.MdiParent = this;
 
             frmProject = new frmProject();

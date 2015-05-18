@@ -19,12 +19,17 @@ namespace FrontEndV0._1.forms
         private DataSet unitoffs;
         private DataSet students;
         private DataSet enrolments;
+        private string User;
+        private bool isAdmin;
 
-        public frmEnrolments()
+        public frmEnrolments(string user, bool isAdministrator)
         {
             InitializeComponent();
-
             connection = conn.oraConn();
+            User = user;
+            isAdmin = isAdministrator;
+
+            
         }
 
         private void frmEnrolments_Load(object sender, EventArgs e)
@@ -39,6 +44,14 @@ namespace FrontEndV0._1.forms
             populateEnrolmentsGrid();
             populateUnitOfferings();
             populateStuIDs();
+
+            if (!isAdmin)
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                gbDetails.Enabled = false;
+                gbIdentifyingInformation.Enabled = false;
+            }
         }
 
         private void getStudents()
@@ -153,12 +166,24 @@ namespace FrontEndV0._1.forms
             grdEnrolments.Rows.Clear();
 
             //Populate the grid from the dataset
-            int rowcnt = enrolments.Tables["enrcursor"].Rows.Count;
+            int rowcnt = enrolments.Tables[0].Rows.Count;
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                object[] items = enrolments.Tables[0].Rows[i].ItemArray;
-                grdEnrolments.Rows.Add(new object[] { items[0], items[1], items[2], items[3] });
+                //if user is an admin then load each enrolment to view, add to and edit
+                if (isAdmin)
+                {
+                    object[] items = enrolments.Tables[0].Rows[i].ItemArray;
+                    grdEnrolments.Rows.Add(new object[] { items[0], items[1], items[2], items[3]});
+                }
+                else //otherwise if they are not an admin, they're a student and should only load their own details to view
+                {
+                    if (enrolments.Tables[0].Rows[i][0].ToString().ToLower() == User.ToLower())
+                    {
+                        object[] items = enrolments.Tables[0].Rows[i].ItemArray;
+                        grdEnrolments.Rows.Add(new object[] { items[0], items[1], items[2], items[3]});
+                    }
+                }
             }
         }
 

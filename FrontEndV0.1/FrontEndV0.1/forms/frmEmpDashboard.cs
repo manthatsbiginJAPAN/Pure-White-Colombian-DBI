@@ -42,7 +42,7 @@ namespace FrontEndV0._1.forms
                 frmUnitOfferings = new frmUnitOfferings(true);
                 frmUnitOfferings.MdiParent = this;
 
-                frmEnrolments = new frmEnrolments();
+                frmEnrolments = new frmEnrolments(user, isAdmin);
                 frmEnrolments.MdiParent = this;
             }
             else
@@ -81,11 +81,19 @@ namespace FrontEndV0._1.forms
                 frmTeamDetails = new frmTeamDetails(true);
                 frmTeamDetails.MdiParent = this;
 
-                frmUnits = new frmUnits(false);
-                frmUnits.MdiParent = this;
+                //ensures that the frmUnits won't be overwritten if the user is also an admin
+                if (!isAdmin)
+                {
+                    frmUnits = new frmUnits(false);
+                    frmUnits.MdiParent = this;
+                }
 
-                frmUnitOfferings = new frmUnitOfferings(false);
-                frmUnitOfferings.MdiParent = this;
+                //ensures that the frmUnitOfferings won't be overwritten if the user is also an admin
+                if (!isAdmin)
+                {
+                    frmUnitOfferings = new frmUnitOfferings(false);
+                    frmUnitOfferings.MdiParent = this;
+                }
 
                 frmProject = new frmProject();
                 frmProject.MdiParent = this;
