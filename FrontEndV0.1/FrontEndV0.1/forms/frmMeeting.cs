@@ -18,7 +18,8 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
         private DataSet teams;
         private DataSet meets;
-       // private DataSet emps;
+        private DataSet stuteamallo;
+
 
         public frmMeeting()
         {
@@ -33,7 +34,7 @@ namespace FrontEndV0._1.forms
             //Fetch data
             getTeams();
             getMeetings();
-            //getEmps();
+            getStudentTeamAllocations();
 
             //Prepare and display data
             populateTeams();
@@ -63,6 +64,26 @@ namespace FrontEndV0._1.forms
             connection.Close();
         }
 
+        private void getStudentTeamAllocations()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_18_View_Team_Allo", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("stuteamcursor", OracleDbType.RefCursor);
+            cmd.Parameters["stuteamcursor"].Direction = ParameterDirection.ReturnValue;
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            stuteamallo = new DataSet();
+
+            da.Fill(meets, "stuteamcursor", (OracleRefCursor)(cmd.Parameters["stuteamcursor"].Value));
+
+            connection.Close();
+        }
+
         private void getMeetings()
         {
             //Oracle Command to populate the dataset
@@ -83,53 +104,9 @@ namespace FrontEndV0._1.forms
             connection.Close();
         }
 
-        /* DONT NEED I THINK
-         * private void getEmps()
-         {
-             //Oracle Command to populate the dataset
-             OracleCommand cmd = new OracleCommand("UC1_26_View_Employee_Role", connection);
-             cmd.CommandType = CommandType.StoredProcedure;
-
-             cmd.Parameters.Add("empcursor", OracleDbType.RefCursor);
-             cmd.Parameters["empcursor"].Direction = ParameterDirection.ReturnValue;
-
-             connection.Open();
-             OracleDataAdapter da = new OracleDataAdapter(cmd);
-             cmd.ExecuteNonQuery();
-
-             emps = new DataSet();
-
-             da.Fill(emps, "empcursor", (OracleRefCursor)(cmd.Parameters["empcursor"].Value));
-
-             connection.Close();
-         } */
-
         #endregion
 
         #region populateWithData
-        /* DON'T NEED THIS EITHER
-      * private void populateSupervisors()
-        {
-            //Clear the grid but add a blank/null option
-            cbSupervisor.Items.Clear();
-            //DataRow nullrow = null;
-            cbSupervisor.Items.Insert(0, "[None]");
-
-            //Populate the grid from the dataset
-            int rowcnt = emps.Tables["empcursor"].Rows.Count;
-           // MessageBox.Show("Available Supervisors: " + rowcnt.ToString());
-            object sup;
-
-            for (int i = 0; i <= rowcnt - 1; i++)
-            {
-                //add only employees who are listed as convenors
-                if (emps.Tables[0].Rows[i][1].ToString() == "Supervisor")
-                {
-                    sup = emps.Tables["empcursor"].Rows[i][0].ToString();
-                    cbSupervisor.Items.Add(sup);
-                }
-            }
-        } */
 
         private void populateTeams()
         {
@@ -180,9 +157,24 @@ namespace FrontEndV0._1.forms
             }
         }
 
+       /* private void populateAttendance()
+        {
+            clbAttendees.ClearSelected();
+
+            //Populate the grid from the dataset
+            int rowcnt = stuteamallo.Tables[0].Rows.Count;
+            object attendees = new object();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+               attendees = teams.Tables["teamcursor"].Rows[i][1].ToString();
+               cbUnitID.Items.Add(unitid.ToString()
+            }
+        } */
+
         #endregion
 
-        #region buttons
+        #region Add/Edit/DEL buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //Logic and functions for save button
@@ -613,19 +605,33 @@ namespace FrontEndV0._1.forms
                 txtClientName.Enabled = false;
                 cbSupervisor.Enabled = false;
             }
+
+            //Populate the combo box from the dataset
+            int rowcount = stuteamallo.Tables["stuteamcursor"].Rows.Count;
+            object attendees = new object();
+
+            for (int i = 0; i <= rowcount - 1; i++)
+            {
+                if (stuteamallo.Tables[0].Rows[i][0].ToString() == cbTeamID.SelectedItem.ToString()) 
+                    {
+                     attendees = teams.Tables["stuteamcursor"].Rows[i][1].ToString();
+                     clbAttendees.Items.Add(attendees.ToString());
+                }
+            } 
         }
+
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            /*gbIdentifyingInformation.Enabled = true;
-            if (cbTeamID.Enabled == true)
-                cbTeamID.Enabled = false;
-            else
-                cbTeamID.Enabled = true;
-             * */
-        }
+    
 
-        
+
+        #region ChildForms
+
+
+
+        #endregion
+
+ 
+
     }
 }
