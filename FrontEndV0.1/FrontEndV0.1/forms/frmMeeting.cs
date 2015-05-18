@@ -285,9 +285,9 @@ namespace FrontEndV0._1.forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (btnEdit.Text == "Save")
+            if (btnEdit.Text == "Save?")
             {
-                OracleCommand cmd = new OracleCommand("UUC3_3_Update_Meeting", connection);
+                OracleCommand cmd = new OracleCommand("UC3_3_Update_Meeting", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("meetingid", Convert.ToInt16(txtMeetID.Text));
@@ -322,18 +322,47 @@ namespace FrontEndV0._1.forms
                 cmd.ExecuteNonQuery();
                 connection.Close();
 
+                //Repopulate data
                 getMeetings();
 
-                cbUnitID.Enabled = true;
                 populateMeetingsGrid(this.grdMeetings);
 
                 btnEdit.Text = "Edit";
+
+                //Enable Buttons and grid
+
+                btnDelete.Enabled = true;
+                btnAdd.Enabled = true;
+                grdMeetings.Enabled = true;
+
+                //Clear textboxes/fields
+                cbTeamID.SelectedIndex = -1;
+                cbUnitID.SelectedIndex = -1;
+                cbSemester.SelectedIndex = -1;
+                cbYear.SelectedIndex = -1;
+                txtMeetID.Clear();
+
+                /*        cbMeetingType.SelectedIndex = -1;
+                    //Need to set dates back to today
+                            cbSupervisor.SelectedIndex = -1;
+                            txtClientName.Clear();
+                            txtMeetingMinutes.Clear();
+                */
+
+                //Enable/disable
+                gbDetails.Enabled = false;
+                cbUnitID.Enabled = true;
+               // gbIdentifyingInformation.Enabled = true;
             }
             else
             {
-                btnEdit.Text = "Save";
+                btnEdit.Text = "Save?";
 
                 grdMeetings.Enabled = false;
+
+                //disable buttons
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
 
                 int selectedrow = grdMeetings.SelectedCells[0].RowIndex;
 
@@ -369,11 +398,11 @@ namespace FrontEndV0._1.forms
                         cbMeetingType.Enabled = true;
               
 
-                        cbMeetingType.SelectedValue = items[5].ToString();
+                        cbMeetingType.SelectedItem = items[5].ToString();
                         dtStartTime.Value = Convert.ToDateTime(items[6]);
                         dtFinishTime.Value = Convert.ToDateTime(items[7]);
                         txtMeetingMinutes.Text = items[8].ToString();
-                        cbSupervisor.SelectedValue = items[9].ToString();
+                        cbSupervisor.SelectedItem = items[9].ToString();
                         txtClientName.Text = items[10].ToString();
                        
                     }
@@ -434,6 +463,7 @@ namespace FrontEndV0._1.forms
             }
         }
 
+        #region Selections Changed
         private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbUnitID.SelectedIndex != -1)
@@ -522,6 +552,8 @@ namespace FrontEndV0._1.forms
         {
             if (cbTeamID.SelectedIndex != -1)
                 txtMeetID.Enabled = true;
+            cbMeetingType.Enabled = true;
+
         }
 
         private void txtMeetID_TextChanged(object sender, EventArgs e)
@@ -540,6 +572,8 @@ namespace FrontEndV0._1.forms
             if (cbMeetingType.SelectedItem.ToString() == "Supervisor")
             {
                 cbSupervisor.Enabled = true;
+                cbSupervisor.SelectedIndex = -1;
+
                 txtClientName.Enabled = false;
 
                 int rowcnt = teams.Tables["teamcursor"].Rows.Count;
@@ -571,6 +605,7 @@ namespace FrontEndV0._1.forms
             {
                 txtClientName.Enabled = true;
                 cbSupervisor.Enabled = false;
+                cbSupervisor.SelectedIndex = -1;
             }
 
             if (cbMeetingType.SelectedItem.ToString() == "Student")
@@ -579,6 +614,7 @@ namespace FrontEndV0._1.forms
                 cbSupervisor.Enabled = false;
             }
         }
+        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -589,5 +625,7 @@ namespace FrontEndV0._1.forms
                 cbTeamID.Enabled = true;
              * */
         }
+
+        
     }
 }
