@@ -248,7 +248,7 @@ namespace FrontEndV0._1.forms
 
         private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Fixes it crashing when you actually add an enrolment
+            //Fixes it crashing when you actually add a project
             if (cbUnitID.SelectedItem == null)
                 return;
 
