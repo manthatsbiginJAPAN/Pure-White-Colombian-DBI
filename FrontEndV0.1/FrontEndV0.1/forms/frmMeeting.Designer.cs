@@ -388,7 +388,6 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(342, 109);
             this.btnEdit.Name = "btnEdit";
