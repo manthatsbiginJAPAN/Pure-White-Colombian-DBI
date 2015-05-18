@@ -119,7 +119,9 @@
             // 
             // dtFinishTime
             // 
+            this.dtFinishTime.CustomFormat = "hh:mm tt dd/MM/yyyy";
             this.dtFinishTime.Enabled = false;
+            this.dtFinishTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtFinishTime.Location = new System.Drawing.Point(130, 103);
             this.dtFinishTime.Margin = new System.Windows.Forms.Padding(2);
             this.dtFinishTime.Name = "dtFinishTime";
@@ -128,12 +130,15 @@
             // 
             // dtStartTime
             // 
+            this.dtStartTime.CustomFormat = "hh:mm  tt dd/MM/yyyy";
             this.dtStartTime.Enabled = false;
+            this.dtStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtStartTime.Location = new System.Drawing.Point(130, 62);
             this.dtStartTime.Margin = new System.Windows.Forms.Padding(2);
             this.dtStartTime.Name = "dtStartTime";
             this.dtStartTime.Size = new System.Drawing.Size(193, 20);
             this.dtStartTime.TabIndex = 52;
+            this.dtStartTime.Value = new System.DateTime(2015, 5, 18, 0, 0, 0, 0);
             // 
             // cbSupervisor
             // 
@@ -388,7 +393,6 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(342, 109);
             this.btnEdit.Name = "btnEdit";
