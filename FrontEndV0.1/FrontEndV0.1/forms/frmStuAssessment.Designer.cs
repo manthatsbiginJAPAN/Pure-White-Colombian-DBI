@@ -28,95 +28,173 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cbUnit = new System.Windows.Forms.ComboBox();
-            this.lblUnit = new System.Windows.Forms.Label();
-            this.TaskID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaskDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.P1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.P2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.P3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.grdAssessments = new System.Windows.Forms.DataGridView();
+            this.btnTeamContribution = new System.Windows.Forms.Button();
+            this.btnPeerAssessment = new System.Windows.Forms.Button();
+            this.txtDesc = new System.Windows.Forms.TextBox();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.txtTitle = new System.Windows.Forms.TextBox();
+            this.lblAssTitle = new System.Windows.Forms.Label();
+            this.txtMarkingGuide = new System.Windows.Forms.TextBox();
+            this.lblMarkingGuide = new System.Windows.Forms.Label();
+            this.AssID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gbDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdAssessments)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // label1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TaskID,
-            this.TaskDesc,
-            this.DueDate,
-            this.P1,
-            this.P2,
-            this.P3});
-            this.dataGridView1.Location = new System.Drawing.Point(287, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(713, 409);
-            this.dataGridView1.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(298, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(297, 34);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Student Assessments";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // cbUnit
+            // gbDetails
             // 
-            this.cbUnit.FormattingEnabled = true;
-            this.cbUnit.Location = new System.Drawing.Point(91, 132);
-            this.cbUnit.Name = "cbUnit";
-            this.cbUnit.Size = new System.Drawing.Size(121, 24);
-            this.cbUnit.TabIndex = 1;
+            this.gbDetails.Controls.Add(this.txtMarkingGuide);
+            this.gbDetails.Controls.Add(this.lblMarkingGuide);
+            this.gbDetails.Controls.Add(this.txtDesc);
+            this.gbDetails.Controls.Add(this.lblDesc);
+            this.gbDetails.Controls.Add(this.txtTitle);
+            this.gbDetails.Controls.Add(this.lblAssTitle);
+            this.gbDetails.Location = new System.Drawing.Point(25, 79);
+            this.gbDetails.Name = "gbDetails";
+            this.gbDetails.Size = new System.Drawing.Size(413, 543);
+            this.gbDetails.TabIndex = 48;
+            this.gbDetails.TabStop = false;
+            this.gbDetails.Text = "Details";
             // 
-            // lblUnit
+            // grdAssessments
             // 
-            this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(91, 93);
-            this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(33, 17);
-            this.lblUnit.TabIndex = 2;
-            this.lblUnit.Text = "Unit";
+            this.grdAssessments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdAssessments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AssID,
+            this.UnitID,
+            this.Semester,
+            this.Year});
+            this.grdAssessments.Location = new System.Drawing.Point(468, 85);
+            this.grdAssessments.Name = "grdAssessments";
+            this.grdAssessments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdAssessments.Size = new System.Drawing.Size(390, 480);
+            this.grdAssessments.TabIndex = 49;
             // 
-            // TaskID
+            // btnTeamContribution
             // 
-            this.TaskID.HeaderText = "TaskId";
-            this.TaskID.Name = "TaskID";
-            this.TaskID.ReadOnly = true;
+            this.btnTeamContribution.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeamContribution.Location = new System.Drawing.Point(669, 583);
+            this.btnTeamContribution.Name = "btnTeamContribution";
+            this.btnTeamContribution.Size = new System.Drawing.Size(189, 37);
+            this.btnTeamContribution.TabIndex = 50;
+            this.btnTeamContribution.Text = "Team Contribution";
+            this.btnTeamContribution.UseVisualStyleBackColor = true;
             // 
-            // TaskDesc
+            // btnPeerAssessment
             // 
-            this.TaskDesc.HeaderText = "Task Description";
-            this.TaskDesc.Name = "TaskDesc";
-            this.TaskDesc.ReadOnly = true;
+            this.btnPeerAssessment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPeerAssessment.Location = new System.Drawing.Point(468, 583);
+            this.btnPeerAssessment.Name = "btnPeerAssessment";
+            this.btnPeerAssessment.Size = new System.Drawing.Size(195, 37);
+            this.btnPeerAssessment.TabIndex = 51;
+            this.btnPeerAssessment.Text = "Peer Assessment";
+            this.btnPeerAssessment.UseVisualStyleBackColor = true;
             // 
-            // DueDate
+            // txtDesc
             // 
-            this.DueDate.HeaderText = "Due Date";
-            this.DueDate.Name = "DueDate";
-            this.DueDate.ReadOnly = true;
+            this.txtDesc.Location = new System.Drawing.Point(20, 155);
+            this.txtDesc.Multiline = true;
+            this.txtDesc.Name = "txtDesc";
+            this.txtDesc.Size = new System.Drawing.Size(367, 104);
+            this.txtDesc.TabIndex = 51;
             // 
-            // P1
+            // lblDesc
             // 
-            this.P1.HeaderText = "Period One";
-            this.P1.Name = "P1";
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDesc.Location = new System.Drawing.Point(17, 130);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(105, 20);
+            this.lblDesc.TabIndex = 50;
+            this.lblDesc.Text = "Description:";
             // 
-            // P2
+            // txtTitle
             // 
-            this.P2.HeaderText = "Period Two";
-            this.P2.Name = "P2";
+            this.txtTitle.Location = new System.Drawing.Point(70, 32);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(317, 20);
+            this.txtTitle.TabIndex = 49;
             // 
-            // P3
+            // lblAssTitle
             // 
-            this.P3.HeaderText = "Period Three";
-            this.P3.Name = "P3";
+            this.lblAssTitle.AutoSize = true;
+            this.lblAssTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAssTitle.Location = new System.Drawing.Point(22, 32);
+            this.lblAssTitle.Name = "lblAssTitle";
+            this.lblAssTitle.Size = new System.Drawing.Size(48, 20);
+            this.lblAssTitle.TabIndex = 48;
+            this.lblAssTitle.Text = "Title:";
+            // 
+            // txtMarkingGuide
+            // 
+            this.txtMarkingGuide.Location = new System.Drawing.Point(20, 334);
+            this.txtMarkingGuide.Multiline = true;
+            this.txtMarkingGuide.Name = "txtMarkingGuide";
+            this.txtMarkingGuide.Size = new System.Drawing.Size(367, 189);
+            this.txtMarkingGuide.TabIndex = 53;
+            // 
+            // lblMarkingGuide
+            // 
+            this.lblMarkingGuide.AutoSize = true;
+            this.lblMarkingGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMarkingGuide.Location = new System.Drawing.Point(17, 309);
+            this.lblMarkingGuide.Name = "lblMarkingGuide";
+            this.lblMarkingGuide.Size = new System.Drawing.Size(130, 20);
+            this.lblMarkingGuide.TabIndex = 52;
+            this.lblMarkingGuide.Text = "Marking Guide:";
+            // 
+            // AssID
+            // 
+            this.AssID.HeaderText = "Assessment ID";
+            this.AssID.Name = "AssID";
+            // 
+            // UnitID
+            // 
+            this.UnitID.HeaderText = "Unit ID";
+            this.UnitID.Name = "UnitID";
+            // 
+            // Semester
+            // 
+            this.Semester.HeaderText = "Semester";
+            this.Semester.Name = "Semester";
+            // 
+            // Year
+            // 
+            this.Year.HeaderText = "Year";
+            this.Year.Name = "Year";
             // 
             // frmStuAssessment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1023, 453);
-            this.Controls.Add(this.lblUnit);
-            this.Controls.Add(this.cbUnit);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(884, 646);
+            this.Controls.Add(this.btnTeamContribution);
+            this.Controls.Add(this.btnPeerAssessment);
+            this.Controls.Add(this.grdAssessments);
+            this.Controls.Add(this.gbDetails);
+            this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmStuAssessment";
-            this.Text = "frmStuAssessment";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.gbDetails.ResumeLayout(false);
+            this.gbDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdAssessments)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,14 +202,21 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ComboBox cbUnit;
-        private System.Windows.Forms.Label lblUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaskID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaskDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DueDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn P1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn P2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn P3;
+        public System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gbDetails;
+        private System.Windows.Forms.DataGridView grdAssessments;
+        public System.Windows.Forms.Button btnTeamContribution;
+        public System.Windows.Forms.Button btnPeerAssessment;
+        private System.Windows.Forms.TextBox txtMarkingGuide;
+        public System.Windows.Forms.Label lblMarkingGuide;
+        private System.Windows.Forms.TextBox txtDesc;
+        public System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.TextBox txtTitle;
+        public System.Windows.Forms.Label lblAssTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AssID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Semester;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+
     }
 }
