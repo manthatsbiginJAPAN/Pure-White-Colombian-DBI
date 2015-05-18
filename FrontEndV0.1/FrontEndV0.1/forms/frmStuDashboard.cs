@@ -17,7 +17,7 @@ namespace FrontEndV0._1.forms
         private frmProject frmProject;
         private frmTeamDetails frmTeamDetails;
         private frmMeeting frmMeeting;
-        private frmAssessment frmAssessment;
+        private frmStuAssessment frmStuAssessment;
 
         public frmStuDashboard(string user)
         {
@@ -39,8 +39,8 @@ namespace FrontEndV0._1.forms
             frmMeeting = new frmMeeting();
             frmMeeting.MdiParent = this;
 
-            frmAssessment = new frmAssessment(false);
-            frmAssessment.MdiParent = this;
+            frmStuAssessment = new frmStuAssessment(user);
+            frmStuAssessment.MdiParent = this;
         }
 
         private void closeForm(object sender, FormClosingEventArgs e)
@@ -84,8 +84,8 @@ namespace FrontEndV0._1.forms
 
         private void assessmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAssessment.FormClosing += closeForm;
-            frmAssessment.Show();
+            frmStuAssessment.FormClosing += closeForm;
+            frmStuAssessment.Show();
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
