@@ -20,6 +20,8 @@ namespace FrontEndV0._1.forms
         private DataSet meets;
         private DataSet stuteamallo;
 
+        private frmAgenda frmAgenda;
+        private frmActionItems frmActionItems;
 
         public frmMeeting()
         {
@@ -621,6 +623,18 @@ namespace FrontEndV0._1.forms
         }
 
         #endregion
+
+        private void btnActionItems_Click(object sender, EventArgs e)
+        {
+            frmActionItems = new frmActionItems(txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
+            frmActionItems.Show();
+        }
+
+        private void btnAgenda_Click(object sender, EventArgs e)
+        {
+            frmAgenda = new frmAgenda(txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
+            frmAgenda.Show();
+        }
 
     
 
