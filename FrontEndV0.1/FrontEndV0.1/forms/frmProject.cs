@@ -18,13 +18,18 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
         private DataSet unitoffs;
         private DataSet projects;
+        private bool editable;
+        private string User;
+        private bool isStudent;
 
-        public frmProject()
+        public frmProject(string user, bool isstudent, bool Editable)
         {
             InitializeComponent();
+            editable = Editable;
+            User = user;
+            isStudent = isstudent;
             connection = conn.oraConn();
         }
-
 
 
         private void frmProject_Load(object sender, EventArgs e)
@@ -34,6 +39,15 @@ namespace FrontEndV0._1.forms
 
             populateProjects();
             populateUnitOfferings();
+
+            if (!editable || isStudent)
+            {
+                btnAdd.Enabled = false;
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+                gbDetails.Enabled = false;
+                gbIdentifyingInformation.Enabled = false;
+            }
         }
 
         private void getProjects()
@@ -113,13 +127,25 @@ namespace FrontEndV0._1.forms
             grdProjects.Rows.Clear();
 
             //Populate the grid from the dataset
-            int rowcnt = projects.Tables["projcursor"].Rows.Count;
+            int rowcnt = projects.Tables[0].Rows.Count;
             object[] items;
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                items = projects.Tables["projcursor"].Rows[i].ItemArray;
-                grdProjects.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4] });
+                //if user is an admin then load each enrolment to view, add to and edit
+                //if (!isStudent)
+                {
+                    items = projects.Tables[0].Rows[i].ItemArray;
+                    grdProjects.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4] });
+                }
+                //else //otherwise if they are not an admin, they're a student and should only load their own details to view
+                //{
+                //    if (projects.Tables[0].Rows[i][0].ToString().ToLower() == User.ToLower())
+                //    {
+                //        items = projects.Tables[0].Rows[i].ItemArray;
+                //        grdProjects.Rows.Add(new object[] { items[0], items[1], items[2], items[3], items[4] });
+                //    }
+                //}
             }
         }
 

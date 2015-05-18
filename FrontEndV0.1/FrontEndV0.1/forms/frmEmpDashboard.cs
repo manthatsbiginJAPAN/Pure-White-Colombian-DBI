@@ -63,7 +63,7 @@ namespace FrontEndV0._1.forms
                 frmTeamDetails = new frmTeamDetails(false);
                 frmTeamDetails.MdiParent = this;
 
-                frmProject = new frmProject();
+                frmProject = new frmProject(user, false, false);
                 frmProject.MdiParent = this;
             }
             else
@@ -95,7 +95,7 @@ namespace FrontEndV0._1.forms
                     frmUnitOfferings.MdiParent = this;
                 }
 
-                frmProject = new frmProject();
+                frmProject = new frmProject(user, false, true);
                 frmProject.MdiParent = this;
             }
             else

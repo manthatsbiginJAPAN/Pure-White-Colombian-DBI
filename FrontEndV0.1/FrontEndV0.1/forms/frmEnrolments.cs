@@ -28,8 +28,6 @@ namespace FrontEndV0._1.forms
             connection = conn.oraConn();
             User = user;
             isAdmin = isAdministrator;
-
-            
         }
 
         private void frmEnrolments_Load(object sender, EventArgs e)

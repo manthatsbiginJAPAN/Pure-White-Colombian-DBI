@@ -30,7 +30,7 @@ namespace FrontEndV0._1.forms
             frmEnrolments = new frmEnrolments(user, false);
             frmEnrolments.MdiParent = this;
 
-            frmProject = new frmProject();
+            frmProject = new frmProject(user, true, false);
             frmProject.MdiParent = this;
 
             frmTeamDetails = new frmTeamDetails(false);
