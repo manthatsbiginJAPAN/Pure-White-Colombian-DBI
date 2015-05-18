@@ -589,7 +589,7 @@ namespace FrontEndV0._1.forms
                     }
                     else
                     {
-                        continue;
+                        continue; //wut?
                     }
 
                 }
@@ -609,14 +609,14 @@ namespace FrontEndV0._1.forms
             }
 
             //Populate the combo box from the dataset
-            int rowcount = stuteamallo.Tables["stuteamcursor"].Rows.Count;
+            int rowcount = stuteamallo.Tables[0].Rows.Count;
             object attendees = new object();
 
             for (int i = 0; i <= rowcount - 1; i++)
             {
                 if (stuteamallo.Tables[0].Rows[i][0].ToString() == cbTeamID.SelectedItem.ToString()) 
-                    {
-                     attendees = teams.Tables["stuteamcursor"].Rows[i][1].ToString();
+                {
+                     attendees = teams.Tables[0].Rows[i][1].ToString();
                      clbAttendees.Items.Add(attendees.ToString());
                 }
             } 

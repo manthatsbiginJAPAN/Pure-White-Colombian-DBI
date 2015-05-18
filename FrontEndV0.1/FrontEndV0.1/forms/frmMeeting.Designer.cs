@@ -95,7 +95,6 @@
             // 
             // gbDetails
             // 
-            this.gbDetails.Controls.Add(this.label1);
             this.gbDetails.Controls.Add(this.lblAttendees);
             this.gbDetails.Controls.Add(this.clbAttendees);
             this.gbDetails.Controls.Add(this.dtFinishTime);
@@ -549,6 +548,5 @@
         private System.Windows.Forms.DateTimePicker dtStartTime;
         private System.Windows.Forms.CheckedListBox clbAttendees;
         public System.Windows.Forms.Label lblAttendees;
-        public System.Windows.Forms.Label label1;
     }
 }
