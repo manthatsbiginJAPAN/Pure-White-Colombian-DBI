@@ -17,11 +17,12 @@ namespace FrontEndV0._1.forms
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
         private DataSet ds;
+        private bool editable;
 
-        public frmUnits(bool editable)
+        public frmUnits(bool Editable)
         {
             InitializeComponent();
-
+            editable = Editable;
             connection = conn.oraConn();
         }
 
@@ -30,6 +31,15 @@ namespace FrontEndV0._1.forms
             grdUnits.ClearSelection();
             getUnits();
             populateUnitGrid();
+
+            if (!editable)
+            {
+                btnAdd.Enabled = false;
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+                gbDetails.Enabled = false;
+                gbIdentifyingInformation.Enabled = false;
+            }
         }
 
         private void getUnits()
@@ -150,19 +160,19 @@ namespace FrontEndV0._1.forms
             }
         }
 
-        private void grdUnits_SelectionChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (grdUnits.SelectedCells.Count == 0)
-            {
-                btnEdit.Enabled = false;
-                btnDelete.Enabled = false;
-            }
-            else
-            {
-                btnEdit.Enabled = true;
-                btnDelete.Enabled = true;
-            }
-        }
+        //private void grdUnits_SelectionChanged(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (grdUnits.SelectedCells.Count == 0)
+        //    {
+        //        btnEdit.Enabled = false;
+        //        btnDelete.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        btnEdit.Enabled = true;
+        //        btnDelete.Enabled = true;
+        //    }
+        //}
 
         private void btnDelete_Click(object sender, EventArgs e)
         {

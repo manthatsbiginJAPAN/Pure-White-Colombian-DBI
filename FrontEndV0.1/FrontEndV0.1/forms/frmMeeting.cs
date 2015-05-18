@@ -18,7 +18,10 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
         private DataSet teams;
         private DataSet meets;
-       // private DataSet emps;
+        private DataSet stuteamallo;
+
+        private frmAgenda frmAgenda;
+        private frmActionItems frmActionItems;
 
         public frmMeeting()
         {
@@ -33,11 +36,11 @@ namespace FrontEndV0._1.forms
             //Fetch data
             getTeams();
             getMeetings();
-            //getEmps();
+            getStudentTeamAllocations();
 
             //Prepare and display data
             populateTeams();
-            populateMeetingsGrid();
+            populateMeetingsGrid(this.grdMeetings);
             //populateSupervisors();
         }
 
@@ -63,6 +66,26 @@ namespace FrontEndV0._1.forms
             connection.Close();
         }
 
+        private void getStudentTeamAllocations()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_18_View_Team_Allo", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("stuteamcursor", OracleDbType.RefCursor);
+            cmd.Parameters["stuteamcursor"].Direction = ParameterDirection.ReturnValue;
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            stuteamallo = new DataSet();
+
+            da.Fill(meets, "stuteamcursor", (OracleRefCursor)(cmd.Parameters["stuteamcursor"].Value));
+
+            connection.Close();
+        }
+
         private void getMeetings()
         {
             //Oracle Command to populate the dataset
@@ -83,53 +106,9 @@ namespace FrontEndV0._1.forms
             connection.Close();
         }
 
-        /* DONT NEED I THINK
-         * private void getEmps()
-         {
-             //Oracle Command to populate the dataset
-             OracleCommand cmd = new OracleCommand("UC1_26_View_Employee_Role", connection);
-             cmd.CommandType = CommandType.StoredProcedure;
-
-             cmd.Parameters.Add("empcursor", OracleDbType.RefCursor);
-             cmd.Parameters["empcursor"].Direction = ParameterDirection.ReturnValue;
-
-             connection.Open();
-             OracleDataAdapter da = new OracleDataAdapter(cmd);
-             cmd.ExecuteNonQuery();
-
-             emps = new DataSet();
-
-             da.Fill(emps, "empcursor", (OracleRefCursor)(cmd.Parameters["empcursor"].Value));
-
-             connection.Close();
-         } */
-
         #endregion
 
         #region populateWithData
-        /* DON'T NEED THIS EITHER
-      * private void populateSupervisors()
-        {
-            //Clear the grid but add a blank/null option
-            cbSupervisor.Items.Clear();
-            //DataRow nullrow = null;
-            cbSupervisor.Items.Insert(0, "[None]");
-
-            //Populate the grid from the dataset
-            int rowcnt = emps.Tables["empcursor"].Rows.Count;
-           // MessageBox.Show("Available Supervisors: " + rowcnt.ToString());
-            object sup;
-
-            for (int i = 0; i <= rowcnt - 1; i++)
-            {
-                //add only employees who are listed as convenors
-                if (emps.Tables[0].Rows[i][1].ToString() == "Supervisor")
-                {
-                    sup = emps.Tables["empcursor"].Rows[i][0].ToString();
-                    cbSupervisor.Items.Add(sup);
-                }
-            }
-        } */
 
         private void populateTeams()
         {
@@ -165,7 +144,7 @@ namespace FrontEndV0._1.forms
             }
         }
 
-        private void populateMeetingsGrid()
+        private void populateMeetingsGrid(DataGridView thegrid)
         {
             //Clear the grid
             grdMeetings.Rows.Clear();
@@ -180,9 +159,24 @@ namespace FrontEndV0._1.forms
             }
         }
 
+       /* private void populateAttendance()
+        {
+            clbAttendees.ClearSelected();
+
+            //Populate the grid from the dataset
+            int rowcnt = stuteamallo.Tables[0].Rows.Count;
+            object attendees = new object();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+               attendees = teams.Tables["teamcursor"].Rows[i][1].ToString();
+               cbUnitID.Items.Add(unitid.ToString()
+            }
+        } */
+
         #endregion
 
-        #region buttons
+        #region Add/Edit/DEL buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //Logic and functions for save button
@@ -245,13 +239,14 @@ namespace FrontEndV0._1.forms
 
                     //Repopulate Dataset then Grid
                     getMeetings();
-                    populateMeetingsGrid();
+                    populateMeetingsGrid(this.grdMeetings);
 
                     //Disable buttons
                     gbIdentifyingInformation.Enabled = false;
 
                     //Enable other buttons
                     btnDelete.Enabled = true;
+                    btnEdit.Enabled = true;
 
                     //Clear textboxes/fields
                     cbTeamID.SelectedIndex = -1;
@@ -284,13 +279,153 @@ namespace FrontEndV0._1.forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (btnEdit.Text == "Save?")
+            {
+                OracleCommand cmd = new OracleCommand("UC3_3_Update_Meeting", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.Add("meetingid", Convert.ToInt16(txtMeetID.Text));
+                cmd.Parameters.Add("teamid", cbTeamID.SelectedItem.ToString());
+                cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
+                cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
+                cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem.ToString()));
+                cmd.Parameters.Add("meettype", cbMeetingType.SelectedItem.ToString());
+                cmd.Parameters.Add("starttime", dtStartTime.Value.ToString("dd/MMM/yyyy"));
+                cmd.Parameters.Add("finishtime", dtFinishTime.Value.ToString("dd/MMM/yyyy"));
+                cmd.Parameters.Add("minutes", txtMeetingMinutes.Text);
+
+                if (cbSupervisor.Enabled == true)
+                {
+                    cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
+                }
+                else
+                {
+                    cmd.Parameters.Add("supid", null);
+                }
+
+                if (txtClientName.Enabled == true)
+                {
+                    cmd.Parameters.Add("clientname", txtClientName.Text);
+                }
+                else
+                {
+                    cmd.Parameters.Add("clientname", null);
+                }
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+                //Repopulate data
+                getMeetings();
+
+                populateMeetingsGrid(this.grdMeetings);
+
+                btnEdit.Text = "Edit";
+
+                //Enable Buttons and grid
+
+                btnDelete.Enabled = true;
+                btnAdd.Enabled = true;
+                grdMeetings.Enabled = true;
+
+                //Clear textboxes/fields
+                cbTeamID.SelectedIndex = -1;
+                cbUnitID.SelectedIndex = -1;
+                cbSemester.SelectedIndex = -1;
+                cbYear.SelectedIndex = -1;
+                txtMeetID.Clear();
+
+                /*        cbMeetingType.SelectedIndex = -1;
+                    //Need to set dates back to today
+                            cbSupervisor.SelectedIndex = -1;
+                            txtClientName.Clear();
+                            txtMeetingMinutes.Clear();
+                */
+
+                //Enable/disable
+                gbDetails.Enabled = false;
+                cbUnitID.Enabled = true;
+               // gbIdentifyingInformation.Enabled = true;
+            }
+            else
+            {
+                btnEdit.Text = "Save?";
+
+                grdMeetings.Enabled = false;
+
+                //disable buttons
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+
+                int selectedrow = grdMeetings.SelectedCells[0].RowIndex;
+
+                txtMeetID.Text = grdMeetings.Rows[selectedrow].Cells[0].Value.ToString();
+                //if (cbTeamID.Items.Count != 0)
+                //    cbTeamID.SelectedIndex = -1;
+               // MessageBox.Show(cbTeamID.SelectedItem.ToString() + " == " + grdMeetings.Rows[selectedrow].Cells[1].Value.ToString());
+
+               
+                cbUnitID.SelectedItem = grdMeetings.Rows[selectedrow].Cells[2].Value.ToString();
+                cbSemester.SelectedItem = grdMeetings.Rows[selectedrow].Cells[3].Value.ToString();
+                cbYear.SelectedItem = grdMeetings.Rows[selectedrow].Cells[4].Value.ToString();
+                cbTeamID.SelectedItem = grdMeetings.Rows[selectedrow].Cells[1].Value.ToString();
+
+                gbDetails.Enabled = true;
+
+                int rowcnt = meets.Tables["meetcursor"].Rows.Count;
+
+                for (int i = 0; i <= rowcnt - 1; i++)
+                {
+                    object[] items = meets.Tables[0].Rows[i].ItemArray;
+
+                    //Checking if selected meeting matches in the dataset
+                    if (Convert.ToString(items[0]) == grdMeetings.Rows[selectedrow].Cells[0].Value.ToString()
+                        && Convert.ToString(items[1]) == grdMeetings.Rows[selectedrow].Cells[1].Value.ToString()
+                        && Convert.ToString(items[2]) == grdMeetings.Rows[selectedrow].Cells[2].Value.ToString()
+                        && Convert.ToString(items[3]) == grdMeetings.Rows[selectedrow].Cells[3].Value.ToString()
+                        && Convert.ToString(items[4]) == grdMeetings.Rows[selectedrow].Cells[4].Value.ToString())
+                    {
+                        //Fill form controls with data to be updated
+                        gbIdentifyingInformation.Enabled = false;
+                     
+                        cbMeetingType.Enabled = true;
+              
+
+                        cbMeetingType.SelectedItem = items[5].ToString();
+                        dtStartTime.Value = Convert.ToDateTime(items[6]);
+                        dtFinishTime.Value = Convert.ToDateTime(items[7]);
+                        txtMeetingMinutes.Text = items[8].ToString();
+                        cbSupervisor.SelectedItem = items[9].ToString();
+                        txtClientName.Text = items[10].ToString();
+                       
+                    }
+                }
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            int selectedrow = grdMeetings.SelectedCells[0].RowIndex;
+            OracleCommand cmd = new OracleCommand("UC3_4_Delete_Meeting", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
 
+            cmd.Parameters.Add("meetid", Convert.ToInt16(grdMeetings.Rows[selectedrow].Cells[0].Value));
+            cmd.Parameters.Add("teamid", grdMeetings.Rows[selectedrow].Cells[1].Value.ToString());
+            cmd.Parameters.Add("unitid", grdMeetings.Rows[selectedrow].Cells[2].Value.ToString());
+            cmd.Parameters.Add("semester", grdMeetings.Rows[selectedrow].Cells[3].Value.ToString());
+            cmd.Parameters.Add("year", grdMeetings.Rows[selectedrow].Cells[4].Value.ToString());
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            MessageBox.Show("Entry Deleted");
+
+            getMeetings();
+            populateMeetingsGrid(this.grdMeetings);
         }
+
 #endregion 
 
         private bool FormValidated()
@@ -322,6 +457,7 @@ namespace FrontEndV0._1.forms
             }
         }
 
+        #region Selections Changed
         private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbUnitID.SelectedIndex != -1)
@@ -410,6 +546,8 @@ namespace FrontEndV0._1.forms
         {
             if (cbTeamID.SelectedIndex != -1)
                 txtMeetID.Enabled = true;
+            cbMeetingType.Enabled = true;
+
         }
 
         private void txtMeetID_TextChanged(object sender, EventArgs e)
@@ -428,6 +566,8 @@ namespace FrontEndV0._1.forms
             if (cbMeetingType.SelectedItem.ToString() == "Supervisor")
             {
                 cbSupervisor.Enabled = true;
+                cbSupervisor.SelectedIndex = -1;
+
                 txtClientName.Enabled = false;
 
                 int rowcnt = teams.Tables["teamcursor"].Rows.Count;
@@ -447,6 +587,11 @@ namespace FrontEndV0._1.forms
                         //sort the list numerically/alphabetically
                         cbSupervisor.Sorted = true;
                     }
+                    else
+                    {
+                        continue;
+                    }
+
                 }
             }
 
@@ -454,13 +599,53 @@ namespace FrontEndV0._1.forms
             {
                 txtClientName.Enabled = true;
                 cbSupervisor.Enabled = false;
+                cbSupervisor.SelectedIndex = -1;
             }
 
-            if (cbMeetingType.SelectedItem.ToString() == "Team")
+            if (cbMeetingType.SelectedItem.ToString() == "Student")
             {
                 txtClientName.Enabled = false;
                 cbSupervisor.Enabled = false;
             }
+
+            //Populate the combo box from the dataset
+            int rowcount = stuteamallo.Tables["stuteamcursor"].Rows.Count;
+            object attendees = new object();
+
+            for (int i = 0; i <= rowcount - 1; i++)
+            {
+                if (stuteamallo.Tables[0].Rows[i][0].ToString() == cbTeamID.SelectedItem.ToString()) 
+                    {
+                     attendees = teams.Tables["stuteamcursor"].Rows[i][1].ToString();
+                     clbAttendees.Items.Add(attendees.ToString());
+                }
+            } 
         }
+
+        #endregion
+
+        private void btnActionItems_Click(object sender, EventArgs e)
+        {
+            frmActionItems = new frmActionItems(txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
+            frmActionItems.Show();
+        }
+
+        private void btnAgenda_Click(object sender, EventArgs e)
+        {
+            frmAgenda = new frmAgenda(txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
+            frmAgenda.Show();
+        }
+
+    
+
+
+        #region ChildForms
+
+
+
+        #endregion
+
+ 
+
     }
 }

@@ -390,21 +390,31 @@ namespace FrontEndV0._1.forms
         {
             int selectedrowindex = grdTeamInfo.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
             string selectedteamid = grdTeamInfo.Rows[selectedrowindex].Cells[0].Value.ToString(); //fetch the ID in that row
+            string selectedstuid;
+            string selectedunitid = grdTeamInfo.Rows[selectedrowindex].Cells[2].Value.ToString();
+            string selectedsemester = grdTeamInfo.Rows[selectedrowindex].Cells[3].Value.ToString();
+            string selectedyear = grdTeamInfo.Rows[selectedrowindex].Cells[4].Value.ToString();
             DialogResult response = MessageBox.Show("Delete Team: " + selectedteamid + "?", //confirm with user
                 "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (response == DialogResult.Yes)
             {
-                /*foreach (object student in clbEmpRoles.Items)
+                int i = 0;
+                foreach (DataGridViewRow student in grdTeamAllocation.Rows)
                 {
-                    OracleCommand cmd1 = new OracleCommand("UC1_28_Delete_Employee_Role", connection);
+                    selectedstuid = student.Cells[1].Value.ToString();
+                    OracleCommand cmd1 = new OracleCommand("UC2_20_Delete_Team_Allo", connection);
                     cmd1.CommandType = CommandType.StoredProcedure;
-                    cmd1.Parameters.Add("empid", selectedempid);
-                    cmd1.Parameters.Add("role", role.ToString());
+                    cmd1.Parameters.Add("teamid", selectedteamid);
+                    cmd1.Parameters.Add("stuid", selectedstuid);
+                    cmd1.Parameters.Add("unitid", selectedunitid);
+                    cmd1.Parameters.Add("semester", selectedsemester);
+                    cmd1.Parameters.Add("year", selectedyear);
 
                     connection.Open();
                     cmd1.ExecuteNonQuery();
                     connection.Close();
-                }*/
+                    i++;
+                }
 
                 OracleCommand cmd = new OracleCommand("UC2_4_Delete_Team", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -573,7 +583,44 @@ namespace FrontEndV0._1.forms
 
         private void btnDeleteStu_Click(object sender, EventArgs e)
         {
+            int selectedrowindex = grdTeamAllocation.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
+            string selectedteamid = grdTeamAllocation.Rows[selectedrowindex].Cells[0].Value.ToString();//fetch the ID in that row
+            string selectedstuid = grdTeamAllocation.Rows[selectedrowindex].Cells[1].Value.ToString();
+            string selectedunitid = grdTeamInfo.Rows[selectedrowindex].Cells[2].Value.ToString();
+            string selectedsemester = grdTeamInfo.Rows[selectedrowindex].Cells[3].Value.ToString();
+            string selectedyear = grdTeamInfo.Rows[selectedrowindex].Cells[4].Value.ToString();
+            DialogResult response = MessageBox.Show("Delete Student: "+ selectedstuid +" from Team: " + selectedteamid + "?", //confirm with user
+                "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (response == DialogResult.Yes)
+            {
+                /*foreach (object student in clbEmpRoles.Items)
+                {
+                    OracleCommand cmd1 = new OracleCommand("UC1_28_Delete_Employee_Role", connection);
+                    cmd1.CommandType = CommandType.StoredProcedure;
+                    cmd1.Parameters.Add("empid", selectedempid);
+                    cmd1.Parameters.Add("role", role.ToString());
 
+                    connection.Open();
+                    cmd1.ExecuteNonQuery();
+                    connection.Close();
+                }*/
+
+                OracleCommand cmd = new OracleCommand("UC2_20_Delete_Team_Allo", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("teamid", selectedteamid);
+                cmd.Parameters.Add("stuid", selectedstuid);
+                cmd.Parameters.Add("unitid", selectedunitid);
+                cmd.Parameters.Add("semester", selectedsemester);
+                cmd.Parameters.Add("year", selectedyear);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+                getTeams();
+                populateTeamGrid();
+                MessageBox.Show("Team Deleted");
+            }
         }
 
         #endregion

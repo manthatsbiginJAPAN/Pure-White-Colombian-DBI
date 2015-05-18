@@ -31,14 +31,12 @@
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblAttendees = new System.Windows.Forms.Label();
+            this.clbAttendees = new System.Windows.Forms.CheckedListBox();
             this.dtFinishTime = new System.Windows.Forms.DateTimePicker();
             this.dtStartTime = new System.Windows.Forms.DateTimePicker();
             this.cbSupervisor = new System.Windows.Forms.ComboBox();
-            this.btnAttendance = new System.Windows.Forms.Button();
-            this.btnActionItems = new System.Windows.Forms.Button();
-            this.btnAgenda = new System.Windows.Forms.Button();
-            this.txtMeetingMinutes = new System.Windows.Forms.TextBox();
-            this.lblMeetingMinutes = new System.Windows.Forms.Label();
             this.txtClientName = new System.Windows.Forms.TextBox();
             this.lblClientName = new System.Windows.Forms.Label();
             this.lblSupervisor = new System.Windows.Forms.Label();
@@ -46,6 +44,10 @@
             this.lblStart = new System.Windows.Forms.Label();
             this.cbMeetingType = new System.Windows.Forms.ComboBox();
             this.lblMeetingType = new System.Windows.Forms.Label();
+            this.btnActionItems = new System.Windows.Forms.Button();
+            this.btnAgenda = new System.Windows.Forms.Button();
+            this.txtMeetingMinutes = new System.Windows.Forms.TextBox();
+            this.lblMeetingMinutes = new System.Windows.Forms.Label();
             this.gbIdentifyingInformation = new System.Windows.Forms.GroupBox();
             this.cbTeamID = new System.Windows.Forms.ComboBox();
             this.cbSemester = new System.Windows.Forms.ComboBox();
@@ -93,14 +95,12 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.label1);
+            this.gbDetails.Controls.Add(this.lblAttendees);
+            this.gbDetails.Controls.Add(this.clbAttendees);
             this.gbDetails.Controls.Add(this.dtFinishTime);
             this.gbDetails.Controls.Add(this.dtStartTime);
             this.gbDetails.Controls.Add(this.cbSupervisor);
-            this.gbDetails.Controls.Add(this.btnAttendance);
-            this.gbDetails.Controls.Add(this.btnActionItems);
-            this.gbDetails.Controls.Add(this.btnAgenda);
-            this.gbDetails.Controls.Add(this.txtMeetingMinutes);
-            this.gbDetails.Controls.Add(this.lblMeetingMinutes);
             this.gbDetails.Controls.Add(this.txtClientName);
             this.gbDetails.Controls.Add(this.lblClientName);
             this.gbDetails.Controls.Add(this.lblSupervisor);
@@ -110,30 +110,65 @@
             this.gbDetails.Controls.Add(this.lblMeetingType);
             this.gbDetails.Enabled = false;
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDetails.Location = new System.Drawing.Point(7, 296);
+            this.gbDetails.Location = new System.Drawing.Point(7, 307);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Size = new System.Drawing.Size(472, 350);
+            this.gbDetails.Size = new System.Drawing.Size(472, 339);
             this.gbDetails.TabIndex = 45;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(20, 282);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 20);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "Absentees";
+            // 
+            // lblAttendees
+            // 
+            this.lblAttendees.AutoSize = true;
+            this.lblAttendees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttendees.Location = new System.Drawing.Point(20, 218);
+            this.lblAttendees.Name = "lblAttendees";
+            this.lblAttendees.Size = new System.Drawing.Size(97, 20);
+            this.lblAttendees.TabIndex = 55;
+            this.lblAttendees.Text = "Attendees:";
+            // 
+            // clbAttendees
+            // 
+            this.clbAttendees.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.clbAttendees.FormattingEnabled = true;
+            this.clbAttendees.Location = new System.Drawing.Point(156, 218);
+            this.clbAttendees.Margin = new System.Windows.Forms.Padding(2);
+            this.clbAttendees.Name = "clbAttendees";
+            this.clbAttendees.Size = new System.Drawing.Size(151, 49);
+            this.clbAttendees.TabIndex = 54;
+            // 
             // dtFinishTime
             // 
+            this.dtFinishTime.CustomFormat = "hh:mm tt dd/MM/yyyy";
             this.dtFinishTime.Enabled = false;
-            this.dtFinishTime.Location = new System.Drawing.Point(130, 103);
+            this.dtFinishTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFinishTime.Location = new System.Drawing.Point(156, 100);
             this.dtFinishTime.Margin = new System.Windows.Forms.Padding(2);
             this.dtFinishTime.Name = "dtFinishTime";
-            this.dtFinishTime.Size = new System.Drawing.Size(193, 20);
+            this.dtFinishTime.Size = new System.Drawing.Size(151, 20);
             this.dtFinishTime.TabIndex = 53;
             // 
             // dtStartTime
             // 
+            this.dtStartTime.CustomFormat = "hh:mm  tt dd/MM/yyyy";
             this.dtStartTime.Enabled = false;
-            this.dtStartTime.Location = new System.Drawing.Point(130, 62);
+            this.dtStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtStartTime.Location = new System.Drawing.Point(156, 62);
             this.dtStartTime.Margin = new System.Windows.Forms.Padding(2);
             this.dtStartTime.Name = "dtStartTime";
-            this.dtStartTime.Size = new System.Drawing.Size(193, 20);
+            this.dtStartTime.Size = new System.Drawing.Size(151, 20);
             this.dtStartTime.TabIndex = 52;
+            this.dtStartTime.Value = new System.DateTime(2015, 5, 18, 0, 0, 0, 0);
             // 
             // cbSupervisor
             // 
@@ -143,56 +178,6 @@
             this.cbSupervisor.Name = "cbSupervisor";
             this.cbSupervisor.Size = new System.Drawing.Size(121, 21);
             this.cbSupervisor.TabIndex = 42;
-            // 
-            // btnAttendance
-            // 
-            this.btnAttendance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAttendance.Location = new System.Drawing.Point(336, 131);
-            this.btnAttendance.Name = "btnAttendance";
-            this.btnAttendance.Size = new System.Drawing.Size(137, 42);
-            this.btnAttendance.TabIndex = 52;
-            this.btnAttendance.Text = "Attendance";
-            this.btnAttendance.UseVisualStyleBackColor = true;
-            // 
-            // btnActionItems
-            // 
-            this.btnActionItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActionItems.Location = new System.Drawing.Point(335, 73);
-            this.btnActionItems.Name = "btnActionItems";
-            this.btnActionItems.Size = new System.Drawing.Size(137, 50);
-            this.btnActionItems.TabIndex = 51;
-            this.btnActionItems.Text = "View Action Items";
-            this.btnActionItems.UseVisualStyleBackColor = true;
-            // 
-            // btnAgenda
-            // 
-            this.btnAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgenda.Location = new System.Drawing.Point(335, 30);
-            this.btnAgenda.Name = "btnAgenda";
-            this.btnAgenda.Size = new System.Drawing.Size(137, 37);
-            this.btnAgenda.TabIndex = 50;
-            this.btnAgenda.Text = "View Agenda";
-            this.btnAgenda.UseVisualStyleBackColor = true;
-            // 
-            // txtMeetingMinutes
-            // 
-            this.txtMeetingMinutes.Enabled = false;
-            this.txtMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetingMinutes.Location = new System.Drawing.Point(15, 225);
-            this.txtMeetingMinutes.Multiline = true;
-            this.txtMeetingMinutes.Name = "txtMeetingMinutes";
-            this.txtMeetingMinutes.Size = new System.Drawing.Size(434, 70);
-            this.txtMeetingMinutes.TabIndex = 49;
-            // 
-            // lblMeetingMinutes
-            // 
-            this.lblMeetingMinutes.AutoSize = true;
-            this.lblMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingMinutes.Location = new System.Drawing.Point(20, 202);
-            this.lblMeetingMinutes.Name = "lblMeetingMinutes";
-            this.lblMeetingMinutes.Size = new System.Drawing.Size(146, 20);
-            this.lblMeetingMinutes.TabIndex = 48;
-            this.lblMeetingMinutes.Text = "Meeting Minutes:";
             // 
             // txtClientName
             // 
@@ -267,6 +252,48 @@
             this.lblMeetingType.TabIndex = 41;
             this.lblMeetingType.Text = "Meeting Type:";
             // 
+            // btnActionItems
+            // 
+            this.btnActionItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActionItems.Location = new System.Drawing.Point(343, 263);
+            this.btnActionItems.Name = "btnActionItems";
+            this.btnActionItems.Size = new System.Drawing.Size(137, 38);
+            this.btnActionItems.TabIndex = 51;
+            this.btnActionItems.Text = "Action Items";
+            this.btnActionItems.UseVisualStyleBackColor = true;
+            this.btnActionItems.Click += new System.EventHandler(this.btnActionItems_Click);
+            // 
+            // btnAgenda
+            // 
+            this.btnAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgenda.Location = new System.Drawing.Point(343, 220);
+            this.btnAgenda.Name = "btnAgenda";
+            this.btnAgenda.Size = new System.Drawing.Size(137, 37);
+            this.btnAgenda.TabIndex = 50;
+            this.btnAgenda.Text = "Agenda";
+            this.btnAgenda.UseVisualStyleBackColor = true;
+            this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
+            // 
+            // txtMeetingMinutes
+            // 
+            this.txtMeetingMinutes.Enabled = false;
+            this.txtMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeetingMinutes.Location = new System.Drawing.Point(486, 465);
+            this.txtMeetingMinutes.Multiline = true;
+            this.txtMeetingMinutes.Name = "txtMeetingMinutes";
+            this.txtMeetingMinutes.Size = new System.Drawing.Size(416, 144);
+            this.txtMeetingMinutes.TabIndex = 49;
+            // 
+            // lblMeetingMinutes
+            // 
+            this.lblMeetingMinutes.AutoSize = true;
+            this.lblMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMeetingMinutes.Location = new System.Drawing.Point(485, 442);
+            this.lblMeetingMinutes.Name = "lblMeetingMinutes";
+            this.lblMeetingMinutes.Size = new System.Drawing.Size(146, 20);
+            this.lblMeetingMinutes.TabIndex = 48;
+            this.lblMeetingMinutes.Text = "Meeting Minutes:";
+            // 
             // gbIdentifyingInformation
             // 
             this.gbIdentifyingInformation.Controls.Add(this.cbTeamID);
@@ -283,7 +310,7 @@
             this.gbIdentifyingInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbIdentifyingInformation.Location = new System.Drawing.Point(8, 56);
             this.gbIdentifyingInformation.Name = "gbIdentifyingInformation";
-            this.gbIdentifyingInformation.Size = new System.Drawing.Size(325, 234);
+            this.gbIdentifyingInformation.Size = new System.Drawing.Size(325, 245);
             this.gbIdentifyingInformation.TabIndex = 43;
             this.gbIdentifyingInformation.TabStop = false;
             this.gbIdentifyingInformation.Text = "Identifying Information";
@@ -330,7 +357,7 @@
             // 
             this.lblSem.AutoSize = true;
             this.lblSem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSem.Location = new System.Drawing.Point(58, 67);
+            this.lblSem.Location = new System.Drawing.Point(49, 67);
             this.lblSem.Name = "lblSem";
             this.lblSem.Size = new System.Drawing.Size(91, 20);
             this.lblSem.TabIndex = 11;
@@ -388,7 +415,6 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(342, 109);
             this.btnEdit.Name = "btnEdit";
@@ -426,7 +452,7 @@
             this.grdMeetings.Location = new System.Drawing.Point(486, 64);
             this.grdMeetings.Name = "grdMeetings";
             this.grdMeetings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdMeetings.Size = new System.Drawing.Size(421, 569);
+            this.grdMeetings.Size = new System.Drawing.Size(421, 355);
             this.grdMeetings.TabIndex = 47;
             // 
             // colMeetID
@@ -464,9 +490,13 @@
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.gbIdentifyingInformation);
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.btnActionItems);
             this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnAgenda);
             this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.txtMeetingMinutes);
             this.Controls.Add(this.grdMeetings);
+            this.Controls.Add(this.lblMeetingMinutes);
             this.Name = "frmMeeting";
             this.Load += new System.EventHandler(this.frmMeeting_Load);
             this.gbDetails.ResumeLayout(false);
@@ -508,7 +538,6 @@
         public System.Windows.Forms.Button btnAgenda;
         public System.Windows.Forms.TextBox txtMeetingMinutes;
         public System.Windows.Forms.Label lblMeetingMinutes;
-        public System.Windows.Forms.Button btnAttendance;
         private System.Windows.Forms.ComboBox cbSupervisor;
         private System.Windows.Forms.ComboBox cbTeamID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMeetID;
@@ -518,5 +547,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.DateTimePicker dtFinishTime;
         private System.Windows.Forms.DateTimePicker dtStartTime;
+        private System.Windows.Forms.CheckedListBox clbAttendees;
+        public System.Windows.Forms.Label lblAttendees;
+        public System.Windows.Forms.Label label1;
     }
 }

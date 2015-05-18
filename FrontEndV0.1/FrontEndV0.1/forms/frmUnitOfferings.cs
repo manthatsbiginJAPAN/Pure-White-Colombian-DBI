@@ -19,11 +19,12 @@ namespace FrontEndV0._1.forms
         private DataSet unitoffs;
         private DataSet units;
         private DataSet emps;
+        private bool editable;
 
-        public frmUnitOfferings(bool editable)
+        public frmUnitOfferings(bool Editable)
         {
             InitializeComponent();
-
+            editable = Editable;
             connection = conn.oraConn();
         }
 
@@ -40,6 +41,15 @@ namespace FrontEndV0._1.forms
             populateUnitIDs();
             populateConvenors();
             cbConvenor.SelectedIndex = 0; //show the 'none' option for convenor as default
+
+            if (!editable)
+            {
+                btnAdd.Enabled = false;
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+                gbDetails.Enabled = false;
+                gbIdentifyingInformation.Enabled = false;
+            }
         }
 
         private void getEmps()
