@@ -278,6 +278,6 @@ namespace FrontEndV0._1.forms
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }       
+        }    
     }
 }
