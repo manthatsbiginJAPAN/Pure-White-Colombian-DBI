@@ -16,7 +16,6 @@ namespace FrontEndV0._1.forms
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
 
-        private frmMeeting _parent;
 
         public frmMeetingAttendance()
         {
