@@ -31,7 +31,6 @@
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblAttendees = new System.Windows.Forms.Label();
             this.clbAttendees = new System.Windows.Forms.CheckedListBox();
             this.dtFinishTime = new System.Windows.Forms.DateTimePicker();
@@ -67,6 +66,7 @@
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).BeginInit();
@@ -95,6 +95,7 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.label1);
             this.gbDetails.Controls.Add(this.lblAttendees);
             this.gbDetails.Controls.Add(this.clbAttendees);
             this.gbDetails.Controls.Add(this.dtFinishTime);
@@ -115,16 +116,6 @@
             this.gbDetails.TabIndex = 45;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(20, 282);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 20);
-            this.label1.TabIndex = 56;
-            this.label1.Text = "Absentees";
             // 
             // lblAttendees
             // 
@@ -480,6 +471,17 @@
             this.Year.HeaderText = "Year";
             this.Year.Name = "Year";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(20, 293);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "Absentees:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // frmMeeting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,5 +550,6 @@
         private System.Windows.Forms.DateTimePicker dtStartTime;
         private System.Windows.Forms.CheckedListBox clbAttendees;
         public System.Windows.Forms.Label lblAttendees;
+        public System.Windows.Forms.Label label1;
     }
 }

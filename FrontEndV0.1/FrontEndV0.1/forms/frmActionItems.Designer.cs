@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.cbStuID = new System.Windows.Forms.ComboBox();
             this.dtDue = new System.Windows.Forms.DateTimePicker();
             this.txtAgendaNum = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.lblAgendaNum = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStuID = new System.Windows.Forms.Label();
             this.lblDueDate = new System.Windows.Forms.Label();
             this.lblActionDesc = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.grdAgendatems = new System.Windows.Forms.DataGridView();
             this.colActionNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbStuID = new System.Windows.Forms.ComboBox();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAgendatems)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +75,14 @@
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = " ";
             // 
+            // cbStuID
+            // 
+            this.cbStuID.FormattingEnabled = true;
+            this.cbStuID.Location = new System.Drawing.Point(144, 67);
+            this.cbStuID.Name = "cbStuID";
+            this.cbStuID.Size = new System.Drawing.Size(121, 21);
+            this.cbStuID.TabIndex = 81;
+            // 
             // dtDue
             // 
             this.dtDue.Location = new System.Drawing.Point(144, 104);
@@ -90,6 +98,46 @@
             this.txtAgendaNum.Name = "txtAgendaNum";
             this.txtAgendaNum.Size = new System.Drawing.Size(121, 26);
             this.txtAgendaNum.TabIndex = 77;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(357, 22);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(137, 37);
+            this.btnAdd.TabIndex = 55;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(110, 164);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(384, 106);
+            this.textBox1.TabIndex = 45;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(357, 110);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(137, 37);
+            this.btnDelete.TabIndex = 60;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(357, 67);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(137, 37);
+            this.btnEdit.TabIndex = 58;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
             // 
             // lblAgendaNum
             // 
@@ -150,56 +198,16 @@
             this.lblActionDesc.TabIndex = 45;
             this.lblActionDesc.Text = "Action Desc:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(110, 164);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(384, 106);
-            this.textBox1.TabIndex = 45;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(357, 22);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(137, 37);
-            this.btnAdd.TabIndex = 55;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(319, 12);
+            this.lblTitle.Location = new System.Drawing.Point(334, 12);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(193, 34);
             this.lblTitle.TabIndex = 56;
             this.lblTitle.Text = "Action Items";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Enabled = false;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(357, 67);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(137, 37);
-            this.btnEdit.TabIndex = 58;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(357, 110);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(137, 37);
-            this.btnDelete.TabIndex = 60;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // grdAgendatems
             // 
@@ -233,14 +241,6 @@
             // 
             this.colDueDate.HeaderText = "Due Date";
             this.colDueDate.Name = "colDueDate";
-            // 
-            // cbStuID
-            // 
-            this.cbStuID.FormattingEnabled = true;
-            this.cbStuID.Location = new System.Drawing.Point(144, 67);
-            this.cbStuID.Name = "cbStuID";
-            this.cbStuID.Size = new System.Drawing.Size(121, 21);
-            this.cbStuID.TabIndex = 81;
             // 
             // frmActionItems
             // 

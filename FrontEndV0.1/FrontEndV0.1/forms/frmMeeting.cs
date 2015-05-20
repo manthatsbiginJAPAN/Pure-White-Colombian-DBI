@@ -636,15 +636,6 @@ namespace FrontEndV0._1.forms
             frmAgenda.Show();
         }
 
-    
-
-
-        #region ChildForms
-
-
-
-        #endregion
-
  
 
     }
