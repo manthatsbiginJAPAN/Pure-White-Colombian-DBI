@@ -265,6 +265,7 @@ MeetingID number(3) NOT NULL
 , Minutes varchar2(1000)
 , EmpID varchar2(10) 
 , ClientName varchar2(30) --only if is a client meeting
+, Approved varchar2(1)
 , PRIMARY KEY (MeetingID, TeamID, UnitID, Semester, Year) --include MeetingID, UnitID, Semester, Year...?
 , FOREIGN KEY (TeamID, UnitID, Semester, Year) REFERENCES Team
 , FOREIGN KEY (MeetType) REFERENCES MeetingType
