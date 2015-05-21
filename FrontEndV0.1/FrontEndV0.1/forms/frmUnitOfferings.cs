@@ -19,12 +19,14 @@ namespace FrontEndV0._1.forms
         private DataSet unitoffs;
         private DataSet units;
         private DataSet emps;
-        private bool editable;
+        private bool isAdmin;
+        private string User;
 
-        public frmUnitOfferings(bool Editable)
+        public frmUnitOfferings(string user, bool isadmin)
         {
             InitializeComponent();
-            editable = Editable;
+            isAdmin = isadmin;
+            User = user;
             connection = conn.oraConn();
         }
 
@@ -42,7 +44,7 @@ namespace FrontEndV0._1.forms
             populateConvenors();
             cbConvenor.SelectedIndex = 0; //show the 'none' option for convenor as default
 
-            if (!editable)
+            if (!isAdmin)
             {
                 btnAdd.Enabled = false;
                 btnEdit.Enabled = false;
@@ -100,6 +102,13 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("unitoffcursor", OracleDbType.RefCursor);
             cmd.Parameters["unitoffcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role;
+            if (isAdmin)
+                role = "admin";
+            else
+                role = "convenor";
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -158,7 +167,7 @@ namespace FrontEndV0._1.forms
             grdUnitOfferings.Rows.Clear();
 
             //Populate the grid from the dataset
-            int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
+            int rowcnt = unitoffs.Tables[0].Rows.Count;
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
@@ -321,7 +330,7 @@ namespace FrontEndV0._1.forms
 
 
      
-        private String oldEmpID = null; //??? Wos dis?
+        //private String oldEmpID = null; //??? Wos dis?
         
 
         
@@ -338,8 +347,7 @@ namespace FrontEndV0._1.forms
                     cmd.Parameters.Add("punitid", cbUnitID.SelectedItem.ToString());
                     cmd.Parameters.Add("psemester", Convert.ToInt32(cbSemester.SelectedItem));
                     cmd.Parameters.Add("pyear", Convert.ToInt32(cbYear.SelectedItem));
-                    cmd.Parameters.Add("pempID", oldEmpID);
-                    cmd.Parameters.Add("newempid", cbConvenor.SelectedItem.ToString());
+                    cmd.Parameters.Add("pempID", cbConvenor.SelectedItem.ToString());
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
@@ -374,8 +382,9 @@ namespace FrontEndV0._1.forms
                 cbSemester.SelectedIndex = cbSemester.FindString(grdUnitOfferings.Rows[selectedrowindex].Cells[1].Value.ToString());
                 cbYear.SelectedIndex = cbYear.FindString(grdUnitOfferings.Rows[selectedrowindex].Cells[2].Value.ToString());
                 cbConvenor.SelectedIndex = cbConvenor.FindString(grdUnitOfferings.Rows[selectedrowindex].Cells[3].Value.ToString());
-                //tempSave the old empID before its changed
-                oldEmpID = cbConvenor.SelectedItem.ToString();
+                
+                //tempSave the old empID before its changed >>>> ???
+                //oldEmpID = cbConvenor.SelectedItem.ToString();
 
                 //Enable textboxes
                 gbIdentifyingInformation.Enabled = false;

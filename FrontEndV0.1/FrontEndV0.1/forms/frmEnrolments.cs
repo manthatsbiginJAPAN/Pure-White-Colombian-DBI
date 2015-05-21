@@ -80,6 +80,13 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("unitoffcursor", OracleDbType.RefCursor);
             cmd.Parameters["unitoffcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role;
+            if (isAdmin)
+                role = "admin";
+            else
+                role = "student";
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);

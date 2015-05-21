@@ -19,15 +19,20 @@ namespace FrontEndV0._1.forms
         private DataSet teams;
         private DataSet meets;
         private DataSet stuteamallo;
+        private string User;
+        private bool isConvenor;
+        private bool isSupervisor;
 
         private frmAgenda frmAgenda;
         private frmActionItems frmActionItems;
 
-        public frmMeeting()
+        public frmMeeting(string user, bool isconvenor, bool issupervisor)
         {
             InitializeComponent();
-
             connection = conn.oraConn();
+            User = user;
+            isConvenor = isconvenor;
+            isSupervisor = issupervisor;
         }
 
 
@@ -54,6 +59,20 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
             cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role = null;
+
+            //current problem is with an emp being both supervisor and convenor...
+            //Ideally it needs to load based on both roles...
+
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor";
+            if (role == null)
+                role = "student";
+            MessageBox.Show("Role: " + role);
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);

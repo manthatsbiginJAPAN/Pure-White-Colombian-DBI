@@ -245,6 +245,8 @@ namespace FrontEndV0._1.forms
         private void frmLogin_Load(object sender, EventArgs e)
         {
             txtUsername.Focus(); //Doesn't work but whatevs man
+            getEmployees();
+            getStudents();
         }
     }
 }

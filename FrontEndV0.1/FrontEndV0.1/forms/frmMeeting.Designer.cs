@@ -480,7 +480,7 @@
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 56;
             this.label1.Text = "Absentees:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            //this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // frmMeeting
             // 

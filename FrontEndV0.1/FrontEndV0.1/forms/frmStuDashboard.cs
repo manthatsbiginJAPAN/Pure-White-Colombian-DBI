@@ -30,13 +30,13 @@ namespace FrontEndV0._1.forms
             frmEnrolments = new frmEnrolments(user, false);
             frmEnrolments.MdiParent = this;
 
-            frmProject = new frmProject(user, true, false);
+            frmProject = new frmProject(user, false, false, false);
             frmProject.MdiParent = this;
 
-            frmTeamDetails = new frmTeamDetails(false);
+            frmTeamDetails = new frmTeamDetails(user, false, false, false);
             frmTeamDetails.MdiParent = this;
 
-            frmMeeting = new frmMeeting();
+            frmMeeting = new frmMeeting(user, false, false);
             frmMeeting.MdiParent = this;
 
             frmStuAssessment = new frmStuAssessment(user);

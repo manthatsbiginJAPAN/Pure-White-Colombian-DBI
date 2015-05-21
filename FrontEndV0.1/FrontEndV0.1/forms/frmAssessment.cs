@@ -21,10 +21,16 @@ namespace FrontEndV0._1.forms
         private frmTeamContribution frmTeamCont;
         private frmPeerAssessmentcs frmPeerAss;
 
-        public frmAssessment(bool editable)
+        private string User;
+        private bool isConvenor;
+        private bool isSupervisor;
+
+        public frmAssessment(string user, bool isconvenor, bool issupervisor, bool editable)
         {
             InitializeComponent();
-
+            User = user;
+            isConvenor = isconvenor;
+            isSupervisor = issupervisor;
             connection = conn.oraConn();
 
             //Set up current assessments in form
@@ -78,6 +84,13 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("unitoffcursor", OracleDbType.RefCursor);
             cmd.Parameters["unitoffcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role = null;
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor";
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);

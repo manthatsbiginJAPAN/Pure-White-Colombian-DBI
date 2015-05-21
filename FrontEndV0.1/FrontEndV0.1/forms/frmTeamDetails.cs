@@ -21,10 +21,16 @@ namespace FrontEndV0._1.forms
         private DataSet unitoffs;
         private DataSet projects;
         private DataSet enrolments;
+        private string User;
+        private bool isConvenor;
+        private bool isSupervisor;
 
-        public frmTeamDetails(bool editable)
+        public frmTeamDetails(string user, bool isconvenor, bool issupervisor, bool editable)
         {
             InitializeComponent();
+            User = user;
+            isConvenor = isconvenor; //will need update
+            isSupervisor = issupervisor;
             connection = conn.oraConn();
         }
 
@@ -55,6 +61,20 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("projcursor", OracleDbType.RefCursor);
             cmd.Parameters["projcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role = null;
+
+            //current problem is with an emp being both supervisor and convenor, as only convenor-related teams are fetched...
+            //Ideally it needs to load teams based on both roles...
+
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor"; 
+            if (role == null)
+                role = "student";
+            MessageBox.Show("Role: " + role);
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -75,6 +95,15 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("unitoffcursor", OracleDbType.RefCursor);
             cmd.Parameters["unitoffcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role = null;
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor";
+            if (role == null)
+                role = "student";
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -95,6 +124,15 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
             cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role = null;
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor";
+            if (role == null)
+                role = "student";
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);

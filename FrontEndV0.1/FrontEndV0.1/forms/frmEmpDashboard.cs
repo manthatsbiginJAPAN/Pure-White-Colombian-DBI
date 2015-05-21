@@ -39,7 +39,7 @@ namespace FrontEndV0._1.forms
                 frmUnits = new frmUnits(true);
                 frmUnits.MdiParent = this;
 
-                frmUnitOfferings = new frmUnitOfferings(true);
+                frmUnitOfferings = new frmUnitOfferings(user, isAdmin);
                 frmUnitOfferings.MdiParent = this;
 
                 frmEnrolments = new frmEnrolments(user, isAdmin);
@@ -54,16 +54,16 @@ namespace FrontEndV0._1.forms
             {
                 supervisorFunctionsToolStripMenuItem.Enabled = true;
 
-                frmMeeting = new frmMeeting();
+                frmMeeting = new frmMeeting(user, isConvenor, isSupervisor);
                 frmMeeting.MdiParent = this;
 
-                frmAssessment = new frmAssessment(true);
+                frmAssessment = new frmAssessment(user, isConvenor, isSupervisor, true);
                 frmAssessment.MdiParent = this;
 
-                frmTeamDetails = new frmTeamDetails(false);
+                frmTeamDetails = new frmTeamDetails(user, isConvenor, isSupervisor, false);
                 frmTeamDetails.MdiParent = this;
 
-                frmProject = new frmProject(user, false, false);
+                frmProject = new frmProject(user, isConvenor, isSupervisor, false);
                 frmProject.MdiParent = this;
             }
             else
@@ -75,10 +75,10 @@ namespace FrontEndV0._1.forms
             {
                 convenorFunctionsToolStripMenuItem.Enabled = true;
 
-                frmAssessment = new frmAssessment(true);
+                frmAssessment = new frmAssessment(user, isConvenor, isSupervisor, true);
                 frmAssessment.MdiParent = this;
 
-                frmTeamDetails = new frmTeamDetails(true);
+                frmTeamDetails = new frmTeamDetails(user, isConvenor, isSupervisor, true);
                 frmTeamDetails.MdiParent = this;
 
                 //ensures that the frmUnits won't be overwritten if the user is also an admin
@@ -91,11 +91,11 @@ namespace FrontEndV0._1.forms
                 //ensures that the frmUnitOfferings won't be overwritten if the user is also an admin
                 if (!isAdmin)
                 {
-                    frmUnitOfferings = new frmUnitOfferings(false);
+                    frmUnitOfferings = new frmUnitOfferings(user, isAdmin);
                     frmUnitOfferings.MdiParent = this;
                 }
 
-                frmProject = new frmProject(user, false, true);
+                frmProject = new frmProject(user, isConvenor, isSupervisor, true);
                 frmProject.MdiParent = this;
             }
             else

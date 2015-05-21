@@ -20,14 +20,16 @@ namespace FrontEndV0._1.forms
         private DataSet projects;
         private bool editable;
         private string User;
-        private bool isStudent;
+        private bool isConvenor;
+        private bool isSupervisor;
 
-        public frmProject(string user, bool isstudent, bool Editable)
+        public frmProject(string user, bool isconvenor, bool issupervisor, bool Editable)
         {
             InitializeComponent();
             editable = Editable;
             User = user;
-            isStudent = isstudent;
+            isConvenor = isconvenor;
+            isSupervisor = issupervisor;
             connection = conn.oraConn();
         }
 
@@ -40,7 +42,7 @@ namespace FrontEndV0._1.forms
             populateProjects();
             populateUnitOfferings();
 
-            if (!editable || isStudent)
+            if (!editable || !isConvenor)
             {
                 btnAdd.Enabled = false;
                 btnEdit.Enabled = false;
@@ -58,6 +60,16 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("projcursor", OracleDbType.RefCursor);
             cmd.Parameters["projcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role = null;
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor";
+            if (role == null)
+                role = "student";
+            MessageBox.Show("Role; " + role);
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -78,6 +90,15 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("unitoffcursor", OracleDbType.RefCursor);
             cmd.Parameters["unitoffcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role = null;
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor";
+            if (role == null)
+                role = "student";
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);

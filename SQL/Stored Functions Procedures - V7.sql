@@ -414,18 +414,23 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC1_22_View_Unit_Offering
+create or replace FUNCTION UC1_22_View_Unit_Offering
+	(user varchar2, role varchar2)
 	RETURN SYS_REFCURSOR AS uos SYS_REFCURSOR;
-BEGIN
+  rcount number;
+BEGIN	
 	--dbms_output.put_line('Listing All Unit Offerings');
-	OPEN uos for select * from UnitOffering;
-	--LOOP
-	--	Fetch uos into uo;
-	--	Exit When uos%NOTFOUND;
-	--	dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
-	--					 || ' Semester: ' || uo.semester
-	--					 || ' Year: ' || uo.Year); 
-	--End Loop;
+	IF role = 'admin' THEN
+      OPEN uos for select * from UnitOffering;
+	elsif role = 'convenor' then
+      OPEN uos for select * from UnitOffering where LOWER(EmpID) = LOWER(user);
+  elsif role = 'supervisor' then
+      OPEN uos for select * from UnitOffering where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from Team where LOWER(EmpId) = LOWER(user)); 
+  elsif role = 'student' then
+      OPEN uos for select * from UnitOffering where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from Enrolment where LOWER(stuId) = LOWER(user)); 
+  --else --backup plan
+  --    OPEN uos for select * from UnitOffering;
+  END IF;
 	return uos;
 EXCEPTION
 	When Others Then
@@ -434,15 +439,15 @@ End;
 /
 
 
+
 create or replace PROCEDURE UC1_23_Update_Unit_Offering
 		(pUnitID varchar2, 
        	 pSemester number,
        	 pYear number,
-       	 pEmpID varchar2,
-       	 newEmpID varchar2) AS
+       	 pEmpID varchar2) AS
 BEGIN
 	UPDATE UnitOffering
-	SET EmpID = NewEmpID -- Employee is the only thing we can change
+	SET EmpID = pEmpID -- Employee is the only thing we can change
 	WHERE UnitID = pUnitID AND
 	Semester = pSemester AND
 	Year = pYear;
@@ -692,17 +697,20 @@ END;
 /
 
 CREATE or REPLACE FUNCTION UC2_3_View_Team
+  	(user varchar2, role varchar2)
 	RETURN SYS_REFCURSOR AS tm SYS_REFCURSOR;
-	t Team%ROWTYPE;
 BEGIN
-	OPEN tm for select * from Team;
-	--LOOP
-	--	Fetch unts into u;
-	--	Exit When unts%NOTFOUND;
-	--	dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
-	--					 || ' Unit Name: ' || u.UnitName
-	--					 || ' Unit Description: ' || u.UnitDesc);
-	--End Loop;
+	IF role = 'admin' THEN
+      OPEN tm for select * from Team;
+	elsif role = 'convenor' then
+	  OPEN tm for select * from Team where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from UnitOffering where LOWER(EmpId) = LOWER(user));
+  elsif role = 'supervisor' then
+      OPEN tm for select * from Team where LOWER(EmpID) = LOWER(user);
+  elsif role = 'student' then
+      OPEN tm for select * from Team where (TeamID, UnitID, Semester, Year) IN (select TeamID, UnitID, Semester, Year from StudentTeamAllocation where LOWER(stuId) = LOWER(user)); 
+  --else --backup plan
+  --    OPEN uos for select * from UnitOffering;
+  END IF;
 	return tm;
 EXCEPTION
 	When Others Then
@@ -762,17 +770,19 @@ END;
 /
 
 create or replace FUNCTION UC2_7_View_Project
+	(user varchar2, role varchar2)
 	RETURN SYS_REFCURSOR AS pro SYS_REFCURSOR;
 BEGIN
 	--dbms_output.put_line('Listing All Unit Offerings');
-	OPEN pro for select * from Project;
-	--LOOP
-	--	Fetch uos into uo;
-	--	Exit When uos%NOTFOUND;
-	--	dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
-	--					 || ' Semester: ' || uo.semester
-	--					 || ' Year: ' || uo.Year); 
-	--End Loop;
+  IF role = 'convenor' then
+      OPEN pro for select * from project where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from UnitOffering where LOWER(empid) = LOWER(user));
+  elsif role = 'supervisor' then
+      OPEN pro for select * from project where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from Team where LOWER(empid) = LOWER(user));
+  elsif role = 'student' then
+      OPEN pro for select * from project where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from Enrolment where LOWER(stuid) = LOWER(user));
+  --else --backup plan
+  --    OPEN pro for select * from Project;
+  END IF;
 	return pro;
 EXCEPTION
 	When Others Then
@@ -780,7 +790,6 @@ EXCEPTION
 End;
 
 /
-
 
 CREATE OR REPLACE PROCEDURE UC2_8_Delete_Project
 		(pProjID varchar2,
@@ -808,9 +817,10 @@ create or replace PROCEDURE UC2_9_Register_Assessment
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
-	pMarkingGuide varchar2) AS
+	pMarkingGuide varchar2, 
+	pDueDate date) AS
 BEGIN
-	INSERT INTO Assessment VALUES (pAssID, pAssTitle, pAssDesc, pUnitID, pSemester, pYear, pMarkingGuide);
+	INSERT INTO Assessment VALUES (pAssID, pAssTitle, pAssDesc, pUnitID, pSemester, pYear, pMarkingGuide, pDueDate);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -827,12 +837,14 @@ create or replace PROCEDURE UC2_10_Update_Assessment
 	pYear number,
 	pAssTitle varchar2,
 	pAssDesc varchar2,
-	pMarkingGuide varchar2) AS
+	pMarkingGuide varchar2,
+	pDueDate date) AS
 BEGIN
 	UPDATE Assessment
 	SET AssTitle = pAssTitle,
 		AssDesc = pAssDesc,
-		MarkingGuide = pMarkingGuide
+		MarkingGuide = pMarkingGuide,
+		DueDate = pDueDate
 	WHERE AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
@@ -1132,10 +1144,9 @@ create or replace PROCEDURE UC2_25_Register_AssCrit
 	pSemester number,
 	pYear number,
 	pGeneral varchar2,
-	pSpecific varchar2,
-	pDueDate date) AS
+	pSpecific varchar2) AS
 BEGIN
-	INSERT INTO AssessmentCriterion VALUES (pCriterionID, pAssID, pUnitID, pSemester, pYear, pGeneral, pSpecific, pDueDate);
+	INSERT INTO AssessmentCriterion VALUES (pCriterionID, pAssID, pUnitID, pSemester, pYear, pGeneral, pSpecific);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1152,13 +1163,11 @@ create or replace PROCEDURE UC2_26_Update_AssCrit
 	pSemester number,
 	pYear number,
 	pGeneral varchar2,
-	pSpecific varchar2,
-	pDueDate date) AS
+	pSpecific varchar2) AS
 BEGIN
 	UPDATE AssessmentCriterion
 	SET General = pGeneral,
-		Specific = pSpecific,
-		DueDate = pDueDate
+		Specific = pSpecific
 	WHERE CriterionID = pCriterionID and
 		AssId = pAssID and
 		UnitId = pUnitID and
@@ -1230,10 +1239,11 @@ create or replace PROCEDURE UC2_29_Register_StuHours
 	pYear number,
 	pTeamID varchar2,
 	pPeriod number,
+	pTargetStuID varchar2,
 	pHours number,
 	pDateSubmitted date) AS
 BEGIN
-	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pHours, pDateSubmitted);
+	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pTargetStuID, pHours, pDateSubmitted);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1252,6 +1262,7 @@ create or replace PROCEDURE UC2_30_Update_StuHours
 	pYear number,
 	pTeamID varchar2,
 	pPeriod number,
+	pTargetStuID varchar2,
 	pHours number,
 	pDateSubmitted date) AS
 BEGIN
@@ -1264,7 +1275,8 @@ BEGIN
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
-		Year = pYear;
+		Year = pYear AND
+		TargetStuID = pTargetStuID;
 	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -1300,7 +1312,8 @@ CREATE OR REPLACE PROCEDURE UC2_32_Delete_StuHours
 		, pAssID varchar2
 		, pUnitID varchar2
 		, pSemester number
-		, pYear number) AS
+		, pYear number
+		, pTargetStuID varchar2) AS
 BEGIN
 	Delete StudentHours
 	WHERE TaskID = pTaskID and
@@ -1308,7 +1321,8 @@ BEGIN
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
-		Year = pYear;
+		Year = pYear and
+		TargetStuID = pTargetStuID;
 	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -1325,10 +1339,11 @@ create or replace PROCEDURE UC2_33_Register_StuRatings
 	pSemester number,
 	pYear number,
 	pTeamID varchar2,
+	pTargetStuID varchar2,
 	pRating number,
 	pDateSubmitted date) AS
 BEGIN
-	INSERT INTO StudentRatings VALUES (pCriterionID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pRating, pDateSubmitted);
+	INSERT INTO StudentRatings VALUES (pCriterionID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pTargetStuID, pRating, pDateSubmitted);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1346,6 +1361,7 @@ create or replace PROCEDURE UC2_34_Update_StuRatings
 	pSemester number,
 	pYear number,
 	pTeamID varchar2,
+	pTargetStuID varchar2,
 	pRating number,
 	pDateSubmitted date) AS
 BEGIN
@@ -1357,7 +1373,8 @@ BEGIN
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
-		Year = pYear;
+		Year = pYear AND
+		TargetStuID = pTargetStuID;
 	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -1393,7 +1410,8 @@ CREATE OR REPLACE PROCEDURE UC2_36_Delete_StuRatings
 		, pAssID varchar2
 		, pUnitID varchar2
 		, pSemester number
-		, pYear number) AS
+		, pYear number
+		, pTargetStuID varchar2) AS
 BEGIN
 	Delete StudentRatings
 	WHERE CriterionID = pCriterionID and
@@ -1401,7 +1419,8 @@ BEGIN
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
-		Year = pYear;
+		Year = pYear AND
+		TargetStuID = pTargetStuID;
 	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
