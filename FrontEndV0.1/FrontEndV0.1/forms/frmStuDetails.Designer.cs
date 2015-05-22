@@ -92,11 +92,12 @@
             this.stuPhone,
             this.stuPassword});
             this.grdStudentInfo.Location = new System.Drawing.Point(486, 65);
+            this.grdStudentInfo.MultiSelect = false;
             this.grdStudentInfo.Name = "grdStudentInfo";
             this.grdStudentInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdStudentInfo.Size = new System.Drawing.Size(421, 569);
             this.grdStudentInfo.TabIndex = 19;
-            this.grdStudentInfo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdStudentInfo_SelectionChanged);
+            this.grdStudentInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdStudentInfo_SelectionChanged);
             // 
             // Stuid
             // 

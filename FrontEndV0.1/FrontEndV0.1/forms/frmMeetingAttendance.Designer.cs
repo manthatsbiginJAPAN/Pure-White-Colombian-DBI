@@ -95,7 +95,7 @@
             this.grdMeetingAtt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdMeetingAtt.Size = new System.Drawing.Size(361, 242);
             this.grdMeetingAtt.TabIndex = 54;
-            this.grdMeetingAtt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProjects_CellContentClick);
+            this.grdMeetingAtt.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProjects_CellClick);
             // 
             // colStuID
             // 
@@ -193,7 +193,6 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.grdMeetingAtt);
             this.Name = "frmMeetingAttendance";
-            this.Load += new System.EventHandler(this.frmMeetingAttendance_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetingAtt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).EndInit();
             this.gbDetails.ResumeLayout(false);

@@ -1009,13 +1009,17 @@ END;
 
 
 CREATE or REPLACE FUNCTION UC2_18_View_Team_Allo
+ 	(pTeamID varchar2, pUnitID varchar2, pSemester number, pYear number)
 	RETURN SYS_REFCURSOR AS sta SYS_REFCURSOR;
-	s StudentTeamAllocation%ROWTYPE;
 BEGIN
-	
-	OPEN sta for select * from StudentTeamAllocation;
-
-	
+	OPEN sta for select s.StuID, d.FirstName, d.LastName
+	FROM StudentTeamAllocation s
+	INNER JOIN Student d
+	ON s.StuID = d.StuID
+	WHERE TeamID = pTeamID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
 	return sta;
 EXCEPTION
 	When Others Then
@@ -1023,6 +1027,8 @@ EXCEPTION
 End;
 
 /
+
+
 create or replace PROCEDURE UC2_20_Delete_Team_Allo
 		(pTeamID varchar2,
 	pStuID varchar2,
@@ -1432,24 +1438,29 @@ END;
 
 
 
-CREATE or REPLACE FUNCTION UC3_1_View_Meeting
-	RETURN SYS_REFCURSOR AS uos SYS_REFCURSOR;
+create or replace FUNCTION UC3_1_View_Meeting
+	(user varchar2, role varchar2)
+	RETURN SYS_REFCURSOR AS me SYS_REFCURSOR;
 BEGIN
-	OPEN uos for select * from Meeting;
-	--LOOP
-	--	Fetch uos into uo;
-	--	Exit When uos%NOTFOUND;
-	--	dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
-	--					 || ' Semester: ' || uo.semester
-	--					 || ' Year: ' || uo.Year); 
-	--End Loop;
-	return uos;
+	IF role = 'admin' THEN
+      OPEN me for select * from Meeting;
+	elsif role = 'convenor' then
+	  OPEN me for select * from Meeting where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from UnitOffering where LOWER(EmpId) = LOWER(user));
+    elsif role = 'supervisor' then
+      OPEN me for select * from Meeting where (TeamID, UnitID, Semester, Year) IN (select TeamID, UnitID, Semester, Year from Team where LOWER(EmpID) = LOWER(user));
+    elsif role = 'student' then
+      OPEN me for select * from Meeting where (TeamID, UnitID, Semester, Year) IN (select TeamID, UnitID, Semester, Year from StudentTeamAllocation where LOWER(stuId) = LOWER(user)); 
+    --else --backup plan
+    --    OPEN me for select * from Meeting;
+    END IF;
+  return me;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
 End;
 
 /
+
 CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
 		(pMeetingID number,
 	pTeamID varchar2,
@@ -1461,9 +1472,10 @@ CREATE or REPLACE PROCEDURE UC3_2_Register_Meeting
 	pFinishTime date,
 	pMinutes varchar2,
 	pEmpID varchar2,
-	pClientName varchar2) AS
+	pClientName varchar2,
+	pApproved varchar2) AS
 BEGIN
-	INSERT INTO Meeting (MeetingID, TeamID, UnitID, Semester, Year, MeetType, StartTime, FinishTime, Minutes, EmpID, ClientName) VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName);
+	INSERT INTO Meeting (MeetingID, TeamID, UnitID, Semester, Year, MeetType, StartTime, FinishTime, Minutes, EmpID, ClientName, Approved) VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pMeetType, pStartTime, pFinishTime, pMinutes, pEmpID, pClientName, pApproved);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
@@ -1484,7 +1496,8 @@ CREATE or REPLACE PROCEDURE UC3_3_Update_Meeting
 		pFinishTime date,
 		pMinutes varchar2,
 		pEmpID varchar2,
-		pClientName varchar2) AS
+		pClientName varchar2,
+		pApproved varchar2) AS
 BEGIN
 	UPDATE Meeting
 	SET MeetType = pMeetType,
@@ -1492,7 +1505,8 @@ BEGIN
 		FinishTime = pFinishTime,
 		Minutes = pMinutes,
 		EmpID = pEmpID,
-		ClientName = pClientName 
+		ClientName = pClientName,
+		Approved = pApproved 
 	WHERE MeetingID = pMeetingID and
 		TeamID = pTeamID and
 		UnitID = pUnitID and

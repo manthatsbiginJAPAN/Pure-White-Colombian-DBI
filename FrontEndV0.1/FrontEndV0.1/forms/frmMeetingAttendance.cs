@@ -23,12 +23,6 @@ namespace FrontEndV0._1.forms
 
             connection = conn.oraConn();
         }
-
-        private void frmMeetingAttendance_Load(object sender, EventArgs e)
-        {
-
-        }
-
         
 
         private void gbIdentifyingInformation_Enter(object sender, EventArgs e)
@@ -56,7 +50,7 @@ namespace FrontEndV0._1.forms
 
         }
 
-        private void grdProjects_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void grdProjects_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

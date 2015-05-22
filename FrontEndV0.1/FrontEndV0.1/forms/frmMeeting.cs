@@ -41,12 +41,12 @@ namespace FrontEndV0._1.forms
             //Fetch data
             getTeams();
             getMeetings();
-            getStudentTeamAllocations();
+            //getStudentTeamAllocations(); //only get once MeetingsGridPopulated
 
             //Prepare and display data
             populateTeams();
-            populateMeetingsGrid(this.grdMeetings);
-            //populateSupervisors();
+            populateMeetingsGrid();
+            //populateSupervisors(); //now unneccessary, as supervisors will only need to view their own
         }
 
         #region getData
@@ -93,6 +93,11 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("stuteamcursor", OracleDbType.RefCursor);
             cmd.Parameters["stuteamcursor"].Direction = ParameterDirection.ReturnValue;
+            int selectedRow = grdMeetings.SelectedCells[0].RowIndex;
+            cmd.Parameters.Add("teamid", grdMeetings.Rows[selectedRow].Cells[1].Value.ToString());
+            cmd.Parameters.Add("unitid", grdMeetings.Rows[selectedRow].Cells[2].Value.ToString());
+            cmd.Parameters.Add("semester", Convert.ToInt16(grdMeetings.Rows[selectedRow].Cells[3].Value));
+            cmd.Parameters.Add("year", Convert.ToInt16(grdMeetings.Rows[selectedRow].Cells[4].Value));
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -100,7 +105,7 @@ namespace FrontEndV0._1.forms
 
             stuteamallo = new DataSet();
 
-            da.Fill(meets, "stuteamcursor", (OracleRefCursor)(cmd.Parameters["stuteamcursor"].Value));
+            da.Fill(stuteamallo, "stuteamcursor", (OracleRefCursor)(cmd.Parameters["stuteamcursor"].Value));
 
             connection.Close();
         }
@@ -113,6 +118,20 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("meetcursor", OracleDbType.RefCursor);
             cmd.Parameters["meetcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            string role = null;
+
+            //current problem is with an emp being both supervisor and convenor...
+            //Ideally it needs to load based on both roles...
+
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor";
+            if (role == null)
+                role = "student";
+            MessageBox.Show("Role: " + role);
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -163,7 +182,7 @@ namespace FrontEndV0._1.forms
             }
         }
 
-        private void populateMeetingsGrid(DataGridView thegrid)
+        private void populateMeetingsGrid()
         {
             //Clear the grid
             grdMeetings.Rows.Clear();
@@ -178,20 +197,26 @@ namespace FrontEndV0._1.forms
             }
         }
 
-       /* private void populateAttendance()
+        private void populateAttendees()
         {
-            clbAttendees.ClearSelected();
+            grdAttendees.Rows.Clear();
 
             //Populate the grid from the dataset
             int rowcnt = stuteamallo.Tables[0].Rows.Count;
-            object attendees = new object();
+            object[] items = new object[4];
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-               attendees = teams.Tables["teamcursor"].Rows[i][1].ToString();
-               cbUnitID.Items.Add(unitid.ToString()
+                 // = stuteamallo.Tables[0].Rows[i].ItemArray;
+                items[0] = CheckState.Unchecked;
+                items[1] = stuteamallo.Tables[0].Rows[i][0];
+                items[2] = stuteamallo.Tables[0].Rows[i][1];
+                items[3] = stuteamallo.Tables[0].Rows[i][2];
+
+                grdAttendees.Rows.Add(new object[] { items[0], items[1], items[2], items[3] });
             }
-        } */
+            MessageBox.Show(grdAttendees.Rows.Count + " Attendees populated");
+        }
 
         #endregion
 
@@ -220,23 +245,19 @@ namespace FrontEndV0._1.forms
                     //cmd.Parameters.Add("finishtime", Convert.ToDateTime(txtFinish.Text));
 
                     if (cbSupervisor.Enabled == true) 
-                    {
                         cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
-                    }
                     else
-                    {                     
                         cmd.Parameters.Add("supid", null);
-                    }
 
                     if (txtClientName.Enabled == true)
-                    {
                         cmd.Parameters.Add("clientname", txtClientName.Text);
-                    }
                     else
-                    {
                         cmd.Parameters.Add("clientname", null);
-                    }
 
+                    if (chkApproved.Checked)
+                        cmd.Parameters.Add("approved", "y");
+                    else
+                        cmd.Parameters.Add("approved", "n");
 
                     /*hard-coded test data
                     cmd.Parameters.Add("meetingid", txtMeetID.Text);
@@ -258,7 +279,7 @@ namespace FrontEndV0._1.forms
 
                     //Repopulate Dataset then Grid
                     getMeetings();
-                    populateMeetingsGrid(this.grdMeetings);
+                    populateMeetingsGrid();
 
                     //Disable buttons
                     gbIdentifyingInformation.Enabled = false;
@@ -314,22 +335,19 @@ namespace FrontEndV0._1.forms
                 cmd.Parameters.Add("minutes", txtMeetingMinutes.Text);
 
                 if (cbSupervisor.Enabled == true)
-                {
                     cmd.Parameters.Add("supid", cbSupervisor.SelectedItem.ToString());
-                }
                 else
-                {
                     cmd.Parameters.Add("supid", null);
-                }
 
                 if (txtClientName.Enabled == true)
-                {
                     cmd.Parameters.Add("clientname", txtClientName.Text);
-                }
                 else
-                {
                     cmd.Parameters.Add("clientname", null);
-                }
+                
+                if (chkApproved.Checked)
+                    cmd.Parameters.Add("approved", "y");
+                else
+                    cmd.Parameters.Add("approved", "n");
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -338,7 +356,7 @@ namespace FrontEndV0._1.forms
                 //Repopulate data
                 getMeetings();
 
-                populateMeetingsGrid(this.grdMeetings);
+                populateMeetingsGrid();
 
                 btnEdit.Text = "Edit";
 
@@ -442,12 +460,12 @@ namespace FrontEndV0._1.forms
             MessageBox.Show("Entry Deleted");
 
             getMeetings();
-            populateMeetingsGrid(this.grdMeetings);
+            populateMeetingsGrid();
         }
 
 #endregion 
 
-        private bool FormValidated()
+        private bool FormValidated() //UPDATE
         {
             //Track a cummulative error message, appending when a particular condition is not met
             string ErrorMsg = null;
@@ -477,6 +495,20 @@ namespace FrontEndV0._1.forms
         }
 
         #region Selections Changed
+
+        private void grdMeetings_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            getStudentTeamAllocations();
+            populateAttendees();
+        }
+
+        private void grdMeetings_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            //clear the attendees when you change rows on the meeting table
+            //check if attendees list being edited..?
+            grdAttendees.Rows.Clear();
+        }
+
         private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbUnitID.SelectedIndex != -1)
@@ -627,18 +659,18 @@ namespace FrontEndV0._1.forms
                 cbSupervisor.Enabled = false;
             }
 
-            //Populate the combo box from the dataset
-            int rowcount = stuteamallo.Tables[0].Rows.Count;
-            object attendees = new object();
+            ////Populate the combo box from the dataset
+            //int rowcount = stuteamallo.Tables[0].Rows.Count;
+            //object attendees = new object();
 
-            for (int i = 0; i <= rowcount - 1; i++)
-            {
-                if (stuteamallo.Tables[0].Rows[i][0].ToString() == cbTeamID.SelectedItem.ToString()) 
-                {
-                     attendees = teams.Tables[0].Rows[i][1].ToString();
-                     clbAttendees.Items.Add(attendees.ToString());
-                }
-            } 
+            //for (int i = 0; i <= rowcount - 1; i++)
+            //{
+            //    if (stuteamallo.Tables[0].Rows[i][0].ToString() == cbTeamID.SelectedItem.ToString()) 
+            //    {
+            //         attendees = teams.Tables[0].Rows[i][1].ToString();
+            //         clbAttendees.Items.Add(attendees.ToString());
+            //    }
+            //} 
         }
 
         #endregion
@@ -655,7 +687,11 @@ namespace FrontEndV0._1.forms
             frmAgenda.Show();
         }
 
- 
-
+        private void btnLoadAttendees_Click(object sender, EventArgs e)
+        {
+            //should work much like the typical edit/save button...
+            getStudentTeamAllocations();
+            populateAttendees();
+        }
     }
 }

@@ -28,25 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
-            this.lblAttendees = new System.Windows.Forms.Label();
-            this.clbAttendees = new System.Windows.Forms.CheckedListBox();
+            this.chkApproved = new System.Windows.Forms.CheckBox();
+            this.lblApproved = new System.Windows.Forms.Label();
             this.dtFinishTime = new System.Windows.Forms.DateTimePicker();
             this.dtStartTime = new System.Windows.Forms.DateTimePicker();
             this.cbSupervisor = new System.Windows.Forms.ComboBox();
             this.txtClientName = new System.Windows.Forms.TextBox();
+            this.txtMeetingMinutes = new System.Windows.Forms.TextBox();
+            this.lblMeetingMinutes = new System.Windows.Forms.Label();
             this.lblClientName = new System.Windows.Forms.Label();
             this.lblSupervisor = new System.Windows.Forms.Label();
             this.lblFinish = new System.Windows.Forms.Label();
             this.lblStart = new System.Windows.Forms.Label();
             this.cbMeetingType = new System.Windows.Forms.ComboBox();
             this.lblMeetingType = new System.Windows.Forms.Label();
+            this.grdAttendees = new System.Windows.Forms.DataGridView();
+            this.Attended = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.StuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblAttendees = new System.Windows.Forms.Label();
             this.btnActionItems = new System.Windows.Forms.Button();
             this.btnAgenda = new System.Windows.Forms.Button();
-            this.txtMeetingMinutes = new System.Windows.Forms.TextBox();
-            this.lblMeetingMinutes = new System.Windows.Forms.Label();
             this.gbIdentifyingInformation = new System.Windows.Forms.GroupBox();
             this.cbTeamID = new System.Windows.Forms.ComboBox();
             this.cbSemester = new System.Windows.Forms.ComboBox();
@@ -66,8 +75,9 @@
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnLoadAttendees = new System.Windows.Forms.Button();
             this.gbDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdAttendees)).BeginInit();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).BeginInit();
             this.SuspendLayout();
@@ -95,13 +105,14 @@
             // 
             // gbDetails
             // 
-            this.gbDetails.Controls.Add(this.label1);
-            this.gbDetails.Controls.Add(this.lblAttendees);
-            this.gbDetails.Controls.Add(this.clbAttendees);
+            this.gbDetails.Controls.Add(this.chkApproved);
+            this.gbDetails.Controls.Add(this.lblApproved);
             this.gbDetails.Controls.Add(this.dtFinishTime);
             this.gbDetails.Controls.Add(this.dtStartTime);
             this.gbDetails.Controls.Add(this.cbSupervisor);
             this.gbDetails.Controls.Add(this.txtClientName);
+            this.gbDetails.Controls.Add(this.txtMeetingMinutes);
+            this.gbDetails.Controls.Add(this.lblMeetingMinutes);
             this.gbDetails.Controls.Add(this.lblClientName);
             this.gbDetails.Controls.Add(this.lblSupervisor);
             this.gbDetails.Controls.Add(this.lblFinish);
@@ -112,30 +123,29 @@
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDetails.Location = new System.Drawing.Point(7, 307);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Size = new System.Drawing.Size(472, 339);
+            this.gbDetails.Size = new System.Drawing.Size(472, 327);
             this.gbDetails.TabIndex = 45;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
             // 
-            // lblAttendees
+            // chkApproved
             // 
-            this.lblAttendees.AutoSize = true;
-            this.lblAttendees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAttendees.Location = new System.Drawing.Point(20, 218);
-            this.lblAttendees.Name = "lblAttendees";
-            this.lblAttendees.Size = new System.Drawing.Size(97, 20);
-            this.lblAttendees.TabIndex = 55;
-            this.lblAttendees.Text = "Attendees:";
+            this.chkApproved.AutoSize = true;
+            this.chkApproved.Location = new System.Drawing.Point(157, 199);
+            this.chkApproved.Name = "chkApproved";
+            this.chkApproved.Size = new System.Drawing.Size(15, 14);
+            this.chkApproved.TabIndex = 58;
+            this.chkApproved.UseVisualStyleBackColor = true;
             // 
-            // clbAttendees
+            // lblApproved
             // 
-            this.clbAttendees.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.clbAttendees.FormattingEnabled = true;
-            this.clbAttendees.Location = new System.Drawing.Point(156, 218);
-            this.clbAttendees.Margin = new System.Windows.Forms.Padding(2);
-            this.clbAttendees.Name = "clbAttendees";
-            this.clbAttendees.Size = new System.Drawing.Size(151, 49);
-            this.clbAttendees.TabIndex = 54;
+            this.lblApproved.AutoSize = true;
+            this.lblApproved.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApproved.Location = new System.Drawing.Point(48, 195);
+            this.lblApproved.Name = "lblApproved";
+            this.lblApproved.Size = new System.Drawing.Size(90, 20);
+            this.lblApproved.TabIndex = 57;
+            this.lblApproved.Text = "Approved:";
             // 
             // dtFinishTime
             // 
@@ -166,23 +176,43 @@
             this.cbSupervisor.FormattingEnabled = true;
             this.cbSupervisor.Location = new System.Drawing.Point(157, 137);
             this.cbSupervisor.Name = "cbSupervisor";
-            this.cbSupervisor.Size = new System.Drawing.Size(121, 21);
+            this.cbSupervisor.Size = new System.Drawing.Size(150, 21);
             this.cbSupervisor.TabIndex = 42;
             // 
             // txtClientName
             // 
             this.txtClientName.Enabled = false;
             this.txtClientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientName.Location = new System.Drawing.Point(157, 163);
+            this.txtClientName.Location = new System.Drawing.Point(157, 164);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(121, 26);
+            this.txtClientName.Size = new System.Drawing.Size(150, 26);
             this.txtClientName.TabIndex = 47;
+            // 
+            // txtMeetingMinutes
+            // 
+            this.txtMeetingMinutes.Enabled = false;
+            this.txtMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeetingMinutes.Location = new System.Drawing.Point(156, 219);
+            this.txtMeetingMinutes.Multiline = true;
+            this.txtMeetingMinutes.Name = "txtMeetingMinutes";
+            this.txtMeetingMinutes.Size = new System.Drawing.Size(310, 102);
+            this.txtMeetingMinutes.TabIndex = 49;
+            // 
+            // lblMeetingMinutes
+            // 
+            this.lblMeetingMinutes.AutoSize = true;
+            this.lblMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMeetingMinutes.Location = new System.Drawing.Point(61, 223);
+            this.lblMeetingMinutes.Name = "lblMeetingMinutes";
+            this.lblMeetingMinutes.Size = new System.Drawing.Size(77, 20);
+            this.lblMeetingMinutes.TabIndex = 48;
+            this.lblMeetingMinutes.Text = "Minutes:";
             // 
             // lblClientName
             // 
             this.lblClientName.AutoSize = true;
             this.lblClientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientName.Location = new System.Drawing.Point(20, 169);
+            this.lblClientName.Location = new System.Drawing.Point(27, 166);
             this.lblClientName.Name = "lblClientName";
             this.lblClientName.Size = new System.Drawing.Size(111, 20);
             this.lblClientName.TabIndex = 46;
@@ -192,7 +222,7 @@
             // 
             this.lblSupervisor.AutoSize = true;
             this.lblSupervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSupervisor.Location = new System.Drawing.Point(20, 137);
+            this.lblSupervisor.Location = new System.Drawing.Point(15, 137);
             this.lblSupervisor.Name = "lblSupervisor";
             this.lblSupervisor.Size = new System.Drawing.Size(123, 20);
             this.lblSupervisor.TabIndex = 45;
@@ -202,7 +232,7 @@
             // 
             this.lblFinish.AutoSize = true;
             this.lblFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinish.Location = new System.Drawing.Point(20, 100);
+            this.lblFinish.Location = new System.Drawing.Point(33, 100);
             this.lblFinish.Name = "lblFinish";
             this.lblFinish.Size = new System.Drawing.Size(105, 20);
             this.lblFinish.TabIndex = 43;
@@ -212,7 +242,7 @@
             // 
             this.lblStart.AutoSize = true;
             this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStart.Location = new System.Drawing.Point(20, 62);
+            this.lblStart.Location = new System.Drawing.Point(41, 63);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(97, 20);
             this.lblStart.TabIndex = 42;
@@ -228,7 +258,7 @@
             "Student"});
             this.cbMeetingType.Location = new System.Drawing.Point(157, 30);
             this.cbMeetingType.Name = "cbMeetingType";
-            this.cbMeetingType.Size = new System.Drawing.Size(121, 21);
+            this.cbMeetingType.Size = new System.Drawing.Size(150, 21);
             this.cbMeetingType.TabIndex = 41;
             this.cbMeetingType.SelectedIndexChanged += new System.EventHandler(this.cbMeetingType_SelectedIndexChanged);
             // 
@@ -241,6 +271,92 @@
             this.lblMeetingType.Size = new System.Drawing.Size(121, 20);
             this.lblMeetingType.TabIndex = 41;
             this.lblMeetingType.Text = "Meeting Type:";
+            // 
+            // grdAttendees
+            // 
+            this.grdAttendees.AllowUserToAddRows = false;
+            this.grdAttendees.AllowUserToDeleteRows = false;
+            this.grdAttendees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdAttendees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.grdAttendees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdAttendees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Attended,
+            this.StuID,
+            this.FirstName,
+            this.LastName});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdAttendees.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grdAttendees.Location = new System.Drawing.Point(486, 494);
+            this.grdAttendees.MultiSelect = false;
+            this.grdAttendees.Name = "grdAttendees";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdAttendees.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdAttendees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdAttendees.Size = new System.Drawing.Size(414, 140);
+            this.grdAttendees.TabIndex = 59;
+            // 
+            // Attended
+            // 
+            this.Attended.FillWeight = 40.60914F;
+            this.Attended.HeaderText = "";
+            this.Attended.Name = "Attended";
+            this.Attended.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // StuID
+            // 
+            this.StuID.FillWeight = 95.28937F;
+            this.StuID.HeaderText = "StuID";
+            this.StuID.Name = "StuID";
+            this.StuID.ReadOnly = true;
+            this.StuID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.StuID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // FirstName
+            // 
+            this.FirstName.FillWeight = 132.0507F;
+            this.FirstName.HeaderText = "First";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            this.FirstName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.FirstName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // LastName
+            // 
+            this.LastName.FillWeight = 132.0507F;
+            this.LastName.HeaderText = "Last";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            this.LastName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.LastName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // lblAttendees
+            // 
+            this.lblAttendees.AutoSize = true;
+            this.lblAttendees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttendees.Location = new System.Drawing.Point(485, 464);
+            this.lblAttendees.Name = "lblAttendees";
+            this.lblAttendees.Size = new System.Drawing.Size(97, 20);
+            this.lblAttendees.TabIndex = 55;
+            this.lblAttendees.Text = "Attendees:";
             // 
             // btnActionItems
             // 
@@ -263,26 +379,6 @@
             this.btnAgenda.Text = "Agenda";
             this.btnAgenda.UseVisualStyleBackColor = true;
             this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
-            // 
-            // txtMeetingMinutes
-            // 
-            this.txtMeetingMinutes.Enabled = false;
-            this.txtMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetingMinutes.Location = new System.Drawing.Point(486, 465);
-            this.txtMeetingMinutes.Multiline = true;
-            this.txtMeetingMinutes.Name = "txtMeetingMinutes";
-            this.txtMeetingMinutes.Size = new System.Drawing.Size(416, 144);
-            this.txtMeetingMinutes.TabIndex = 49;
-            // 
-            // lblMeetingMinutes
-            // 
-            this.lblMeetingMinutes.AutoSize = true;
-            this.lblMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingMinutes.Location = new System.Drawing.Point(485, 442);
-            this.lblMeetingMinutes.Name = "lblMeetingMinutes";
-            this.lblMeetingMinutes.Size = new System.Drawing.Size(146, 20);
-            this.lblMeetingMinutes.TabIndex = 48;
-            this.lblMeetingMinutes.Text = "Meeting Minutes:";
             // 
             // gbIdentifyingInformation
             // 
@@ -439,12 +535,15 @@
             this.Unitid,
             this.Semester,
             this.Year});
+            this.grdMeetings.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grdMeetings.Location = new System.Drawing.Point(486, 64);
+            this.grdMeetings.MultiSelect = false;
             this.grdMeetings.Name = "grdMeetings";
             this.grdMeetings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdMeetings.Size = new System.Drawing.Size(421, 355);
+            this.grdMeetings.Size = new System.Drawing.Size(416, 355);
             this.grdMeetings.TabIndex = 47;
-            // 
+            this.grdMeetings.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMeetings_CellClick);
+            //
             // colMeetID
             // 
             this.colMeetID.HeaderText = "Meeting ID";
@@ -471,22 +570,25 @@
             this.Year.HeaderText = "Year";
             this.Year.Name = "Year";
             // 
-            // label1
+            // btnLoadAttendees
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(20, 293);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 56;
-            this.label1.Text = "Absentees:";
-            //this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.btnLoadAttendees.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadAttendees.Location = new System.Drawing.Point(788, 464);
+            this.btnLoadAttendees.Name = "btnLoadAttendees";
+            this.btnLoadAttendees.Size = new System.Drawing.Size(112, 24);
+            this.btnLoadAttendees.TabIndex = 60;
+            this.btnLoadAttendees.Text = "Load";
+            this.btnLoadAttendees.UseVisualStyleBackColor = true;
+            this.btnLoadAttendees.Click += new System.EventHandler(this.btnLoadAttendees_Click);
             // 
             // frmMeeting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 646);
+            this.Controls.Add(this.btnLoadAttendees);
+            this.Controls.Add(this.grdAttendees);
+            this.Controls.Add(this.lblAttendees);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.gbIdentifyingInformation);
@@ -495,13 +597,12 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAgenda);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.txtMeetingMinutes);
             this.Controls.Add(this.grdMeetings);
-            this.Controls.Add(this.lblMeetingMinutes);
             this.Name = "frmMeeting";
             this.Load += new System.EventHandler(this.frmMeeting_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdAttendees)).EndInit();
             this.gbIdentifyingInformation.ResumeLayout(false);
             this.gbIdentifyingInformation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).EndInit();
@@ -548,8 +649,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.DateTimePicker dtFinishTime;
         private System.Windows.Forms.DateTimePicker dtStartTime;
-        private System.Windows.Forms.CheckedListBox clbAttendees;
         public System.Windows.Forms.Label lblAttendees;
-        public System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkApproved;
+        public System.Windows.Forms.Label lblApproved;
+        private System.Windows.Forms.DataGridView grdAttendees;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Attended;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StuID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
+        public System.Windows.Forms.Button btnLoadAttendees;
     }
 }

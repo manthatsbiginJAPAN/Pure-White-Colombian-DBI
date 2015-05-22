@@ -29,7 +29,7 @@ namespace FrontEndV0._1.forms
         {
             InitializeComponent();
             User = user;
-            isConvenor = isconvenor; //will need update
+            isConvenor = isconvenor; //will need updating in terms of how things are enabled/disabled...
             isSupervisor = issupervisor;
             connection = conn.oraConn();
         }
@@ -40,16 +40,12 @@ namespace FrontEndV0._1.forms
             getProjects();
             getUnitOfferings();
             getEmployees();
-            getTeamAllocs();
             getEnrolments();
 
             populateTeamGrid();
             populateSupervisors();
             populateProjects();
-            populateUnitOfferings();
-            //populateTeamAllocs();
-
-            
+            populateUnitOfferings();            
         }
 
         #region getData
@@ -173,7 +169,12 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("talloccursor", OracleDbType.RefCursor);
             cmd.Parameters["talloccursor"].Direction = ParameterDirection.ReturnValue;
-
+            int selectedRow = grdTeamInfo.SelectedCells[0].RowIndex;
+            cmd.Parameters.Add("teamid", grdTeamInfo.Rows[selectedRow].Cells[0].Value.ToString());
+            cmd.Parameters.Add("unitid", grdTeamInfo.Rows[selectedRow].Cells[2].Value.ToString());
+            cmd.Parameters.Add("semester", Convert.ToInt16(grdTeamInfo.Rows[selectedRow].Cells[3].Value));
+            cmd.Parameters.Add("year", Convert.ToInt16(grdTeamInfo.Rows[selectedRow].Cells[4].Value));
+            
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
@@ -302,9 +303,18 @@ namespace FrontEndV0._1.forms
             grdTeamAllocation.Rows.Clear();
 
             //Populate the grid from the dataset
-            int rowcnt = teamallocs.Tables["talloccursor"].Rows.Count;
+            int rowcnt = teamallocs.Tables[0].Rows.Count;
+            object[] items;
 
             for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                items = teamallocs.Tables[0].Rows[i].ItemArray;
+                grdTeamAllocation.Rows.Add(new object[] { items[0], items[1], items[2] });
+            }
+            MessageBox.Show(grdTeamAllocation.Rows.Count + " Team Member(s) populated");
+
+
+            /*for (int i = 0; i <= rowcnt - 1; i++)
             {
                 object[] items = teamallocs.Tables[0].Rows[i].ItemArray;
                 if (items[0].ToString().Equals(txtTeamID.Text) && items[2].ToString().Equals(cbUnitID.SelectedItem.ToString())
@@ -313,7 +323,7 @@ namespace FrontEndV0._1.forms
                 {
                     grdTeamAllocation.Rows.Add(new object[] { items[0], items[1]});
                 }
-            }
+            }*/
         }
 
         private void populateEnrolledStus()
@@ -566,18 +576,15 @@ namespace FrontEndV0._1.forms
                     cmd.Parameters.Add("teamID", txtTeamID.Text);
                     cmd.Parameters.Add("stuID", txtStuID.Text);
                     cmd.Parameters.Add("unitID", cbUnitID.SelectedItem);
-                    cmd.Parameters.Add("semester", cbSemester.SelectedItem);
-                    cmd.Parameters.Add("year", cbYear.SelectedItem);
+                    cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem));
+                    cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem));
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
                     connection.Close();
 
-                    teams.Tables[0].Rows.Add(txtTeamID.Text
-                        , txtStuID.Text);
-
-
-                    //Repopulate Grid
+                    //Retrieve Data and Repopulate Grid
+                    getTeamAllocs();
                     populateTeamAllocs();
 
                     //Disable buttons
@@ -597,7 +604,8 @@ namespace FrontEndV0._1.forms
             }
             else
             {
-                gbIdentifyingInformation.Enabled = false;
+                gbIdentifyingInformation.Enabled = false; //??
+
                 //Enable buttons
                 txtTeamID.Enabled = false;
                 cbUnitID.Enabled = false;
@@ -655,9 +663,13 @@ namespace FrontEndV0._1.forms
                 cmd.ExecuteNonQuery();
                 connection.Close();
 
-                getTeams();
+                getTeamAllocs();
+                populateTeamAllocs();
+                /* 
+                getTeams(); //Was this meant to be teamallocs?
                 populateTeamGrid();
                 MessageBox.Show("Team Deleted");
+                */
             }
         }
 
@@ -668,7 +680,7 @@ namespace FrontEndV0._1.forms
             return true;
         }
 
-        private void grdTeamInfo_CellClicked(object sender, DataGridViewCellEventArgs e)
+        private void grdTeamInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectedrowindex = grdTeamInfo.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
             txtTeamID.Text = grdTeamInfo.Rows[selectedrowindex].Cells[0].Value.ToString();
@@ -677,11 +689,12 @@ namespace FrontEndV0._1.forms
             cbSemester.SelectedIndex = cbSemester.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[3].Value.ToString());
             cbYear.SelectedIndex = cbYear.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[4].Value.ToString());
             cbSupervisor.SelectedIndex = cbSupervisor.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[5].Value.ToString());
+            
             getEnrolments();
+            getTeamAllocs();
+
             populateEnrolledStus();
             populateTeamAllocs();
         }
-
-
     }
 }

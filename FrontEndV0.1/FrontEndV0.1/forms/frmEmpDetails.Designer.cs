@@ -287,6 +287,7 @@
             this.empPhone,
             this.empPassword});
             this.grdEmployeeInfo.Location = new System.Drawing.Point(491, 74);
+            this.grdEmployeeInfo.MultiSelect = false;
             this.grdEmployeeInfo.Name = "grdEmployeeInfo";
             this.grdEmployeeInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdEmployeeInfo.Size = new System.Drawing.Size(421, 569);
