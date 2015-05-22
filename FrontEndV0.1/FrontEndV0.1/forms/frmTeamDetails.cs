@@ -436,7 +436,8 @@ namespace FrontEndV0._1.forms
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int selectedrowindex = grdTeamInfo.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
+            int selectedrowindex = grdTeamInfo.SelectedCells[0].RowIndex; //find the selected row
+
             string selectedteamid = grdTeamInfo.Rows[selectedrowindex].Cells[0].Value.ToString(); //fetch the ID in that row
             string selectedstuid;
             string selectedunitid = grdTeamInfo.Rows[selectedrowindex].Cells[2].Value.ToString();
@@ -599,6 +600,7 @@ namespace FrontEndV0._1.forms
                     txtTeamID.Clear();
                     txtStuID.SelectedIndex = -1;
 
+                    grdTeamInfo.ClearSelection();
                     btnAddStu.Text = "Add";
                 }
             }
@@ -621,20 +623,21 @@ namespace FrontEndV0._1.forms
                 btnDelete.Enabled = false;
                 btnDeleteStu.Enabled = false;
 
-                //Change button text and deselect any employee from grid
+                //Change button text
                 btnAddStu.Text = "Save?";
-                grdTeamInfo.ClearSelection();
             }
         }
 
         private void btnDeleteStu_Click(object sender, EventArgs e)
         {
-            int selectedrowindex = grdTeamAllocation.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
-            string selectedteamid = grdTeamInfo.Rows[selectedrowindex].Cells[0].Value.ToString();//fetch the ID in that row
+            int selectedrowindex = grdTeamAllocation.SelectedCells[0].RowIndex; //find the selected row in teamAlloc grid
+            int selectedTeamRowindex = grdTeamInfo.SelectedCells[0].RowIndex; //find the selected row in team info grid
+
+            string selectedteamid = grdTeamInfo.Rows[selectedTeamRowindex].Cells[0].Value.ToString();//fetch the ID in that row
             string selectedstuid = grdTeamAllocation.Rows[selectedrowindex].Cells[0].Value.ToString();
-            string selectedunitid = grdTeamInfo.Rows[selectedrowindex].Cells[2].Value.ToString();
-            string selectedsemester = grdTeamInfo.Rows[selectedrowindex].Cells[3].Value.ToString();
-            string selectedyear = grdTeamInfo.Rows[selectedrowindex].Cells[4].Value.ToString();
+            string selectedunitid = grdTeamInfo.Rows[selectedTeamRowindex].Cells[2].Value.ToString();
+            string selectedsemester = grdTeamInfo.Rows[selectedTeamRowindex].Cells[3].Value.ToString();
+            string selectedyear = grdTeamInfo.Rows[selectedTeamRowindex].Cells[4].Value.ToString();
             DialogResult response = MessageBox.Show("Delete Student: "+ selectedstuid +" from Team: " + selectedteamid + "?", //confirm with user
                 "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (response == DialogResult.Yes)
@@ -695,6 +698,12 @@ namespace FrontEndV0._1.forms
 
             populateEnrolledStus();
             populateTeamAllocs();
+        }
+
+        private void grdTeamAllocation_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnDeleteStu.Enabled = true;
+            btnAddStu.Enabled = true;
         }
     }
 }
