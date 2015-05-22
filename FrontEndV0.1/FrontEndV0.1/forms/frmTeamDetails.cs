@@ -449,7 +449,7 @@ namespace FrontEndV0._1.forms
                 int i = 0;
                 foreach (DataGridViewRow student in grdTeamAllocation.Rows)
                 {
-                    selectedstuid = student.Cells[1].Value.ToString();
+                    selectedstuid = student.Cells[0].Value.ToString();
                     OracleCommand cmd1 = new OracleCommand("UC2_20_Delete_Team_Allo", connection);
                     cmd1.CommandType = CommandType.StoredProcedure;
                     cmd1.Parameters.Add("teamid", selectedteamid);
@@ -630,8 +630,8 @@ namespace FrontEndV0._1.forms
         private void btnDeleteStu_Click(object sender, EventArgs e)
         {
             int selectedrowindex = grdTeamAllocation.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
-            string selectedteamid = grdTeamAllocation.Rows[selectedrowindex].Cells[0].Value.ToString();//fetch the ID in that row
-            string selectedstuid = grdTeamAllocation.Rows[selectedrowindex].Cells[1].Value.ToString();
+            string selectedteamid = grdTeamInfo.Rows[selectedrowindex].Cells[0].Value.ToString();//fetch the ID in that row
+            string selectedstuid = grdTeamAllocation.Rows[selectedrowindex].Cells[0].Value.ToString();
             string selectedunitid = grdTeamInfo.Rows[selectedrowindex].Cells[2].Value.ToString();
             string selectedsemester = grdTeamInfo.Rows[selectedrowindex].Cells[3].Value.ToString();
             string selectedyear = grdTeamInfo.Rows[selectedrowindex].Cells[4].Value.ToString();
