@@ -31,9 +31,9 @@
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.cbStuID = new System.Windows.Forms.ComboBox();
             this.dtDue = new System.Windows.Forms.DateTimePicker();
-            this.txtAgendaNum = new System.Windows.Forms.TextBox();
+            this.txtActionItem = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtActionDesc = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.lblActionItems = new System.Windows.Forms.Label();
@@ -43,21 +43,22 @@
             this.lblDueDate = new System.Windows.Forms.Label();
             this.lblActionDesc = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.grdAgendatems = new System.Windows.Forms.DataGridView();
+            this.grdActionItems = new System.Windows.Forms.DataGridView();
             this.colActionNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdAgendatems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdActionItems)).BeginInit();
             this.SuspendLayout();
             // 
             // gbDetails
             // 
             this.gbDetails.Controls.Add(this.cbStuID);
             this.gbDetails.Controls.Add(this.dtDue);
-            this.gbDetails.Controls.Add(this.txtAgendaNum);
+            this.gbDetails.Controls.Add(this.txtActionItem);
             this.gbDetails.Controls.Add(this.btnAdd);
-            this.gbDetails.Controls.Add(this.textBox1);
+            this.gbDetails.Controls.Add(this.txtActionDesc);
             this.gbDetails.Controls.Add(this.btnDelete);
             this.gbDetails.Controls.Add(this.btnEdit);
             this.gbDetails.Controls.Add(this.lblActionItems);
@@ -91,13 +92,13 @@
             this.dtDue.Size = new System.Drawing.Size(193, 20);
             this.dtDue.TabIndex = 78;
             // 
-            // txtAgendaNum
+            // txtActionItem
             // 
-            this.txtAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendaNum.Location = new System.Drawing.Point(144, 27);
-            this.txtAgendaNum.Name = "txtAgendaNum";
-            this.txtAgendaNum.Size = new System.Drawing.Size(121, 26);
-            this.txtAgendaNum.TabIndex = 77;
+            this.txtActionItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtActionItem.Location = new System.Drawing.Point(144, 27);
+            this.txtActionItem.Name = "txtActionItem";
+            this.txtActionItem.Size = new System.Drawing.Size(121, 26);
+            this.txtActionItem.TabIndex = 77;
             // 
             // btnAdd
             // 
@@ -110,14 +111,14 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // textBox1
+            // txtActionDesc
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(110, 164);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(384, 106);
-            this.textBox1.TabIndex = 45;
+            this.txtActionDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtActionDesc.Location = new System.Drawing.Point(110, 164);
+            this.txtActionDesc.Multiline = true;
+            this.txtActionDesc.Name = "txtActionDesc";
+            this.txtActionDesc.Size = new System.Drawing.Size(384, 106);
+            this.txtActionDesc.TabIndex = 45;
             // 
             // btnDelete
             // 
@@ -128,6 +129,7 @@
             this.btnDelete.TabIndex = 60;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
@@ -139,6 +141,7 @@
             this.btnEdit.TabIndex = 58;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // lblActionItems
             // 
@@ -210,23 +213,24 @@
             this.lblTitle.Text = "Action Items";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // grdAgendatems
+            // grdActionItems
             // 
-            this.grdAgendatems.AllowUserToAddRows = false;
-            this.grdAgendatems.AllowUserToDeleteRows = false;
-            this.grdAgendatems.AllowUserToResizeColumns = false;
-            this.grdAgendatems.AllowUserToResizeRows = false;
-            this.grdAgendatems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.grdAgendatems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grdAgendatems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdActionItems.AllowUserToAddRows = false;
+            this.grdActionItems.AllowUserToDeleteRows = false;
+            this.grdActionItems.AllowUserToResizeColumns = false;
+            this.grdActionItems.AllowUserToResizeRows = false;
+            this.grdActionItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdActionItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.grdActionItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colActionNum,
             this.colStuID,
-            this.colDueDate});
-            this.grdAgendatems.Location = new System.Drawing.Point(526, 49);
-            this.grdAgendatems.Name = "grdAgendatems";
-            this.grdAgendatems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdAgendatems.Size = new System.Drawing.Size(376, 290);
-            this.grdAgendatems.TabIndex = 74;
+            this.colDueDate,
+            this.colStatus});
+            this.grdActionItems.Location = new System.Drawing.Point(526, 49);
+            this.grdActionItems.Name = "grdActionItems";
+            this.grdActionItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdActionItems.Size = new System.Drawing.Size(376, 290);
+            this.grdActionItems.TabIndex = 74;
             // 
             // colActionNum
             // 
@@ -243,19 +247,24 @@
             this.colDueDate.HeaderText = "Due Date";
             this.colDueDate.Name = "colDueDate";
             // 
+            // colStatus
+            // 
+            this.colStatus.HeaderText = "Status";
+            this.colStatus.Name = "colStatus";
+            // 
             // frmActionItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 367);
-            this.Controls.Add(this.grdAgendatems);
+            this.Controls.Add(this.grdActionItems);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.lblTitle);
             this.Name = "frmActionItems";
             this.Load += new System.EventHandler(this.frmActionItems_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdAgendatems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdActionItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,18 +279,19 @@
         public System.Windows.Forms.Button btnDelete;
         public System.Windows.Forms.Label lblDueDate;
         public System.Windows.Forms.Label lblActionDesc;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox txtActionDesc;
         public System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbStatus;
         public System.Windows.Forms.Label lblStuID;
-        public System.Windows.Forms.DataGridView grdAgendatems;
-        public System.Windows.Forms.TextBox txtAgendaNum;
+        public System.Windows.Forms.DataGridView grdActionItems;
+        public System.Windows.Forms.TextBox txtActionItem;
         public System.Windows.Forms.Label lblActionItems;
         private System.Windows.Forms.DateTimePicker dtDue;
         private System.Windows.Forms.DataGridViewTextBoxColumn colActionNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStuID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDueDate;
         private System.Windows.Forms.ComboBox cbStuID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
 
 
 

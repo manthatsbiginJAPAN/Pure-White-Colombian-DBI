@@ -677,14 +677,20 @@ namespace FrontEndV0._1.forms
 
         private void btnActionItems_Click(object sender, EventArgs e)
         {
-            frmActionItems = new frmActionItems(this, txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
-            frmActionItems.Show();
+            if (FormValidated())
+            {
+                frmActionItems = new frmActionItems(this, txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
+                frmActionItems.Show();
+            }
         }
 
         private void btnAgenda_Click(object sender, EventArgs e)
         {
-            frmAgenda = new frmAgenda(txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
-            frmAgenda.Show();
+            if (FormValidated())
+            {
+                frmAgenda = new frmAgenda(txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
+                frmAgenda.Show();
+            }
         }
 
         private void btnLoadAttendees_Click(object sender, EventArgs e)
