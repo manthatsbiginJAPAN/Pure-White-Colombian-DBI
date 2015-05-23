@@ -40,6 +40,15 @@ namespace FrontEndV0._1.forms
             //Fill in Comboboxes
             getUnitOfferings();
             populateUnitOfferings();
+
+            if (!isConvenor)
+            {
+                btnAdd.Enabled = false;
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+                gbDetails.Enabled = false;
+                gbIdentifyingInformation.Enabled = false;
+            }
         }
 
         private void getAssessments()
@@ -49,8 +58,16 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("asscursor", OracleDbType.RefCursor);
             cmd.Parameters["asscursor"].Direction = ParameterDirection.ReturnValue;
-            //cmd.
-
+            cmd.Parameters.Add("user", User);
+            string role = null;
+            if (isSupervisor)
+                role = "supervisor";
+            if (isConvenor)
+                role = "convenor";
+            if (role == null)
+                role = "student";
+            MessageBox.Show("Role; " + role);
+            cmd.Parameters.Add("role", role);
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);

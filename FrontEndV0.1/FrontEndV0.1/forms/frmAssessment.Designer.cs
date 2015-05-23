@@ -243,7 +243,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 126);
+            this.label3.Location = new System.Drawing.Point(10, 129);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 20);
             this.label3.TabIndex = 44;
@@ -253,7 +253,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 182);
+            this.label4.Location = new System.Drawing.Point(10, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 20);
             this.label4.TabIndex = 45;
@@ -263,7 +263,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 70);
+            this.label5.Location = new System.Drawing.Point(10, 78);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 20);
             this.label5.TabIndex = 43;
@@ -316,6 +316,7 @@
             this.colSem,
             this.colYear});
             this.grdAssessmentInfo.Location = new System.Drawing.Point(486, 65);
+            this.grdAssessmentInfo.MultiSelect = false;
             this.grdAssessmentInfo.Name = "grdAssessmentInfo";
             this.grdAssessmentInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdAssessmentInfo.Size = new System.Drawing.Size(421, 550);

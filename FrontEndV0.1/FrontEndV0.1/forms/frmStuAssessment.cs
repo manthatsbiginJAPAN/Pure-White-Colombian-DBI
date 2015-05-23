@@ -60,8 +60,12 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("asscursor", OracleDbType.RefCursor);
             cmd.Parameters["asscursor"].Direction = ParameterDirection.ReturnValue;
-
+            cmd.Parameters.Add("user", _user);
+            string role = "student"; //used currently for testing
+            MessageBox.Show("Role; " + role);
+            cmd.Parameters.Add("role", role);
             connection.Open();
+
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
 
