@@ -18,7 +18,6 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
 
         private DataSet actions;
-        private DataSet teams;
         private DataSet stuteamallo;
 
         private string MeetingID;
@@ -32,6 +31,7 @@ namespace FrontEndV0._1.forms
         public frmActionItems(frmMeeting parent, string meetingID, string teamID, string unitID, string semester, string year)
         {
             InitializeComponent();
+            connection = conn.oraConn();
 
             _parent = parent;
             MeetingID = meetingID;
@@ -39,7 +39,16 @@ namespace FrontEndV0._1.forms
             UnitID = unitID;
             Semester = semester;
             Year = year;
+
             
+        }
+
+        private void frmActionItems_Load(object sender, EventArgs e)
+        {
+            getActionItems();
+            getStudentTeamAllocations();
+
+            populateActionsGrid();
         }
 
         private void getActionItems()
@@ -50,6 +59,11 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("actioncursor", OracleDbType.RefCursor);
             cmd.Parameters["actioncursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("meetid", Convert.ToInt16(MeetingID));
+            cmd.Parameters.Add("teamid", TeamID);
+            cmd.Parameters.Add("unitid", Convert.ToInt16(UnitID));
+            cmd.Parameters.Add("semester", Convert.ToInt16(Semester));
+            cmd.Parameters.Add("year", Convert.ToInt16(Year));
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -62,26 +76,6 @@ namespace FrontEndV0._1.forms
             connection.Close();
         }
 
-        private void getTeams()
-        {
-            //Oracle Command to populate the dataset
-            OracleCommand cmd = new OracleCommand("UC2_3_View_Team", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
-            cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
-
-            connection.Open();
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            cmd.ExecuteNonQuery();
-
-            teams = new DataSet();
-
-            da.Fill(teams, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
-
-            connection.Close();
-        }
-
         private void getStudentTeamAllocations()
         {
             //Oracle Command to populate the dataset
@@ -90,11 +84,11 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("stuteamcursor", OracleDbType.RefCursor);
             cmd.Parameters["stuteamcursor"].Direction = ParameterDirection.ReturnValue;
-           // int selectedRow = grdMeetings.SelectedCells[0].RowIndex;
-         //   cmd.Parameters.Add("teamid", grdMeetings.Rows[selectedRow].Cells[1].Value.ToString());
-           // cmd.Parameters.Add("unitid", grdMeetings.Rows[selectedRow].Cells[2].Value.ToString());
-          //  cmd.Parameters.Add("semester", Convert.ToInt16(grdMeetings.Rows[selectedRow].Cells[3].Value));
-          //  cmd.Parameters.Add("year", Convert.ToInt16(grdMeetings.Rows[selectedRow].Cells[4].Value));
+//DELETE           // int selectedRow = grdMeetings.SelectedCells[0].RowIndex;
+            cmd.Parameters.Add("teamid",TeamID);
+            cmd.Parameters.Add("unitid", Convert.ToInt16(UnitID));
+            cmd.Parameters.Add("semester", Convert.ToInt16(Semester));
+            cmd.Parameters.Add("year", Convert.ToInt16(Year));
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -106,13 +100,52 @@ namespace FrontEndV0._1.forms
 
             connection.Close();
         }
-        private void frmActionItems_Load(object sender, EventArgs e)
+
+
+        private void populateActionsGrid()
         {
+            //Clear the grid
+            grdActionItems.Rows.Clear();
+
+            //Populate the grid from the dataset
+            int rowcnt = actions.Tables[0].Rows.Count;
+           
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                object[] items = actions.Tables[0].Rows[i].ItemArray;
+                grdActionItems.Rows.Add(new object[] { items[5], items[7], items[8], items[9] });
+            }
         }
 
+        private void populateStudents()
+        {
+            cbStuID.Items.Clear();
 
+            int rowcnt = stuteamallo.Tables[0].Rows.Count;
+            object student = new object();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                student = stuteamallo.Tables["stuteamcursor"].Rows[i][1].ToString();
+
+
+                if (!cbStuID.Items.Contains(student.ToString()))
+                    cbStuID.Items.Add(student.ToString());
+            }
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
         {
 
         }
