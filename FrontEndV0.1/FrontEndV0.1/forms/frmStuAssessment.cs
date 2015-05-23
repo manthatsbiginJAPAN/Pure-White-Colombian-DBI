@@ -20,6 +20,9 @@ namespace FrontEndV0._1.forms
         private DataSet enrolment;
         private DataSet assignments;
 
+        private frmStuTeamContribution frmStuTeamCont;
+        private frmStuPeerAssessment frmStuPeerAss;
+
         public frmStuAssessment(string user)
         {
             InitializeComponent();
@@ -91,6 +94,35 @@ namespace FrontEndV0._1.forms
                     }
                 }
             }
+        }
+
+        private void grdAssessments_SelectionChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < assignments.Tables[0].Rows.Count - 1; i++)
+            {
+                if ( assignments.Tables[0].Rows[i][0].Equals(grdAssessments.SelectedRows[0].Cells[0].Value)
+                    && assignments.Tables[0].Rows[i][3].Equals(grdAssessments.SelectedRows[0].Cells[1].Value)
+                    && assignments.Tables[0].Rows[i][4].Equals(grdAssessments.SelectedRows[0].Cells[2].Value)
+                    && assignments.Tables[0].Rows[i][5].Equals(grdAssessments.SelectedRows[0].Cells[3].Value) )
+                {
+                    txtTitle.Text = assignments.Tables[0].Rows[i][1].ToString();
+                    txtDesc.Text = assignments.Tables[0].Rows[i][2].ToString();
+                    txtMarkingGuide.Text = assignments.Tables[0].Rows[i][6].ToString();
+                    break;
+                }
+            }
+        }
+
+        private void btnPeerAssessment_Click(object sender, EventArgs e)
+        {
+            frmStuTeamCont = new frmStuTeamContribution();
+            frmStuTeamCont.Show();
+        }
+
+        private void btnTeamContribution_Click(object sender, EventArgs e)
+        {
+            frmStuPeerAss = new frmStuPeerAssessment();
+            frmStuPeerAss.Show();
         }   
 
     }
