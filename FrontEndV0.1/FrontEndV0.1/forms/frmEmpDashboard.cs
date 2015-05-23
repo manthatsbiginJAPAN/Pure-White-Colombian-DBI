@@ -21,11 +21,12 @@ namespace FrontEndV0._1.forms
         private frmMeeting frmMeeting = null;
         private frmTeamDetails frmTeamDetails = null;
         private frmProject frmProject = null;
+        private string User;
 
         public frmEmpDashboard(string user, bool isAdmin, bool isConvenor, bool isSupervisor)
         {
             InitializeComponent();
-
+            User = user;
             //for testing: MessageBox.Show("Form initialised. isAdmin: " + isAdmin + "; isConvenor: " + isConvenor + "; isSupervisor: " + isSupervisor);
 
             //Enable menus based on user's type --> except a user may have many types
@@ -57,13 +58,13 @@ namespace FrontEndV0._1.forms
                 frmMeeting = new frmMeeting(user, isConvenor, isSupervisor);
                 frmMeeting.MdiParent = this;
 
-                frmAssessment = new frmAssessment(user, isConvenor, isSupervisor, true);
+                frmAssessment = new frmAssessment(user, isConvenor, isSupervisor);
                 frmAssessment.MdiParent = this;
 
-                frmTeamDetails = new frmTeamDetails(user, isConvenor, isSupervisor, false);
+                frmTeamDetails = new frmTeamDetails(user, isConvenor, isSupervisor);
                 frmTeamDetails.MdiParent = this;
 
-                frmProject = new frmProject(user, isConvenor, isSupervisor, false);
+                frmProject = new frmProject(user, isConvenor, isSupervisor);
                 frmProject.MdiParent = this;
             }
             else
@@ -75,10 +76,10 @@ namespace FrontEndV0._1.forms
             {
                 convenorFunctionsToolStripMenuItem.Enabled = true;
 
-                frmAssessment = new frmAssessment(user, isConvenor, isSupervisor, true);
+                frmAssessment = new frmAssessment(user, isConvenor, isSupervisor);
                 frmAssessment.MdiParent = this;
 
-                frmTeamDetails = new frmTeamDetails(user, isConvenor, isSupervisor, true);
+                frmTeamDetails = new frmTeamDetails(user, isConvenor, isSupervisor);
                 frmTeamDetails.MdiParent = this;
 
                 //ensures that the frmUnits won't be overwritten if the user is also an admin
@@ -95,7 +96,7 @@ namespace FrontEndV0._1.forms
                     frmUnitOfferings.MdiParent = this;
                 }
 
-                frmProject = new frmProject(user, isConvenor, isSupervisor, true);
+                frmProject = new frmProject(user, isConvenor, isSupervisor);
                 frmProject.MdiParent = this;
             }
             else
@@ -105,6 +106,36 @@ namespace FrontEndV0._1.forms
 
             frmEmpDetails = new frmEmpDetails(user, isAdmin);
             frmEmpDetails.MdiParent = this;
+        }
+
+        private void CloseAllChildForms()
+        {
+            if (frmEmpDetails != null)
+                frmEmpDetails.Hide();
+
+            if (frmStuDetails != null)
+                frmStuDetails.Hide();
+
+            if (frmUnits != null)
+                frmUnits.Hide();
+
+            if (frmEnrolments != null)
+                frmEnrolments.Hide();
+            
+            if (frmUnitOfferings != null)
+                frmUnitOfferings.Hide();
+
+            if (frmAssessment != null)
+                frmAssessment.Hide();
+
+            if (frmMeeting != null)
+                frmMeeting.Hide();
+
+            if (frmTeamDetails != null)
+                frmTeamDetails.Hide();
+
+            if (frmProject != null)
+                frmProject.Hide();
         }
 
         #region Form Toggles
@@ -203,6 +234,8 @@ namespace FrontEndV0._1.forms
         #region Manage Unit Offerings
         private void adminDropdownManageUnitOfferings_Click(object sender, EventArgs e)
         {
+            frmUnitOfferings = new frmUnitOfferings(User, true);
+            frmUnitOfferings.MdiParent = this;
             openUnitOfferingForm();
         }
 
@@ -227,11 +260,15 @@ namespace FrontEndV0._1.forms
         #region Convenor Functions 
         private void convenorDropdownAssessmentMaster_Click(object sender, EventArgs e)
         {
+            frmAssessment = new frmAssessment(User, true, false);
+            frmAssessment.MdiParent = this;
             openAssessmentForm();
         }
 
         private void convenorDropdownMngTeams_Click(object sender, EventArgs e)
         {
+            frmTeamDetails = new frmTeamDetails(User, true, false);
+            frmTeamDetails.MdiParent = this;
             openTeamForm();
         }
 
@@ -242,11 +279,15 @@ namespace FrontEndV0._1.forms
 
         private void convenorDropdownUnitOfferings_Click(object sender, EventArgs e)
         {
+            frmUnitOfferings = new frmUnitOfferings(User, false);
+            frmUnitOfferings.MdiParent = this;
             openUnitOfferingForm();
         }
         
         private void convenorDropdownProjects_Click(object sender, EventArgs e)
         {
+            frmProject = new frmProject(User, true, false);
+            frmProject.MdiParent = this;
             openProjectForm();
         }
 
@@ -255,21 +296,29 @@ namespace FrontEndV0._1.forms
         #region Supervisor Functions
         private void convenorDropdownMngMeetings_Click(object sender, EventArgs e)
         {
+            frmMeeting = new frmMeeting(User, false, true);
+            frmMeeting.MdiParent = this;
             openMeetingForm();
         }
 
         private void viewAssessmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmAssessment = new frmAssessment(User, false, true);
+            frmAssessment.MdiParent = this;
             openAssessmentForm();
         }
 
         private void viewTeamsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmTeamDetails = new frmTeamDetails(User, false, true);
+            frmTeamDetails.MdiParent = this;
             openTeamForm();
         }
 
         private void viewProjectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmProject = new frmProject(User, true, false);
+            frmProject.MdiParent = this;
             openProjectForm();
         }
 
@@ -277,6 +326,7 @@ namespace FrontEndV0._1.forms
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CloseAllChildForms();
             this.Close();
         }    
     }

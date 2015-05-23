@@ -25,7 +25,7 @@ namespace FrontEndV0._1.forms
         private bool isConvenor;
         private bool isSupervisor;
 
-        public frmAssessment(string user, bool isconvenor, bool issupervisor, bool editable)
+        public frmAssessment(string user, bool isconvenor, bool issupervisor)
         {
             InitializeComponent();
             User = user;
@@ -49,6 +49,8 @@ namespace FrontEndV0._1.forms
 
             cmd.Parameters.Add("asscursor", OracleDbType.RefCursor);
             cmd.Parameters["asscursor"].Direction = ParameterDirection.ReturnValue;
+            //cmd.
+
 
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);

@@ -18,15 +18,13 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
         private DataSet unitoffs;
         private DataSet projects;
-        private bool editable;
         private string User;
         private bool isConvenor;
         private bool isSupervisor;
 
-        public frmProject(string user, bool isconvenor, bool issupervisor, bool Editable)
+        public frmProject(string user, bool isconvenor, bool issupervisor)
         {
             InitializeComponent();
-            editable = Editable;
             User = user;
             isConvenor = isconvenor;
             isSupervisor = issupervisor;
@@ -42,7 +40,7 @@ namespace FrontEndV0._1.forms
             populateProjects();
             populateUnitOfferings();
 
-            if (!editable || !isConvenor)
+            if (!isConvenor)
             {
                 btnAdd.Enabled = false;
                 btnEdit.Enabled = false;

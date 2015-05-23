@@ -30,10 +30,10 @@ namespace FrontEndV0._1.forms
             frmEnrolments = new frmEnrolments(user, false);
             frmEnrolments.MdiParent = this;
 
-            frmProject = new frmProject(user, false, false, false);
+            frmProject = new frmProject(user, false, false);
             frmProject.MdiParent = this;
 
-            frmTeamDetails = new frmTeamDetails(user, false, false, false);
+            frmTeamDetails = new frmTeamDetails(user, false, false);
             frmTeamDetails.MdiParent = this;
 
             frmMeeting = new frmMeeting(user, false, false);
@@ -41,6 +41,27 @@ namespace FrontEndV0._1.forms
 
             frmStuAssessment = new frmStuAssessment(user);
             frmStuAssessment.MdiParent = this;
+        }
+
+        private void CloseAllChildForms()
+        {
+            if (frmStuDetails != null)
+                frmStuDetails.Hide();
+
+            if (frmEnrolments != null)
+                frmEnrolments.Hide();
+
+            if (frmMeeting != null)
+                frmMeeting.Hide();
+
+            if (frmTeamDetails != null)
+                frmTeamDetails.Hide();
+
+            if (frmProject != null)
+                frmProject.Hide();
+
+            if (frmStuAssessment != null)
+                frmStuAssessment.Hide();
         }
 
         private void closeForm(object sender, FormClosingEventArgs e)
@@ -90,6 +111,7 @@ namespace FrontEndV0._1.forms
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CloseAllChildForms();
             this.Close();
         }
 

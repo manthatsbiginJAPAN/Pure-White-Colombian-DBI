@@ -25,13 +25,25 @@ namespace FrontEndV0._1.forms
         private bool isConvenor;
         private bool isSupervisor;
 
-        public frmTeamDetails(string user, bool isconvenor, bool issupervisor, bool editable)
+        public frmTeamDetails(string user, bool isconvenor, bool issupervisor)
         {
             InitializeComponent();
             User = user;
             isConvenor = isconvenor; //will need updating in terms of how things are enabled/disabled...
             isSupervisor = issupervisor;
             connection = conn.oraConn();
+
+            if (!isConvenor) //if is a student
+            {
+                btnAdd.Enabled = false;
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+                btnAddStu.Enabled = false;
+                btnDeleteStu.Enabled = false;
+                gbDetails.Enabled = false;
+                gbIdentifyingInformation.Enabled = false;
+                grdTeamAllocation.Enabled = false;
+            }
         }
 
         private void frmTeamDetails_Load(object sender, EventArgs e)

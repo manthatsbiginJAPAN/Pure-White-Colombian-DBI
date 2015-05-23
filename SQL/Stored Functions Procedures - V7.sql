@@ -1604,16 +1604,19 @@ END;
 /
 
 CREATE or REPLACE FUNCTION UC3_10_View_AgendaItem
+	(pMeetingID number
+	, pTeamID varchar2
+	, pUnitID varchar2
+	, pSemester number
+	, pYear number)
 	RETURN SYS_REFCURSOR AS agi SYS_REFCURSOR;
 BEGIN
-	OPEN agi for select * from AgendaItem;
-	--LOOP
-	--	Fetch uos into uo;
-	--	Exit When uos%NOTFOUND;
-	--	dbms_output.put_line('Unit ID: '|| uo.UnitId --for testing
-	--					 || ' Semester: ' || uo.semester
-	--					 || ' Year: ' || uo.Year); 
-	--End Loop;
+	OPEN agi for select * from AgendaItem
+	WHERE MeetingID = pMeetingID AND
+		TeamID = pTeamID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;	
 	return agi;
 EXCEPTION
 	When Others Then
@@ -1693,6 +1696,30 @@ EXCEPTION
 END;
 
 /
+
+CREATE or REPLACE FUNCTION UC3_14_View_ActionItem
+	(pMeetingID number
+	, pTeamID varchar2
+	, pUnitID varchar2
+	, pSemester number
+	, pYear number)
+	RETURN SYS_REFCURSOR AS aci SYS_REFCURSOR;
+BEGIN
+	OPEN aci for select * from AgendaItem
+	WHERE MeetingID = pMeetingID AND
+		TeamID = pTeamID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;	
+	return aci;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+
+/
+
 
 CREATE OR REPLACE PROCEDURE UC3_15_Update_ActionItem
 		(pMeetingID number,
