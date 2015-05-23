@@ -31,20 +31,20 @@
             this.lblStuID = new System.Windows.Forms.Label();
             this.lblDueDate = new System.Windows.Forms.Label();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.cbStuID = new System.Windows.Forms.ComboBox();
             this.dtDue = new System.Windows.Forms.DateTimePicker();
-            this.txtAgendaNum = new System.Windows.Forms.TextBox();
-            this.lblAgendaNum = new System.Windows.Forms.Label();
-            this.lblActionDesc = new System.Windows.Forms.Label();
-            this.txtAgendaDesc = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.txtAgendaNum = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.lblAgendaNum = new System.Windows.Forms.Label();
+            this.txtAgendaDesc = new System.Windows.Forms.TextBox();
+            this.lblActionDesc = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.grdAgendatems = new System.Windows.Forms.DataGridView();
             this.colAgendaNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.cbStuID = new System.Windows.Forms.ComboBox();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAgendatems)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +52,7 @@
             // lblStuID
             // 
             this.lblStuID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStuID.Location = new System.Drawing.Point(11, 59);
+            this.lblStuID.Location = new System.Drawing.Point(21, 60);
             this.lblStuID.Name = "lblStuID";
             this.lblStuID.Size = new System.Drawing.Size(91, 47);
             this.lblStuID.TabIndex = 46;
@@ -62,7 +62,7 @@
             // 
             this.lblDueDate.AutoSize = true;
             this.lblDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDueDate.Location = new System.Drawing.Point(11, 114);
+            this.lblDueDate.Location = new System.Drawing.Point(21, 115);
             this.lblDueDate.Name = "lblDueDate";
             this.lblDueDate.Size = new System.Drawing.Size(91, 20);
             this.lblDueDate.TabIndex = 45;
@@ -90,49 +90,21 @@
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = " ";
             // 
+            // cbStuID
+            // 
+            this.cbStuID.FormattingEnabled = true;
+            this.cbStuID.Location = new System.Drawing.Point(144, 71);
+            this.cbStuID.Name = "cbStuID";
+            this.cbStuID.Size = new System.Drawing.Size(121, 21);
+            this.cbStuID.TabIndex = 80;
+            // 
             // dtDue
             // 
-            this.dtDue.Location = new System.Drawing.Point(134, 113);
+            this.dtDue.Location = new System.Drawing.Point(144, 114);
             this.dtDue.Margin = new System.Windows.Forms.Padding(2);
             this.dtDue.Name = "dtDue";
             this.dtDue.Size = new System.Drawing.Size(207, 20);
             this.dtDue.TabIndex = 79;
-            // 
-            // txtAgendaNum
-            // 
-            this.txtAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendaNum.Location = new System.Drawing.Point(134, 31);
-            this.txtAgendaNum.Name = "txtAgendaNum";
-            this.txtAgendaNum.Size = new System.Drawing.Size(121, 26);
-            this.txtAgendaNum.TabIndex = 51;
-            // 
-            // lblAgendaNum
-            // 
-            this.lblAgendaNum.AutoSize = true;
-            this.lblAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgendaNum.Location = new System.Drawing.Point(11, 31);
-            this.lblAgendaNum.Name = "lblAgendaNum";
-            this.lblAgendaNum.Size = new System.Drawing.Size(117, 20);
-            this.lblAgendaNum.TabIndex = 50;
-            this.lblAgendaNum.Text = "Agenda Num:";
-            // 
-            // lblActionDesc
-            // 
-            this.lblActionDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActionDesc.Location = new System.Drawing.Point(11, 174);
-            this.lblActionDesc.Name = "lblActionDesc";
-            this.lblActionDesc.Size = new System.Drawing.Size(83, 40);
-            this.lblActionDesc.TabIndex = 45;
-            this.lblActionDesc.Text = "Agenda Desc:";
-            // 
-            // txtAgendaDesc
-            // 
-            this.txtAgendaDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendaDesc.Location = new System.Drawing.Point(134, 174);
-            this.txtAgendaDesc.Multiline = true;
-            this.txtAgendaDesc.Name = "txtAgendaDesc";
-            this.txtAgendaDesc.Size = new System.Drawing.Size(385, 106);
-            this.txtAgendaDesc.TabIndex = 45;
             // 
             // btnAdd
             // 
@@ -143,6 +115,63 @@
             this.btnAdd.TabIndex = 62;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // txtAgendaNum
+            // 
+            this.txtAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAgendaNum.Location = new System.Drawing.Point(144, 32);
+            this.txtAgendaNum.Name = "txtAgendaNum";
+            this.txtAgendaNum.Size = new System.Drawing.Size(121, 26);
+            this.txtAgendaNum.TabIndex = 51;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(384, 114);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(137, 37);
+            this.btnDelete.TabIndex = 67;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(384, 70);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(137, 37);
+            this.btnEdit.TabIndex = 65;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            // 
+            // lblAgendaNum
+            // 
+            this.lblAgendaNum.AutoSize = true;
+            this.lblAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAgendaNum.Location = new System.Drawing.Point(21, 32);
+            this.lblAgendaNum.Name = "lblAgendaNum";
+            this.lblAgendaNum.Size = new System.Drawing.Size(117, 20);
+            this.lblAgendaNum.TabIndex = 50;
+            this.lblAgendaNum.Text = "Agenda Num:";
+            // 
+            // txtAgendaDesc
+            // 
+            this.txtAgendaDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAgendaDesc.Location = new System.Drawing.Point(134, 174);
+            this.txtAgendaDesc.Multiline = true;
+            this.txtAgendaDesc.Name = "txtAgendaDesc";
+            this.txtAgendaDesc.Size = new System.Drawing.Size(385, 106);
+            this.txtAgendaDesc.TabIndex = 45;
+            // 
+            // lblActionDesc
+            // 
+            this.lblActionDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActionDesc.Location = new System.Drawing.Point(11, 174);
+            this.lblActionDesc.Name = "lblActionDesc";
+            this.lblActionDesc.Size = new System.Drawing.Size(83, 40);
+            this.lblActionDesc.TabIndex = 45;
+            this.lblActionDesc.Text = "Agenda Desc:";
             // 
             // lblTitle
             // 
@@ -187,35 +216,6 @@
             // 
             this.colDueDate.HeaderText = "Due Date";
             this.colDueDate.Name = "colDueDate";
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Enabled = false;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(384, 70);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(137, 37);
-            this.btnEdit.TabIndex = 65;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(384, 114);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(137, 37);
-            this.btnDelete.TabIndex = 67;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // cbStuID
-            // 
-            this.cbStuID.FormattingEnabled = true;
-            this.cbStuID.Location = new System.Drawing.Point(134, 70);
-            this.cbStuID.Name = "cbStuID";
-            this.cbStuID.Size = new System.Drawing.Size(121, 21);
-            this.cbStuID.TabIndex = 80;
             // 
             // frmAgenda
             // 

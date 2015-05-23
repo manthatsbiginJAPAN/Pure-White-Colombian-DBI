@@ -677,7 +677,7 @@ namespace FrontEndV0._1.forms
 
         private void btnActionItems_Click(object sender, EventArgs e)
         {
-            frmActionItems = new frmActionItems(txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
+            frmActionItems = new frmActionItems(this, txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
             frmActionItems.Show();
         }
 

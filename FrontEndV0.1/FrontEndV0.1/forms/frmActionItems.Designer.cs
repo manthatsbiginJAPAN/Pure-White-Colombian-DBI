@@ -36,7 +36,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.lblAgendaNum = new System.Windows.Forms.Label();
+            this.lblActionItems = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStuID = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             this.gbDetails.Controls.Add(this.textBox1);
             this.gbDetails.Controls.Add(this.btnDelete);
             this.gbDetails.Controls.Add(this.btnEdit);
-            this.gbDetails.Controls.Add(this.lblAgendaNum);
+            this.gbDetails.Controls.Add(this.lblActionItems);
             this.gbDetails.Controls.Add(this.label1);
             this.gbDetails.Controls.Add(this.cmbStatus);
             this.gbDetails.Controls.Add(this.lblStuID);
@@ -108,6 +108,7 @@
             this.btnAdd.TabIndex = 55;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // textBox1
             // 
@@ -139,15 +140,15 @@
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             // 
-            // lblAgendaNum
+            // lblActionItems
             // 
-            this.lblAgendaNum.AutoSize = true;
-            this.lblAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgendaNum.Location = new System.Drawing.Point(13, 22);
-            this.lblAgendaNum.Name = "lblAgendaNum";
-            this.lblAgendaNum.Size = new System.Drawing.Size(117, 20);
-            this.lblAgendaNum.TabIndex = 76;
-            this.lblAgendaNum.Text = "Agenda Num:";
+            this.lblActionItems.AutoSize = true;
+            this.lblActionItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActionItems.Location = new System.Drawing.Point(13, 22);
+            this.lblActionItems.Name = "lblActionItems";
+            this.lblActionItems.Size = new System.Drawing.Size(106, 20);
+            this.lblActionItems.TabIndex = 76;
+            this.lblActionItems.Text = "Action Item:";
             // 
             // label1
             // 
@@ -275,7 +276,7 @@
         public System.Windows.Forms.Label lblStuID;
         public System.Windows.Forms.DataGridView grdAgendatems;
         public System.Windows.Forms.TextBox txtAgendaNum;
-        public System.Windows.Forms.Label lblAgendaNum;
+        public System.Windows.Forms.Label lblActionItems;
         private System.Windows.Forms.DateTimePicker dtDue;
         private System.Windows.Forms.DataGridViewTextBoxColumn colActionNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStuID;
