@@ -55,7 +55,7 @@ namespace FrontEndV0._1.forms
             {
                 supervisorFunctionsToolStripMenuItem.Enabled = true;
 
-                frmMeeting = new frmMeeting(user, isConvenor, isSupervisor);
+                frmMeeting = new frmMeeting(user, isSupervisor);
                 frmMeeting.MdiParent = this;
 
                 frmAssessment = new frmAssessment(user, isConvenor, isSupervisor);
@@ -201,6 +201,8 @@ namespace FrontEndV0._1.forms
         #region Personal Details
         private void personalDetailsMenu_Click(object sender, EventArgs e)
         {
+            frmEmpDetails = new frmEmpDetails(User, false);
+            frmEmpDetails.MdiParent = this;
             openEmployeeForm();
         }
         #endregion
@@ -218,6 +220,8 @@ namespace FrontEndV0._1.forms
         #region Manage Employees
         private void adminDropdownManageEmployees_Click(object sender, EventArgs e)
         {
+            frmEmpDetails = new frmEmpDetails(User, true);
+            frmEmpDetails.MdiParent = this;
             openEmployeeForm();
         }
 
@@ -291,12 +295,19 @@ namespace FrontEndV0._1.forms
             openProjectForm();
         }
 
+        private void allocationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*frmStuAssessment = new frmStuAssessment(user)
+            frmStuAssessment.MdiParent = this;
+            openStuAssessmentForm();*/
+        }  
+
         #endregion
 
         #region Supervisor Functions
         private void convenorDropdownMngMeetings_Click(object sender, EventArgs e)
         {
-            frmMeeting = new frmMeeting(User, false, true);
+            frmMeeting = new frmMeeting(User, true);
             frmMeeting.MdiParent = this;
             openMeetingForm();
         }
@@ -328,6 +339,6 @@ namespace FrontEndV0._1.forms
         {
             CloseAllChildForms();
             this.Close();
-        }    
+        }  
     }
 }

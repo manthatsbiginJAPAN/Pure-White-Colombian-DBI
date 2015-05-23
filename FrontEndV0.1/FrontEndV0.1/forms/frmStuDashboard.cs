@@ -36,7 +36,7 @@ namespace FrontEndV0._1.forms
             frmTeamDetails = new frmTeamDetails(user, false, false);
             frmTeamDetails.MdiParent = this;
 
-            frmMeeting = new frmMeeting(user, false, false);
+            frmMeeting = new frmMeeting(user, false);
             frmMeeting.MdiParent = this;
 
             frmStuAssessment = new frmStuAssessment(user);

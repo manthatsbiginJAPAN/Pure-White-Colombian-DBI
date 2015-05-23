@@ -46,12 +46,6 @@
             this.lblTeam = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.grdTeamInfo = new System.Windows.Forms.DataGridView();
-            this.colTeamId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProjID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEdit = new System.Windows.Forms.Button();
             this.grdTeamAllocation = new System.Windows.Forms.DataGridView();
             this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,8 +55,14 @@
             this.lblStuID = new System.Windows.Forms.Label();
             this.btnAddStu = new System.Windows.Forms.Button();
             this.btnDeleteStu = new System.Windows.Forms.Button();
-            this.txtStuID = new System.Windows.Forms.ComboBox();
+            this.cbStuID = new System.Windows.Forms.ComboBox();
             this.gbTeamAlloc = new System.Windows.Forms.GroupBox();
+            this.colTeamId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProjID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbDetails.SuspendLayout();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdTeamInfo)).BeginInit();
@@ -98,15 +98,7 @@
             // 
             this.cbSupervisor.Enabled = false;
             this.cbSupervisor.FormattingEnabled = true;
-            this.cbSupervisor.Items.AddRange(new object[] {
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
-            this.cbSupervisor.Location = new System.Drawing.Point(133, 38);
+            this.cbSupervisor.Location = new System.Drawing.Point(133, 35);
             this.cbSupervisor.Name = "cbSupervisor";
             this.cbSupervisor.Size = new System.Drawing.Size(121, 21);
             this.cbSupervisor.TabIndex = 39;
@@ -117,9 +109,9 @@
             this.lblEmpID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmpID.Location = new System.Drawing.Point(11, 36);
             this.lblEmpID.Name = "lblEmpID";
-            this.lblEmpID.Size = new System.Drawing.Size(116, 20);
+            this.lblEmpID.Size = new System.Drawing.Size(99, 20);
             this.lblEmpID.TabIndex = 11;
-            this.lblEmpID.Text = "Employee ID:";
+            this.lblEmpID.Text = "Supervisor:";
             // 
             // btnDelete
             // 
@@ -156,10 +148,7 @@
             // cbProjID
             // 
             this.cbProjID.FormattingEnabled = true;
-            this.cbProjID.Items.AddRange(new object[] {
-            "INF30011",
-            "INF20011"});
-            this.cbProjID.Location = new System.Drawing.Point(132, 75);
+            this.cbProjID.Location = new System.Drawing.Point(132, 204);
             this.cbProjID.Name = "cbProjID";
             this.cbProjID.Size = new System.Drawing.Size(121, 21);
             this.cbProjID.TabIndex = 38;
@@ -168,47 +157,36 @@
             // 
             this.cbYear.Enabled = false;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Items.AddRange(new object[] {
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
-            this.cbYear.Location = new System.Drawing.Point(132, 210);
+            this.cbYear.Location = new System.Drawing.Point(132, 161);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 37;
+            this.cbYear.SelectedIndexChanged += new System.EventHandler(this.cbYear_SelectedIndexChanged);
             // 
             // cbSemester
             // 
             this.cbSemester.Enabled = false;
             this.cbSemester.FormattingEnabled = true;
-            this.cbSemester.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.cbSemester.Location = new System.Drawing.Point(132, 165);
+            this.cbSemester.Location = new System.Drawing.Point(132, 116);
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
             this.cbSemester.TabIndex = 36;
+            this.cbSemester.SelectedIndexChanged += new System.EventHandler(this.cbSemester_SelectedIndexChanged);
             // 
             // cbUnitID
             // 
             this.cbUnitID.FormattingEnabled = true;
-            this.cbUnitID.Items.AddRange(new object[] {
-            "INF30011",
-            "INF20011"});
-            this.cbUnitID.Location = new System.Drawing.Point(132, 121);
+            this.cbUnitID.Location = new System.Drawing.Point(132, 72);
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
             this.cbUnitID.TabIndex = 35;
+            this.cbUnitID.SelectedIndexChanged += new System.EventHandler(this.cbUnitID_SelectedIndexChanged);
             // 
             // lblYear
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYear.Location = new System.Drawing.Point(13, 208);
+            this.lblYear.Location = new System.Drawing.Point(13, 159);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(52, 20);
             this.lblYear.TabIndex = 9;
@@ -218,7 +196,7 @@
             // 
             this.lblSemester.AutoSize = true;
             this.lblSemester.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSemester.Location = new System.Drawing.Point(10, 163);
+            this.lblSemester.Location = new System.Drawing.Point(10, 114);
             this.lblSemester.Name = "lblSemester";
             this.lblSemester.Size = new System.Drawing.Size(91, 20);
             this.lblSemester.TabIndex = 7;
@@ -228,7 +206,7 @@
             // 
             this.lblUnitID.AutoSize = true;
             this.lblUnitID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitID.Location = new System.Drawing.Point(10, 119);
+            this.lblUnitID.Location = new System.Drawing.Point(10, 70);
             this.lblUnitID.Name = "lblUnitID";
             this.lblUnitID.Size = new System.Drawing.Size(71, 20);
             this.lblUnitID.TabIndex = 5;
@@ -238,7 +216,7 @@
             // 
             this.lblProjID.AutoSize = true;
             this.lblProjID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjID.Location = new System.Drawing.Point(10, 73);
+            this.lblProjID.Location = new System.Drawing.Point(10, 202);
             this.lblProjID.Name = "lblProjID";
             this.lblProjID.Size = new System.Drawing.Size(94, 20);
             this.lblProjID.TabIndex = 3;
@@ -295,36 +273,6 @@
             this.grdTeamInfo.Size = new System.Drawing.Size(421, 529);
             this.grdTeamInfo.TabIndex = 26;
             this.grdTeamInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTeamInfo_CellClick);
-            // 
-            // colTeamId
-            // 
-            this.colTeamId.HeaderText = "Team ID";
-            this.colTeamId.Name = "colTeamId";
-            // 
-            // colProjID
-            // 
-            this.colProjID.HeaderText = "Project ID:";
-            this.colProjID.Name = "colProjID";
-            // 
-            // colUnitID
-            // 
-            this.colUnitID.HeaderText = "Unit ID";
-            this.colUnitID.Name = "colUnitID";
-            // 
-            // colSemester
-            // 
-            this.colSemester.HeaderText = "Semester";
-            this.colSemester.Name = "colSemester";
-            // 
-            // colYear
-            // 
-            this.colYear.HeaderText = "Year";
-            this.colYear.Name = "colYear";
-            // 
-            // colEmpID
-            // 
-            this.colEmpID.HeaderText = "Emp ID";
-            this.colEmpID.Name = "colEmpID";
             // 
             // btnEdit
             // 
@@ -414,27 +362,19 @@
             this.btnDeleteStu.UseVisualStyleBackColor = true;
             this.btnDeleteStu.Click += new System.EventHandler(this.btnDeleteStu_Click);
             // 
-            // txtStuID
+            // cbStuID
             // 
-            this.txtStuID.Enabled = false;
-            this.txtStuID.FormattingEnabled = true;
-            this.txtStuID.Items.AddRange(new object[] {
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020"});
-            this.txtStuID.Location = new System.Drawing.Point(133, 20);
-            this.txtStuID.Name = "txtStuID";
-            this.txtStuID.Size = new System.Drawing.Size(121, 21);
-            this.txtStuID.TabIndex = 40;
+            this.cbStuID.Enabled = false;
+            this.cbStuID.FormattingEnabled = true;
+            this.cbStuID.Location = new System.Drawing.Point(133, 20);
+            this.cbStuID.Name = "cbStuID";
+            this.cbStuID.Size = new System.Drawing.Size(121, 21);
+            this.cbStuID.TabIndex = 40;
             // 
             // gbTeamAlloc
             // 
             this.gbTeamAlloc.Controls.Add(this.lblTeamDetails);
-            this.gbTeamAlloc.Controls.Add(this.txtStuID);
+            this.gbTeamAlloc.Controls.Add(this.cbStuID);
             this.gbTeamAlloc.Controls.Add(this.grdTeamAllocation);
             this.gbTeamAlloc.Controls.Add(this.lblStuID);
             this.gbTeamAlloc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -444,6 +384,36 @@
             this.gbTeamAlloc.TabIndex = 41;
             this.gbTeamAlloc.TabStop = false;
             this.gbTeamAlloc.Text = "Students";
+            // 
+            // colTeamId
+            // 
+            this.colTeamId.HeaderText = "Team ID";
+            this.colTeamId.Name = "colTeamId";
+            // 
+            // colProjID
+            // 
+            this.colProjID.HeaderText = "Project ID:";
+            this.colProjID.Name = "colProjID";
+            // 
+            // colUnitID
+            // 
+            this.colUnitID.HeaderText = "Unit ID";
+            this.colUnitID.Name = "colUnitID";
+            // 
+            // colSemester
+            // 
+            this.colSemester.HeaderText = "Semester";
+            this.colSemester.Name = "colSemester";
+            // 
+            // colYear
+            // 
+            this.colYear.HeaderText = "Year";
+            this.colYear.Name = "colYear";
+            // 
+            // colEmpID
+            // 
+            this.colEmpID.HeaderText = "Supervisor";
+            this.colEmpID.Name = "colEmpID";
             // 
             // frmTeamDetails
             // 
@@ -487,12 +457,6 @@
         public System.Windows.Forms.Label lblTitle;
         public System.Windows.Forms.DataGridView grdTeamInfo;
         public System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTeamId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProjID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSemester;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEmpID;
         public System.Windows.Forms.Label lblYear;
         public System.Windows.Forms.Label lblSemester;
         public System.Windows.Forms.Label lblUnitID;
@@ -508,10 +472,16 @@
         private System.Windows.Forms.ComboBox cbYear;
         private System.Windows.Forms.ComboBox cbProjID;
         private System.Windows.Forms.ComboBox cbSupervisor;
-        private System.Windows.Forms.ComboBox txtStuID;
+        private System.Windows.Forms.ComboBox cbStuID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStuID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         public System.Windows.Forms.GroupBox gbTeamAlloc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTeamId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProjID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSemester;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEmpID;
     }
 }

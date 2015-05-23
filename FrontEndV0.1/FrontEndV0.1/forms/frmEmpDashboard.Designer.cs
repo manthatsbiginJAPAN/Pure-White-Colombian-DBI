@@ -157,6 +157,7 @@
             this.allocationsToolStripMenuItem.Name = "allocationsToolStripMenuItem";
             this.allocationsToolStripMenuItem.Size = new System.Drawing.Size(258, 30);
             this.allocationsToolStripMenuItem.Text = "Student Submissions";
+            this.allocationsToolStripMenuItem.Click += new System.EventHandler(this.allocationsToolStripMenuItem_Click);
             // 
             // manageAssessmentAllocationsToolStripMenuItem
             // 

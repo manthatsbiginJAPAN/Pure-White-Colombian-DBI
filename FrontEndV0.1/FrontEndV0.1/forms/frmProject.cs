@@ -66,7 +66,6 @@ namespace FrontEndV0._1.forms
                 role = "convenor";
             if (role == null)
                 role = "student";
-            MessageBox.Show("Role; " + role);
             cmd.Parameters.Add("role", role);
 
             connection.Open();
@@ -132,10 +131,6 @@ namespace FrontEndV0._1.forms
                 //add the available unitID to the combo box
                 if (!cbUnitID.Items.Contains(unitid.ToString()))
                     cbUnitID.Items.Add(unitid.ToString());
-
-                //cbUnitID.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][0].ToString());
-                //cbSemester.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][1].ToString());
-                //cbYear.Items.Add(unitoffs.Tables["unitoffscursor"].Rows[i][2]);
             }
         }
 
@@ -294,7 +289,7 @@ namespace FrontEndV0._1.forms
         private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Fixes it crashing when you actually add a project
-            if (cbUnitID.SelectedItem == null)
+            if (cbSemester.SelectedItem == null)
                 return;
 
             if (cbSemester.SelectedIndex != -1)

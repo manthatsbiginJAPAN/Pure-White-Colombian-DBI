@@ -216,7 +216,7 @@ TaskID number(2)
 , Year number(4)
 , TeamID varchar2(10)
 , Period number(2)
-, TargetStuID varchar2(10)
+--, TargetStuID varchar2(10)
 , Hours number(3)
 , DateSubmitted date
 , PRIMARY KEY (TaskID, StuID, AssID, UnitID, Semester, Year, TargetStuID)

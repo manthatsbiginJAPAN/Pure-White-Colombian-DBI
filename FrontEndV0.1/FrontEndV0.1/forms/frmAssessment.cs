@@ -66,7 +66,6 @@ namespace FrontEndV0._1.forms
                 role = "convenor";
             if (role == null)
                 role = "student";
-            MessageBox.Show("Role; " + role);
             cmd.Parameters.Add("role", role);
 
             connection.Open();

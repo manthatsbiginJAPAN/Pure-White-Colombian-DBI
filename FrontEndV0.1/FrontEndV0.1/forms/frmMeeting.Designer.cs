@@ -28,17 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbYear = new System.Windows.Forms.ComboBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.txtSupervisor = new System.Windows.Forms.TextBox();
             this.chkApproved = new System.Windows.Forms.CheckBox();
             this.lblApproved = new System.Windows.Forms.Label();
             this.dtFinishTime = new System.Windows.Forms.DateTimePicker();
             this.dtStartTime = new System.Windows.Forms.DateTimePicker();
-            this.cbSupervisor = new System.Windows.Forms.ComboBox();
             this.txtClientName = new System.Windows.Forms.TextBox();
             this.txtMeetingMinutes = new System.Windows.Forms.TextBox();
             this.lblMeetingMinutes = new System.Windows.Forms.Label();
@@ -54,8 +53,6 @@
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAttendees = new System.Windows.Forms.Label();
-            this.btnActionItems = new System.Windows.Forms.Button();
-            this.btnAgenda = new System.Windows.Forms.Button();
             this.gbIdentifyingInformation = new System.Windows.Forms.GroupBox();
             this.cbTeamID = new System.Windows.Forms.ComboBox();
             this.cbSemester = new System.Windows.Forms.ComboBox();
@@ -67,19 +64,31 @@
             this.lblMeetingID = new System.Windows.Forms.Label();
             this.lblUnitID = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.grdMeetings = new System.Windows.Forms.DataGridView();
             this.colMeetID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTeamID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MeetType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FinishTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Minutes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Approved = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLoadAttendees = new System.Windows.Forms.Button();
+            this.gbButtons = new System.Windows.Forms.GroupBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnActionItems = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAgenda = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAttendees)).BeginInit();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).BeginInit();
+            this.gbButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbYear
@@ -92,24 +101,13 @@
             this.cbYear.TabIndex = 36;
             this.cbYear.SelectedIndexChanged += new System.EventHandler(this.cbYear_SelectedIndexChanged);
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(342, 64);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(137, 37);
-            this.btnAdd.TabIndex = 41;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.txtSupervisor);
             this.gbDetails.Controls.Add(this.chkApproved);
             this.gbDetails.Controls.Add(this.lblApproved);
             this.gbDetails.Controls.Add(this.dtFinishTime);
             this.gbDetails.Controls.Add(this.dtStartTime);
-            this.gbDetails.Controls.Add(this.cbSupervisor);
             this.gbDetails.Controls.Add(this.txtClientName);
             this.gbDetails.Controls.Add(this.txtMeetingMinutes);
             this.gbDetails.Controls.Add(this.lblMeetingMinutes);
@@ -127,6 +125,15 @@
             this.gbDetails.TabIndex = 45;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
+            // 
+            // txtSupervisor
+            // 
+            this.txtSupervisor.Enabled = false;
+            this.txtSupervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupervisor.Location = new System.Drawing.Point(156, 134);
+            this.txtSupervisor.Name = "txtSupervisor";
+            this.txtSupervisor.Size = new System.Drawing.Size(150, 26);
+            this.txtSupervisor.TabIndex = 59;
             // 
             // chkApproved
             // 
@@ -169,15 +176,6 @@
             this.dtStartTime.Size = new System.Drawing.Size(151, 20);
             this.dtStartTime.TabIndex = 52;
             this.dtStartTime.Value = new System.DateTime(2015, 5, 18, 0, 0, 0, 0);
-            // 
-            // cbSupervisor
-            // 
-            this.cbSupervisor.Enabled = false;
-            this.cbSupervisor.FormattingEnabled = true;
-            this.cbSupervisor.Location = new System.Drawing.Point(157, 137);
-            this.cbSupervisor.Name = "cbSupervisor";
-            this.cbSupervisor.Size = new System.Drawing.Size(150, 21);
-            this.cbSupervisor.TabIndex = 42;
             // 
             // txtClientName
             // 
@@ -277,39 +275,39 @@
             this.grdAttendees.AllowUserToAddRows = false;
             this.grdAttendees.AllowUserToDeleteRows = false;
             this.grdAttendees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdAttendees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdAttendees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdAttendees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdAttendees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Attended,
             this.StuID,
             this.FirstName,
             this.LastName});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdAttendees.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdAttendees.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdAttendees.Location = new System.Drawing.Point(486, 494);
             this.grdAttendees.MultiSelect = false;
             this.grdAttendees.Name = "grdAttendees";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdAttendees.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdAttendees.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grdAttendees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdAttendees.Size = new System.Drawing.Size(414, 140);
             this.grdAttendees.TabIndex = 59;
@@ -358,28 +356,6 @@
             this.lblAttendees.TabIndex = 55;
             this.lblAttendees.Text = "Attendees:";
             // 
-            // btnActionItems
-            // 
-            this.btnActionItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActionItems.Location = new System.Drawing.Point(343, 263);
-            this.btnActionItems.Name = "btnActionItems";
-            this.btnActionItems.Size = new System.Drawing.Size(137, 38);
-            this.btnActionItems.TabIndex = 51;
-            this.btnActionItems.Text = "Action Items";
-            this.btnActionItems.UseVisualStyleBackColor = true;
-            this.btnActionItems.Click += new System.EventHandler(this.btnActionItems_Click);
-            // 
-            // btnAgenda
-            // 
-            this.btnAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgenda.Location = new System.Drawing.Point(343, 220);
-            this.btnAgenda.Name = "btnAgenda";
-            this.btnAgenda.Size = new System.Drawing.Size(137, 37);
-            this.btnAgenda.TabIndex = 50;
-            this.btnAgenda.Text = "Agenda";
-            this.btnAgenda.UseVisualStyleBackColor = true;
-            this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
-            // 
             // gbIdentifyingInformation
             // 
             this.gbIdentifyingInformation.Controls.Add(this.cbTeamID);
@@ -396,7 +372,7 @@
             this.gbIdentifyingInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbIdentifyingInformation.Location = new System.Drawing.Point(8, 56);
             this.gbIdentifyingInformation.Name = "gbIdentifyingInformation";
-            this.gbIdentifyingInformation.Size = new System.Drawing.Size(325, 245);
+            this.gbIdentifyingInformation.Size = new System.Drawing.Size(317, 245);
             this.gbIdentifyingInformation.TabIndex = 43;
             this.gbIdentifyingInformation.TabStop = false;
             this.gbIdentifyingInformation.Text = "Identifying Information";
@@ -499,28 +475,6 @@
             this.lblTitle.Text = "Meetings";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnEdit
-            // 
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(342, 109);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(137, 37);
-            this.btnEdit.TabIndex = 44;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(342, 152);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(137, 37);
-            this.btnDelete.TabIndex = 46;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // grdMeetings
             // 
             this.grdMeetings.AllowUserToAddRows = false;
@@ -534,7 +488,14 @@
             this.colTeamID,
             this.Unitid,
             this.Semester,
-            this.Year});
+            this.Year,
+            this.MeetType,
+            this.StartTime,
+            this.FinishTime,
+            this.Minutes,
+            this.EmpID,
+            this.ClientName,
+            this.Approved});
             this.grdMeetings.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grdMeetings.Location = new System.Drawing.Point(486, 64);
             this.grdMeetings.MultiSelect = false;
@@ -543,7 +504,7 @@
             this.grdMeetings.Size = new System.Drawing.Size(416, 355);
             this.grdMeetings.TabIndex = 47;
             this.grdMeetings.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMeetings_CellClick);
-            //
+            // 
             // colMeetID
             // 
             this.colMeetID.HeaderText = "Meeting ID";
@@ -570,6 +531,48 @@
             this.Year.HeaderText = "Year";
             this.Year.Name = "Year";
             // 
+            // MeetType
+            // 
+            this.MeetType.HeaderText = "MeetType";
+            this.MeetType.Name = "MeetType";
+            this.MeetType.Visible = false;
+            // 
+            // StartTime
+            // 
+            this.StartTime.HeaderText = "StartTime";
+            this.StartTime.Name = "StartTime";
+            this.StartTime.Visible = false;
+            // 
+            // FinishTime
+            // 
+            this.FinishTime.HeaderText = "FinishTime";
+            this.FinishTime.Name = "FinishTime";
+            this.FinishTime.Visible = false;
+            // 
+            // Minutes
+            // 
+            this.Minutes.HeaderText = "Minutes";
+            this.Minutes.Name = "Minutes";
+            this.Minutes.Visible = false;
+            // 
+            // EmpID
+            // 
+            this.EmpID.HeaderText = "Supervisor";
+            this.EmpID.Name = "EmpID";
+            this.EmpID.Visible = false;
+            // 
+            // ClientName
+            // 
+            this.ClientName.HeaderText = "ClientName";
+            this.ClientName.Name = "ClientName";
+            this.ClientName.Visible = false;
+            // 
+            // Approved
+            // 
+            this.Approved.HeaderText = "Approved";
+            this.Approved.Name = "Approved";
+            this.Approved.Visible = false;
+            // 
             // btnLoadAttendees
             // 
             this.btnLoadAttendees.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -581,22 +584,86 @@
             this.btnLoadAttendees.UseVisualStyleBackColor = true;
             this.btnLoadAttendees.Click += new System.EventHandler(this.btnLoadAttendees_Click);
             // 
+            // gbButtons
+            // 
+            this.gbButtons.Controls.Add(this.btnAdd);
+            this.gbButtons.Controls.Add(this.btnActionItems);
+            this.gbButtons.Controls.Add(this.btnEdit);
+            this.gbButtons.Controls.Add(this.btnAgenda);
+            this.gbButtons.Controls.Add(this.btnDelete);
+            this.gbButtons.Location = new System.Drawing.Point(332, 56);
+            this.gbButtons.Name = "gbButtons";
+            this.gbButtons.Size = new System.Drawing.Size(147, 245);
+            this.gbButtons.TabIndex = 61;
+            this.gbButtons.TabStop = false;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(5, 11);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(137, 37);
+            this.btnAdd.TabIndex = 66;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnActionItems
+            // 
+            this.btnActionItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActionItems.Location = new System.Drawing.Point(5, 202);
+            this.btnActionItems.Name = "btnActionItems";
+            this.btnActionItems.Size = new System.Drawing.Size(137, 38);
+            this.btnActionItems.TabIndex = 70;
+            this.btnActionItems.Text = "Action Items";
+            this.btnActionItems.UseVisualStyleBackColor = true;
+            this.btnActionItems.Click += new System.EventHandler(this.btnActionItems_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(5, 50);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(137, 37);
+            this.btnEdit.TabIndex = 67;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAgenda
+            // 
+            this.btnAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgenda.Location = new System.Drawing.Point(5, 162);
+            this.btnAgenda.Name = "btnAgenda";
+            this.btnAgenda.Size = new System.Drawing.Size(137, 37);
+            this.btnAgenda.TabIndex = 69;
+            this.btnAgenda.Text = "Agenda";
+            this.btnAgenda.UseVisualStyleBackColor = true;
+            this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(5, 90);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(137, 37);
+            this.btnDelete.TabIndex = 68;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmMeeting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 646);
+            this.Controls.Add(this.gbButtons);
             this.Controls.Add(this.btnLoadAttendees);
             this.Controls.Add(this.grdAttendees);
             this.Controls.Add(this.lblAttendees);
-            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.gbIdentifyingInformation);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.btnActionItems);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnAgenda);
-            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.grdMeetings);
             this.Name = "frmMeeting";
             this.Load += new System.EventHandler(this.frmMeeting_Load);
@@ -606,6 +673,7 @@
             this.gbIdentifyingInformation.ResumeLayout(false);
             this.gbIdentifyingInformation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).EndInit();
+            this.gbButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -614,7 +682,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cbYear;
-        public System.Windows.Forms.Button btnAdd;
         public System.Windows.Forms.GroupBox gbDetails;
         public System.Windows.Forms.GroupBox gbIdentifyingInformation;
         public System.Windows.Forms.TextBox txtMeetID;
@@ -625,8 +692,6 @@
         public System.Windows.Forms.Label lblYear;
         public System.Windows.Forms.Label lblUnitID;
         public System.Windows.Forms.Label lblTitle;
-        public System.Windows.Forms.Button btnEdit;
-        public System.Windows.Forms.Button btnDelete;
         public System.Windows.Forms.DataGridView grdMeetings;
         public System.Windows.Forms.Label lblTeamID;
         public System.Windows.Forms.Label lblMeetingType;
@@ -636,17 +701,9 @@
         public System.Windows.Forms.Label lblClientName;
         public System.Windows.Forms.Label lblSupervisor;
         public System.Windows.Forms.Label lblFinish;
-        public System.Windows.Forms.Button btnActionItems;
-        public System.Windows.Forms.Button btnAgenda;
         public System.Windows.Forms.TextBox txtMeetingMinutes;
         public System.Windows.Forms.Label lblMeetingMinutes;
-        private System.Windows.Forms.ComboBox cbSupervisor;
         private System.Windows.Forms.ComboBox cbTeamID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMeetID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTeamID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Semester;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.DateTimePicker dtFinishTime;
         private System.Windows.Forms.DateTimePicker dtStartTime;
         public System.Windows.Forms.Label lblAttendees;
@@ -658,5 +715,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         public System.Windows.Forms.Button btnLoadAttendees;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMeetID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTeamID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Semester;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Year;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MeetType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FinishTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Minutes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmpID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Approved;
+        public System.Windows.Forms.TextBox txtSupervisor;
+        private System.Windows.Forms.GroupBox gbButtons;
+        public System.Windows.Forms.Button btnAdd;
+        public System.Windows.Forms.Button btnActionItems;
+        public System.Windows.Forms.Button btnEdit;
+        public System.Windows.Forms.Button btnAgenda;
+        public System.Windows.Forms.Button btnDelete;
     }
 }

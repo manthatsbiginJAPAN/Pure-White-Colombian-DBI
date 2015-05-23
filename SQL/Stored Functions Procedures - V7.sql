@@ -678,18 +678,14 @@ CREATE OR REPLACE PROCEDURE UC2_2_Update_Team
 	pUnitID varchar2,
 	pSemester number,
 	pYear number,
-	pEmpID varchar2
-	--pRole varchar2
-	) AS
+	pEmpID varchar2) AS
 BEGIN
 	UPDATE Team
-	SET ProjID = pProjID,
-		Semester = pSemester,
-		Year = pYear,
-		EmpId = pEmpID
-		--Role = pRole
-	WHERE TeamID = pTeamID;
-	--dbms_output.put_line('Team' || pTeamID || ' updated' ); --for testing
+	SET EmpId = pEmpID
+	WHERE TeamID = pTeamID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
@@ -1036,12 +1032,20 @@ create or replace PROCEDURE UC2_20_Delete_Team_Allo
 	pSemester number,
 	pYear number) AS
 BEGIN
-	Delete StudentTeamAllocation
-	WHERE TeamID = pTeamID and
-		StuID = pStuID and
-		UnitID = pUnitID and
-		Semester = pSemester and
-		Year = pYear;
+	if pStuID = 'all' then
+		Delete StudentTeamAllocation
+		WHERE TeamID = pTeamID and
+			UnitID = pUnitID and
+			Semester = pSemester and
+			Year = pYear;
+	else
+		Delete StudentTeamAllocation
+		WHERE TeamID = pTeamID and
+			StuID = pStuID and
+			UnitID = pUnitID and
+			Semester = pSemester and
+			Year = pYear;
+	end if;
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
@@ -1245,11 +1249,10 @@ create or replace PROCEDURE UC2_29_Register_StuHours
 	pYear number,
 	pTeamID varchar2,
 	pPeriod number,
-	pTargetStuID varchar2,
 	pHours number,
 	pDateSubmitted date) AS
 BEGIN
-	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pTargetStuID, pHours, pDateSubmitted);
+	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pHours, pDateSubmitted);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1268,7 +1271,6 @@ create or replace PROCEDURE UC2_30_Update_StuHours
 	pYear number,
 	pTeamID varchar2,
 	pPeriod number,
-	pTargetStuID varchar2,
 	pHours number,
 	pDateSubmitted date) AS
 BEGIN
@@ -1281,8 +1283,7 @@ BEGIN
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
-		Year = pYear AND
-		TargetStuID = pTargetStuID;
+		Year = pYear;
 	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -1318,8 +1319,7 @@ CREATE OR REPLACE PROCEDURE UC2_32_Delete_StuHours
 		, pAssID varchar2
 		, pUnitID varchar2
 		, pSemester number
-		, pYear number
-		, pTargetStuID varchar2) AS
+		, pYear number) AS
 BEGIN
 	Delete StudentHours
 	WHERE TaskID = pTaskID and
@@ -1327,8 +1327,7 @@ BEGIN
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
-		Year = pYear and
-		TargetStuID = pTargetStuID;
+		Year = pYear;
 	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -1548,11 +1547,22 @@ CREATE or REPLACE PROCEDURE UC3_5_Add_Meeting_Attend
 	pSemester number,
 	pYear number,
 	pStuID varchar2) AS
+	cnt number;
 BEGIN
-	INSERT INTO MeetingAttendance VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pStuID);
+	select count(*) into cnt
+	from MeetingAttendance
+	where MeetingID = pMeetingID AND
+		TeamID = pTeamID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear AND
+		StuID = pStuID;
+	if cnt = 0 then
+		INSERT INTO MeetingAttendance VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pStuID);
+	end if;
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
-		RAISE_APPLICATION_ERROR(-20001, 'Meeting ID: ' || pMeetingID || ' already exists.');
+		RAISE_APPLICATION_ERROR(-20001, 'Meeting Attendance for ' || pStuID || ' already exists.');
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);	
 END;
@@ -1581,6 +1591,28 @@ END;
 
 
 /
+
+CREATE or REPLACE FUNCTION UC3_7_View_Meeting_Attend
+		(pMeetingID number,
+	pTeamID varchar2,
+	pUnitID varchar2,
+	pSemester number,
+	pYear number)
+	RETURN SYS_REFCURSOR AS ma SYS_REFCURSOR;
+BEGIN
+	OPEN ma for select * from MeetingAttendance
+	where MeetingID = pMeetingID AND
+		TeamID = pTeamID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
+	return ma;
+EXCEPTION
+	WHEN OTHERS THEN
+		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
+END;
+/
+
 
 CREATE or REPLACE PROCEDURE UC3_9_Add_AgendaItem
 		(pMeetingID number,

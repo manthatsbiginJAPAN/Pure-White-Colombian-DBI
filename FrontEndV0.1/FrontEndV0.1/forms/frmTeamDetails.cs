@@ -57,7 +57,7 @@ namespace FrontEndV0._1.forms
             populateTeamGrid();
             populateSupervisors();
             populateProjects();
-            populateUnitOfferings();            
+            //populateUnitOfferings(); //not necessary? 
         }
 
         #region getData
@@ -81,7 +81,6 @@ namespace FrontEndV0._1.forms
                 role = "convenor"; 
             if (role == null)
                 role = "student";
-            MessageBox.Show("Role: " + role);
             cmd.Parameters.Add("role", role);
 
             connection.Open();
@@ -175,6 +174,10 @@ namespace FrontEndV0._1.forms
 
         private void getTeamAllocs()
         {
+            //ensure it doesn't try to execute the query for a non-existing team
+            if (grdTeamInfo.Rows.Count == 0)
+                return;
+
             //Oracle Command to populate the dataset
             OracleCommand cmd = new OracleCommand("UC2_18_View_Team_Allo", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -243,12 +246,13 @@ namespace FrontEndV0._1.forms
                 sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
                 year = unitoffs.Tables["unitoffcursor"].Rows[i][2].ToString();
 
-                if (!cbUnitID.Items.Contains(unitid.ToString()))
+                /*if (!cbUnitID.Items.Contains(unitid.ToString()))
                     cbUnitID.Items.Add(unitid.ToString());
                 if (!cbSemester.Items.Contains(sem))
                     cbSemester.Items.Add(sem);
                 if (!cbYear.Items.Contains(year))
                     cbYear.Items.Add(year);
+                */
             }
         }
 
@@ -273,15 +277,15 @@ namespace FrontEndV0._1.forms
             //Clear the grid
             cbProjID.Items.Clear();
 
-            //Populate the grid from the dataset
-            int rowcnt = projects.Tables["projcursor"].Rows.Count;
-            object items = new object();
+            //Populate the UNITID combo box from the dataset, as it should be the first selected, then semester, year, projid...
+            int rowcnt = projects.Tables[0].Rows.Count;
+            object unitid = new object();
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                items = projects.Tables["projcursor"].Rows[i][0].ToString();
-                if (!cbProjID.Items.Contains(items.ToString()))
-                    cbProjID.Items.Add(items.ToString());
+                unitid = projects.Tables[0].Rows[i][2].ToString();
+                if (!cbUnitID.Items.Contains(unitid.ToString()))
+                    cbUnitID.Items.Add(unitid.ToString());
             }
         }
 
@@ -323,7 +327,7 @@ namespace FrontEndV0._1.forms
                 items = teamallocs.Tables[0].Rows[i].ItemArray;
                 grdTeamAllocation.Rows.Add(new object[] { items[0], items[1], items[2] });
             }
-            MessageBox.Show(grdTeamAllocation.Rows.Count + " Team Member(s) populated");
+            //MessageBox.Show(grdTeamAllocation.Rows.Count + " Team Member(s)");
 
 
             /*for (int i = 0; i <= rowcnt - 1; i++)
@@ -341,7 +345,7 @@ namespace FrontEndV0._1.forms
         private void populateEnrolledStus()
         {
             //Clear the grid
-            txtStuID.Items.Clear();
+            cbStuID.Items.Clear();
 
             //Populate the grid from the dataset
             int rowcnt = enrolments.Tables["enrolcursor"].Rows.Count;
@@ -359,8 +363,8 @@ namespace FrontEndV0._1.forms
                 if (unit.Equals(cbUnitID.SelectedItem)) {
                     if (semester.Equals(cbSemester.SelectedItem)) {
                         if (year.Equals(cbYear.SelectedItem)) {
-                            if (!txtStuID.Items.Contains(items.ToString()))
-                                txtStuID.Items.Add(items.ToString());
+                            if (!cbStuID.Items.Contains(items.ToString()))
+                                cbStuID.Items.Add(items.ToString());
                         }
                     }
                 }
@@ -434,7 +438,7 @@ namespace FrontEndV0._1.forms
 
                 gbDetails.Enabled = true;
                 cbSupervisor.Enabled = true;
-                txtStuID.Enabled = true;
+                //txtStuID.Enabled = true;
 
                 //Disable other buttons
                 btnEdit.Enabled = false;
@@ -487,6 +491,10 @@ namespace FrontEndV0._1.forms
 
                 getTeams();
                 populateTeamGrid();
+
+                getTeamAllocs();
+                populateTeamAllocs();
+
                 MessageBox.Show("Team Deleted");
             }
         }
@@ -545,12 +553,13 @@ namespace FrontEndV0._1.forms
                 //loading data into textboxes: find the row, load the data from the datagridset
                 int selectedrowindex = grdTeamInfo.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
                 txtTeamID.Text = grdTeamInfo.Rows[selectedrowindex].Cells[0].Value.ToString();
-                cbProjID.SelectedIndex = cbProjID.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[1].Value.ToString());
+                
                 cbUnitID.SelectedIndex = cbUnitID.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[2].Value.ToString());
                 cbSemester.SelectedIndex = cbSemester.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[3].Value.ToString());
                 cbYear.SelectedIndex = cbYear.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[4].Value.ToString());
                 cbSupervisor.SelectedIndex = cbSupervisor.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[5].Value.ToString());
-                
+                cbProjID.SelectedIndex = cbProjID.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[1].Value.ToString());
+
                 //Enable textboxes
                 gbIdentifyingInformation.Enabled = true;
                 txtTeamID.Enabled = false;
@@ -580,14 +589,14 @@ namespace FrontEndV0._1.forms
             if (btnAddStu.Text == "Save?")
             {
                 //Command to add team
-                if (FormValidated() && txtStuID.Text.Length>0)
+                if (FormValidated() && cbStuID.Text.Length > 0)
                 {
                     OracleCommand cmd = new OracleCommand("UC2_17_Register_Team_Allo", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 100;
 
                     cmd.Parameters.Add("teamID", txtTeamID.Text);
-                    cmd.Parameters.Add("stuID", txtStuID.Text);
+                    cmd.Parameters.Add("stuID", cbStuID.Text);
                     cmd.Parameters.Add("unitID", cbUnitID.SelectedItem);
                     cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem));
                     cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem));
@@ -600,17 +609,18 @@ namespace FrontEndV0._1.forms
                     getTeamAllocs();
                     populateTeamAllocs();
 
-                    //Disable buttons
-                    txtTeamID.Enabled = false;
-                    txtStuID.Enabled = false;
+                    //Disable fields
+                    cbStuID.Enabled = false;
 
                     //Enable other buttons
+                    btnAdd.Enabled = true;
                     btnEdit.Enabled = true;
                     btnDelete.Enabled = true;
+                    btnDeleteStu.Enabled = true;
 
                     //Clear textboxes
                     txtTeamID.Clear();
-                    txtStuID.SelectedIndex = -1;
+                    cbStuID.SelectedIndex = -1;
 
                     grdTeamInfo.ClearSelection();
                     btnAddStu.Text = "Add";
@@ -618,19 +628,11 @@ namespace FrontEndV0._1.forms
             }
             else
             {
-                gbIdentifyingInformation.Enabled = false; //??
-
-                //Enable buttons
-                txtTeamID.Enabled = false;
-                cbUnitID.Enabled = false;
-                cbSemester.Enabled = false;
-                cbYear.Enabled = false;
-
-                gbDetails.Enabled = true;
-                cbSupervisor.Enabled = false;
-                txtStuID.Enabled = true;
+                //enable fields
+                cbStuID.Enabled = true;
 
                 //Disable other buttons
+                btnAdd.Enabled = false;
                 btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
                 btnDeleteStu.Enabled = false;
@@ -654,18 +656,6 @@ namespace FrontEndV0._1.forms
                 "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (response == DialogResult.Yes)
             {
-                /*foreach (object student in clbEmpRoles.Items)
-                {
-                    OracleCommand cmd1 = new OracleCommand("UC1_28_Delete_Employee_Role", connection);
-                    cmd1.CommandType = CommandType.StoredProcedure;
-                    cmd1.Parameters.Add("empid", selectedempid);
-                    cmd1.Parameters.Add("role", role.ToString());
-
-                    connection.Open();
-                    cmd1.ExecuteNonQuery();
-                    connection.Close();
-                }*/
-
                 OracleCommand cmd = new OracleCommand("UC2_20_Delete_Team_Allo", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("teamid", selectedteamid);
@@ -680,11 +670,6 @@ namespace FrontEndV0._1.forms
 
                 getTeamAllocs();
                 populateTeamAllocs();
-                /* 
-                getTeams(); //Was this meant to be teamallocs?
-                populateTeamGrid();
-                MessageBox.Show("Team Deleted");
-                */
             }
         }
 
@@ -699,12 +684,12 @@ namespace FrontEndV0._1.forms
         {
             int selectedrowindex = grdTeamInfo.SelectedCells[0].RowIndex; //find the selected row (is only ever one)
             txtTeamID.Text = grdTeamInfo.Rows[selectedrowindex].Cells[0].Value.ToString();
-            cbProjID.SelectedIndex = cbProjID.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[1].Value.ToString());
             cbUnitID.SelectedIndex = cbUnitID.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[2].Value.ToString());
             cbSemester.SelectedIndex = cbSemester.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[3].Value.ToString());
             cbYear.SelectedIndex = cbYear.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[4].Value.ToString());
             cbSupervisor.SelectedIndex = cbSupervisor.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[5].Value.ToString());
-            
+            cbProjID.SelectedIndex = cbProjID.FindString(grdTeamInfo.Rows[selectedrowindex].Cells[1].Value.ToString());
+
             getEnrolments();
             getTeamAllocs();
 
@@ -716,6 +701,107 @@ namespace FrontEndV0._1.forms
         {
             btnDeleteStu.Enabled = true;
             btnAddStu.Enabled = true;
+        }
+
+        private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Fixes it crashing when you actually add an enrolment
+            if (cbUnitID.SelectedItem == null)
+                return;
+
+            if (cbUnitID.SelectedIndex != -1)
+                cbSemester.Enabled = true;
+
+            int rowcnt = projects.Tables[0].Rows.Count;
+            object sem = new object();
+            cbSemester.Items.Clear();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+
+                //find the semesters where the unitID matches the selected one
+                if (projects.Tables[0].Rows[i][2].ToString() == cbUnitID.SelectedItem.ToString())
+                {
+                    sem = projects.Tables[0].Rows[i][3].ToString();
+
+                    //only note one option for semesters once per instance
+                    if (!cbSemester.Items.Contains(sem))
+                        cbSemester.Items.Add(sem);
+
+                    //sort the list numerically/alphabetically
+                    cbSemester.Sorted = true;
+                }
+            }
+        }
+
+        private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Fixes it crashing when you actually add a project
+            if (cbSemester.SelectedItem == null)
+                return;
+
+            if (cbSemester.SelectedIndex != -1)
+                cbYear.Enabled = true;
+
+            int rowcnt = projects.Tables[0].Rows.Count;
+            object year = new object();
+            cbYear.Items.Clear();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                //find the semesters where the unitID matches the selected one
+                if (projects.Tables[0].Rows[i][2].ToString() == cbUnitID.SelectedItem.ToString() && projects.Tables[0].Rows[i][3].ToString() == cbSemester.SelectedItem.ToString())
+                {
+                    year = projects.Tables[0].Rows[i][4].ToString();
+
+                    //only note one option for semesters once per instance
+                    if (!cbYear.Items.Contains(year))
+                        cbYear.Items.Add(year);
+
+                    //sort the list numerically/alphabetically
+                    cbYear.Sorted = true;
+                }
+            }
+        }
+
+        private void cbYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Fixes it crashing when you actually add a project
+            if (cbYear.SelectedItem == null)
+                return;
+
+            if (cbYear.SelectedIndex != -1)
+                cbProjID.Enabled = true;
+
+            int rowcnt = projects.Tables[0].Rows.Count;
+            object projid = new object();
+            cbProjID.Items.Clear();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                //find the semesters where the unitID matches the selected one
+                if (projects.Tables[0].Rows[i][2].ToString() == cbUnitID.SelectedItem.ToString() && 
+                    projects.Tables[0].Rows[i][3].ToString() == cbSemester.SelectedItem.ToString() &&
+                    projects.Tables[0].Rows[i][4].ToString() == cbYear.SelectedItem.ToString() )
+                {
+                    projid = projects.Tables[0].Rows[i][0].ToString();
+
+                    //only note one option for semesters once per instance
+                    if (!cbProjID.Items.Contains(projid))
+                        cbProjID.Items.Add(projid);
+
+                    //sort the list numerically/alphabetically
+                    cbProjID.Sorted = true;
+                }
+            }
+        }
+
+        private void btnToggle_Click(object sender, EventArgs e)
+        {
+            if (gbIdentifyingInformation.Enabled == false)
+                gbIdentifyingInformation.Enabled = true;
+            else
+                gbIdentifyingInformation.Enabled = false;
         }
     }
 }
