@@ -161,7 +161,6 @@ namespace FrontEndV0._1.forms
                     btnDelete.Enabled = true;
                     btnEdit.Enabled = true;
                     grdActionItems.Enabled = true;
-
                 }
             }
             else

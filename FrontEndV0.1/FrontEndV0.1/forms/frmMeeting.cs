@@ -38,6 +38,9 @@ namespace FrontEndV0._1.forms
                 supervisorID = null;
             else
                 supervisorID = user;
+
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(frmMeeting_KeyDown);
         }
 
 
@@ -220,6 +223,17 @@ namespace FrontEndV0._1.forms
 
             //Populate the grid from the dataset
             int rowcnt = meets.Tables[0].Rows.Count;
+            if (rowcnt == 0)
+            {
+                btnActionItems.Enabled = false;
+                btnAgenda.Enabled = false;
+                return;
+            }
+            else
+            {
+                btnActionItems.Enabled = true;
+                btnAgenda.Enabled = true;
+            }
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
@@ -321,6 +335,8 @@ namespace FrontEndV0._1.forms
 
                     grdMeetings.Enabled = true;
                     btnAdd.Text = "Add";
+
+                    lblCancel.Visible = false;
                 }
             }
 
@@ -350,12 +366,17 @@ namespace FrontEndV0._1.forms
                 btnAdd.Text = "Save?";
                 grdMeetings.ClearSelection();
                 grdMeetings.Enabled = false;
+
+                lblCancel.Visible = true;
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (btnEdit.Text == "Save?")
+            if (grdMeetings.SelectedRows.Count == 0)
+                return;
+
+            if (btnEdit.Text == "Update?")
             {
                 OracleCommand cmd = new OracleCommand("UC3_3_Update_Meeting", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -405,12 +426,15 @@ namespace FrontEndV0._1.forms
                 //Enable/disable
                 gbDetails.Enabled = false;
                 cbUnitID.Enabled = true;
+
+                lblCancel.Visible = false;
             }
             else
             {
-                btnEdit.Text = "Save?";
+                btnEdit.Text = "Update?";
 
                 grdMeetings.Enabled = false;
+                lblCancel.Visible = true;
 
                 //disable buttons
                 btnAdd.Enabled = false;
@@ -459,6 +483,8 @@ namespace FrontEndV0._1.forms
                         txtSupervisor.Text = items[9].ToString();
 
                         txtClientName.Text = items[10].ToString();
+
+
                     }
                 }
             }
@@ -669,6 +695,9 @@ namespace FrontEndV0._1.forms
             dtFinishTime.Enabled = true;
             txtMeetingMinutes.Enabled = true;
 
+            if (cbMeetingType.SelectedIndex == -1)
+                return;
+
             if (cbMeetingType.SelectedItem.ToString().ToLower() == "supervisor") // null reference exception here needs to be handled
             {
                 txtSupervisor.Text = supervisorID;
@@ -690,6 +719,8 @@ namespace FrontEndV0._1.forms
         }
 
         #endregion
+
+        #region OtherButtons
 
         private void btnActionItems_Click(object sender, EventArgs e)
         {
@@ -775,10 +806,68 @@ namespace FrontEndV0._1.forms
             }
         }
 
-        private void grdMeetings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        #endregion
+        
+        private void frmMeeting_KeyDown(object sender, KeyEventArgs e)
         {
-            btnActionItems.Enabled = true;
-            btnAgenda.Enabled = true;
+            //MessageBox.Show(e.KeyData.ToString() + "pressed");
+            if (e.KeyCode == Keys.Escape)
+            {
+                //cancel for the add button
+                if (btnAdd.Text == "Save?")
+                {
+                    //clear fields
+                    cbUnitID.SelectedIndex = -1;
+                    cbSemester.SelectedIndex = -1;
+                    cbYear.SelectedIndex = -1;
+                    cbTeamID.SelectedIndex = -1;
+                    txtMeetID.Clear();
+                    cbMeetingType.SelectedIndex = -1;
+                    txtSupervisor.Clear();
+                    txtClientName.Clear();
+                    chkApproved.Checked = false;
+                    txtMeetingMinutes.Clear();
+
+                    //disable fields
+                    gbIdentifyingInformation.Enabled = false;
+                    gbDetails.Enabled = false;
+
+                    //reset buttons
+                    btnAdd.Text = "Add";
+                    btnEdit.Enabled = true;
+                    btnDelete.Enabled = true;
+                }
+
+                //cancel for the add button
+                if (btnEdit.Text == "Update?")
+                {
+                    //clear fields
+                    cbUnitID.SelectedIndex = -1;
+                    cbSemester.SelectedIndex = -1;
+                    cbYear.SelectedIndex = -1;
+                    cbTeamID.SelectedIndex = -1;
+                    txtMeetID.Clear();
+                    cbMeetingType.SelectedIndex = -1;
+                    txtSupervisor.Clear();
+                    txtClientName.Clear();
+                    chkApproved.Checked = false;
+                    txtMeetingMinutes.Clear();
+
+                    //disable fields
+                    gbIdentifyingInformation.Enabled = false;
+                    gbDetails.Enabled = false;
+
+                    //reset buttons
+                    btnEdit.Text = "Edit";
+                    btnAdd.Enabled = true;
+                    btnDelete.Enabled = true;
+                    grdMeetings.Enabled = true;
+                }
+
+                lblCancel.Visible = false;
+            }
         }
+
+       
     }
 }
