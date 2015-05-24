@@ -679,9 +679,30 @@ namespace FrontEndV0._1.forms
         private void cbTeamID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbTeamID.SelectedIndex != -1)
+            {
                 txtMeetID.Enabled = true;
-            cbMeetingType.Enabled = true;
+                cbMeetingType.Enabled = true;
 
+                //calculate number of meetings and suggest the next MeetID
+                int rowcount = meets.Tables[0].Rows.Count;
+                int meetcount = 0;
+                object[] items;
+                for (int i = 0; i < rowcount; i++)
+                {
+                    items = meets.Tables[0].Rows[i].ItemArray;
+
+                    //Checking if selected meeting matches in the dataset
+                    if (Convert.ToString(items[2]) == cbUnitID.SelectedItem.ToString()
+                        && Convert.ToString(items[3]) == cbSemester.SelectedItem.ToString()
+                        && Convert.ToString(items[4]) == cbYear.SelectedItem.ToString()
+                        && Convert.ToString(items[1]) == cbTeamID.SelectedItem.ToString() )
+                    {
+                        meetcount++;
+                    }
+                }
+                meetcount++;
+                txtMeetID.Text = meetcount.ToString(); //suggest the next MeetingID
+            }
         }
 
         private void txtMeetID_TextChanged(object sender, EventArgs e)
@@ -836,6 +857,7 @@ namespace FrontEndV0._1.forms
                     btnAdd.Text = "Add";
                     btnEdit.Enabled = true;
                     btnDelete.Enabled = true;
+                    grdMeetings.Enabled = true;
                 }
 
                 //cancel for the add button
