@@ -254,7 +254,6 @@ namespace FrontEndV0._1.forms
         #region Add/Edit/DEL buttons
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("THANK FUCK");
 
             //Logic and functions for save button
             if (btnAdd.Text == "Save?")
@@ -509,6 +508,9 @@ namespace FrontEndV0._1.forms
                 ErrorMsg += Environment.NewLine + "Please enter a Meeting Number.";
             if (cbMeetingType.SelectedItem == null)
                 ErrorMsg += Environment.NewLine + "Please select a Meeting Type.";
+            if ((Convert.ToDateTime(dtFinishTime.Text)) < (Convert.ToDateTime(dtStartTime.Text)))
+                ErrorMsg += Environment.NewLine + "Finish time cannot be before start time";
+
 
             if (ErrorMsg != null)
             {
@@ -667,11 +669,12 @@ namespace FrontEndV0._1.forms
             dtFinishTime.Enabled = true;
             txtMeetingMinutes.Enabled = true;
 
-            if (cbMeetingType.SelectedItem.ToString().ToLower() == "supervisor")
+            if (cbMeetingType.SelectedItem.ToString().ToLower() == "supervisor") // null reference exception here needs to be handled
             {
                 txtSupervisor.Text = supervisorID;
                 txtClientName.Enabled = false;
             }
+            
 
             if (cbMeetingType.SelectedItem.ToString().ToLower() == "client")
             {
@@ -701,7 +704,7 @@ namespace FrontEndV0._1.forms
         {
             if (FormValidated())
             {
-                frmAgenda = new frmAgenda(txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
+                frmAgenda = new frmAgenda(this, txtMeetID.Text.ToString(), cbTeamID.SelectedItem.ToString(), cbUnitID.SelectedItem.ToString(), cbSemester.SelectedItem.ToString(), cbYear.SelectedItem.ToString());
                 frmAgenda.Show();
             }
         }
@@ -770,6 +773,12 @@ namespace FrontEndV0._1.forms
                 grdMeetings.Enabled = false;
                 gbButtons.Enabled = false;
             }
+        }
+
+        private void grdMeetings_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnActionItems.Enabled = true;
+            btnAgenda.Enabled = true;
         }
     }
 }

@@ -853,25 +853,27 @@ END;
 
 /
 
-
 CREATE or REPLACE FUNCTION UC2_11_View_Assessment
+	(user varchar2, role varchar2)
 	RETURN SYS_REFCURSOR AS ass SYS_REFCURSOR;
 	a Assessment%ROWTYPE;
 BEGIN
-	OPEN ass for select * from Assessment;
-	--LOOP
-	--	Fetch unts into u;
-	--	Exit When unts%NOTFOUND;
-	--	dbms_output.put_line('Unit ID: '|| u.UnitId --for testing
-	--					 || ' Unit Name: ' || u.UnitName
-	--					 || ' Unit Description: ' || u.UnitDesc);
-	--End Loop;
+	IF role = 'admin' THEN
+      OPEN ass for select * from Assessment;
+	elsif role = 'convenor' then
+	  OPEN ass for select * from Assessment where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from UnitOffering where LOWER(EmpId) = LOWER(user));
+    elsif role = 'supervisor' then
+      OPEN ass for select * from Assessment where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from Team where LOWER(EmpID) = LOWER(user));
+    elsif role = 'student' then
+      OPEN ass for select * from Assessment where (UnitID, Semester, Year) IN (select UnitID, Semester, Year from Enrolment where LOWER(stuId) = LOWER(user)); 
+    --else --backup plan
+    --    OPEN me for select * from Assessment;
+    END IF;
 	return ass;
 EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
 End;
-
 /
 
 
@@ -896,7 +898,7 @@ END;
 
 --create or replace PROCEDURE UC2_13_Register_Ass_Allo
 --		(pAssID varchar2,
---	pUnitID varchar2, 
+--	pUnitID varchar2,
 --	pSemester number,
 --	pYear number,
 --	pStuID varchar2,
@@ -1621,11 +1623,9 @@ CREATE or REPLACE PROCEDURE UC3_9_Add_AgendaItem
 	pSemester number,
 	pYear number,
 	pAgendaNum number,
-	pAgendaDesc varchar2,
-	pStuID varchar2,
-	pDueDate date) AS
+	pAgendaDesc varchar2) AS
 BEGIN
-	INSERT INTO AgendaItem VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pAgendaNum, pAgendaDesc, pStuID, pDueDate);
+	INSERT INTO AgendaItem VALUES (pMeetingID, pTeamID, pUnitID, pSemester, pYear, pAgendaNum, pAgendaDesc);
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
 		RAISE_APPLICATION_ERROR(-20001, 'AgendaItem: ' || pAgendaNum || ' already exists.');
@@ -1663,14 +1663,10 @@ CREATE OR REPLACE PROCEDURE UC3_11_Update_AgendaItem
 		pSemester number,
 		pYear number,
 		pAgendaNum number,
-		pAgendaDesc varchar2,
-		pStuID varchar2,
-		pDueDate date) AS
+		pAgendaDesc varchar2) AS
 BEGIN
 UPDATE AgendaItem
-SET AgendaDesc = pAgendaDesc,
-	StuID = pStuID,
-	DueDate = pDueDate
+SET AgendaDesc = pAgendaDesc
 WHERE MeetingID = pMeetingID and
 		TeamID = pTeamID and
 		UnitID = pUnitID and

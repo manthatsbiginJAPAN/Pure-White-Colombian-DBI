@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DateTimePicker dtDue;
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.cbStuID = new System.Windows.Forms.ComboBox();
-            this.dtDue = new System.Windows.Forms.DateTimePicker();
             this.txtActionItem = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtActionDesc = new System.Windows.Forms.TextBox();
@@ -38,7 +38,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.lblActionItems = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.lblStuID = new System.Windows.Forms.Label();
             this.lblDueDate = new System.Windows.Forms.Label();
             this.lblActionDesc = new System.Windows.Forms.Label();
@@ -48,14 +48,15 @@
             this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            dtDue = new System.Windows.Forms.DateTimePicker();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdActionItems)).BeginInit();
             this.SuspendLayout();
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(dtDue);
             this.gbDetails.Controls.Add(this.cbStuID);
-            this.gbDetails.Controls.Add(this.dtDue);
             this.gbDetails.Controls.Add(this.txtActionItem);
             this.gbDetails.Controls.Add(this.btnAdd);
             this.gbDetails.Controls.Add(this.txtActionDesc);
@@ -63,11 +64,10 @@
             this.gbDetails.Controls.Add(this.btnEdit);
             this.gbDetails.Controls.Add(this.lblActionItems);
             this.gbDetails.Controls.Add(this.label1);
-            this.gbDetails.Controls.Add(this.cmbStatus);
+            this.gbDetails.Controls.Add(this.cbStatus);
             this.gbDetails.Controls.Add(this.lblStuID);
             this.gbDetails.Controls.Add(this.lblDueDate);
             this.gbDetails.Controls.Add(this.lblActionDesc);
-            this.gbDetails.Enabled = false;
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDetails.Location = new System.Drawing.Point(12, 49);
             this.gbDetails.Name = "gbDetails";
@@ -83,14 +83,6 @@
             this.cbStuID.Name = "cbStuID";
             this.cbStuID.Size = new System.Drawing.Size(121, 21);
             this.cbStuID.TabIndex = 81;
-            // 
-            // dtDue
-            // 
-            this.dtDue.Location = new System.Drawing.Point(144, 104);
-            this.dtDue.Margin = new System.Windows.Forms.Padding(2);
-            this.dtDue.Name = "dtDue";
-            this.dtDue.Size = new System.Drawing.Size(193, 20);
-            this.dtDue.TabIndex = 78;
             // 
             // txtActionItem
             // 
@@ -147,11 +139,11 @@
             // 
             this.lblActionItems.AutoSize = true;
             this.lblActionItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActionItems.Location = new System.Drawing.Point(13, 22);
+            this.lblActionItems.Location = new System.Drawing.Point(13, 30);
             this.lblActionItems.Name = "lblActionItems";
-            this.lblActionItems.Size = new System.Drawing.Size(106, 20);
+            this.lblActionItems.Size = new System.Drawing.Size(132, 20);
             this.lblActionItems.TabIndex = 76;
-            this.lblActionItems.Text = "Action Item:";
+            this.lblActionItems.Text = "Action Number:";
             // 
             // label1
             // 
@@ -163,16 +155,16 @@
             this.label1.TabIndex = 48;
             this.label1.Text = "Complete?:";
             // 
-            // cmbStatus
+            // cbStatus
             // 
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
             "Y",
             "N"});
-            this.cmbStatus.Location = new System.Drawing.Point(144, 132);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(40, 21);
-            this.cmbStatus.TabIndex = 45;
+            this.cbStatus.Location = new System.Drawing.Point(144, 132);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(40, 21);
+            this.cbStatus.TabIndex = 45;
             // 
             // lblStuID
             // 
@@ -249,8 +241,18 @@
             // 
             // colStatus
             // 
-            this.colStatus.HeaderText = "Status";
+            this.colStatus.HeaderText = "Complete?";
             this.colStatus.Name = "colStatus";
+            // 
+            // dtDue
+            // 
+            dtDue.CustomFormat = "hh:mm tt dd/MM/yyyy";
+            dtDue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            dtDue.Location = new System.Drawing.Point(144, 104);
+            dtDue.Margin = new System.Windows.Forms.Padding(2);
+            dtDue.Name = "dtDue";
+            dtDue.Size = new System.Drawing.Size(193, 20);
+            dtDue.TabIndex = 82;
             // 
             // frmActionItems
             // 
@@ -281,16 +283,15 @@
         public System.Windows.Forms.Label lblActionDesc;
         public System.Windows.Forms.TextBox txtActionDesc;
         public System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.ComboBox cbStatus;
         public System.Windows.Forms.Label lblStuID;
         public System.Windows.Forms.DataGridView grdActionItems;
         public System.Windows.Forms.TextBox txtActionItem;
         public System.Windows.Forms.Label lblActionItems;
-        private System.Windows.Forms.DateTimePicker dtDue;
+        private System.Windows.Forms.ComboBox cbStuID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colActionNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStuID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDueDate;
-        private System.Windows.Forms.ComboBox cbStuID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
 
 

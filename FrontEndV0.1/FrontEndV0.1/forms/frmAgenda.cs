@@ -6,20 +6,33 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.Layout;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 
 namespace FrontEndV0._1.forms
 {
     public partial class frmAgenda : Form
     {
+        private OracleConnection connection;
+        private Connection conn = new Connection("s7663285", "123");
+
+        private DataSet agendas;
+
         private string MeetingID;
         private string TeamID;
         private string UnitID;
         private string Semester;
         private string Year;
 
-        public frmAgenda(string meetingID, string teamID, string unitID, string semester, string year)
+        private frmMeeting _parent;
+
+        public frmAgenda(frmMeeting parent, string meetingID, string teamID, string unitID, string semester, string year)
         {
             InitializeComponent();
+            connection = conn.oraConn();
+
+            _parent = parent;
             MeetingID = meetingID;
             TeamID = teamID;
             UnitID = unitID;
@@ -29,7 +42,122 @@ namespace FrontEndV0._1.forms
 
         private void frmAgenda_Load(object sender, EventArgs e)
         {
+            getAgendaItems();
 
+            populateAgendasGrid();
+        }
+
+        private void getAgendaItems()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC3_10_View_AgendaItem", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("agendacursor", OracleDbType.RefCursor);
+            cmd.Parameters["agendacursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("meetid", Convert.ToInt16(MeetingID));
+            cmd.Parameters.Add("teamid", TeamID);
+            cmd.Parameters.Add("unitid", UnitID);
+            cmd.Parameters.Add("semester", Convert.ToInt16(Semester));
+            cmd.Parameters.Add("year", Convert.ToInt16(Year));
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            agendas = new DataSet();
+
+            da.Fill(agendas, "agendacursor", (OracleRefCursor)(cmd.Parameters["agendacursor"].Value));
+
+            connection.Close();
+        }
+
+        private void populateAgendasGrid()
+        {
+            //Clear the grid
+            grdAgendaItems.Rows.Clear();
+
+            //Populate the grid from the dataset
+            int rowcnt = agendas.Tables[0].Rows.Count;
+
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                object[] items = agendas.Tables[0].Rows[i].ItemArray;
+                grdAgendaItems.Rows.Add(new object[] { items[5], items[6]});
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (btnAdd.Text == "Save?")
+            {
+                //Command to add Unit
+                if (FormValidated())
+                {
+                    OracleCommand cmd = new OracleCommand("UC3_9_Add_AgendaItem", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("meetingid", MeetingID);
+                    cmd.Parameters.Add("teamid", TeamID);
+                    cmd.Parameters.Add("unitid", UnitID);
+                    cmd.Parameters.Add("semester", Semester);
+                    cmd.Parameters.Add("year", Year);
+                    cmd.Parameters.Add("actionnum", Convert.ToInt16(txtAgendaNum.Text));
+                    cmd.Parameters.Add("actiondesc", txtAgendaDesc.Text);
+
+                    //Repopulate data
+                    getAgendaItems();
+                    populateAgendasGrid();
+
+                    //Enable buttons and grid
+                    btnDelete.Enabled = true;
+                    btnEdit.Enabled = true;
+                    grdAgendaItems.Enabled = true;
+
+                }
+            }
+            else
+            {
+                btnAdd.Text = "Save?";
+
+                //disable buttons and grid
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                grdAgendaItems.Enabled = false;
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool FormValidated()
+        {
+            //Track a cummulative error message, appending when a particular condition is not met
+            string ErrorMsg = null;
+
+            if (txtAgendaNum.Text == null)
+                ErrorMsg += Environment.NewLine + "Please enter a Agenda Number.";
+
+            if (txtAgendaDesc.Text == null)
+                ErrorMsg += Environment.NewLine + "Please enter an Agenda Description";
+
+            if (ErrorMsg != null)
+            {
+                MessageBox.Show(ErrorMsg, "Agenda Item information invalid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
