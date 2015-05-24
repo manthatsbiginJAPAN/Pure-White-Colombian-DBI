@@ -106,6 +106,10 @@ namespace FrontEndV0._1.forms
                     cmd.Parameters.Add("actionnum", Convert.ToInt16(txtAgendaNum.Text));
                     cmd.Parameters.Add("actiondesc", txtAgendaDesc.Text);
 
+                    connection.Open();
+                    OracleDataAdapter da = new OracleDataAdapter(cmd);
+                    cmd.ExecuteNonQuery();
+
                     //Repopulate data
                     getAgendaItems();
                     populateAgendasGrid();
@@ -114,6 +118,8 @@ namespace FrontEndV0._1.forms
                     btnDelete.Enabled = true;
                     btnEdit.Enabled = true;
                     grdAgendaItems.Enabled = true;
+                    btnAdd.Enabled = true;
+                    btnAdd.Text = "Add";
 
                 }
             }

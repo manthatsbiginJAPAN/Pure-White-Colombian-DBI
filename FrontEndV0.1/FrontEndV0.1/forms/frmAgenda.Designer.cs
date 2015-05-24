@@ -53,7 +53,6 @@
             this.gbDetails.Controls.Add(this.lblAgendaNum);
             this.gbDetails.Controls.Add(this.txtAgendaDesc);
             this.gbDetails.Controls.Add(this.lblActionDesc);
-            this.gbDetails.Enabled = false;
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDetails.Location = new System.Drawing.Point(12, 47);
             this.gbDetails.Name = "gbDetails";

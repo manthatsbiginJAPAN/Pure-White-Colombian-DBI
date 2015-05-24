@@ -777,8 +777,7 @@ namespace FrontEndV0._1.forms
 
         private void grdMeetings_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnActionItems.Enabled = true;
-            btnAgenda.Enabled = true;
+
         }
     }
 }

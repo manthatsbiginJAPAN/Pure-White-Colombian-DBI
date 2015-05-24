@@ -14,7 +14,6 @@ namespace FrontEndV0._1.forms
 {
     public partial class frmActionItems : Form
     {
-
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
 
@@ -40,7 +39,6 @@ namespace FrontEndV0._1.forms
             UnitID = unitID;
             Semester = semester;
             Year = year;
-
             
         }
 
@@ -109,7 +107,7 @@ namespace FrontEndV0._1.forms
             grdActionItems.Rows.Clear();
 
             //Populate the grid from the dataset
-            int rowcnt = actions.Tables[0].Rows.Count;
+            int rowcnt = actions.Tables["actioncursor"].Rows.Count;
            
 
             for (int i = 0; i <= rowcnt - 1; i++)
@@ -117,6 +115,7 @@ namespace FrontEndV0._1.forms
                 object[] items = actions.Tables[0].Rows[i].ItemArray;
                 grdActionItems.Rows.Add(new object[] { items[5], items[7], items[8], items[9] });
             }
+
         }
 
         private void populateStudents()
@@ -143,25 +142,33 @@ namespace FrontEndV0._1.forms
                     OracleCommand cmd = new OracleCommand("UC3_13_Add_ActionItem", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("meetingid", MeetingID);
+                    cmd.Parameters.Add("meetingid", Convert.ToInt16(MeetingID));
                     cmd.Parameters.Add("teamid", TeamID);
                     cmd.Parameters.Add("unitid", UnitID);
-                    cmd.Parameters.Add("semester", Semester);
-                    cmd.Parameters.Add("year", Year);
+                    cmd.Parameters.Add("semester", Convert.ToInt16(Semester));
+                    cmd.Parameters.Add("year", Convert.ToInt16(Year));
                     cmd.Parameters.Add("actionnum", Convert.ToInt16(txtActionItem.Text));
                     cmd.Parameters.Add("actiondesc", txtActionDesc.Text);
                     cmd.Parameters.Add("stuid", cbStuID.SelectedItem.ToString());
+                    cmd.Parameters.Add("duedate", Convert.ToDateTime("11:11 11/11/2016"));
                     cmd.Parameters.Add("status", cbStatus.SelectedItem.ToString());
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("added action");
+                    connection.Close();
 
                     //Repopulate data
                     getActionItems();
                     populateActionsGrid();
 
                     //Enable buttons and grid
-                    btnDelete.Enabled = true;
+                    btnDelete.Enabled = true;       
                     btnEdit.Enabled = true;
                     grdActionItems.Enabled = true;
 
+                    btnAdd.Text = "Add";
+                    btnAdd.Enabled = true;
                 }
             }
             else
@@ -169,7 +176,7 @@ namespace FrontEndV0._1.forms
                 btnAdd.Text = "Save?";         
 
                 //disable buttons and grid
-                btnAdd.Enabled = false;
+                btnAdd.Enabled = true;
                 btnDelete.Enabled = false;
                 grdActionItems.Enabled = false;
             }
@@ -191,8 +198,16 @@ namespace FrontEndV0._1.forms
                     cmd.Parameters.Add("year", Year);
                     cmd.Parameters.Add("actionnum", Convert.ToInt16(txtActionItem.Text));
                     cmd.Parameters.Add("actiondesc", txtActionDesc.Text);
-                    cmd.Parameters.Add("stuid", cbStuID.SelectedItem.ToString());
-                    cmd.Parameters.Add("status", cbStatus.SelectedItem.ToString());
+                    if (cbStuID.SelectedIndex == -1)
+                        cmd.Parameters.Add("stuid", null);
+                    else
+                        cmd.Parameters.Add("stuid", cbStuID.SelectedItem.ToString());
+
+                    if (cbStatus.SelectedIndex == -1)
+                        cmd.Parameters.Add("status", null);
+                    else
+                        cmd.Parameters.Add("status", cbStatus.SelectedItem.ToString());
+
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
@@ -260,7 +275,7 @@ namespace FrontEndV0._1.forms
             //Track a cummulative error message, appending when a particular condition is not met
             string ErrorMsg = null;
 
-            if (txtActionItem.Text == null)
+            if (txtActionItem.Text == "")
                 ErrorMsg += Environment.NewLine + "Please enter a Action Number.";
             if (cbStuID.SelectedIndex == -1)
                 ErrorMsg += Environment.NewLine + "Please select a Student ID.";
