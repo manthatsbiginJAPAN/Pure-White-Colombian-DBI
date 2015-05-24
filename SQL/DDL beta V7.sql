@@ -11,6 +11,7 @@ DROP TABLE Team CASCADE CONSTRAINTS;
 DROP TABLE Project CASCADE CONSTRAINTS;
 
 DROP TABLE AssessmentCriterion CASCADE CONSTRAINTS;
+DROP TABLE AssessmentTaskPeriod CASCADE CONSTRAINTS;
 DROP TABLE AssessmentTask CASCADE CONSTRAINTS;
 DROP TABLE Assessment CASCADE CONSTRAINTS;
 
@@ -137,7 +138,7 @@ AssID varchar2(10)
 
 CREATE TABLE AssessmentTask( --stores master data for each task a convener sets for the group 'Team Contribution' document
 TaskID number(2)
-, AssID varchar2(10) NOT NULL
+, AssID varchar2(10)
 , UnitID varchar2(10)
 , Semester number(1)
 , Year number(4)
@@ -149,6 +150,19 @@ TaskID number(2)
 
 /
 
+CREATE TABLE AssessmentTaskPeriod(
+Period number(3)
+, TaskID number(2)
+, AssID varchar2(10)
+, UnitID varchar2(10)
+, Semester number(1)
+, Year number(4)
+, PeriodDate date
+, PRIMARY KEY (Period, TaskID, AssID, UnitID, Semester, Year)
+, FOREIGN KEY (TaskID, AssID, UnitID, Semester, Year) REFERENCES AssessmentTask
+);
+
+/
 
 CREATE TABLE AssessmentCriterion( --stores master data for each criterion a convener sets for the individual 'Peer Assessment' document
 CriterionID number(2)
@@ -208,19 +222,18 @@ TeamID varchar2(10) -- do we need 'not null'
 /
 
 CREATE TABLE StudentHours( --an individual's scores of hours for each assessment task in a 'Team Contribution' document
-TaskID number(2)
+Period number(3)
+, TaskID number(2)
 , StuID varchar2(10)
 , AssID varchar2(10)
 , UnitID varchar2(10)
 , Semester number(1)
 , Year number(4)
 , TeamID varchar2(10)
-, Period number(2)
---, TargetStuID varchar2(10)
 , Hours number(3)
 , DateSubmitted date
-, PRIMARY KEY (TaskID, StuID, AssID, UnitID, Semester, Year, TargetStuID)
-, FOREIGN KEY (TaskID, AssID, UnitID, Semester, Year) REFERENCES AssessmentTask
+, PRIMARY KEY (Period, TaskID, StuID, AssID, UnitID, Semester, Year)
+, FOREIGN KEY (Period, TaskID, AssID, UnitID, Semester, Year) REFERENCES AssessmentTaskPeriod
 , FOREIGN KEY (TeamID, UnitID, Semester, Year, StuID) REFERENCES StudentTeamAllocation
 );
 

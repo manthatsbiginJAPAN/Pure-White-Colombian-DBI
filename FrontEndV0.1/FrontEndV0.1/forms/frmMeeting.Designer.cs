@@ -79,6 +79,7 @@
             this.Approved = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLoadAttendees = new System.Windows.Forms.Button();
             this.gbButtons = new System.Windows.Forms.GroupBox();
+            this.lblCancel = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnActionItems = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -384,7 +385,7 @@
             this.cbTeamID.Location = new System.Drawing.Point(156, 138);
             this.cbTeamID.Name = "cbTeamID";
             this.cbTeamID.Size = new System.Drawing.Size(121, 21);
-            this.cbTeamID.TabIndex = 41;
+            this.cbTeamID.TabIndex = 37;
             this.cbTeamID.SelectedIndexChanged += new System.EventHandler(this.cbTeamID_SelectedIndexChanged);
             // 
             // cbSemester
@@ -505,7 +506,6 @@
             this.grdMeetings.Size = new System.Drawing.Size(416, 355);
             this.grdMeetings.TabIndex = 47;
             this.grdMeetings.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMeetings_CellClick);
-            this.grdMeetings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdMeetings_CellContentClick);
             // 
             // colMeetID
             // 
@@ -588,6 +588,7 @@
             // 
             // gbButtons
             // 
+            this.gbButtons.Controls.Add(this.lblCancel);
             this.gbButtons.Controls.Add(this.btnAdd);
             this.gbButtons.Controls.Add(this.btnActionItems);
             this.gbButtons.Controls.Add(this.btnEdit);
@@ -598,6 +599,16 @@
             this.gbButtons.Size = new System.Drawing.Size(147, 245);
             this.gbButtons.TabIndex = 61;
             this.gbButtons.TabStop = false;
+            // 
+            // lblCancel
+            // 
+            this.lblCancel.AutoSize = true;
+            this.lblCancel.Location = new System.Drawing.Point(18, 138);
+            this.lblCancel.Name = "lblCancel";
+            this.lblCancel.Size = new System.Drawing.Size(114, 13);
+            this.lblCancel.TabIndex = 71;
+            this.lblCancel.Text = "*Press [ESC] to cancel";
+            this.lblCancel.Visible = false;
             // 
             // btnAdd
             // 
@@ -667,6 +678,7 @@
             this.Controls.Add(this.gbIdentifyingInformation);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.grdMeetings);
+            this.KeyPreview = true;
             this.Name = "frmMeeting";
             this.Load += new System.EventHandler(this.frmMeeting_Load);
             this.gbDetails.ResumeLayout(false);
@@ -676,6 +688,7 @@
             this.gbIdentifyingInformation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMeetings)).EndInit();
             this.gbButtons.ResumeLayout(false);
+            this.gbButtons.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -736,5 +749,6 @@
         public System.Windows.Forms.Button btnEdit;
         public System.Windows.Forms.Button btnAgenda;
         public System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label lblCancel;
     }
 }

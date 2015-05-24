@@ -51,10 +51,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(397, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(298, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(363, 41);
+            this.label1.Size = new System.Drawing.Size(297, 34);
             this.label1.TabIndex = 47;
             this.label1.Text = "Student Assessments";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -67,71 +66,63 @@
             this.gbDetails.Controls.Add(this.lblDesc);
             this.gbDetails.Controls.Add(this.txtTitle);
             this.gbDetails.Controls.Add(this.lblAssTitle);
-            this.gbDetails.Location = new System.Drawing.Point(33, 97);
-            this.gbDetails.Margin = new System.Windows.Forms.Padding(4);
+            this.gbDetails.Location = new System.Drawing.Point(25, 79);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.gbDetails.Size = new System.Drawing.Size(551, 668);
+            this.gbDetails.Size = new System.Drawing.Size(413, 543);
             this.gbDetails.TabIndex = 48;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
             // 
             // txtMarkingGuide
             // 
-            this.txtMarkingGuide.Location = new System.Drawing.Point(27, 411);
-            this.txtMarkingGuide.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMarkingGuide.Location = new System.Drawing.Point(20, 334);
             this.txtMarkingGuide.Multiline = true;
             this.txtMarkingGuide.Name = "txtMarkingGuide";
-            this.txtMarkingGuide.Size = new System.Drawing.Size(488, 232);
+            this.txtMarkingGuide.Size = new System.Drawing.Size(367, 189);
             this.txtMarkingGuide.TabIndex = 53;
             // 
             // lblMarkingGuide
             // 
             this.lblMarkingGuide.AutoSize = true;
             this.lblMarkingGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarkingGuide.Location = new System.Drawing.Point(23, 380);
-            this.lblMarkingGuide.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMarkingGuide.Location = new System.Drawing.Point(17, 309);
             this.lblMarkingGuide.Name = "lblMarkingGuide";
-            this.lblMarkingGuide.Size = new System.Drawing.Size(159, 25);
+            this.lblMarkingGuide.Size = new System.Drawing.Size(130, 20);
             this.lblMarkingGuide.TabIndex = 52;
             this.lblMarkingGuide.Text = "Marking Guide:";
             // 
             // txtDesc
             // 
-            this.txtDesc.Location = new System.Drawing.Point(27, 191);
-            this.txtDesc.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDesc.Location = new System.Drawing.Point(20, 155);
             this.txtDesc.Multiline = true;
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(488, 127);
+            this.txtDesc.Size = new System.Drawing.Size(367, 104);
             this.txtDesc.TabIndex = 51;
             // 
             // lblDesc
             // 
             this.lblDesc.AutoSize = true;
             this.lblDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDesc.Location = new System.Drawing.Point(23, 160);
-            this.lblDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDesc.Location = new System.Drawing.Point(17, 130);
             this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(127, 25);
+            this.lblDesc.Size = new System.Drawing.Size(105, 20);
             this.lblDesc.TabIndex = 50;
             this.lblDesc.Text = "Description:";
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(93, 39);
-            this.txtTitle.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTitle.Location = new System.Drawing.Point(70, 32);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(421, 22);
+            this.txtTitle.Size = new System.Drawing.Size(317, 20);
             this.txtTitle.TabIndex = 49;
             // 
             // lblAssTitle
             // 
             this.lblAssTitle.AutoSize = true;
             this.lblAssTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAssTitle.Location = new System.Drawing.Point(29, 39);
-            this.lblAssTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAssTitle.Location = new System.Drawing.Point(22, 32);
             this.lblAssTitle.Name = "lblAssTitle";
-            this.lblAssTitle.Size = new System.Drawing.Size(61, 25);
+            this.lblAssTitle.Size = new System.Drawing.Size(48, 20);
             this.lblAssTitle.TabIndex = 48;
             this.lblAssTitle.Text = "Title:";
             // 
@@ -148,11 +139,10 @@
             this.UnitID,
             this.Semester,
             this.Year});
-            this.grdAssessments.Location = new System.Drawing.Point(624, 105);
-            this.grdAssessments.Margin = new System.Windows.Forms.Padding(4);
+            this.grdAssessments.Location = new System.Drawing.Point(468, 85);
             this.grdAssessments.Name = "grdAssessments";
             this.grdAssessments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdAssessments.Size = new System.Drawing.Size(520, 591);
+            this.grdAssessments.Size = new System.Drawing.Size(390, 480);
             this.grdAssessments.TabIndex = 49;
             this.grdAssessments.SelectionChanged += new System.EventHandler(this.grdAssessments_SelectionChanged);
             // 
@@ -179,10 +169,9 @@
             // btnPeerAssessment
             // 
             this.btnPeerAssessment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPeerAssessment.Location = new System.Drawing.Point(892, 718);
-            this.btnPeerAssessment.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPeerAssessment.Location = new System.Drawing.Point(669, 583);
             this.btnPeerAssessment.Name = "btnPeerAssessment";
-            this.btnPeerAssessment.Size = new System.Drawing.Size(252, 46);
+            this.btnPeerAssessment.Size = new System.Drawing.Size(189, 37);
             this.btnPeerAssessment.TabIndex = 50;
             this.btnPeerAssessment.Text = "Peer Assessment";
             this.btnPeerAssessment.UseVisualStyleBackColor = true;
@@ -191,10 +180,9 @@
             // btnTeamContribution
             // 
             this.btnTeamContribution.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeamContribution.Location = new System.Drawing.Point(624, 718);
-            this.btnTeamContribution.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTeamContribution.Location = new System.Drawing.Point(468, 583);
             this.btnTeamContribution.Name = "btnTeamContribution";
-            this.btnTeamContribution.Size = new System.Drawing.Size(260, 46);
+            this.btnTeamContribution.Size = new System.Drawing.Size(195, 37);
             this.btnTeamContribution.TabIndex = 51;
             this.btnTeamContribution.Text = "Team Contribution";
             this.btnTeamContribution.UseVisualStyleBackColor = true;
@@ -202,15 +190,15 @@
             // 
             // frmStuAssessment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 795);
+            this.ClientSize = new System.Drawing.Size(884, 646);
             this.Controls.Add(this.btnPeerAssessment);
             this.Controls.Add(this.btnTeamContribution);
             this.Controls.Add(this.grdAssessments);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmStuAssessment";
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();

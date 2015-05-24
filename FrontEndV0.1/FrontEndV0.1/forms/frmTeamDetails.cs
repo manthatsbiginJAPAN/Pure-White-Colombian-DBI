@@ -585,6 +585,9 @@ namespace FrontEndV0._1.forms
 
         private void btnAddStu_Click(object sender, EventArgs e)
         {
+            if (grdTeamInfo.SelectedRows.Count == 0)
+                return;
+
             //Logic and functions for save button
             if (btnAddStu.Text == "Save?")
             {
@@ -622,7 +625,7 @@ namespace FrontEndV0._1.forms
                     txtTeamID.Clear();
                     cbStuID.SelectedIndex = -1;
 
-                    grdTeamInfo.ClearSelection();
+                    grdTeamInfo.Enabled = true;
                     btnAddStu.Text = "Add";
                 }
             }
@@ -639,6 +642,9 @@ namespace FrontEndV0._1.forms
 
                 //Change button text
                 btnAddStu.Text = "Save?";
+
+                //disable Teamgrid
+                grdTeamInfo.Enabled = false;
             }
         }
 

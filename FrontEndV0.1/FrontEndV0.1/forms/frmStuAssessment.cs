@@ -114,7 +114,11 @@ namespace FrontEndV0._1.forms
 
         private void btnPeerAssessment_Click(object sender, EventArgs e)
         {
-            frmStuTeamCont = new frmStuTeamContribution();
+            frmStuTeamCont = new frmStuTeamContribution
+                ( Convert.ToString(grdAssessments.SelectedRows[0].Cells[0].Value)
+                , Convert.ToString(grdAssessments.SelectedRows[0].Cells[1].Value)
+                , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[2].Value)
+                , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[3].Value) );
             frmStuTeamCont.Show();
         }
 
