@@ -98,21 +98,30 @@ namespace FrontEndV0._1.forms
                     OracleCommand cmd = new OracleCommand("UC3_9_Add_AgendaItem", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("meetingid", MeetingID);
+                    cmd.Parameters.Add("meetingid", Convert.ToInt16(MeetingID));
                     cmd.Parameters.Add("teamid", TeamID);
                     cmd.Parameters.Add("unitid", UnitID);
                     cmd.Parameters.Add("semester", Semester);
                     cmd.Parameters.Add("year", Year);
-                    cmd.Parameters.Add("actionnum", Convert.ToInt16(txtAgendaNum.Text));
-                    cmd.Parameters.Add("actiondesc", txtAgendaDesc.Text);
+                    cmd.Parameters.Add("agendanum", Convert.ToInt16(txtAgendaNum.Text));
+                    cmd.Parameters.Add("agendadesc", txtAgendaDesc.Text);
 
                     connection.Open();
                     OracleDataAdapter da = new OracleDataAdapter(cmd);
                     cmd.ExecuteNonQuery();
+                    connection.Close();
+                    MessageBox.Show("Added AgendaItem " + txtAgendaNum.Text);
 
                     //Repopulate data
                     getAgendaItems();
                     populateAgendasGrid();
+
+                    //disable textboxes
+                    txtAgendaDesc.Enabled = false;
+                    txtAgendaNum.Enabled = false;
+                    //clear textboxes
+                    txtAgendaNum.Clear();
+                    txtAgendaDesc.Clear();
 
                     //Enable buttons and grid
                     btnDelete.Enabled = true;
@@ -122,25 +131,130 @@ namespace FrontEndV0._1.forms
                     btnAdd.Text = "Add";
 
                 }
-            }
+            }           
             else
             {
                 btnAdd.Text = "Save?";
+                btnAdd.Enabled = true;
 
+                //enable textboxes and comboboxes
+                txtAgendaNum.Enabled = true;
+                txtAgendaDesc.Enabled = true;
+
+                
                 //disable buttons and grid
-                btnAdd.Enabled = false;
+                btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
                 grdAgendaItems.Enabled = false;
             }
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (btnEdit.Text == "Save?")
+            {
+                if (FormValidated())
+                {
+                    OracleCommand cmd = new OracleCommand("UC3_11_Update_AgendaItem", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add("meetingid", Convert.ToInt16(MeetingID));
+                    cmd.Parameters.Add("teamid", TeamID);
+                    cmd.Parameters.Add("unitid", UnitID);
+                    cmd.Parameters.Add("semester", Semester);
+                    cmd.Parameters.Add("year", Year);
+                    cmd.Parameters.Add("agendanum", Convert.ToInt16(txtAgendaNum.Text));
+                    cmd.Parameters.Add("agendadesc", txtAgendaDesc.Text);
+
+                    connection.Open();
+                    OracleDataAdapter da = new OracleDataAdapter(cmd);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                    
+
+                    //Repopulate data
+                    getAgendaItems();
+                    populateAgendasGrid();
+
+                    //disable textboxes
+                    txtAgendaDesc.Enabled = false;
+                    txtAgendaNum.Enabled = false;
+                    //clear textboxes
+                    txtAgendaNum.Clear();
+                    txtAgendaDesc.Clear();
+
+                    //Enable buttons and grid
+                    btnDelete.Enabled = true;
+                    btnEdit.Enabled = true;
+                    grdAgendaItems.Enabled = true;
+                    btnAdd.Enabled = true;
+                    btnEdit.Text = "Edit";
+                }
+
+            }
+
+            else
+            {
+                btnEdit.Text = "Save?";
+
+                //enable textboxes and comboboxes
+                //txtAgendaNum.Enabled = true;
+                txtAgendaDesc.Enabled = true;
+
+                
+                //enable / disable buttons and grid
+                btnAdd.Enabled = false;
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = false;
+                grdAgendaItems.Enabled = false;
+
+                int selectedrow = grdAgendaItems.SelectedCells[0].RowIndex;
+
+
+                int rowcnt = agendas.Tables["agendacursor"].Rows.Count;
+
+                for (int i = 0; i <= rowcnt - 1; i++)
+                {
+                    object[] items = agendas.Tables[0].Rows[i].ItemArray;
+
+                    //Checking if selected meeting matches in the dataset
+                    if (Convert.ToString(items[5]) == grdAgendaItems.Rows[selectedrow].Cells[0].Value.ToString())
+                    {
+                        //Fill form controls with data to be updated
+
+                        txtAgendaNum.Text = items[5].ToString();
+                        txtAgendaDesc.Text = items[6].ToString();
+
+
+                    }
+                }
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            OracleCommand cmd = new OracleCommand("UC3_12_Delete_AgendaItem", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            string agendaid = grdAgendaItems.SelectedRows[0].Cells[0].Value.ToString();
+
+            cmd.Parameters.Add("meetingid", Convert.ToInt16(MeetingID));
+            cmd.Parameters.Add("teamid", TeamID);
+            cmd.Parameters.Add("unitid", UnitID);
+            cmd.Parameters.Add("semester", Semester);
+            cmd.Parameters.Add("year", Year);
+            cmd.Parameters.Add("agendanum", agendaid);
+
+
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            MessageBox.Show("Agenda Item " + agendaid + " deleted.");
+
+            getAgendaItems();
+            populateAgendasGrid();
 
         }
 

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DateTimePicker dtDue;
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.cbStuID = new System.Windows.Forms.ComboBox();
             this.txtActionItem = new System.Windows.Forms.TextBox();
@@ -48,14 +47,14 @@
             this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            dtDue = new System.Windows.Forms.DateTimePicker();
+            this.dtDue = new System.Windows.Forms.DateTimePicker();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdActionItems)).BeginInit();
             this.SuspendLayout();
             // 
             // gbDetails
             // 
-            this.gbDetails.Controls.Add(dtDue);
+            this.gbDetails.Controls.Add(this.dtDue);
             this.gbDetails.Controls.Add(this.cbStuID);
             this.gbDetails.Controls.Add(this.txtActionItem);
             this.gbDetails.Controls.Add(this.btnAdd);
@@ -78,6 +77,7 @@
             // 
             // cbStuID
             // 
+            this.cbStuID.Enabled = false;
             this.cbStuID.FormattingEnabled = true;
             this.cbStuID.Location = new System.Drawing.Point(144, 67);
             this.cbStuID.Name = "cbStuID";
@@ -86,6 +86,7 @@
             // 
             // txtActionItem
             // 
+            this.txtActionItem.Enabled = false;
             this.txtActionItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtActionItem.Location = new System.Drawing.Point(144, 27);
             this.txtActionItem.Name = "txtActionItem";
@@ -105,6 +106,7 @@
             // 
             // txtActionDesc
             // 
+            this.txtActionDesc.Enabled = false;
             this.txtActionDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtActionDesc.Location = new System.Drawing.Point(110, 164);
             this.txtActionDesc.Multiline = true;
@@ -125,7 +127,6 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(357, 67);
             this.btnEdit.Name = "btnEdit";
@@ -157,6 +158,7 @@
             // 
             // cbStatus
             // 
+            this.cbStatus.Enabled = false;
             this.cbStatus.FormattingEnabled = true;
             this.cbStatus.Items.AddRange(new object[] {
             "Y",
@@ -246,13 +248,15 @@
             // 
             // dtDue
             // 
-            dtDue.CustomFormat = "hh:mm tt dd/MM/yyyy";
-            dtDue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            dtDue.Location = new System.Drawing.Point(144, 104);
-            dtDue.Margin = new System.Windows.Forms.Padding(2);
-            dtDue.Name = "dtDue";
-            dtDue.Size = new System.Drawing.Size(193, 20);
-            dtDue.TabIndex = 82;
+            this.dtDue.CustomFormat = "dd/MM/yyyy";
+            this.dtDue.Enabled = false;
+            this.dtDue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDue.Location = new System.Drawing.Point(144, 105);
+            this.dtDue.Margin = new System.Windows.Forms.Padding(2);
+            this.dtDue.Name = "dtDue";
+            this.dtDue.Size = new System.Drawing.Size(121, 20);
+            this.dtDue.TabIndex = 75;
+            this.dtDue.Value = new System.DateTime(2015, 5, 24, 0, 0, 0, 0);
             // 
             // frmActionItems
             // 
@@ -293,6 +297,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colStuID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDueDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
+        private System.Windows.Forms.DateTimePicker dtDue;
 
 
 

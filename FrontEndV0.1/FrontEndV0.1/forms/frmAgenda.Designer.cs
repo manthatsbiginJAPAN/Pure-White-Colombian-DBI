@@ -74,6 +74,7 @@
             // 
             // txtAgendaNum
             // 
+            this.txtAgendaNum.Enabled = false;
             this.txtAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAgendaNum.Location = new System.Drawing.Point(136, 30);
             this.txtAgendaNum.Name = "txtAgendaNum";
@@ -93,7 +94,6 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Enabled = false;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(357, 62);
             this.btnEdit.Name = "btnEdit";
@@ -115,6 +115,7 @@
             // 
             // txtAgendaDesc
             // 
+            this.txtAgendaDesc.Enabled = false;
             this.txtAgendaDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAgendaDesc.Location = new System.Drawing.Point(110, 164);
             this.txtAgendaDesc.Multiline = true;

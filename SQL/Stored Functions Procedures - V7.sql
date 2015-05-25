@@ -1614,7 +1614,7 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 /
-
+	
 
 CREATE or REPLACE PROCEDURE UC3_9_Add_AgendaItem
 		(pMeetingID number,
@@ -1733,7 +1733,7 @@ CREATE or REPLACE FUNCTION UC3_14_View_ActionItem
 	, pYear number)
 	RETURN SYS_REFCURSOR AS aci SYS_REFCURSOR;
 BEGIN
-	OPEN aci for select * from AgendaItem
+	OPEN aci for select * from ActionItem
 	WHERE MeetingID = pMeetingID AND
 		TeamID = pTeamID AND
 		UnitID = pUnitID AND
