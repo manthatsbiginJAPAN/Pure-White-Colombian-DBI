@@ -94,6 +94,7 @@
             this.btnProjectReport.TabIndex = 44;
             this.btnProjectReport.Text = "Projects";
             this.btnProjectReport.UseVisualStyleBackColor = true;
+            this.btnProjectReport.Click += new System.EventHandler(this.btnProjectReport_Click);
             // 
             // btnSupervisorReport
             // 
@@ -108,9 +109,8 @@
             // 
             // btnEnrolmentReport
             // 
-            this.btnEnrolmentReport.Enabled = false;
             this.btnEnrolmentReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnrolmentReport.Location = new System.Drawing.Point(6, 565);
+            this.btnEnrolmentReport.Location = new System.Drawing.Point(6, 275);
             this.btnEnrolmentReport.Name = "btnEnrolmentReport";
             this.btnEnrolmentReport.Size = new System.Drawing.Size(167, 40);
             this.btnEnrolmentReport.TabIndex = 46;
@@ -209,6 +209,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmReports";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmReports_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
