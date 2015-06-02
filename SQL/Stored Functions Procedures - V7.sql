@@ -1243,7 +1243,7 @@ END;
 /
 
 create or replace PROCEDURE UC2_29_Register_StuHours
-	(pPeriod number,
+	(pPeriod number
 	pTaskID number,
 	pStuID varchar2,
 	pAssID varchar2,
@@ -1482,16 +1482,10 @@ END;
 
 /
 
-CREATE or REPLACE FUNCTION UC2_39_View_Task_Period (pAssID varchar2, pTaskID varchar2, pUnitID varchar2,
-	pSemester varchar2, pYear varchar2)
+CREATE or REPLACE FUNCTION UC2_39_View_Task_Period
 	RETURN SYS_REFCURSOR AS str SYS_REFCURSOR;
 BEGIN
-	OPEN str for select * from AssessmentTaskPeriod
-	WHERE AssID = pAssID and
-	TaskID = pTaskID and
-	UnitID = pUnitID and
-	Semester = pSemester and
-	Year = pYear;
+	OPEN str for select * from AssessmentTaskPeriod;
 	--LOOP
 	--	Fetch unts into u;
 	--	Exit When unts%NOTFOUND;
