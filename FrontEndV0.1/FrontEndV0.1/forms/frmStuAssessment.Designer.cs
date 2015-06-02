@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStuAssessment));
             this.label1 = new System.Windows.Forms.Label();
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.txtMarkingGuide = new System.Windows.Forms.TextBox();
@@ -51,7 +52,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(298, 22);
+            this.label1.Location = new System.Drawing.Point(304, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(297, 34);
             this.label1.TabIndex = 47;
@@ -84,10 +85,10 @@
             // lblMarkingGuide
             // 
             this.lblMarkingGuide.AutoSize = true;
-            this.lblMarkingGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMarkingGuide.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMarkingGuide.Location = new System.Drawing.Point(17, 309);
             this.lblMarkingGuide.Name = "lblMarkingGuide";
-            this.lblMarkingGuide.Size = new System.Drawing.Size(130, 20);
+            this.lblMarkingGuide.Size = new System.Drawing.Size(145, 21);
             this.lblMarkingGuide.TabIndex = 52;
             this.lblMarkingGuide.Text = "Marking Guide:";
             // 
@@ -102,27 +103,27 @@
             // lblDesc
             // 
             this.lblDesc.AutoSize = true;
-            this.lblDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDesc.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDesc.Location = new System.Drawing.Point(17, 130);
             this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(105, 20);
+            this.lblDesc.Size = new System.Drawing.Size(116, 21);
             this.lblDesc.TabIndex = 50;
             this.lblDesc.Text = "Description:";
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(70, 32);
+            this.txtTitle.Location = new System.Drawing.Point(86, 33);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(317, 20);
+            this.txtTitle.Size = new System.Drawing.Size(301, 20);
             this.txtTitle.TabIndex = 49;
             // 
             // lblAssTitle
             // 
             this.lblAssTitle.AutoSize = true;
-            this.lblAssTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAssTitle.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAssTitle.Location = new System.Drawing.Point(22, 32);
             this.lblAssTitle.Name = "lblAssTitle";
-            this.lblAssTitle.Size = new System.Drawing.Size(48, 20);
+            this.lblAssTitle.Size = new System.Drawing.Size(58, 21);
             this.lblAssTitle.TabIndex = 48;
             this.lblAssTitle.Text = "Title:";
             // 
@@ -142,7 +143,7 @@
             this.grdAssessments.Location = new System.Drawing.Point(468, 85);
             this.grdAssessments.Name = "grdAssessments";
             this.grdAssessments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdAssessments.Size = new System.Drawing.Size(390, 480);
+            this.grdAssessments.Size = new System.Drawing.Size(422, 465);
             this.grdAssessments.TabIndex = 49;
             this.grdAssessments.SelectionChanged += new System.EventHandler(this.grdAssessments_SelectionChanged);
             // 
@@ -168,10 +169,10 @@
             // 
             // btnPeerAssessment
             // 
-            this.btnPeerAssessment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPeerAssessment.Location = new System.Drawing.Point(669, 583);
+            this.btnPeerAssessment.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPeerAssessment.Location = new System.Drawing.Point(681, 570);
             this.btnPeerAssessment.Name = "btnPeerAssessment";
-            this.btnPeerAssessment.Size = new System.Drawing.Size(189, 37);
+            this.btnPeerAssessment.Size = new System.Drawing.Size(209, 50);
             this.btnPeerAssessment.TabIndex = 50;
             this.btnPeerAssessment.Text = "Peer Assessment";
             this.btnPeerAssessment.UseVisualStyleBackColor = true;
@@ -179,10 +180,10 @@
             // 
             // btnTeamContribution
             // 
-            this.btnTeamContribution.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeamContribution.Location = new System.Drawing.Point(468, 583);
+            this.btnTeamContribution.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeamContribution.Location = new System.Drawing.Point(468, 570);
             this.btnTeamContribution.Name = "btnTeamContribution";
-            this.btnTeamContribution.Size = new System.Drawing.Size(195, 37);
+            this.btnTeamContribution.Size = new System.Drawing.Size(207, 50);
             this.btnTeamContribution.TabIndex = 51;
             this.btnTeamContribution.Text = "Team Contribution";
             this.btnTeamContribution.UseVisualStyleBackColor = true;
@@ -192,14 +193,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 646);
+            this.ClientSize = new System.Drawing.Size(914, 646);
             this.Controls.Add(this.btnPeerAssessment);
             this.Controls.Add(this.btnTeamContribution);
             this.Controls.Add(this.grdAssessments);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmStuAssessment";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAssessments)).EndInit();

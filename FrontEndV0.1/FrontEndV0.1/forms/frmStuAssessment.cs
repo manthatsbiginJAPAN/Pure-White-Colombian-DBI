@@ -150,6 +150,9 @@ namespace FrontEndV0._1.forms
 
         private void btnPeerAssessment_Click(object sender, EventArgs e)
         {
+            if (grdAssessments.Rows.Count == 0)
+                return;
+
             frmStuTeamCont = new frmStuTeamContribution
                 ( Convert.ToString(grdAssessments.SelectedRows[0].Cells[0].Value)
                 , Convert.ToString(grdAssessments.SelectedRows[0].Cells[1].Value)
@@ -161,6 +164,9 @@ namespace FrontEndV0._1.forms
 
         private void btnTeamContribution_Click(object sender, EventArgs e)
         {
+            if (grdAssessments.Rows.Count == 0)
+                return;
+
             frmStuPeerAss = new frmStuPeerAssessment();
             frmStuPeerAss.Show();
         }   

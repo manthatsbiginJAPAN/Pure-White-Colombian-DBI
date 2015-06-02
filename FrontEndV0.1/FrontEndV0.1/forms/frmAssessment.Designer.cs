@@ -324,7 +324,7 @@
             this.grdAssessmentInfo.MultiSelect = false;
             this.grdAssessmentInfo.Name = "grdAssessmentInfo";
             this.grdAssessmentInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdAssessmentInfo.Size = new System.Drawing.Size(421, 550);
+            this.grdAssessmentInfo.Size = new System.Drawing.Size(421, 569);
             this.grdAssessmentInfo.TabIndex = 19;
             // 
             // colAssID
@@ -355,7 +355,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 609);
+            this.ClientSize = new System.Drawing.Size(914, 646);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.grdAssessmentInfo);
             this.Controls.Add(this.gbDetails);
@@ -367,7 +367,7 @@
             this.MinimumSize = new System.Drawing.Size(300, 296);
             this.Name = "frmAssessment";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
             this.gbIdentifyingInformation.ResumeLayout(false);

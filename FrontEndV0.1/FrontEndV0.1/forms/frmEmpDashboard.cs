@@ -49,7 +49,7 @@ namespace FrontEndV0._1.forms
                 frmEnrolments = new frmEnrolments(user, isAdmin);
                 frmEnrolments.MdiParent = this;
 
-                frmReports = new frmReports(true);
+                frmReports = new frmReports(user, isAdmin);
                 frmUnits.MdiParent = this;
             }
             else
@@ -275,7 +275,7 @@ namespace FrontEndV0._1.forms
         #endregion
 
         #region Reports
-        private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openReportsForm();
         }
@@ -322,7 +322,9 @@ namespace FrontEndV0._1.forms
             /*frmStuAssessment = new frmStuAssessment(user)
             frmStuAssessment.MdiParent = this;
             openStuAssessmentForm();*/
-        }  
+        }
+
+        
 
         #endregion
 
@@ -362,6 +364,9 @@ namespace FrontEndV0._1.forms
             CloseAllChildForms();
             this.Close();
         }
+
+        
+
 
     }
 }
