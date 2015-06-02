@@ -50,7 +50,7 @@
             // btnConUnitReport
             // 
             this.btnConUnitReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConUnitReport.Location = new System.Drawing.Point(6, 115);
+            this.btnConUnitReport.Location = new System.Drawing.Point(6, 77);
             this.btnConUnitReport.Name = "btnConUnitReport";
             this.btnConUnitReport.Size = new System.Drawing.Size(167, 40);
             this.btnConUnitReport.TabIndex = 35;
@@ -80,7 +80,7 @@
             // btnTeamDetails
             // 
             this.btnTeamDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeamDetails.Location = new System.Drawing.Point(6, 253);
+            this.btnTeamDetails.Location = new System.Drawing.Point(6, 215);
             this.btnTeamDetails.Name = "btnTeamDetails";
             this.btnTeamDetails.Size = new System.Drawing.Size(167, 40);
             this.btnTeamDetails.TabIndex = 43;
@@ -90,33 +90,34 @@
             // btnProjectReport
             // 
             this.btnProjectReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProjectReport.Location = new System.Drawing.Point(6, 207);
+            this.btnProjectReport.Location = new System.Drawing.Point(6, 169);
             this.btnProjectReport.Name = "btnProjectReport";
             this.btnProjectReport.Size = new System.Drawing.Size(167, 40);
             this.btnProjectReport.TabIndex = 44;
             this.btnProjectReport.Text = "Projects";
             this.btnProjectReport.UseVisualStyleBackColor = true;
+            this.btnProjectReport.Click += new System.EventHandler(this.btnProjectReport_Click);
             // 
             // btnSupervisorReport
             // 
             this.btnSupervisorReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupervisorReport.Location = new System.Drawing.Point(6, 161);
+            this.btnSupervisorReport.Location = new System.Drawing.Point(6, 123);
             this.btnSupervisorReport.Name = "btnSupervisorReport";
             this.btnSupervisorReport.Size = new System.Drawing.Size(167, 40);
             this.btnSupervisorReport.TabIndex = 45;
-            this.btnSupervisorReport.Text = "All Supervisors";
+            this.btnSupervisorReport.Text = "Supervisors";
             this.btnSupervisorReport.UseVisualStyleBackColor = true;
             this.btnSupervisorReport.Click += new System.EventHandler(this.btnSupervisorReport_Click);
             // 
             // btnEnrolmentReport
             // 
-            this.btnEnrolmentReport.Enabled = false;
             this.btnEnrolmentReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnrolmentReport.Location = new System.Drawing.Point(6, 299);
+
+            this.btnEnrolmentReport.Location = new System.Drawing.Point(6, 275);
             this.btnEnrolmentReport.Name = "btnEnrolmentReport";
             this.btnEnrolmentReport.Size = new System.Drawing.Size(167, 40);
             this.btnEnrolmentReport.TabIndex = 46;
-            this.btnEnrolmentReport.Text = "Enrolments";
+            this.btnEnrolmentReport.Text = "See Enrolments";
             this.btnEnrolmentReport.UseVisualStyleBackColor = true;
             this.btnEnrolmentReport.Click += new System.EventHandler(this.btnEnrolmentReport_Click);
             // 
@@ -124,7 +125,7 @@
             // 
             this.cbYear.Enabled = false;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Location = new System.Drawing.Point(16, 471);
+            this.cbYear.Location = new System.Drawing.Point(21, 528);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 52;
@@ -134,7 +135,7 @@
             // 
             this.cbSemester.Enabled = false;
             this.cbSemester.FormattingEnabled = true;
-            this.cbSemester.Location = new System.Drawing.Point(16, 423);
+            this.cbSemester.Location = new System.Drawing.Point(21, 480);
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
             this.cbSemester.TabIndex = 51;
@@ -143,7 +144,7 @@
             // cbUnitID
             // 
             this.cbUnitID.FormattingEnabled = true;
-            this.cbUnitID.Location = new System.Drawing.Point(16, 375);
+            this.cbUnitID.Location = new System.Drawing.Point(21, 432);
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
             this.cbUnitID.TabIndex = 50;
@@ -153,7 +154,7 @@
             // 
             this.lblSem.AutoSize = true;
             this.lblSem.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSem.Location = new System.Drawing.Point(12, 399);
+            this.lblSem.Location = new System.Drawing.Point(17, 456);
             this.lblSem.Name = "lblSem";
             this.lblSem.Size = new System.Drawing.Size(91, 21);
             this.lblSem.TabIndex = 48;
@@ -163,7 +164,7 @@
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYear.Location = new System.Drawing.Point(12, 447);
+            this.lblYear.Location = new System.Drawing.Point(17, 504);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(57, 21);
             this.lblYear.TabIndex = 49;
@@ -173,7 +174,7 @@
             // 
             this.lblUnitID.AutoSize = true;
             this.lblUnitID.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitID.Location = new System.Drawing.Point(12, 351);
+            this.lblUnitID.Location = new System.Drawing.Point(17, 408);
             this.lblUnitID.Name = "lblUnitID";
             this.lblUnitID.Size = new System.Drawing.Size(84, 21);
             this.lblUnitID.TabIndex = 47;
@@ -182,7 +183,7 @@
             // btnEtc
             // 
             this.btnEtc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEtc.Location = new System.Drawing.Point(179, 115);
+            this.btnEtc.Location = new System.Drawing.Point(179, 77);
             this.btnEtc.Name = "btnEtc";
             this.btnEtc.Size = new System.Drawing.Size(167, 40);
             this.btnEtc.TabIndex = 53;
@@ -233,6 +234,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmReports";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmReports_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
