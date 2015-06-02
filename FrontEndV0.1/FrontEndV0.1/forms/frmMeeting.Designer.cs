@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMeeting));
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.txtSupervisor = new System.Windows.Forms.TextBox();
@@ -96,7 +97,7 @@
             // 
             this.cbYear.Enabled = false;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Location = new System.Drawing.Point(155, 102);
+            this.cbYear.Location = new System.Drawing.Point(164, 102);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 36;
@@ -148,10 +149,10 @@
             // lblApproved
             // 
             this.lblApproved.AutoSize = true;
-            this.lblApproved.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApproved.Location = new System.Drawing.Point(48, 195);
+            this.lblApproved.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApproved.Location = new System.Drawing.Point(56, 193);
             this.lblApproved.Name = "lblApproved";
-            this.lblApproved.Size = new System.Drawing.Size(90, 20);
+            this.lblApproved.Size = new System.Drawing.Size(95, 21);
             this.lblApproved.TabIndex = 57;
             this.lblApproved.Text = "Approved:";
             // 
@@ -201,50 +202,50 @@
             // lblMeetingMinutes
             // 
             this.lblMeetingMinutes.AutoSize = true;
-            this.lblMeetingMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingMinutes.Location = new System.Drawing.Point(61, 223);
+            this.lblMeetingMinutes.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMeetingMinutes.Location = new System.Drawing.Point(66, 219);
             this.lblMeetingMinutes.Name = "lblMeetingMinutes";
-            this.lblMeetingMinutes.Size = new System.Drawing.Size(77, 20);
+            this.lblMeetingMinutes.Size = new System.Drawing.Size(85, 21);
             this.lblMeetingMinutes.TabIndex = 48;
             this.lblMeetingMinutes.Text = "Minutes:";
             // 
             // lblClientName
             // 
             this.lblClientName.AutoSize = true;
-            this.lblClientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientName.Location = new System.Drawing.Point(27, 166);
+            this.lblClientName.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClientName.Location = new System.Drawing.Point(30, 166);
             this.lblClientName.Name = "lblClientName";
-            this.lblClientName.Size = new System.Drawing.Size(111, 20);
+            this.lblClientName.Size = new System.Drawing.Size(121, 21);
             this.lblClientName.TabIndex = 46;
             this.lblClientName.Text = "Client Name:";
             // 
             // lblSupervisor
             // 
             this.lblSupervisor.AutoSize = true;
-            this.lblSupervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSupervisor.Location = new System.Drawing.Point(15, 137);
+            this.lblSupervisor.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSupervisor.Location = new System.Drawing.Point(15, 136);
             this.lblSupervisor.Name = "lblSupervisor";
-            this.lblSupervisor.Size = new System.Drawing.Size(123, 20);
+            this.lblSupervisor.Size = new System.Drawing.Size(136, 21);
             this.lblSupervisor.TabIndex = 45;
             this.lblSupervisor.Text = "Supervisor ID:";
             // 
             // lblFinish
             // 
             this.lblFinish.AutoSize = true;
-            this.lblFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFinish.Location = new System.Drawing.Point(33, 100);
+            this.lblFinish.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFinish.Location = new System.Drawing.Point(28, 99);
             this.lblFinish.Name = "lblFinish";
-            this.lblFinish.Size = new System.Drawing.Size(105, 20);
+            this.lblFinish.Size = new System.Drawing.Size(123, 21);
             this.lblFinish.TabIndex = 43;
             this.lblFinish.Text = "Finish Time:";
             // 
             // lblStart
             // 
             this.lblStart.AutoSize = true;
-            this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStart.Location = new System.Drawing.Point(41, 63);
+            this.lblStart.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStart.Location = new System.Drawing.Point(43, 61);
             this.lblStart.Name = "lblStart";
-            this.lblStart.Size = new System.Drawing.Size(97, 20);
+            this.lblStart.Size = new System.Drawing.Size(108, 21);
             this.lblStart.TabIndex = 42;
             this.lblStart.Text = "Start Time:";
             // 
@@ -265,10 +266,10 @@
             // lblMeetingType
             // 
             this.lblMeetingType.AutoSize = true;
-            this.lblMeetingType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingType.Location = new System.Drawing.Point(20, 28);
+            this.lblMeetingType.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMeetingType.Location = new System.Drawing.Point(19, 30);
             this.lblMeetingType.Name = "lblMeetingType";
-            this.lblMeetingType.Size = new System.Drawing.Size(121, 20);
+            this.lblMeetingType.Size = new System.Drawing.Size(132, 21);
             this.lblMeetingType.TabIndex = 41;
             this.lblMeetingType.Text = "Meeting Type:";
             // 
@@ -351,10 +352,10 @@
             // lblAttendees
             // 
             this.lblAttendees.AutoSize = true;
-            this.lblAttendees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAttendees.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttendees.Location = new System.Drawing.Point(485, 464);
             this.lblAttendees.Name = "lblAttendees";
-            this.lblAttendees.Size = new System.Drawing.Size(97, 20);
+            this.lblAttendees.Size = new System.Drawing.Size(99, 21);
             this.lblAttendees.TabIndex = 55;
             this.lblAttendees.Text = "Attendees:";
             // 
@@ -382,7 +383,7 @@
             // cbTeamID
             // 
             this.cbTeamID.FormattingEnabled = true;
-            this.cbTeamID.Location = new System.Drawing.Point(156, 138);
+            this.cbTeamID.Location = new System.Drawing.Point(165, 138);
             this.cbTeamID.Name = "cbTeamID";
             this.cbTeamID.Size = new System.Drawing.Size(121, 21);
             this.cbTeamID.TabIndex = 37;
@@ -392,7 +393,7 @@
             // 
             this.cbSemester.Enabled = false;
             this.cbSemester.FormattingEnabled = true;
-            this.cbSemester.Location = new System.Drawing.Point(155, 69);
+            this.cbSemester.Location = new System.Drawing.Point(164, 69);
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
             this.cbSemester.TabIndex = 35;
@@ -401,17 +402,17 @@
             // lblTeamID
             // 
             this.lblTeamID.AutoSize = true;
-            this.lblTeamID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeamID.Location = new System.Drawing.Point(58, 136);
+            this.lblTeamID.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTeamID.Location = new System.Drawing.Point(63, 138);
             this.lblTeamID.Name = "lblTeamID";
-            this.lblTeamID.Size = new System.Drawing.Size(82, 20);
+            this.lblTeamID.Size = new System.Drawing.Size(92, 21);
             this.lblTeamID.TabIndex = 39;
             this.lblTeamID.Text = "Team ID:";
             // 
             // cbUnitID
             // 
             this.cbUnitID.FormattingEnabled = true;
-            this.cbUnitID.Location = new System.Drawing.Point(156, 38);
+            this.cbUnitID.Location = new System.Drawing.Point(165, 38);
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
             this.cbUnitID.TabIndex = 34;
@@ -420,17 +421,17 @@
             // lblSem
             // 
             this.lblSem.AutoSize = true;
-            this.lblSem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSem.Location = new System.Drawing.Point(49, 67);
+            this.lblSem.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSem.Location = new System.Drawing.Point(64, 69);
             this.lblSem.Name = "lblSem";
-            this.lblSem.Size = new System.Drawing.Size(91, 20);
+            this.lblSem.Size = new System.Drawing.Size(91, 21);
             this.lblSem.TabIndex = 11;
             this.lblSem.Text = "Semester:";
             // 
             // txtMeetID
             // 
             this.txtMeetID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeetID.Location = new System.Drawing.Point(155, 175);
+            this.txtMeetID.Location = new System.Drawing.Point(164, 175);
             this.txtMeetID.Name = "txtMeetID";
             this.txtMeetID.Size = new System.Drawing.Size(121, 26);
             this.txtMeetID.TabIndex = 38;
@@ -439,30 +440,30 @@
             // lblYear
             // 
             this.lblYear.AutoSize = true;
-            this.lblYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYear.Location = new System.Drawing.Point(91, 100);
+            this.lblYear.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYear.Location = new System.Drawing.Point(98, 102);
             this.lblYear.Name = "lblYear";
-            this.lblYear.Size = new System.Drawing.Size(52, 20);
+            this.lblYear.Size = new System.Drawing.Size(57, 21);
             this.lblYear.TabIndex = 13;
             this.lblYear.Text = "Year:";
             // 
             // lblMeetingID
             // 
             this.lblMeetingID.AutoSize = true;
-            this.lblMeetingID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMeetingID.Location = new System.Drawing.Point(40, 178);
+            this.lblMeetingID.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMeetingID.Location = new System.Drawing.Point(41, 177);
             this.lblMeetingID.Name = "lblMeetingID";
-            this.lblMeetingID.Size = new System.Drawing.Size(102, 20);
+            this.lblMeetingID.Size = new System.Drawing.Size(114, 21);
             this.lblMeetingID.TabIndex = 37;
             this.lblMeetingID.Text = "Meeting ID:";
             // 
             // lblUnitID
             // 
             this.lblUnitID.AutoSize = true;
-            this.lblUnitID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitID.Location = new System.Drawing.Point(72, 36);
+            this.lblUnitID.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnitID.Location = new System.Drawing.Point(71, 38);
             this.lblUnitID.Name = "lblUnitID";
-            this.lblUnitID.Size = new System.Drawing.Size(71, 20);
+            this.lblUnitID.Size = new System.Drawing.Size(84, 21);
             this.lblUnitID.TabIndex = 1;
             this.lblUnitID.Text = "Unit ID:";
             // 
@@ -577,7 +578,7 @@
             // 
             // btnLoadAttendees
             // 
-            this.btnLoadAttendees.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadAttendees.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadAttendees.Location = new System.Drawing.Point(788, 464);
             this.btnLoadAttendees.Name = "btnLoadAttendees";
             this.btnLoadAttendees.Size = new System.Drawing.Size(112, 24);
@@ -612,7 +613,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(5, 11);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(137, 37);
@@ -623,7 +624,7 @@
             // 
             // btnActionItems
             // 
-            this.btnActionItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActionItems.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActionItems.Location = new System.Drawing.Point(5, 202);
             this.btnActionItems.Name = "btnActionItems";
             this.btnActionItems.Size = new System.Drawing.Size(137, 38);
@@ -634,7 +635,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(5, 50);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(137, 37);
@@ -645,7 +646,7 @@
             // 
             // btnAgenda
             // 
-            this.btnAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgenda.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgenda.Location = new System.Drawing.Point(5, 162);
             this.btnAgenda.Name = "btnAgenda";
             this.btnAgenda.Size = new System.Drawing.Size(137, 37);
@@ -656,7 +657,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(5, 90);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(137, 37);
@@ -678,6 +679,7 @@
             this.Controls.Add(this.gbIdentifyingInformation);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.grdMeetings);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmMeeting";
             this.Load += new System.EventHandler(this.frmMeeting_Load);

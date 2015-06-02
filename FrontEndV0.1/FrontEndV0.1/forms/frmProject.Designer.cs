@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProject));
             this.cbYear = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.cbSemester = new System.Windows.Forms.ComboBox();
@@ -59,7 +60,7 @@
             // 
             this.cbYear.Enabled = false;
             this.cbYear.FormattingEnabled = true;
-            this.cbYear.Location = new System.Drawing.Point(155, 191);
+            this.cbYear.Location = new System.Drawing.Point(170, 191);
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 36;
@@ -82,7 +83,7 @@
             this.cbSemester.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.cbSemester.Location = new System.Drawing.Point(156, 146);
+            this.cbSemester.Location = new System.Drawing.Point(170, 144);
             this.cbSemester.Name = "cbSemester";
             this.cbSemester.Size = new System.Drawing.Size(121, 21);
             this.cbSemester.TabIndex = 35;
@@ -94,7 +95,7 @@
             this.cbUnitID.Items.AddRange(new object[] {
             "INF30011",
             "INF20011"});
-            this.cbUnitID.Location = new System.Drawing.Point(156, 96);
+            this.cbUnitID.Location = new System.Drawing.Point(170, 94);
             this.cbUnitID.Name = "cbUnitID";
             this.cbUnitID.Size = new System.Drawing.Size(121, 21);
             this.cbUnitID.TabIndex = 34;
@@ -102,7 +103,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(342, 109);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(137, 37);
@@ -113,7 +114,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(342, 152);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(137, 37);
@@ -172,16 +173,16 @@
             // lblYear
             // 
             this.lblYear.AutoSize = true;
-            this.lblYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYear.Location = new System.Drawing.Point(97, 192);
+            this.lblYear.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYear.Location = new System.Drawing.Point(98, 191);
             this.lblYear.Name = "lblYear";
-            this.lblYear.Size = new System.Drawing.Size(52, 20);
+            this.lblYear.Size = new System.Drawing.Size(57, 21);
             this.lblYear.TabIndex = 13;
             this.lblYear.Text = "Year:";
             // 
             // btnAdd
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(342, 64);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(137, 37);
@@ -209,16 +210,16 @@
             this.txtProjDesc.Location = new System.Drawing.Point(21, 74);
             this.txtProjDesc.Multiline = true;
             this.txtProjDesc.Name = "txtProjDesc";
-            this.txtProjDesc.Size = new System.Drawing.Size(427, 107);
+            this.txtProjDesc.Size = new System.Drawing.Size(427, 124);
             this.txtProjDesc.TabIndex = 39;
             // 
             // lblProjDesc
             // 
             this.lblProjDesc.AutoSize = true;
-            this.lblProjDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjDesc.Location = new System.Drawing.Point(17, 39);
+            this.lblProjDesc.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProjDesc.Location = new System.Drawing.Point(17, 45);
             this.lblProjDesc.Name = "lblProjDesc";
-            this.lblProjDesc.Size = new System.Drawing.Size(166, 20);
+            this.lblProjDesc.Size = new System.Drawing.Size(185, 21);
             this.lblProjDesc.TabIndex = 15;
             this.lblProjDesc.Text = "Project Description:";
             // 
@@ -244,7 +245,7 @@
             // txtProjID
             // 
             this.txtProjID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProjID.Location = new System.Drawing.Point(156, 40);
+            this.txtProjID.Location = new System.Drawing.Point(170, 38);
             this.txtProjID.Name = "txtProjID";
             this.txtProjID.Size = new System.Drawing.Size(121, 26);
             this.txtProjID.TabIndex = 38;
@@ -252,30 +253,30 @@
             // lblProjID
             // 
             this.lblProjID.AutoSize = true;
-            this.lblProjID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjID.Location = new System.Drawing.Point(50, 40);
+            this.lblProjID.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProjID.Location = new System.Drawing.Point(47, 40);
             this.lblProjID.Name = "lblProjID";
-            this.lblProjID.Size = new System.Drawing.Size(99, 20);
+            this.lblProjID.Size = new System.Drawing.Size(114, 21);
             this.lblProjID.TabIndex = 37;
             this.lblProjID.Text = "Project ID: ";
             // 
             // lblSem
             // 
             this.lblSem.AutoSize = true;
-            this.lblSem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSem.Location = new System.Drawing.Point(59, 144);
+            this.lblSem.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSem.Location = new System.Drawing.Point(64, 144);
             this.lblSem.Name = "lblSem";
-            this.lblSem.Size = new System.Drawing.Size(91, 20);
+            this.lblSem.Size = new System.Drawing.Size(91, 21);
             this.lblSem.TabIndex = 11;
             this.lblSem.Text = "Semester:";
             // 
             // lblUnitID
             // 
             this.lblUnitID.AutoSize = true;
-            this.lblUnitID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitID.Location = new System.Drawing.Point(78, 94);
+            this.lblUnitID.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnitID.Location = new System.Drawing.Point(71, 94);
             this.lblUnitID.Name = "lblUnitID";
-            this.lblUnitID.Size = new System.Drawing.Size(71, 20);
+            this.lblUnitID.Size = new System.Drawing.Size(84, 21);
             this.lblUnitID.TabIndex = 1;
             this.lblUnitID.Text = "Unit ID:";
             // 
@@ -291,6 +292,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.gbIdentifyingInformation);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmProject";
             this.Load += new System.EventHandler(this.frmProject_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdProjects)).EndInit();

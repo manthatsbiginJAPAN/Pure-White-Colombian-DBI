@@ -157,7 +157,6 @@ namespace FrontEndV0._1.forms
             MessageBox.Show("Task " + taskid + " deleted.");
 
             displayTasks();
-        }
-
+        }  
     }
 }
