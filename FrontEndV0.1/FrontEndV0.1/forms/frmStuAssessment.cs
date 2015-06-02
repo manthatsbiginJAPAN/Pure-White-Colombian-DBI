@@ -19,6 +19,7 @@ namespace FrontEndV0._1.forms
 
         private DataSet enrolment;
         private DataSet assignments;
+        private DataSet teams;
 
         private frmStuTeamContribution frmStuTeamCont;
         private frmStuPeerAssessment frmStuPeerAss;
@@ -112,6 +113,41 @@ namespace FrontEndV0._1.forms
             }
         }
 
+        private String getTeam()
+        {
+            string team = "";
+            
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_3_View_Team", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
+            cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", _user);
+            cmd.Parameters.Add("role", "student");
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            teams = new DataSet();
+
+            da.Fill(teams, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
+
+            connection.Close();
+
+            int max = teams.Tables["teamcursor"].Rows.Count;
+            for (int i = 0; i < max; i++)
+            {
+                for (int x = 0; x < grdAssessments.Rows.Count; x++)
+                    if (teams.Tables["teamcursor"].Rows[i].ItemArray[2].Equals(grdAssessments.CurrentRow.Cells[1].Value) && teams.Tables["teamcursor"].Rows[i].ItemArray[3].Equals(grdAssessments.CurrentRow.Cells[2].Value) && teams.Tables["teamcursor"].Rows[i].ItemArray[4].Equals(grdAssessments.CurrentRow.Cells[3].Value))
+                {
+                    team = teams.Tables["teamcursor"].Rows[i].ItemArray[0].ToString();
+                }
+            }
+            return team;
+        }
+
         private void btnPeerAssessment_Click(object sender, EventArgs e)
         {
             if (grdAssessments.Rows.Count == 0)
@@ -121,7 +157,8 @@ namespace FrontEndV0._1.forms
                 ( Convert.ToString(grdAssessments.SelectedRows[0].Cells[0].Value)
                 , Convert.ToString(grdAssessments.SelectedRows[0].Cells[1].Value)
                 , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[2].Value)
-                , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[3].Value) );
+                , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[3].Value) 
+                , getTeam());
             frmStuTeamCont.Show();
         }
 

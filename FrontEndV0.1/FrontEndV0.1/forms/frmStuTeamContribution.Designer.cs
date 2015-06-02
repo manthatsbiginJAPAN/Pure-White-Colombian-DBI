@@ -30,8 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.grdTasks = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Task = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
@@ -44,14 +42,16 @@
             this.lblDateSubmitted = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.grdPeriods = new System.Windows.Forms.DataGridView();
+            this.grdStudentHours = new System.Windows.Forms.DataGridView();
+            this.lblArrow = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Task = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Period = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPeriodHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdStudentHours = new System.Windows.Forms.DataGridView();
             this.StuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblArrow = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdTasks)).BeginInit();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPeriods)).BeginInit();
@@ -86,19 +86,6 @@
             this.grdTasks.Size = new System.Drawing.Size(271, 424);
             this.grdTasks.TabIndex = 37;
             this.grdTasks.SelectionChanged += new System.EventHandler(this.grdTasks_SelectionChanged);
-            // 
-            // ID
-            // 
-            this.ID.FillWeight = 30.45685F;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Task
-            // 
-            this.Task.FillWeight = 169.5432F;
-            this.Task.HeaderText = "Task";
-            this.Task.Name = "Task";
             // 
             // btnCancel
             // 
@@ -208,6 +195,9 @@
             // 
             // grdPeriods
             // 
+            this.grdPeriods.AllowUserToAddRows = false;
+            this.grdPeriods.AllowUserToDeleteRows = false;
+            this.grdPeriods.AllowUserToResizeRows = false;
             this.grdPeriods.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdPeriods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdPeriods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -219,23 +209,10 @@
             this.grdPeriods.Size = new System.Drawing.Size(271, 424);
             this.grdPeriods.TabIndex = 43;
             // 
-            // Period
-            // 
-            this.Period.HeaderText = "Period";
-            this.Period.Name = "Period";
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            // 
-            // TotalPeriodHours
-            // 
-            this.TotalPeriodHours.HeaderText = "Total Hours";
-            this.TotalPeriodHours.Name = "TotalPeriodHours";
-            // 
             // grdStudentHours
             // 
+            this.grdStudentHours.AllowUserToAddRows = false;
+            this.grdStudentHours.AllowUserToDeleteRows = false;
             this.grdStudentHours.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdStudentHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdStudentHours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -245,16 +222,6 @@
             this.grdStudentHours.Name = "grdStudentHours";
             this.grdStudentHours.Size = new System.Drawing.Size(271, 424);
             this.grdStudentHours.TabIndex = 44;
-            // 
-            // StuID
-            // 
-            this.StuID.HeaderText = "Student";
-            this.StuID.Name = "StuID";
-            // 
-            // Hours
-            // 
-            this.Hours.HeaderText = "Hours";
-            this.Hours.Name = "Hours";
             // 
             // lblArrow
             // 
@@ -275,6 +242,49 @@
             this.label2.Size = new System.Drawing.Size(19, 20);
             this.label2.TabIndex = 45;
             this.label2.Text = ">";
+            // 
+            // ID
+            // 
+            this.ID.FillWeight = 30.45685F;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Task
+            // 
+            this.Task.FillWeight = 169.5432F;
+            this.Task.HeaderText = "Task";
+            this.Task.Name = "Task";
+            this.Task.ReadOnly = true;
+            // 
+            // Period
+            // 
+            this.Period.HeaderText = "Period";
+            this.Period.Name = "Period";
+            this.Period.ReadOnly = true;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // TotalPeriodHours
+            // 
+            this.TotalPeriodHours.HeaderText = "Total Hours";
+            this.TotalPeriodHours.Name = "TotalPeriodHours";
+            this.TotalPeriodHours.ReadOnly = true;
+            // 
+            // StuID
+            // 
+            this.StuID.HeaderText = "Student";
+            this.StuID.Name = "StuID";
+            this.StuID.ReadOnly = true;
+            // 
+            // Hours
+            // 
+            this.Hours.HeaderText = "Hours";
+            this.Hours.Name = "Hours";
             // 
             // frmStuTeamContribution
             // 
@@ -316,16 +326,16 @@
         public System.Windows.Forms.Label lblDateSubmitted;
         private System.Windows.Forms.DataGridView grdPeriods;
         private System.Windows.Forms.DataGridView grdStudentHours;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StuID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hours;
         public System.Windows.Forms.Label lblArrow;
         public System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTotalHours;
         public System.Windows.Forms.Label lblTotalHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Task;
         private System.Windows.Forms.DataGridViewTextBoxColumn Period;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPeriodHours;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Task;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StuID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hours;
     }
 }
