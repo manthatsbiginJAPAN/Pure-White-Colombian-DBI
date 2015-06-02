@@ -71,17 +71,16 @@
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDetails.Location = new System.Drawing.Point(12, 49);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Size = new System.Drawing.Size(500, 290);
+            this.gbDetails.Size = new System.Drawing.Size(500, 306);
             this.gbDetails.TabIndex = 59;
             this.gbDetails.TabStop = false;
-            this.gbDetails.Text = " ";
             // 
             // dtDue
             // 
             this.dtDue.CustomFormat = "dd/MM/yyyy";
             this.dtDue.Enabled = false;
             this.dtDue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDue.Location = new System.Drawing.Point(144, 105);
+            this.dtDue.Location = new System.Drawing.Point(183, 104);
             this.dtDue.Margin = new System.Windows.Forms.Padding(2);
             this.dtDue.Name = "dtDue";
             this.dtDue.Size = new System.Drawing.Size(121, 20);
@@ -92,7 +91,7 @@
             // 
             this.cbStuID.Enabled = false;
             this.cbStuID.FormattingEnabled = true;
-            this.cbStuID.Location = new System.Drawing.Point(144, 67);
+            this.cbStuID.Location = new System.Drawing.Point(183, 67);
             this.cbStuID.Name = "cbStuID";
             this.cbStuID.Size = new System.Drawing.Size(121, 21);
             this.cbStuID.TabIndex = 81;
@@ -101,17 +100,17 @@
             // 
             this.txtActionItem.Enabled = false;
             this.txtActionItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtActionItem.Location = new System.Drawing.Point(144, 27);
+            this.txtActionItem.Location = new System.Drawing.Point(183, 27);
             this.txtActionItem.Name = "txtActionItem";
             this.txtActionItem.Size = new System.Drawing.Size(121, 26);
             this.txtActionItem.TabIndex = 77;
             // 
             // btnAdd
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(357, 22);
+            this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(363, 22);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(137, 37);
+            this.btnAdd.Size = new System.Drawing.Size(119, 37);
             this.btnAdd.TabIndex = 55;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -121,18 +120,18 @@
             // 
             this.txtActionDesc.Enabled = false;
             this.txtActionDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtActionDesc.Location = new System.Drawing.Point(110, 164);
+            this.txtActionDesc.Location = new System.Drawing.Point(126, 167);
             this.txtActionDesc.Multiline = true;
             this.txtActionDesc.Name = "txtActionDesc";
-            this.txtActionDesc.Size = new System.Drawing.Size(384, 106);
+            this.txtActionDesc.Size = new System.Drawing.Size(356, 133);
             this.txtActionDesc.TabIndex = 45;
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(357, 110);
+            this.btnDelete.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(363, 110);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(137, 37);
+            this.btnDelete.Size = new System.Drawing.Size(119, 37);
             this.btnDelete.TabIndex = 60;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -140,10 +139,10 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(357, 67);
+            this.btnEdit.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(363, 67);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(137, 37);
+            this.btnEdit.Size = new System.Drawing.Size(119, 37);
             this.btnEdit.TabIndex = 58;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -152,22 +151,22 @@
             // lblActionItems
             // 
             this.lblActionItems.AutoSize = true;
-            this.lblActionItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActionItems.Location = new System.Drawing.Point(13, 30);
+            this.lblActionItems.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActionItems.Location = new System.Drawing.Point(32, 29);
             this.lblActionItems.Name = "lblActionItems";
-            this.lblActionItems.Size = new System.Drawing.Size(132, 20);
+            this.lblActionItems.Size = new System.Drawing.Size(146, 21);
             this.lblActionItems.TabIndex = 76;
             this.lblActionItems.Text = "Action Number:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 130);
+            this.label1.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 135);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.Size = new System.Drawing.Size(172, 21);
             this.label1.TabIndex = 48;
-            this.label1.Text = "Complete?:";
+            this.label1.Text = "Completion Status:";
             // 
             // cbStatus
             // 
@@ -176,44 +175,45 @@
             this.cbStatus.Items.AddRange(new object[] {
             "Y",
             "N"});
-            this.cbStatus.Location = new System.Drawing.Point(144, 132);
+            this.cbStatus.Location = new System.Drawing.Point(183, 135);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(40, 21);
             this.cbStatus.TabIndex = 45;
             // 
             // lblStuID
             // 
-            this.lblStuID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStuID.Location = new System.Drawing.Point(13, 57);
+            this.lblStuID.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStuID.Location = new System.Drawing.Point(13, 67);
             this.lblStuID.Name = "lblStuID";
-            this.lblStuID.Size = new System.Drawing.Size(109, 47);
+            this.lblStuID.Size = new System.Drawing.Size(165, 36);
             this.lblStuID.TabIndex = 46;
             this.lblStuID.Text = "Student Assigned:";
             // 
             // lblDueDate
             // 
             this.lblDueDate.AutoSize = true;
-            this.lblDueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDueDate.Location = new System.Drawing.Point(13, 105);
+            this.lblDueDate.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDueDate.Location = new System.Drawing.Point(79, 103);
             this.lblDueDate.Name = "lblDueDate";
-            this.lblDueDate.Size = new System.Drawing.Size(91, 20);
+            this.lblDueDate.Size = new System.Drawing.Size(97, 21);
             this.lblDueDate.TabIndex = 45;
             this.lblDueDate.Text = "Due Date:";
             // 
             // lblActionDesc
             // 
-            this.lblActionDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActionDesc.Location = new System.Drawing.Point(13, 167);
+            this.lblActionDesc.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActionDesc.Location = new System.Drawing.Point(0, 167);
             this.lblActionDesc.Name = "lblActionDesc";
-            this.lblActionDesc.Size = new System.Drawing.Size(91, 55);
+            this.lblActionDesc.Size = new System.Drawing.Size(120, 55);
             this.lblActionDesc.TabIndex = 45;
-            this.lblActionDesc.Text = "Action Desc:";
+            this.lblActionDesc.Text = "Action Description:";
+            this.lblActionDesc.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(334, 12);
+            this.lblTitle.Location = new System.Drawing.Point(342, 12);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(193, 34);
             this.lblTitle.TabIndex = 56;
@@ -233,10 +233,10 @@
             this.colStuID,
             this.colDueDate,
             this.colStatus});
-            this.grdActionItems.Location = new System.Drawing.Point(526, 49);
+            this.grdActionItems.Location = new System.Drawing.Point(526, 54);
             this.grdActionItems.Name = "grdActionItems";
             this.grdActionItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdActionItems.Size = new System.Drawing.Size(376, 290);
+            this.grdActionItems.Size = new System.Drawing.Size(376, 300);
             this.grdActionItems.TabIndex = 74;
             // 
             // colActionNum

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAgenda));
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtAgendaNum = new System.Windows.Forms.TextBox();
@@ -63,10 +64,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(357, 19);
+            this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(369, 19);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(137, 37);
+            this.btnAdd.Size = new System.Drawing.Size(117, 37);
             this.btnAdd.TabIndex = 62;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -76,17 +77,17 @@
             // 
             this.txtAgendaNum.Enabled = false;
             this.txtAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendaNum.Location = new System.Drawing.Point(136, 30);
+            this.txtAgendaNum.Location = new System.Drawing.Point(135, 30);
             this.txtAgendaNum.Name = "txtAgendaNum";
             this.txtAgendaNum.Size = new System.Drawing.Size(121, 26);
             this.txtAgendaNum.TabIndex = 51;
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(357, 105);
+            this.btnDelete.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(369, 105);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(137, 37);
+            this.btnDelete.Size = new System.Drawing.Size(117, 37);
             this.btnDelete.TabIndex = 67;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -94,10 +95,10 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(357, 62);
+            this.btnEdit.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(369, 62);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(137, 37);
+            this.btnEdit.Size = new System.Drawing.Size(117, 37);
             this.btnEdit.TabIndex = 65;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -106,10 +107,10 @@
             // lblAgendaNum
             // 
             this.lblAgendaNum.AutoSize = true;
-            this.lblAgendaNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgendaNum.Location = new System.Drawing.Point(13, 30);
+            this.lblAgendaNum.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAgendaNum.Location = new System.Drawing.Point(5, 30);
             this.lblAgendaNum.Name = "lblAgendaNum";
-            this.lblAgendaNum.Size = new System.Drawing.Size(117, 20);
+            this.lblAgendaNum.Size = new System.Drawing.Size(124, 21);
             this.lblAgendaNum.TabIndex = 50;
             this.lblAgendaNum.Text = "Agenda Num:";
             // 
@@ -117,26 +118,27 @@
             // 
             this.txtAgendaDesc.Enabled = false;
             this.txtAgendaDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgendaDesc.Location = new System.Drawing.Point(110, 164);
+            this.txtAgendaDesc.Location = new System.Drawing.Point(135, 164);
             this.txtAgendaDesc.Multiline = true;
             this.txtAgendaDesc.Name = "txtAgendaDesc";
-            this.txtAgendaDesc.Size = new System.Drawing.Size(384, 106);
+            this.txtAgendaDesc.Size = new System.Drawing.Size(351, 106);
             this.txtAgendaDesc.TabIndex = 45;
             // 
             // lblActionDesc
             // 
-            this.lblActionDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActionDesc.Location = new System.Drawing.Point(13, 157);
+            this.lblActionDesc.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActionDesc.Location = new System.Drawing.Point(0, 166);
             this.lblActionDesc.Name = "lblActionDesc";
-            this.lblActionDesc.Size = new System.Drawing.Size(83, 40);
+            this.lblActionDesc.Size = new System.Drawing.Size(129, 68);
             this.lblActionDesc.TabIndex = 45;
-            this.lblActionDesc.Text = "Agenda Desc:";
+            this.lblActionDesc.Text = "Agenda Description:";
+            this.lblActionDesc.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(334, 12);
+            this.lblTitle.Location = new System.Drawing.Point(364, 10);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(204, 34);
             this.lblTitle.TabIndex = 56;
@@ -180,6 +182,7 @@
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.grdAgendaItems);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAgenda";
             this.Load += new System.EventHandler(this.frmAgenda_Load);
             this.gbDetails.ResumeLayout(false);
