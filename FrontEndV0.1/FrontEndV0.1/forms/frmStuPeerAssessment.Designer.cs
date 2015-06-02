@@ -256,7 +256,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 609);
+            this.ClientSize = new System.Drawing.Size(884, 646);
             this.Controls.Add(this.lblArrow);
             this.Controls.Add(this.grdStudentRatings);
             this.Controls.Add(this.grdAspects);

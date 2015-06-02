@@ -1230,7 +1230,8 @@ CREATE or REPLACE FUNCTION UC2_27_View_AssCrit
 	, pYear number)
 	RETURN SYS_REFCURSOR AS ascr SYS_REFCURSOR;
 BEGIN
-	OPEN ascr for select * from AssessmentCriterion
+	OPEN ascr for select *
+	from AssessmentCriterion
 	WHERE AssID = pAssID AND
 		UnitID = pUnitID AND
 		Semester = pSemester AND
