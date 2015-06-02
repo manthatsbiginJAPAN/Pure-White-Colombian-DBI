@@ -1437,7 +1437,7 @@ END;
 
 create or replace PROCEDURE UC2_37_Register_Task_Period
 		(pPeriod number,
-	pTaskID number
+	pTaskID number,
 	pAssID varchar2,
 	pUnitID varchar2, 
 	pSemester number,
@@ -1453,7 +1453,7 @@ END;
 
 create or replace PROCEDURE UC2_38_Update_Task_Period
 		(pPeriod number,
-	pTaskID number
+	pTaskID number,
 	pAssID varchar2,
 	pUnitID varchar2, 
 	pSemester number,
@@ -1492,7 +1492,7 @@ End;
 
 CREATE OR REPLACE PROCEDURE UC2_40_Delete_Task_Period
 		(pPeriod number,
-	pTaskID number
+	pTaskID number,
 	pAssID varchar2,
 	pUnitID varchar2, 
 	pSemester number,
