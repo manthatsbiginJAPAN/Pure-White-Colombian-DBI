@@ -241,6 +241,7 @@
             this.Controls.Add(this.btnEdit);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTeamContribution";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.grdTaskInfo)).EndInit();
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();

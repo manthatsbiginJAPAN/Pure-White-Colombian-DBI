@@ -273,6 +273,7 @@
             this.Controls.Add(this.grdUnitOfferings);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmUnitOfferings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmUnitOfferings_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();

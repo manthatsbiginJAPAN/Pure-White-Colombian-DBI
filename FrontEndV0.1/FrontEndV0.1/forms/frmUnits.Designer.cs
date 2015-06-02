@@ -246,6 +246,7 @@
             this.Controls.Add(this.gbDetails);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmUnits";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmUnits_Load);
             this.gbIdentifyingInformation.ResumeLayout(false);
             this.gbIdentifyingInformation.PerformLayout();

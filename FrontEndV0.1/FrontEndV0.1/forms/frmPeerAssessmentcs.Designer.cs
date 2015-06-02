@@ -38,13 +38,13 @@
             this.txtGeneralCrit = new System.Windows.Forms.TextBox();
             this.lblGeneral = new System.Windows.Forms.Label();
             this.grdCriteriaInfo = new System.Windows.Forms.DataGridView();
+            this.colCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGeneralCrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpecificCrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.colCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGeneralCrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSpecificCrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCriteriaInfo)).BeginInit();
             this.SuspendLayout();
@@ -148,6 +148,26 @@
             this.grdCriteriaInfo.Size = new System.Drawing.Size(421, 538);
             this.grdCriteriaInfo.TabIndex = 33;
             // 
+            // colCritID
+            // 
+            this.colCritID.FillWeight = 46.30474F;
+            this.colCritID.HeaderText = "Criterion ID";
+            this.colCritID.Name = "colCritID";
+            // 
+            // colGeneralCrit
+            // 
+            this.colGeneralCrit.FillWeight = 93.79678F;
+            this.colGeneralCrit.HeaderText = "General Aspect";
+            this.colGeneralCrit.MinimumWidth = 80;
+            this.colGeneralCrit.Name = "colGeneralCrit";
+            // 
+            // colSpecificCrit
+            // 
+            this.colSpecificCrit.FillWeight = 159.8985F;
+            this.colSpecificCrit.HeaderText = "Specific Aspect";
+            this.colSpecificCrit.MinimumWidth = 105;
+            this.colSpecificCrit.Name = "colSpecificCrit";
+            // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -190,26 +210,6 @@
             this.label3.TabIndex = 56;
             this.label3.Text = "Criteria";
             // 
-            // colCritID
-            // 
-            this.colCritID.FillWeight = 46.30474F;
-            this.colCritID.HeaderText = "Criterion ID";
-            this.colCritID.Name = "colCritID";
-            // 
-            // colGeneralCrit
-            // 
-            this.colGeneralCrit.FillWeight = 93.79678F;
-            this.colGeneralCrit.HeaderText = "General Aspect";
-            this.colGeneralCrit.MinimumWidth = 80;
-            this.colGeneralCrit.Name = "colGeneralCrit";
-            // 
-            // colSpecificCrit
-            // 
-            this.colSpecificCrit.FillWeight = 159.8985F;
-            this.colSpecificCrit.HeaderText = "Specific Aspect";
-            this.colSpecificCrit.MinimumWidth = 105;
-            this.colSpecificCrit.Name = "colSpecificCrit";
-            // 
             // frmPeerAssessmentcs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +224,7 @@
             this.Controls.Add(this.btnDelete);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPeerAssessmentcs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCriteriaInfo)).EndInit();
