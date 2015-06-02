@@ -65,7 +65,11 @@ namespace FrontEndV0._1.forms
             cmd.Parameters.Add("asscursor", OracleDbType.RefCursor);
             cmd.Parameters["asscursor"].Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add("user", _user);
-            string role = "student"; //used currently for testing
+            string role = "convenor"; //used currently for testing
+            if (_user.ToLower().ToArray<Char>().First().Equals('s'))
+            {
+                role = "student";
+            }
             cmd.Parameters.Add("role", role);
             connection.Open();
 
@@ -161,7 +165,12 @@ namespace FrontEndV0._1.forms
 
         private void btnTeamContribution_Click(object sender, EventArgs e)
         {
-            frmStuPeerAss = new frmStuPeerAssessment();
+            frmStuPeerAss = new frmStuPeerAssessment
+                (Convert.ToString(grdAssessments.SelectedRows[0].Cells[0].Value)
+                , Convert.ToString(grdAssessments.SelectedRows[0].Cells[1].Value)
+                , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[2].Value)
+                , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[3].Value)
+                , getTeam());
             frmStuPeerAss.Show();
         }   
 

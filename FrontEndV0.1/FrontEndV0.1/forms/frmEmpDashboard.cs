@@ -21,7 +21,8 @@ namespace FrontEndV0._1.forms
         private frmMeeting frmMeeting = null;
         private frmTeamDetails frmTeamDetails = null;
         private frmProject frmProject = null;
-        private frmReports frmReports = null;       
+        private frmReports frmReports = null;
+        private frmStuAssessment frmStuAssessment = null;   
         private string User;
 
         public frmEmpDashboard(string user, string firstName, bool isAdmin, bool isConvenor, bool isSupervisor)
@@ -203,6 +204,11 @@ namespace FrontEndV0._1.forms
             frmReports.Show();
         }
 
+        private void openStuAssessmentForm() {
+            frmStuAssessment.FormClosing += closeForm;
+            frmStuAssessment.Show();
+        }
+
         private void closeForm(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -319,9 +325,9 @@ namespace FrontEndV0._1.forms
 
         private void allocationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*frmStuAssessment = new frmStuAssessment(user)
+            frmStuAssessment = new frmStuAssessment(User);
             frmStuAssessment.MdiParent = this;
-            openStuAssessmentForm();*/
+            openStuAssessmentForm();
         }  
 
         #endregion
