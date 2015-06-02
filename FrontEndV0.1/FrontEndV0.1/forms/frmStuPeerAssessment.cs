@@ -40,8 +40,8 @@ namespace FrontEndV0._1.forms
             getCriterion();
             populateCriterion();
 
-            //getRatings();
-            //populateRatings();
+            getRatings();
+            populateRatings();
         }
 
         private void getCriterion()
@@ -82,6 +82,7 @@ namespace FrontEndV0._1.forms
 
         private void getRatings()
         {
+
             OracleCommand cmd = new OracleCommand("UC2_35_View_StuRatings", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -106,6 +107,7 @@ namespace FrontEndV0._1.forms
 
         private void populateRatings()
         {
+
             grdStudentRatings.Rows.Clear();
 
             int rowcnt = ratings.Tables["ratingcursor"].Rows.Count;

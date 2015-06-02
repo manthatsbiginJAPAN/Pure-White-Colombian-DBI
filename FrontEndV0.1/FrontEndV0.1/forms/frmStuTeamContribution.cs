@@ -18,15 +18,16 @@ namespace FrontEndV0._1.forms
 
         private DataSet tasks;
         private DataSet periods;
-        private DataSet hours;
         private DataSet teams;
+        private DataSet stuhours;
 
         private string _assid;
         private string _unitid;
         private string _team;
         private int _sem;
         private int _year;
-
+        private int periodcnt;
+        private int totalhrs;
 
         public frmStuTeamContribution(string assid, string unitid, int sem, int year, string team)
         {
@@ -71,9 +72,7 @@ namespace FrontEndV0._1.forms
         {
             grdTasks.Rows.Clear();
 
-            int rowcnt = tasks.Tables["taskcursor"].Rows.Count;
-
-            for (int i = 0; i <= rowcnt - 1; i++)
+            for (int i = 0; i < tasks.Tables["taskcursor"].Rows.Count; i++)
             {
                 object[] items = tasks.Tables[0].Rows[i].ItemArray;
                 grdTasks.Rows.Add(new object[] { items[0], items[5] });
@@ -84,6 +83,9 @@ namespace FrontEndV0._1.forms
         {
             if (connection.State == ConnectionState.Open)
                 connection.Close();
+
+            grdPeriods.Rows.Clear();
+            grdStudentHours.Rows.Clear();
 
             OracleCommand cmd = new OracleCommand("UC2_39_VIEW_TASK_PERIOD", connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -106,12 +108,10 @@ namespace FrontEndV0._1.forms
 
             connection.Close();
 
-            grdPeriods.Rows.Clear();
-            grdStudentHours.Rows.Clear();
+            periodcnt = periods.Tables["percursor"].Rows.Count;
 
-            int rowcnt = periods.Tables["percursor"].Rows.Count;
 
-            for (int i = 0; i <= rowcnt - 1; i++)
+            for (int i = 0; i < periodcnt; i++)
             {
                 object[] items = periods.Tables[0].Rows[i].ItemArray;
                 grdPeriods.Rows.Add(new object[] { items[0], items[6] });
@@ -121,6 +121,7 @@ namespace FrontEndV0._1.forms
 
         private void grdPeriods_SelectionChanged(object sender, EventArgs e)
         {
+
             if (connection.State == ConnectionState.Open)
                 connection.Close();
 
@@ -143,21 +144,18 @@ namespace FrontEndV0._1.forms
             da.Fill(teams, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
 
             connection.Close();
-            
+
             grdStudentHours.Rows.Clear();
 
-            int rowcnt = teams.Tables["teamcursor"].Rows.Count;
-
-            //if (grdPeriods.SelectedRows.Count != 0)
-            //{
-            //    getStuHours();
-
-            for (int i = 0; i <= rowcnt - 1; i++)
+            for (int i = 0; i < teams.Tables["teamcursor"].Rows.Count; i++)
             {
                 object[] items = teams.Tables[0].Rows[i].ItemArray;
-                grdStudentHours.Rows.Add(new object[] { items[0], items[1] + " " + items[2]});
+                grdStudentHours.Rows.Add(new object[] { items[0], items[1] + " " + items[2] });
             }
-            //}
+                if (grdStudentHours.Rows.Count != 0)
+                {
+                    getStuHours();
+                }
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -191,30 +189,49 @@ namespace FrontEndV0._1.forms
             this.Close();
         }
 
-        /*private void getStuHours()
+        private void getStuHours()
         {
-            OracleCommand cmd = new OracleCommand("UC2_31_View_StuHours", connection);
-            cmd.CommandType = CommandType.StoredProcedure;
+            if (grdPeriods.SelectedRows.Count == 0)
+            {
+                return;
+            }
 
-            cmd.Parameters.Add("hourcursor", OracleDbType.RefCursor);
-            cmd.Parameters["hourcursor"].Direction = ParameterDirection.ReturnValue;
-            cmd.Parameters.Add("period", grdPeriods.Rows[grdPeriods.SelectedRows[0].Index].Cells[0].Value.ToString());
-            cmd.Parameters.Add("taskid", grdTasks.Rows[grdTasks.SelectedRows[0].Index].Cells[0].Value.ToString());
-            cmd.Parameters.Add("assID", _assid);
-            cmd.Parameters.Add("unitid", _unitid);
-            cmd.Parameters.Add("sem", _sem);
-            cmd.Parameters.Add("year", _year);
+            totalhrs = 0;
 
-            connection.Open();
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            cmd.ExecuteNonQuery();
+            for (int i = 0; i < grdStudentHours.Rows.Count; i++)
+            {
+                OracleCommand cmd = new OracleCommand("UC2_31_View_StuHours", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-            teams = new DataSet();
+                cmd.Parameters.Add("hourcursor", OracleDbType.RefCursor);
+                cmd.Parameters["hourcursor"].Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add("period", grdPeriods.Rows[grdPeriods.SelectedRows[0].Index].Cells[0].Value.ToString());
+                cmd.Parameters.Add("taskid", grdTasks.Rows[grdTasks.SelectedRows[0].Index].Cells[0].Value.ToString());
+                cmd.Parameters.Add("stuid", grdStudentHours.Rows[i].Cells[0].Value.ToString());
+                cmd.Parameters.Add("assID", _assid);
+                cmd.Parameters.Add("unitid", _unitid);
+                cmd.Parameters.Add("sem", _sem);
+                cmd.Parameters.Add("year", _year);
 
-            da.Fill(hours, "hourcursor", (OracleRefCursor)(cmd.Parameters["hourcursor"].Value));
+                connection.Open();
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                cmd.ExecuteNonQuery();
 
-            connection.Close();
-        }*/
+                stuhours = new DataSet();
 
+                da.Fill(stuhours, "hourcursor", (OracleRefCursor)(cmd.Parameters["hourcursor"].Value));
+
+                connection.Close();
+
+                if (stuhours.Tables[0].Rows.Count != 0)
+                {
+                    object[] items = stuhours.Tables[0].Rows[0].ItemArray;
+                    grdStudentHours.Rows[i].Cells[2].Value = items[8];
+                    totalhrs = totalhrs + Convert.ToInt32(items[8]);
+                }
+            }
+
+            grdPeriods.SelectedRows[0].Cells[2].Value = totalhrs;
+        }
     }
 }
