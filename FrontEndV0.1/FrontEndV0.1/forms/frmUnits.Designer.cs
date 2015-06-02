@@ -127,6 +127,7 @@
             this.Unitid,
             this.UnitName,
             this.Description});
+            this.grdUnits.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grdUnits.Location = new System.Drawing.Point(486, 65);
             this.grdUnits.Name = "grdUnits";
             this.grdUnits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -245,6 +246,7 @@
             this.Controls.Add(this.gbDetails);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmUnits";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmUnits_Load);
             this.gbIdentifyingInformation.ResumeLayout(false);
             this.gbIdentifyingInformation.PerformLayout();

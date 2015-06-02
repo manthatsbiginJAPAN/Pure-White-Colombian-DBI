@@ -269,6 +269,7 @@
             this.Controls.Add(this.lblTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmActionItems";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmActionItems_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();

@@ -177,5 +177,59 @@ namespace FrontEndV0._1.forms
 
         }
 
+        private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbUnitID.SelectedIndex != -1)
+                cbSemester.Enabled = true;
+            else
+                return;
+
+            int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
+            object sem = new object();
+            cbSemester.Items.Clear();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                //find the semesters where the unitID matches the selected one
+                if (unitoffs.Tables[0].Rows[i][0].ToString() == cbUnitID.SelectedItem.ToString())
+                {
+                    sem = unitoffs.Tables["unitoffcursor"].Rows[i][1].ToString();
+
+                    if (!cbSemester.Items.Contains(sem))
+                        cbSemester.Items.Add(sem);
+
+                    //sort the list numerically/alphabetically
+                    cbSemester.Sorted = true;
+                }
+            }
+        }
+
+        private void cbSemester_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbSemester.SelectedIndex != -1)
+                cbYear.Enabled = true;
+            else
+                return;
+
+            int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
+            object year = new object();
+            cbSemester.Items.Clear();
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                //find the semesters where the unitID matches the selected one
+                if (unitoffs.Tables[0].Rows[i][1].ToString() == cbSemester.SelectedItem.ToString())
+                {
+                    year = unitoffs.Tables["unitoffcursor"].Rows[i][2].ToString();
+
+                    if (!cbSemester.Items.Contains(year))
+                        cbSemester.Items.Add(year);
+
+                    //sort the list numerically/alphabetically
+                    cbSemester.Sorted = true;
+                }
+            }
+        }
+
     }
 }

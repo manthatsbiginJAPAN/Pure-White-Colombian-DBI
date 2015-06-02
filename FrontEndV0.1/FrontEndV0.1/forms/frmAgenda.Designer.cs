@@ -184,6 +184,7 @@
             this.Controls.Add(this.grdAgendaItems);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAgenda";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmAgenda_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();

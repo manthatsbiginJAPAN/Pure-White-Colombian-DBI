@@ -17,17 +17,26 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
 
         private DataSet criteria;
-
         private frmAssessment _parent;
+
+        private string _assID;
+        private string _unitID;
+        private int _semester;
+        private int _year;
+        private string _teamID;
 
         public frmPeerAssessmentcs(frmAssessment parent, string assid, string unitid, int sem, int year, string team)
         {
             InitializeComponent();
-
             connection = conn.oraConn();
 
-            _parent = parent;
+            _assID = assid;
+            _unitID = unitid;
+            _semester = sem;
+            _year = year;
+            _teamID = team;
 
+            _parent = parent;
             _parent.populateAssGrid(this.grdCriteriaInfo);
         }
 
@@ -36,11 +45,21 @@ namespace FrontEndV0._1.forms
             OracleCommand cmd = new OracleCommand("UC2_25_REGISTER_ASSCRIT", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
+            /*
             cmd.Parameters.Add("Criteria ID", txtCritID.Text);
             cmd.Parameters.Add("AssID", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
             cmd.Parameters.Add("UnitId", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
             cmd.Parameters.Add("Semester", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
             cmd.Parameters.Add("Year", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
+            cmd.Parameters.Add("General", txtGeneralCrit.Text);
+            cmd.Parameters.Add("Specific", txtSpecificCrit.Text);
+            */
+
+            cmd.Parameters.Add("Criteria ID", txtCritID.Text);
+            cmd.Parameters.Add("AssID", _assID);
+            cmd.Parameters.Add("UnitId", _unitID);
+            cmd.Parameters.Add("Semester", _semester);
+            cmd.Parameters.Add("Year", _year);
             cmd.Parameters.Add("General", txtGeneralCrit.Text);
             cmd.Parameters.Add("Specific", txtSpecificCrit.Text);
 
@@ -60,10 +79,10 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("critcursor", OracleDbType.RefCursor);
             cmd.Parameters["critcursor"].Direction = ParameterDirection.ReturnValue;
-            cmd.Parameters.Add("AssID", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
-            cmd.Parameters.Add("UnitId", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semester", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
-            cmd.Parameters.Add("Year", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
+            cmd.Parameters.Add("AssID", _assID);
+            cmd.Parameters.Add("UnitId", _unitID);
+            cmd.Parameters.Add("Semester", _semester);
+            cmd.Parameters.Add("Year", _year);
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
@@ -76,16 +95,12 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 //only add tasks where they belong to the current selected assessment
-                string AssID = grdCriteriaInfo.SelectedRows[0].Cells[0].Value.ToString();
-                string UnitID = grdCriteriaInfo.SelectedRows[0].Cells[1].Value.ToString();
-                int Semester = Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[2].Value);
-                int Year = Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[3].Value);
                 object[] items = criteria.Tables[0].Rows[i].ItemArray;
 
-                if (AssID == items[1].ToString()
-                    && UnitID == items[2].ToString()
-                    && Semester == Convert.ToInt32(items[3])
-                    && Year == Convert.ToInt32(items[4]))
+                if (_assID == items[1].ToString()
+                    && _unitID == items[2].ToString()
+                    && _semester == Convert.ToInt32(items[3])
+                    && _year == Convert.ToInt32(items[4]))
                 {
                     grdCriteriaInfo.Rows.Add(new object[] { items[0], items[5], items[6] });
                 }
@@ -105,10 +120,10 @@ namespace FrontEndV0._1.forms
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("Criteria ID", txtCritID.Text);
-                cmd.Parameters.Add("Ass ID", grdCriteriaInfo.SelectedRows[0].Cells[0].Value.ToString());
-                cmd.Parameters.Add("Unit ID", grdCriteriaInfo.SelectedRows[0].Cells[1].Value.ToString());
-                cmd.Parameters.Add("Semester", Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[2].Value));
-                cmd.Parameters.Add("Year", Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[3].Value));
+                cmd.Parameters.Add("Ass ID", _assID);
+                cmd.Parameters.Add("Unit ID", _unitID);
+                cmd.Parameters.Add("Semester", _semester);
+                cmd.Parameters.Add("Year", _year);
                 cmd.Parameters.Add("General", txtGeneralCrit.Text);
                 cmd.Parameters.Add("Specific", txtSpecificCrit.Text);
 
@@ -146,10 +161,10 @@ namespace FrontEndV0._1.forms
             string critid = grdCriteriaInfo.SelectedRows[0].Cells[0].Value.ToString();
 
             cmd.Parameters.Add("Crit ID", critid);
-            cmd.Parameters.Add("Ass ID", grdCriteriaInfo.SelectedRows[0].Cells[0].Value.ToString());
-            cmd.Parameters.Add("Unit ID", grdCriteriaInfo.SelectedRows[0].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semester", Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[2].Value));
-            cmd.Parameters.Add("Year", Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[3].Value));
+            cmd.Parameters.Add("Ass ID", _assID);
+            cmd.Parameters.Add("Unit ID", _unitID);
+            cmd.Parameters.Add("Semester", _semester);
+            cmd.Parameters.Add("Year", _year);
 
             connection.Open();
             cmd.ExecuteNonQuery();

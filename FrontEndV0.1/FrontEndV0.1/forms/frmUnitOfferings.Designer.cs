@@ -231,6 +231,7 @@
             this.Semester,
             this.Year,
             this.Convenor});
+            this.grdUnitOfferings.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grdUnitOfferings.Location = new System.Drawing.Point(486, 65);
             this.grdUnitOfferings.Name = "grdUnitOfferings";
             this.grdUnitOfferings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -272,6 +273,7 @@
             this.Controls.Add(this.grdUnitOfferings);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmUnitOfferings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmUnitOfferings_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
