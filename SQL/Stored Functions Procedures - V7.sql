@@ -1243,7 +1243,7 @@ END;
 /
 
 create or replace PROCEDURE UC2_29_Register_StuHours
-	(pPeriod number
+	(pPeriod number,
 	pTaskID number,
 	pStuID varchar2,
 	pAssID varchar2,
