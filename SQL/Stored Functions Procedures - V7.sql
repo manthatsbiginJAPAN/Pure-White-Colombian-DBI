@@ -1230,7 +1230,8 @@ CREATE or REPLACE FUNCTION UC2_27_View_AssCrit
 	, pYear number)
 	RETURN SYS_REFCURSOR AS ascr SYS_REFCURSOR;
 BEGIN
-	OPEN ascr for select * from AssessmentCriterion
+	OPEN ascr for select *
+	from AssessmentCriterion
 	WHERE AssID = pAssID AND
 		UnitID = pUnitID AND
 		Semester = pSemester AND
@@ -1952,13 +1953,21 @@ EXCEPTION
 		dbms_output.put_line(SQLERRM);
 End;
 
-
-OPEN sta for select s.StuID, d.FirstName, d.LastName
-	FROM StudentTeamAllocation s
-	INNER JOIN Student d
-	ON s.StuID = d.StuID
-	WHERE TeamID = pTeamID AND
-		UnitID = pUnitID AND
-		Semester = pSemester AND
-		Year = pYear;
 /
+
+CREATE or REPLACE FUNCTION UC4_2_View_Enrolment RETURN SYS_REFCURSOR 
+(pUnitID varchar2, pSemester number, pYear number)
+	AS enrols SYS_REFCURSOR;
+BEGIN
+	OPEN enrols for select st.FirstName, st.LastName
+	 from Enrolment e
+	 INNER JOIN Student st
+	 ON st.StuID = e.StuID
+	 where UnitID = pUnitID and
+	 	Semester = pSemester and
+	 	Year = pYear;
+	Return enrols;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;

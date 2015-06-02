@@ -21,6 +21,7 @@ namespace FrontEndV0._1.forms
         private DataSet units;
         private DataSet unitoffs;
         private DataSet unitoffs2;
+        private DataSet enrols;
         private string User;
         private bool IsAdmin;
 
@@ -34,9 +35,11 @@ namespace FrontEndV0._1.forms
 
         private void frmReports_Load(object sender, EventArgs e)
         {
-            
+            getUnitOfferings();
+            populatecbUnitID();
         }
 
+        #region getdata
         private void getUnits()
         {
             //Oracle Command to populate the dataset
@@ -112,6 +115,30 @@ namespace FrontEndV0._1.forms
             connection.Close(); 
         }
 
+        private void getEnrolments(string unitid, string semester, string year)
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC4_2_View_Enrolment ", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("enrolcursor", OracleDbType.RefCursor);
+            cmd.Parameters["enrolcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("unit", unitid);
+            cmd.Parameters.Add("semester", Convert.ToInt16(semester));
+            cmd.Parameters.Add("year", Convert.ToInt16(year));
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            enrols = new DataSet();
+
+            da.Fill(enrols, "enrolcursor", (OracleRefCursor)(cmd.Parameters["enrolcursor"].Value));
+
+            connection.Close();
+        }
+#endregion
+
         private void populatecbUnitID()
         {
             //Clear boxes
@@ -125,6 +152,10 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 unitid = unitoffs.Tables[0].Rows[i][0].ToString();
+
+                if (!cbUnitID.Items.Contains(unitid.ToString())) 
+                    cbUnitID.Items.Add(unitid.ToString());
+
                 cbUnitID.Items.Add(unitid.ToString());
             }
 
@@ -153,15 +184,11 @@ namespace FrontEndV0._1.forms
                 int offrowcnt = unitoffs2.Tables["unitoffcursor2"].Rows.Count;
                 for (int j = 0; j < offrowcnt; j++)
                 {
-                    string sem = "";
-                    string year = "";
-                    string confirstname = "";
-                    string conlastname = "";
 
-                    sem = unitoffs2.Tables[0].Rows[j][0].ToString();
-                    year = unitoffs2.Tables[0].Rows[j][1].ToString();
-                    confirstname = unitoffs2.Tables[0].Rows[j][2].ToString();
-                    conlastname = unitoffs2.Tables[0].Rows[j][3].ToString();
+                    string sem = unitoffs2.Tables[0].Rows[j][0].ToString();
+                    string year = unitoffs2.Tables[0].Rows[j][1].ToString();
+                    string confirstname = unitoffs2.Tables[0].Rows[j][2].ToString();
+                    string conlastname = unitoffs2.Tables[0].Rows[j][3].ToString();
 
                     txtReportDisplay.Text += System.Environment.NewLine + "     " + sem + " " + year + " " + confirstname + " " + conlastname;
                 }
@@ -174,9 +201,28 @@ namespace FrontEndV0._1.forms
 
         private void btnEnrolmentReport_Click(object sender, EventArgs e)
         {
+            txtReportDisplay.Clear();
+            string pUnitId = cbUnitID.SelectedItem.ToString();
+            string pSemester = cbSemester.SelectedItem.ToString();
+            string pYear = cbYear.SelectedItem.ToString();
+
+            getEnrolments(pUnitId, pSemester, pYear);
+
+            txtReportDisplay.Text = "** List of Enrolments in:" + pUnitId + "Semester:"+ pSemester + "Year:" + pYear + " **" + Environment.NewLine;
+
+            int enrowcnt = enrols.Tables["enrolcursor"].Rows.Count;
+            for (int i = 0; i < enrowcnt; i++)
+            {
+                string stufirstname = enrols.Tables["enrolcursor"].Rows[i][0].ToString();
+                string stulastname = enrols.Tables["enrolcursor"].Rows[i][0].ToString();
+
+                //populate textbox
+                txtReportDisplay.Text += System.Environment.NewLine + stufirstname + " " + stulastname;
+            }
 
         }
 
+#region selectionchanged
         private void cbUnitID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbUnitID.SelectedIndex != -1)
@@ -229,6 +275,17 @@ namespace FrontEndV0._1.forms
                     cbSemester.Sorted = true;
                 }
             }
+        }
+#endregion
+
+        private void cbYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnEnrolmentReport.Enabled = true;
+        }
+
+        private void btnSupervisorReport_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

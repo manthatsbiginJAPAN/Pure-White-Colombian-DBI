@@ -132,6 +132,9 @@ namespace FrontEndV0._1.forms
             if (frmUnitOfferings != null)
                 frmUnitOfferings.Hide();
 
+            if (frmReports != null)
+                frmReports.Hide();
+
             if (frmAssessment != null)
                 frmAssessment.Hide();
 
@@ -369,6 +372,5 @@ namespace FrontEndV0._1.forms
             CloseAllChildForms();
             this.Close();
         }
-
     }
 }
