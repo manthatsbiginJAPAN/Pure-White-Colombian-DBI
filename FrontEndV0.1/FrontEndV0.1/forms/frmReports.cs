@@ -35,9 +35,11 @@ namespace FrontEndV0._1.forms
 
         private void frmReports_Load(object sender, EventArgs e)
         {
-            
+            getUnitOfferings();
+            populatecbUnitID();
         }
 
+        #region getdata
         private void getUnits()
         {
             //Oracle Command to populate the dataset
@@ -135,6 +137,7 @@ namespace FrontEndV0._1.forms
 
             connection.Close();
         }
+#endregion
 
         private void populatecbUnitID()
         {
@@ -149,6 +152,10 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 unitid = unitoffs.Tables[0].Rows[i][0].ToString();
+
+                if (!cbUnitID.Items.Contains(unitid.ToString())) 
+                    cbUnitID.Items.Add(unitid.ToString());
+
                 cbUnitID.Items.Add(unitid.ToString());
             }
 
@@ -270,6 +277,16 @@ namespace FrontEndV0._1.forms
             }
         }
 #endregion
+
+        private void cbYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnEnrolmentReport.Enabled = true;
+        }
+
+        private void btnSupervisorReport_Click(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }

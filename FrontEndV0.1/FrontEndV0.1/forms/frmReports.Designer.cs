@@ -104,9 +104,11 @@
             this.btnSupervisorReport.TabIndex = 45;
             this.btnSupervisorReport.Text = "Supervisors";
             this.btnSupervisorReport.UseVisualStyleBackColor = true;
+            this.btnSupervisorReport.Click += new System.EventHandler(this.btnSupervisorReport_Click);
             // 
             // btnEnrolmentReport
             // 
+            this.btnEnrolmentReport.Enabled = false;
             this.btnEnrolmentReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnrolmentReport.Location = new System.Drawing.Point(6, 565);
             this.btnEnrolmentReport.Name = "btnEnrolmentReport";
@@ -124,6 +126,7 @@
             this.cbYear.Name = "cbYear";
             this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 52;
+            this.cbYear.SelectedIndexChanged += new System.EventHandler(this.cbYear_SelectedIndexChanged);
             // 
             // cbSemester
             // 
