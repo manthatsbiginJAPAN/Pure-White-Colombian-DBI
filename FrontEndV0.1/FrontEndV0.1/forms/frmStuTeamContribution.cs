@@ -21,10 +21,11 @@ namespace FrontEndV0._1.forms
 
         private string _assid;
         private string _unitid;
+        private string _team;
         private int _sem;
         private int _year;
 
-        public frmStuTeamContribution(string assid, string unitid, int sem, int year)
+        public frmStuTeamContribution(string assid, string unitid, int sem, int year, string team)
         {
             InitializeComponent();
 
@@ -34,6 +35,7 @@ namespace FrontEndV0._1.forms
             _unitid = unitid;
             _sem = sem;
             _year = year;
+            _team = team;
 
             getTasks();
             populateTasks();
