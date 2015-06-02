@@ -65,6 +65,10 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;         
             cmd.Parameters.Add("taskcursor", OracleDbType.RefCursor);
             cmd.Parameters["taskcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("AssID", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
+            cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
+            cmd.Parameters.Add("Semester", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
+            cmd.Parameters.Add("Year", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
