@@ -21,7 +21,8 @@ namespace FrontEndV0._1.forms
         private frmMeeting frmMeeting = null;
         private frmTeamDetails frmTeamDetails = null;
         private frmProject frmProject = null;
-        private frmReports frmReports = null;
+        private frmReport frmReport = null;
+
         private string User;
 
         public frmEmpDashboard(string user, bool isAdmin, bool isConvenor, bool isSupervisor)
@@ -47,7 +48,7 @@ namespace FrontEndV0._1.forms
                 frmEnrolments = new frmEnrolments(user, isAdmin);
                 frmEnrolments.MdiParent = this;
 
-                frmReports = new frmReports(true);
+                frmReport = new frmReport(true);
                 frmUnits.MdiParent = this;
             }
             else
@@ -141,8 +142,8 @@ namespace FrontEndV0._1.forms
             if (frmProject != null)
                 frmProject.Hide();
 
-            if (frmReports != null)
-                frmReports.Hide();
+            if (frmReport != null)
+                frmReport.Hide();
         }
 
         #region Form Toggles
@@ -195,10 +196,10 @@ namespace FrontEndV0._1.forms
             frmEmpDetails.Show();
         }
 
-        private void openReportsForm()
+        private void openReportForm()
         {
-            frmReports.FormClosing += closeForm;
-            frmReports.Show();
+            frmReport.FormClosing += closeForm;
+            frmReport.Show();
         }
 
         private void closeForm(object sender, FormClosingEventArgs e)
@@ -275,7 +276,7 @@ namespace FrontEndV0._1.forms
         #region Reports
         private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openReportsForm();
+            openReportForm();
         }
         #endregion
 
