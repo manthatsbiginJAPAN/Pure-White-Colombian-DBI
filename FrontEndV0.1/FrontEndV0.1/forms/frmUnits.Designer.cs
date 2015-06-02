@@ -127,6 +127,7 @@
             this.Unitid,
             this.UnitName,
             this.Description});
+            this.grdUnits.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grdUnits.Location = new System.Drawing.Point(486, 65);
             this.grdUnits.Name = "grdUnits";
             this.grdUnits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

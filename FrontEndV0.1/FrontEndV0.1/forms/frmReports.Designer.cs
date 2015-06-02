@@ -42,14 +42,15 @@
             this.lblSem = new System.Windows.Forms.Label();
             this.lblYear = new System.Windows.Forms.Label();
             this.lblUnitID = new System.Windows.Forms.Label();
+            this.btnEtc = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnConUnitReport
             // 
             this.btnConUnitReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConUnitReport.Location = new System.Drawing.Point(21, 77);
+            this.btnConUnitReport.Location = new System.Drawing.Point(6, 77);
             this.btnConUnitReport.Name = "btnConUnitReport";
-            this.btnConUnitReport.Size = new System.Drawing.Size(146, 57);
+            this.btnConUnitReport.Size = new System.Drawing.Size(167, 40);
             this.btnConUnitReport.TabIndex = 35;
             this.btnConUnitReport.Text = "Convenors and Units";
             this.btnConUnitReport.UseVisualStyleBackColor = true;
@@ -58,28 +59,28 @@
             // txtReportDisplay
             // 
             this.txtReportDisplay.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReportDisplay.Location = new System.Drawing.Point(219, 39);
+            this.txtReportDisplay.Location = new System.Drawing.Point(352, 77);
             this.txtReportDisplay.Multiline = true;
             this.txtReportDisplay.Name = "txtReportDisplay";
-            this.txtReportDisplay.Size = new System.Drawing.Size(683, 595);
+            this.txtReportDisplay.Size = new System.Drawing.Size(550, 557);
             this.txtReportDisplay.TabIndex = 41;
             // 
             // lblReports
             // 
             this.lblReports.AutoSize = true;
-            this.lblReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReports.Location = new System.Drawing.Point(17, 39);
+            this.lblReports.Font = new System.Drawing.Font("Modern No. 20", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReports.Location = new System.Drawing.Point(316, 19);
             this.lblReports.Name = "lblReports";
-            this.lblReports.Size = new System.Drawing.Size(78, 20);
+            this.lblReports.Size = new System.Drawing.Size(314, 38);
             this.lblReports.TabIndex = 42;
-            this.lblReports.Text = "Reports:";
+            this.lblReports.Text = "Report Generation";
             // 
             // btnTeamDetails
             // 
             this.btnTeamDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeamDetails.Location = new System.Drawing.Point(21, 298);
+            this.btnTeamDetails.Location = new System.Drawing.Point(6, 215);
             this.btnTeamDetails.Name = "btnTeamDetails";
-            this.btnTeamDetails.Size = new System.Drawing.Size(146, 57);
+            this.btnTeamDetails.Size = new System.Drawing.Size(167, 40);
             this.btnTeamDetails.TabIndex = 43;
             this.btnTeamDetails.Text = "Team Details";
             this.btnTeamDetails.UseVisualStyleBackColor = true;
@@ -87,9 +88,9 @@
             // btnProjectReport
             // 
             this.btnProjectReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProjectReport.Location = new System.Drawing.Point(21, 216);
+            this.btnProjectReport.Location = new System.Drawing.Point(6, 169);
             this.btnProjectReport.Name = "btnProjectReport";
-            this.btnProjectReport.Size = new System.Drawing.Size(146, 57);
+            this.btnProjectReport.Size = new System.Drawing.Size(167, 40);
             this.btnProjectReport.TabIndex = 44;
             this.btnProjectReport.Text = "Projects";
             this.btnProjectReport.UseVisualStyleBackColor = true;
@@ -97,9 +98,9 @@
             // btnSupervisorReport
             // 
             this.btnSupervisorReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupervisorReport.Location = new System.Drawing.Point(21, 153);
+            this.btnSupervisorReport.Location = new System.Drawing.Point(6, 123);
             this.btnSupervisorReport.Name = "btnSupervisorReport";
-            this.btnSupervisorReport.Size = new System.Drawing.Size(146, 57);
+            this.btnSupervisorReport.Size = new System.Drawing.Size(167, 40);
             this.btnSupervisorReport.TabIndex = 45;
             this.btnSupervisorReport.Text = "Supervisors";
             this.btnSupervisorReport.UseVisualStyleBackColor = true;
@@ -107,9 +108,9 @@
             // btnEnrolmentReport
             // 
             this.btnEnrolmentReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnrolmentReport.Location = new System.Drawing.Point(21, 566);
+            this.btnEnrolmentReport.Location = new System.Drawing.Point(6, 565);
             this.btnEnrolmentReport.Name = "btnEnrolmentReport";
-            this.btnEnrolmentReport.Size = new System.Drawing.Size(146, 57);
+            this.btnEnrolmentReport.Size = new System.Drawing.Size(167, 40);
             this.btnEnrolmentReport.TabIndex = 46;
             this.btnEnrolmentReport.Text = "See Enrolments";
             this.btnEnrolmentReport.UseVisualStyleBackColor = true;
@@ -171,11 +172,22 @@
             this.lblUnitID.TabIndex = 47;
             this.lblUnitID.Text = "Unit ID:";
             // 
+            // btnEtc
+            // 
+            this.btnEtc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEtc.Location = new System.Drawing.Point(179, 77);
+            this.btnEtc.Name = "btnEtc";
+            this.btnEtc.Size = new System.Drawing.Size(167, 40);
+            this.btnEtc.TabIndex = 53;
+            this.btnEtc.Text = "Etc...";
+            this.btnEtc.UseVisualStyleBackColor = true;
+            // 
             // frmReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 646);
+            this.Controls.Add(this.btnEtc);
             this.Controls.Add(this.cbYear);
             this.Controls.Add(this.cbSemester);
             this.Controls.Add(this.cbUnitID);
@@ -211,6 +223,7 @@
         public System.Windows.Forms.Label lblSem;
         public System.Windows.Forms.Label lblYear;
         public System.Windows.Forms.Label lblUnitID;
+        public System.Windows.Forms.Button btnEtc;
 
     }
 }

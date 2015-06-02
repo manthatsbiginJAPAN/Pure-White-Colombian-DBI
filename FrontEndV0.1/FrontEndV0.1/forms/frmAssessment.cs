@@ -282,6 +282,9 @@ namespace FrontEndV0._1.forms
 
         private void btnTeamCont_Click(object sender, EventArgs e)
         {
+            if (grdAssessmentInfo.SelectedRows.Count == 0)
+                return;
+
             int selectedRow = grdAssessmentInfo.SelectedRows[0].Index;
             frmTeamCont = new frmTeamContribution(grdAssessmentInfo.Rows[selectedRow].Cells[0].Value.ToString(),
                                                   grdAssessmentInfo.Rows[selectedRow].Cells[1].Value.ToString(),
@@ -292,6 +295,9 @@ namespace FrontEndV0._1.forms
 
         private void btnPeerAss_Click(object sender, EventArgs e)
         {
+            if (grdAssessmentInfo.SelectedRows.Count == 0)
+                return;
+
             int selectedRow = grdAssessmentInfo.SelectedRows[0].Index;
             frmPeerAss = new frmPeerAssessmentcs(this, grdAssessmentInfo.Rows[selectedRow].Cells[0].Value.ToString(),
                                                   grdAssessmentInfo.Rows[selectedRow].Cells[1].Value.ToString(),

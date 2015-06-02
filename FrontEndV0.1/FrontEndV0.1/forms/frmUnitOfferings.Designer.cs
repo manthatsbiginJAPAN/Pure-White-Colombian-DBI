@@ -231,6 +231,7 @@
             this.Semester,
             this.Year,
             this.Convenor});
+            this.grdUnitOfferings.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grdUnitOfferings.Location = new System.Drawing.Point(486, 65);
             this.grdUnitOfferings.Name = "grdUnitOfferings";
             this.grdUnitOfferings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
