@@ -5,14 +5,17 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.Layout;
 using Oracle.DataAccess.Client;
 using Oracle.DataAccess.Types;
 
+
+
 namespace FrontEndV0._1.forms
 {
-    public partial class frmUnits : Form
+    public partial class frmUnits : Form 
     {
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
@@ -76,6 +79,7 @@ namespace FrontEndV0._1.forms
                 grdUnits.Rows.Add(new object[] { items[0], items[1], items[2]});
             }
         }
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -260,6 +264,66 @@ namespace FrontEndV0._1.forms
                 grdUnits.ClearSelection();
                 grdUnits.Enabled = false;
             }
+        }
+
+        private void btnCSV_Click(object sender, EventArgs e)
+        {
+            string line;
+            string[] row;
+            string unitid;
+            string name;
+            string desc;
+
+            int linecount = 0;
+            string insertMsg = null;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.StreamReader file = new System.IO.StreamReader(openFileDialog1.FileName);
+                while ((line = file.ReadLine()) != null)
+                {
+                    row = line.Split(',');
+                    unitid = row[0];
+                    name = row[1];
+                    desc = row[2];
+
+                    OracleCommand cmd = new OracleCommand("UC1_5_Register_Unit", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("unitid", unitid);
+                    cmd.Parameters.Add("name", name);
+                    cmd.Parameters.Add("desc", desc);
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+
+                    linecount++;
+                    insertMsg += Environment.NewLine + unitid + name;
+
+                }
+
+                file.Close();
+
+                //Repopulate Grid 
+                getUnits();
+                populateUnitGrid();
+            }
+
+            if (linecount != 0)
+            {
+                MessageBox.Show(insertMsg, "Added " + linecount + " units.");
+            }
+            else
+            {
+                MessageBox.Show("File contains no units", "Error Message");
+            }
+
+        }
+        
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

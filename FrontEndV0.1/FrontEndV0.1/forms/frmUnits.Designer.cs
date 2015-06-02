@@ -35,15 +35,17 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.grdUnits = new System.Windows.Forms.DataGridView();
+            this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
-            this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCSV = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.gbIdentifyingInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUnits)).BeginInit();
             this.gbDetails.SuspendLayout();
@@ -130,6 +132,24 @@
             this.grdUnits.Size = new System.Drawing.Size(421, 569);
             this.grdUnits.TabIndex = 26;
             // 
+            // Unitid
+            // 
+            this.Unitid.HeaderText = "Unit ID";
+            this.Unitid.Name = "Unitid";
+            this.Unitid.ReadOnly = true;
+            // 
+            // UnitName
+            // 
+            this.UnitName.HeaderText = "Name";
+            this.UnitName.Name = "UnitName";
+            this.UnitName.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            this.Description.Visible = false;
+            // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -192,29 +212,28 @@
             this.txtDescription.Size = new System.Drawing.Size(100, 26);
             this.txtDescription.TabIndex = 10;
             // 
-            // Unitid
+            // btnCSV
             // 
-            this.Unitid.HeaderText = "Unit ID";
-            this.Unitid.Name = "Unitid";
-            this.Unitid.ReadOnly = true;
+            this.btnCSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCSV.Location = new System.Drawing.Point(343, 302);
+            this.btnCSV.Name = "btnCSV";
+            this.btnCSV.Size = new System.Drawing.Size(137, 37);
+            this.btnCSV.TabIndex = 27;
+            this.btnCSV.Text = "Import CSV";
+            this.btnCSV.UseVisualStyleBackColor = true;
+            this.btnCSV.Click += new System.EventHandler(this.btnCSV_Click);
             // 
-            // UnitName
+            // openFileDialog1
             // 
-            this.UnitName.HeaderText = "Name";
-            this.UnitName.Name = "UnitName";
-            this.UnitName.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            this.Description.Visible = false;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // frmUnits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 646);
+            this.Controls.Add(this.btnCSV);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gbIdentifyingInformation);
             this.Controls.Add(this.btnEdit);
@@ -252,5 +271,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        public System.Windows.Forms.Button btnCSV;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
