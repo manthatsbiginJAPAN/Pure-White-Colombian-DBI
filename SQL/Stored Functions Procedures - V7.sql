@@ -1243,18 +1243,18 @@ END;
 /
 
 create or replace PROCEDURE UC2_29_Register_StuHours
-	(pTaskID number,
+	(pPeriod number
+	pTaskID number,
 	pStuID varchar2,
 	pAssID varchar2,
 	pUnitID varchar2, 
 	pSemester number,
 	pYear number,
 	pTeamID varchar2,
-	pPeriod number,
 	pHours number,
 	pDateSubmitted date) AS
 BEGIN
-	INSERT INTO StudentHours VALUES (pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pPeriod, pHours, pDateSubmitted);
+	INSERT INTO StudentHours VALUES (pPeriod, pTaskID, pStuID, pAssID, pUnitID, pSemester, pYear, pTeamID, pHours, pDateSubmitted);
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1265,27 +1265,28 @@ END;
 /
 
 create or replace PROCEDURE UC2_30_Update_StuHours
-		(pTaskID number,
+		(pPeriod number,
+	pTaskID number,
 	pStuID varchar2,
 	pAssID varchar2,
 	pUnitID varchar2,
 	pSemester number,
 	pYear number,
 	pTeamID varchar2,
-	pPeriod number,
 	pHours number,
 	pDateSubmitted date) AS
 BEGIN
 	UPDATE StudentHours
-	SET Period = pPeriod,
-		Hours = pHours,
+	SET Hours = pHours,
 		DateSubmitted = pDateSubmitted
-	WHERE TaskID = pTaskID and
+	WHERE Period = pPeriod and
+		TaskID = pTaskID and
 		StuID = pStuID and
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
-		Year = pYear;
+		Year = pYear and
+		TeamID = pTeamID;
 	--dbms_output.put_line('Assessment' || pAssID || ' updated' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
@@ -1316,20 +1317,24 @@ End;
 
 
 CREATE OR REPLACE PROCEDURE UC2_32_Delete_StuHours
-		(pTaskID number
+		(pPeriod number
+		, pTaskID number
 		, pStuID varchar2
 		, pAssID varchar2
 		, pUnitID varchar2
 		, pSemester number
-		, pYear number) AS
+		, pYear number
+		, pTeamID varchar2) AS
 BEGIN
 	Delete StudentHours
-	WHERE TaskID = pTaskID and
+	WHERE Period = pPeriod and
+		TaskID = pTaskID and
 		StuID = pStuID and
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
-		Year = pYear;
+		Year = pYear and
+		TeamID = pTeamID;
 	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
