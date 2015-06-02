@@ -18,6 +18,7 @@ namespace FrontEndV0._1.forms
         private DataSet ds;
         private DataSet teams;
         private DataSet teamallocs;
+        private DataSet allallocs;
         private DataSet unitoffs;
         private DataSet projects;
         private DataSet enrolments;
@@ -189,7 +190,7 @@ namespace FrontEndV0._1.forms
             cmd.Parameters.Add("unitid", grdTeamInfo.Rows[selectedRow].Cells[2].Value.ToString());
             cmd.Parameters.Add("semester", Convert.ToInt16(grdTeamInfo.Rows[selectedRow].Cells[3].Value));
             cmd.Parameters.Add("year", Convert.ToInt16(grdTeamInfo.Rows[selectedRow].Cells[4].Value));
-            
+
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
@@ -197,6 +198,30 @@ namespace FrontEndV0._1.forms
             teamallocs = new DataSet();
 
             da.Fill(teamallocs, "talloccursor", (OracleRefCursor)(cmd.Parameters["talloccursor"].Value));
+
+            connection.Close();
+        }
+
+        private void getAllAllocs()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_18_View_Team_Allo_All", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("allcursor", OracleDbType.RefCursor);
+            cmd.Parameters["allcursor"].Direction = ParameterDirection.ReturnValue;
+            int selectedRow = grdTeamInfo.SelectedCells[0].RowIndex;
+            cmd.Parameters.Add("unitid", grdTeamInfo.Rows[selectedRow].Cells[2].Value.ToString());
+            cmd.Parameters.Add("semester", Convert.ToInt16(grdTeamInfo.Rows[selectedRow].Cells[3].Value));
+            cmd.Parameters.Add("year", Convert.ToInt16(grdTeamInfo.Rows[selectedRow].Cells[4].Value));
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            allallocs = new DataSet();
+
+            da.Fill(allallocs, "allcursor", (OracleRefCursor)(cmd.Parameters["allcursor"].Value));
 
             connection.Close();
         }
@@ -349,26 +374,57 @@ namespace FrontEndV0._1.forms
 
             //Populate the grid from the dataset
             int rowcnt = enrolments.Tables["enrolcursor"].Rows.Count;
-            object items = new object();
+            object stuid = new object();
             object unit = new object();
             object semester = new object();
             object year = new object();
 
-            for (int i = 0; i <= rowcnt - 1; i++)
+            for (int i = 0; i < rowcnt; i++)
             {
-                items = enrolments.Tables["enrolcursor"].Rows[i][0].ToString();
+                stuid = enrolments.Tables["enrolcursor"].Rows[i][0].ToString();
                 unit = enrolments.Tables["enrolcursor"].Rows[i][1].ToString();
                 semester = enrolments.Tables["enrolcursor"].Rows[i][2].ToString();
                 year = enrolments.Tables["enrolcursor"].Rows[i][3].ToString();
-                if (unit.Equals(cbUnitID.SelectedItem)) {
-                    if (semester.Equals(cbSemester.SelectedItem)) {
-                        if (year.Equals(cbYear.SelectedItem)) {
-                            if (!cbStuID.Items.Contains(items.ToString()))
-                                cbStuID.Items.Add(items.ToString());
+                
+                //find only students enrolled in this unit offering
+                if (unit.Equals(cbUnitID.SelectedItem) &&
+                    semester.Equals(cbSemester.SelectedItem) &&
+                    year.Equals(cbYear.SelectedItem))
+                {
+                    //Add first
+                    //cbStuID.Items.Add(stuid.ToString());
+                    //MessageBox.Show(stuid.ToString() + " added");
+
+                    //but remove if they're already in a team...
+                    getAllAllocs();
+                    int rwcnt = allallocs.Tables[0].Rows.Count;
+                    for (int j = 0; j <= rwcnt -1; j++)
+                    {
+                        //if the student doesnt exist already then add them
+                        
+                        //MessageBox.Show(stuid.ToString() + " compared to " + allallocs.Tables[0].Rows[j][1].ToString());
+
+                        if (allallocs.Tables[0].Rows[j][1].ToString() == stuid.ToString())
+                        {
+                            //if (!cbStuID.Items.Contains(stuid.ToString()))
+                            if (cbStuID.Items.Contains(stuid.ToString()))
+                            {
+                                cbStuID.Items.Remove(stuid.ToString());
+                                MessageBox.Show(stuid.ToString() + " removed");
+                            }
+                            break;
                         }
-                    }
+                        else
+                        {
+                            if (!cbStuID.Items.Contains(stuid.ToString()))
+                            {
+                                cbStuID.Items.Add(stuid.ToString());
+                                MessageBox.Show(stuid.ToString() + " added");
+                            }
+                        }
+                    }   
                 }
-            }
+            }    
         }
         #endregion
 

@@ -1027,6 +1027,23 @@ End;
 /
 
 
+CREATE or REPLACE FUNCTION UC2_18_View_Team_Allo_All
+ 	(pUnitID varchar2, pSemester number, pYear number)
+	RETURN SYS_REFCURSOR AS sta SYS_REFCURSOR;
+BEGIN
+	OPEN sta for select *
+	FROM StudentTeamAllocation
+	WHERE UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
+	return sta;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
 create or replace PROCEDURE UC2_20_Delete_Team_Allo
 		(pTeamID varchar2,
 	pStuID varchar2,
@@ -1062,9 +1079,15 @@ create or replace PROCEDURE UC2_21_Register_AssTask
 	pSemester number,
 	pYear number,
 	pTaskDesc varchar2,
-	pDueDate date) AS
+	pDueDate date,
+	pPeriods number) AS
+	pcount integer;
 BEGIN
 	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear, pTaskDesc, pDueDate);
+	for pcount IN 1..Pperiods LOOP
+		insert into AssessmentTaskPeriod VALUES (pcount, pTaskID, pAssID, pUnitID, pSemester, pYear, Null);
+	end Loop;
+
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1135,13 +1158,19 @@ CREATE OR REPLACE PROCEDURE UC2_24_Delete_AssTask
 		, pSemester number
 		, pYear number) AS
 BEGIN
+	Delete AssessmentTaskPeriod
+	WHERE TaskID = pTaskID and
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+
 	Delete AssessmentTask
 	WHERE TaskID = pTaskID and
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
 		Year = pYear;
-	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);

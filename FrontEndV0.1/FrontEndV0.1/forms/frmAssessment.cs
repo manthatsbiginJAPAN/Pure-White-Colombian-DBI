@@ -281,13 +281,23 @@ namespace FrontEndV0._1.forms
 
         private void btnTeamCont_Click(object sender, EventArgs e)
         {
-            frmTeamCont = new frmTeamContribution(this);
+            int selectedRow = grdAssessmentInfo.SelectedRows[0].Index;
+            frmTeamCont = new frmTeamContribution(grdAssessmentInfo.Rows[selectedRow].Cells[0].Value.ToString(),
+                                                  grdAssessmentInfo.Rows[selectedRow].Cells[1].Value.ToString(),
+                                                  Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[2].Value.ToString()),
+                                                  Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[3].Value.ToString())
+                                                  );
             frmTeamCont.Show();
         }
 
         private void btnPeerAss_Click(object sender, EventArgs e)
         {
-            frmPeerAss = new frmPeerAssessmentcs(this);
+            int selectedRow = grdAssessmentInfo.SelectedRows[0].Index;
+            frmTeamCont = new frmPeerAssessmentcs(grdAssessmentInfo.Rows[selectedRow].Cells[0].Value.ToString(),
+                                                  grdAssessmentInfo.Rows[selectedRow].Cells[1].Value.ToString(),
+                                                  Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[2].Value.ToString()),
+                                                  Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[3].Value.ToString())
+                                                  );
             frmPeerAss.Show();
         }
     }

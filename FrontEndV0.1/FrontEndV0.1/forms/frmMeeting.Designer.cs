@@ -300,7 +300,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdAttendees.DefaultCellStyle = dataGridViewCellStyle2;
-            this.grdAttendees.Location = new System.Drawing.Point(486, 494);
+            this.grdAttendees.Location = new System.Drawing.Point(489, 494);
             this.grdAttendees.MultiSelect = false;
             this.grdAttendees.Name = "grdAttendees";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -312,7 +312,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdAttendees.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grdAttendees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdAttendees.Size = new System.Drawing.Size(414, 140);
+            this.grdAttendees.Size = new System.Drawing.Size(411, 140);
             this.grdAttendees.TabIndex = 59;
             // 
             // Attended
@@ -579,9 +579,9 @@
             // btnLoadAttendees
             // 
             this.btnLoadAttendees.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadAttendees.Location = new System.Drawing.Point(788, 464);
+            this.btnLoadAttendees.Location = new System.Drawing.Point(788, 460);
             this.btnLoadAttendees.Name = "btnLoadAttendees";
-            this.btnLoadAttendees.Size = new System.Drawing.Size(112, 24);
+            this.btnLoadAttendees.Size = new System.Drawing.Size(112, 30);
             this.btnLoadAttendees.TabIndex = 60;
             this.btnLoadAttendees.Text = "Load";
             this.btnLoadAttendees.UseVisualStyleBackColor = true;
@@ -682,6 +682,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmMeeting";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmMeeting_Load);
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();

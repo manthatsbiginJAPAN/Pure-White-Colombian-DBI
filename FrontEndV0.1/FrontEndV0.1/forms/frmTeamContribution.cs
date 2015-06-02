@@ -15,20 +15,28 @@ namespace FrontEndV0._1.forms
     {
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
-
+        
         private DataSet tasks;
-
         private frmAssessment _parent;
 
-        public frmTeamContribution(frmAssessment parent)
+        private string _assID;
+        private string _unitID;
+        private int _semester;
+        private int _year;
+
+        public frmTeamContribution(string AssID, string UnitID, int Semester, int Year)
         {
             InitializeComponent();
 
             connection = conn.oraConn();
+            _assID = AssID;
+            _unitID = UnitID;
+            _semester = Semester;
+            _year = Year;
 
-            _parent = parent;
+            //_parent = parent;
 
-            _parent.populateAssGrid(this.grdAssessmentsInfo);
+            //_parent.populateAssGrid(this.grdAssessmentsInfo);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -37,13 +45,13 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("Task ID", txtTaskId.Text);
-            cmd.Parameters.Add("AssID", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
-            cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semester", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
-            cmd.Parameters.Add("Year", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
+            cmd.Parameters.Add("AssID", _assID);
+            cmd.Parameters.Add("UnitId", _unitID);
+            cmd.Parameters.Add("Semester", _semester);
+            cmd.Parameters.Add("Year", _year);
             cmd.Parameters.Add("Task Desc", txtTaskDesc.Text);
             cmd.Parameters.Add("Due Date", dtDue.Value.ToString("dd/MMM/yyyy"));
-
+            cmd.Parameters.Add("Periods", Convert.ToInt16(txtPeriods.Text));
 
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -65,10 +73,10 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;         
             cmd.Parameters.Add("taskcursor", OracleDbType.RefCursor);
             cmd.Parameters["taskcursor"].Direction = ParameterDirection.ReturnValue;
-            cmd.Parameters.Add("AssID", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
-            cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semester", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
-            cmd.Parameters.Add("Year", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
+            cmd.Parameters.Add("AssID", _assID);
+            cmd.Parameters.Add("UnitId", _unitID);
+            cmd.Parameters.Add("Semester", _semester);
+            cmd.Parameters.Add("Year", _year);
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
@@ -80,17 +88,13 @@ namespace FrontEndV0._1.forms
             int rowcnt = tasks.Tables["taskcursor"].Rows.Count;
             for (int i = 0; i <= rowcnt - 1; i++)
             {
-                //only add tasks where they belong to the current selected assessment
-                string AssID = grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString();
-                string UnitID = grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString();
-                int Semester = Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value);
-                int Year = Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value);
+                //only add tasks where they belong to the current assessment
                 object[] items = tasks.Tables[0].Rows[i].ItemArray;
 
-                if (AssID == items[1].ToString() 
-                    && UnitID == items[2].ToString() 
-                    && Semester == Convert.ToInt32(items[3]) 
-                    && Year == Convert.ToInt32(items[4]))
+                if (_assID == items[1].ToString() 
+                    && _unitID== items[2].ToString() 
+                    && _semester == Convert.ToInt32(items[3]) 
+                    && _year == Convert.ToInt32(items[4]))
                 {
                     grdTaskInfo.Rows.Add(new object[] { items[0], items[5], items[6] });
                 }
@@ -105,10 +109,10 @@ namespace FrontEndV0._1.forms
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("Task ID", txtTaskId.Text);
-                cmd.Parameters.Add("Ass ID", grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString());
-                cmd.Parameters.Add("Unit ID", grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString());
-                cmd.Parameters.Add("Semester", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value));
-                cmd.Parameters.Add("Year", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value));
+                cmd.Parameters.Add("Ass ID", _assID);
+                cmd.Parameters.Add("Unit ID", _unitID);
+                cmd.Parameters.Add("Semester", _semester);
+                cmd.Parameters.Add("Year", _year);
                 cmd.Parameters.Add("Task Desc", txtTaskDesc.Text);
                 cmd.Parameters.Add("Due Date", dtDue.Value.ToString("dd/MMM/yyyy"));
 
@@ -119,7 +123,6 @@ namespace FrontEndV0._1.forms
                 btnEdit.Text = "Edit";
 
                 txtTaskId.Enabled = true;
-                grdAssessmentsInfo.Enabled = true;
 
                 displayTasks();
             }
@@ -132,8 +135,6 @@ namespace FrontEndV0._1.forms
                 dtDue.Value = Convert.ToDateTime(grdTaskInfo.SelectedRows[0].Cells[2].Value);
 
                 btnEdit.Text = "Save";
-
-                grdAssessmentsInfo.Enabled = false;
             }
         }
 
@@ -145,10 +146,10 @@ namespace FrontEndV0._1.forms
             string taskid = grdTaskInfo.SelectedRows[0].Cells[0].Value.ToString();
 
             cmd.Parameters.Add("Task ID", taskid);
-            cmd.Parameters.Add("Ass ID", grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString());
-            cmd.Parameters.Add("Unit ID", grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semester", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value));
-            cmd.Parameters.Add("Year", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value));
+            cmd.Parameters.Add("Ass ID", _assID);
+            cmd.Parameters.Add("Unit ID", _unitID);
+            cmd.Parameters.Add("Semester", _semester);
+            cmd.Parameters.Add("Year", _year);
 
             connection.Open();
             cmd.ExecuteNonQuery();
@@ -157,6 +158,6 @@ namespace FrontEndV0._1.forms
             MessageBox.Show("Task " + taskid + " deleted.");
 
             displayTasks();
-        }  
+        }
     }
 }

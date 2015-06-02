@@ -294,6 +294,7 @@
             this.Controls.Add(this.gbIdentifyingInformation);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmProject";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmProject_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdProjects)).EndInit();
             this.gbDetails.ResumeLayout(false);
