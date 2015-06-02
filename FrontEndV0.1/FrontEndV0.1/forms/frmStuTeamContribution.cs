@@ -18,12 +18,14 @@ namespace FrontEndV0._1.forms
 
         private DataSet tasks;
         private DataSet periods;
+        private DataSet teams;
 
         private string _assid;
         private string _unitid;
         private string _team;
         private int _sem;
         private int _year;
+
 
         public frmStuTeamContribution(string assid, string unitid, int sem, int year, string team)
         {
@@ -101,6 +103,7 @@ namespace FrontEndV0._1.forms
             connection.Close();
 
             grdPeriods.Rows.Clear();
+            grdStudentHours.Rows.Clear();
 
             int rowcnt = periods.Tables["percursor"].Rows.Count;
 
@@ -110,6 +113,73 @@ namespace FrontEndV0._1.forms
                 grdPeriods.Rows.Add(new object[] { items[0], items[6] });
             }
 
+        }
+
+        private void grdPeriods_SelectionChanged(object sender, EventArgs e)
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+
+            OracleCommand cmd = new OracleCommand("UC2_18_VIEW_TEAM_ALLO", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
+            cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("teamid", _team);
+            cmd.Parameters.Add("unitid", _unitid);
+            cmd.Parameters.Add("sem", _sem);
+            cmd.Parameters.Add("year", _year);
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            teams = new DataSet();
+
+            da.Fill(teams, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
+
+            connection.Close();
+
+            grdStudentHours.Rows.Clear();
+
+            int rowcnt = teams.Tables["teamcursor"].Rows.Count;
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                object[] items = teams.Tables[0].Rows[i].ItemArray;
+                grdStudentHours.Rows.Add(new object[] { items[0], items[1] + " " + items[2] });
+            }
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+
+            for (int i = 0; i <= grdStudentHours.Rows.Count - 1; i++)
+            {
+                OracleCommand cmd = new OracleCommand("UC2_29_REGISTER_STUHOURS", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("period", Convert.ToInt32(grdPeriods.Rows[grdPeriods.SelectedRows[0].Index].Cells[0].Value));
+                cmd.Parameters.Add("taskid", grdTasks.Rows[grdTasks.SelectedRows[0].Index].Cells[0].Value.ToString());
+                cmd.Parameters.Add("stuid", grdStudentHours.Rows[i].Cells[0].Value.ToString());
+                cmd.Parameters.Add("assid", _assid);
+                cmd.Parameters.Add("unitid", _unitid);
+                cmd.Parameters.Add("sem", _sem);
+                cmd.Parameters.Add("year", _year);
+                cmd.Parameters.Add("team", _team);
+                cmd.Parameters.Add("hours", Convert.ToInt32(grdStudentHours.Rows[i].Cells[2].Value));
+                cmd.Parameters.Add("datesubmitted", DateTime.Now.ToString("dd/MMM/yyyy"));
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
