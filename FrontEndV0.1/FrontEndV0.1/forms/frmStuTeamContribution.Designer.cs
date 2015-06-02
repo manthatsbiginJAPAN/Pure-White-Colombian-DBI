@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.grdTasks = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Task = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
@@ -50,8 +52,6 @@
             this.Hours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblArrow = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Task = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdTasks)).BeginInit();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPeriods)).BeginInit();
@@ -82,17 +82,31 @@
             this.ID,
             this.Task});
             this.grdTasks.Location = new System.Drawing.Point(16, 97);
-            this.grdTasks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdTasks.Margin = new System.Windows.Forms.Padding(4);
             this.grdTasks.Name = "grdTasks";
             this.grdTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdTasks.Size = new System.Drawing.Size(361, 522);
             this.grdTasks.TabIndex = 37;
+            this.grdTasks.SelectionChanged += new System.EventHandler(this.grdTasks_SelectionChanged);
+            // 
+            // ID
+            // 
+            this.ID.FillWeight = 30.45685F;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Task
+            // 
+            this.Task.FillWeight = 169.5432F;
+            this.Task.HeaderText = "Task";
+            this.Task.Name = "Task";
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(987, 647);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(171, 46);
             this.btnCancel.TabIndex = 40;
@@ -103,7 +117,7 @@
             // 
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.Location = new System.Drawing.Point(796, 647);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(183, 46);
             this.btnSubmit.TabIndex = 41;
@@ -121,9 +135,9 @@
             this.gbDetails.Controls.Add(this.lblDateSubmitted);
             this.gbDetails.Controls.Add(this.dateTimePicker1);
             this.gbDetails.Location = new System.Drawing.Point(16, 647);
-            this.gbDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDetails.Margin = new System.Windows.Forms.Padding(4);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDetails.Padding = new System.Windows.Forms.Padding(4);
             this.gbDetails.Size = new System.Drawing.Size(748, 133);
             this.gbDetails.TabIndex = 42;
             this.gbDetails.TabStop = false;
@@ -132,7 +146,7 @@
             // txtTotalHours
             // 
             this.txtTotalHours.Location = new System.Drawing.Point(529, 69);
-            this.txtTotalHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTotalHours.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotalHours.Name = "txtTotalHours";
             this.txtTotalHours.Size = new System.Drawing.Size(188, 22);
             this.txtTotalHours.TabIndex = 45;
@@ -151,7 +165,7 @@
             // txtTeamID
             // 
             this.txtTeamID.Location = new System.Drawing.Point(135, 71);
-            this.txtTeamID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTeamID.Margin = new System.Windows.Forms.Padding(4);
             this.txtTeamID.Name = "txtTeamID";
             this.txtTeamID.Size = new System.Drawing.Size(188, 22);
             this.txtTeamID.TabIndex = 43;
@@ -181,7 +195,7 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(135, 25);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(188, 22);
             this.dateTimePicker2.TabIndex = 40;
@@ -200,7 +214,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(529, 23);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(188, 22);
             this.dateTimePicker1.TabIndex = 0;
@@ -214,7 +228,7 @@
             this.Date,
             this.TotalPeriodHours});
             this.grdPeriods.Location = new System.Drawing.Point(407, 97);
-            this.grdPeriods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdPeriods.Margin = new System.Windows.Forms.Padding(4);
             this.grdPeriods.Name = "grdPeriods";
             this.grdPeriods.Size = new System.Drawing.Size(361, 522);
             this.grdPeriods.TabIndex = 43;
@@ -242,7 +256,7 @@
             this.StuID,
             this.Hours});
             this.grdStudentHours.Location = new System.Drawing.Point(796, 97);
-            this.grdStudentHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdStudentHours.Margin = new System.Windows.Forms.Padding(4);
             this.grdStudentHours.Name = "grdStudentHours";
             this.grdStudentHours.Size = new System.Drawing.Size(361, 522);
             this.grdStudentHours.TabIndex = 44;
@@ -279,19 +293,6 @@
             this.label2.TabIndex = 45;
             this.label2.Text = ">";
             // 
-            // ID
-            // 
-            this.ID.FillWeight = 30.45685F;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Task
-            // 
-            this.Task.FillWeight = 169.5432F;
-            this.Task.HeaderText = "Task";
-            this.Task.Name = "Task";
-            // 
             // frmStuTeamContribution
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -306,7 +307,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grdTasks);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmStuTeamContribution";
             ((System.ComponentModel.ISupportInitialize)(this.grdTasks)).EndInit();
             this.gbDetails.ResumeLayout(false);
