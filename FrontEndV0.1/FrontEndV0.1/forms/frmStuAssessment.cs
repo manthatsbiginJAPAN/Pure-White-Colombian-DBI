@@ -176,7 +176,8 @@ namespace FrontEndV0._1.forms
                 , Convert.ToString(grdAssessments.SelectedRows[0].Cells[1].Value)
                 , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[2].Value)
                 , Convert.ToInt32(grdAssessments.SelectedRows[0].Cells[3].Value)
-                , getTeam());
+                , getTeam()
+                , _user);
             frmStuPeerAss.Show();
         }   
 
