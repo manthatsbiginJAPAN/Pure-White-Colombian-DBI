@@ -100,7 +100,7 @@ namespace FrontEndV0._1.forms
 
             grdPeriods.Rows.Clear();
 
-            int rowcnt = periods.Tables["percusor"].Rows.Count;
+            int rowcnt = periods.Tables["percursor"].Rows.Count;
 
             for (int i = 0; i <= rowcnt - 1; i++)
             {
