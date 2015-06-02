@@ -1296,10 +1296,19 @@ END;
 /
 
 
-CREATE or REPLACE FUNCTION UC2_31_View_StuHours
+create or replace FUNCTION UC2_31_View_StuHours(pPeriod number, pTaskID varchar2, 
+pStuID varchar2, pAssID varchar2, pUnitID varchar2,	pSemester varchar2, pYear varchar2)
 	RETURN SYS_REFCURSOR AS sth SYS_REFCURSOR;
 BEGIN
-	OPEN sth for select * from StudentHours;
+	OPEN sth for select * from StudentHours
+  WHERE Period = pPeriod and
+  TaskID = pTaskID and
+  StuID = pStuID and
+  AssID = pAssID and
+  UnitID = pUnitID and
+  Semester = pSemester and
+  Year = pYear;
+  
 	--LOOP
 	--	Fetch unts into u;
 	--	Exit When unts%NOTFOUND;
