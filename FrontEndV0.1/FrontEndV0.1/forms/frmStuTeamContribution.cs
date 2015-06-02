@@ -18,6 +18,7 @@ namespace FrontEndV0._1.forms
 
         private DataSet tasks;
         private DataSet periods;
+        private DataSet hours;
         private DataSet teams;
 
         private string _assid;
@@ -81,6 +82,9 @@ namespace FrontEndV0._1.forms
 
         private void grdTasks_SelectionChanged(object sender, EventArgs e)
         {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+
             OracleCommand cmd = new OracleCommand("UC2_39_VIEW_TASK_PERIOD", connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -139,16 +143,21 @@ namespace FrontEndV0._1.forms
             da.Fill(teams, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
 
             connection.Close();
-
+            
             grdStudentHours.Rows.Clear();
 
             int rowcnt = teams.Tables["teamcursor"].Rows.Count;
 
+            //if (grdPeriods.SelectedRows.Count != 0)
+            //{
+            //    getStuHours();
+
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 object[] items = teams.Tables[0].Rows[i].ItemArray;
-                grdStudentHours.Rows.Add(new object[] { items[0], items[1] + " " + items[2] });
+                grdStudentHours.Rows.Add(new object[] { items[0], items[1] + " " + items[2]});
             }
+            //}
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -181,5 +190,31 @@ namespace FrontEndV0._1.forms
         {
             this.Close();
         }
+
+        /*private void getStuHours()
+        {
+            OracleCommand cmd = new OracleCommand("UC2_31_View_StuHours", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("hourcursor", OracleDbType.RefCursor);
+            cmd.Parameters["hourcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("period", grdPeriods.Rows[grdPeriods.SelectedRows[0].Index].Cells[0].Value.ToString());
+            cmd.Parameters.Add("taskid", grdTasks.Rows[grdTasks.SelectedRows[0].Index].Cells[0].Value.ToString());
+            cmd.Parameters.Add("assID", _assid);
+            cmd.Parameters.Add("unitid", _unitid);
+            cmd.Parameters.Add("sem", _sem);
+            cmd.Parameters.Add("year", _year);
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            teams = new DataSet();
+
+            da.Fill(hours, "hourcursor", (OracleRefCursor)(cmd.Parameters["hourcursor"].Value));
+
+            connection.Close();
+        }*/
+
     }
 }

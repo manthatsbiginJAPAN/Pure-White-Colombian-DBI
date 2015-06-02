@@ -76,7 +76,7 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 object[] items = criterion.Tables[0].Rows[i].ItemArray;
-                grdAspects.Rows.Add(new object[] {items[1], items[8]});
+                grdAspects.Rows.Add(new object[] { items[0], items[5], items[6]});
             }
         }
 
