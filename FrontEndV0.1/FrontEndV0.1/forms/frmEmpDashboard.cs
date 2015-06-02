@@ -168,6 +168,12 @@ namespace FrontEndV0._1.forms
             frmTeamDetails.Show();
         }
 
+        private void openReportsForm()
+        {
+            frmReports.FormClosing += closeForm;
+            frmReports.Show();
+        }
+
         private void openProjectForm()
         {
             frmProject.FormClosing += closeForm;
@@ -196,12 +202,6 @@ namespace FrontEndV0._1.forms
         {
             frmEmpDetails.FormClosing += closeForm;
             frmEmpDetails.Show();
-        }
-
-        private void openReportsForm()
-        {
-            frmReports.FormClosing += closeForm;
-            frmReports.Show();
         }
 
         private void openStuAssessmentForm() {
@@ -280,12 +280,12 @@ namespace FrontEndV0._1.forms
         }
         #endregion
 
-        #region Reports
-        private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmReports = new frmReports(User, true);
+            frmReports.MdiParent = this;
             openReportsForm();
         }
-        #endregion
 
         #endregion
 

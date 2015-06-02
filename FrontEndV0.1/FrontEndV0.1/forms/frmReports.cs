@@ -89,28 +89,26 @@ namespace FrontEndV0._1.forms
         private void btnConUnitReport_Click(object sender, EventArgs e)
         {
             txtReportDisplay.Clear();
-
             getUnits();
 
-            txtReportDisplay.Text = "******** List of Units: *******";
+            txtReportDisplay.Text = "******** List of Units and Unit Offerings: *********" + Environment.NewLine;
 
-            int rowcnt = units.Tables["unitcursor"].Rows.Count;
+            int unitrowcnt = units.Tables["unitcursor"].Rows.Count;
             string unitid = "";
             string unitname = "";
 
-            for (int i = 0; i <= rowcnt - 1; i++)
+            for (int i = 0; i < unitrowcnt; i++)
             {
                 unitid = units.Tables["unitcursor"].Rows[i][0].ToString();
                 unitname = units.Tables["unitcursor"].Rows[i][1].ToString();
 
                 //populate textbox
                 txtReportDisplay.Text += System.Environment.NewLine + unitid + " " + unitname;
+                getUnitOfferings(unitid);
 
-                for (int j = 0; j <= rowcnt - j; j++)
-                {
-                    getUnitOfferings(unitid);
-
-                    int rowcnt2 = unitoffs.Tables["unitoffcursor"].Rows.Count;
+                int offrowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
+                for (int j = 0; j < offrowcnt; j++)
+                {   
                     string sem = "";
                     string year = "";
                     string confirstname = "";
@@ -124,7 +122,8 @@ namespace FrontEndV0._1.forms
                     txtReportDisplay.Text += System.Environment.NewLine + "     -" + sem + " " + year + " " + confirstname + " " + conlastname;
                 }
             }
+            txtReportDisplay.Text += Environment.NewLine + Environment.NewLine;
+            txtReportDisplay.Text += "******************* End of List ********************";
         }
-
     }
 }

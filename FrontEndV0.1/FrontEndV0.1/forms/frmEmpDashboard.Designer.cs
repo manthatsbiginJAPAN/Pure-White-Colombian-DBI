@@ -37,6 +37,7 @@
             this.manageUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageUnitOfferingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageEnrolmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convenorFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageAssessmentsMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -131,6 +131,13 @@
             this.manageEnrolmentsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
             this.manageEnrolmentsToolStripMenuItem.Text = "Manage Enrolments";
             this.manageEnrolmentsToolStripMenuItem.Click += new System.EventHandler(this.adminDropdownManageEnrolments_Click);
+            // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.reportToolStripMenuItem.Text = "Reports";
+            this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
             // convenorFunctionsToolStripMenuItem
             // 
@@ -298,13 +305,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // reportToolStripMenuItem
-            // 
-            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
-            this.reportToolStripMenuItem.Text = "Report";
-            //this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
             // frmEmpDashboard
             // 

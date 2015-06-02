@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUnitOfferings));
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.gbDetails = new System.Windows.Forms.GroupBox();
@@ -56,21 +57,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(499, 17);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(374, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(266, 41);
+            this.label1.Size = new System.Drawing.Size(218, 34);
             this.label1.TabIndex = 28;
             this.label1.Text = "Unit Offerings";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnAdd
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(456, 80);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(342, 65);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(183, 46);
+            this.btnAdd.Size = new System.Drawing.Size(137, 37);
             this.btnAdd.TabIndex = 27;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -82,11 +81,9 @@
             this.gbDetails.Controls.Add(this.label5);
             this.gbDetails.Enabled = false;
             this.gbDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDetails.Location = new System.Drawing.Point(9, 439);
-            this.gbDetails.Margin = new System.Windows.Forms.Padding(4);
+            this.gbDetails.Location = new System.Drawing.Point(7, 357);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.gbDetails.Size = new System.Drawing.Size(629, 341);
+            this.gbDetails.Size = new System.Drawing.Size(472, 277);
             this.gbDetails.TabIndex = 31;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
@@ -94,21 +91,19 @@
             // cbConvenor
             // 
             this.cbConvenor.FormattingEnabled = true;
-            this.cbConvenor.Location = new System.Drawing.Point(208, 68);
-            this.cbConvenor.Margin = new System.Windows.Forms.Padding(4);
+            this.cbConvenor.Location = new System.Drawing.Point(156, 55);
             this.cbConvenor.Name = "cbConvenor";
-            this.cbConvenor.Size = new System.Drawing.Size(160, 25);
+            this.cbConvenor.Size = new System.Drawing.Size(121, 21);
             this.cbConvenor.Sorted = true;
             this.cbConvenor.TabIndex = 37;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(80, 69);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(60, 56);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 25);
+            this.label5.Size = new System.Drawing.Size(94, 21);
             this.label5.TabIndex = 15;
             this.label5.Text = "Convenor:";
             // 
@@ -122,11 +117,9 @@
             this.gbIdentifyingInformation.Controls.Add(this.label2);
             this.gbIdentifyingInformation.Enabled = false;
             this.gbIdentifyingInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIdentifyingInformation.Location = new System.Drawing.Point(11, 70);
-            this.gbIdentifyingInformation.Margin = new System.Windows.Forms.Padding(4);
+            this.gbIdentifyingInformation.Location = new System.Drawing.Point(8, 57);
             this.gbIdentifyingInformation.Name = "gbIdentifyingInformation";
-            this.gbIdentifyingInformation.Padding = new System.Windows.Forms.Padding(4);
-            this.gbIdentifyingInformation.Size = new System.Drawing.Size(433, 347);
+            this.gbIdentifyingInformation.Size = new System.Drawing.Size(325, 282);
             this.gbIdentifyingInformation.TabIndex = 29;
             this.gbIdentifyingInformation.TabStop = false;
             this.gbIdentifyingInformation.Text = "Identifying Information";
@@ -143,10 +136,9 @@
             "2018",
             "2019",
             "2020"});
-            this.cbYear.Location = new System.Drawing.Point(207, 196);
-            this.cbYear.Margin = new System.Windows.Forms.Padding(4);
+            this.cbYear.Location = new System.Drawing.Point(165, 159);
             this.cbYear.Name = "cbYear";
-            this.cbYear.Size = new System.Drawing.Size(160, 25);
+            this.cbYear.Size = new System.Drawing.Size(121, 21);
             this.cbYear.TabIndex = 36;
             // 
             // cbSemester
@@ -156,10 +148,9 @@
             this.cbSemester.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.cbSemester.Location = new System.Drawing.Point(207, 127);
-            this.cbSemester.Margin = new System.Windows.Forms.Padding(4);
+            this.cbSemester.Location = new System.Drawing.Point(165, 103);
             this.cbSemester.Name = "cbSemester";
-            this.cbSemester.Size = new System.Drawing.Size(160, 25);
+            this.cbSemester.Size = new System.Drawing.Size(121, 21);
             this.cbSemester.TabIndex = 35;
             this.cbSemester.SelectedIndexChanged += new System.EventHandler(this.cbSemester_SelectedIndexChanged);
             // 
@@ -169,53 +160,48 @@
             this.cbUnitID.Items.AddRange(new object[] {
             "INF30011",
             "INF20011"});
-            this.cbUnitID.Location = new System.Drawing.Point(207, 64);
-            this.cbUnitID.Margin = new System.Windows.Forms.Padding(4);
+            this.cbUnitID.Location = new System.Drawing.Point(165, 52);
             this.cbUnitID.Name = "cbUnitID";
-            this.cbUnitID.Size = new System.Drawing.Size(160, 25);
+            this.cbUnitID.Size = new System.Drawing.Size(121, 21);
             this.cbUnitID.TabIndex = 34;
             this.cbUnitID.SelectedIndexChanged += new System.EventHandler(this.cbUnitID_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(77, 128);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(68, 103);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 25);
+            this.label3.Size = new System.Drawing.Size(91, 21);
             this.label3.TabIndex = 11;
             this.label3.Text = "Semester:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(129, 197);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(102, 159);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 25);
+            this.label4.Size = new System.Drawing.Size(57, 21);
             this.label4.TabIndex = 13;
             this.label4.Text = "Year:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(104, 65);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(75, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 25);
+            this.label2.Size = new System.Drawing.Size(84, 21);
             this.label2.TabIndex = 1;
             this.label2.Text = "Unit ID:";
             // 
             // btnEdit
             // 
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(456, 135);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEdit.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(342, 110);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(183, 46);
+            this.btnEdit.Size = new System.Drawing.Size(137, 37);
             this.btnEdit.TabIndex = 30;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -223,11 +209,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(456, 188);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(342, 155);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(183, 46);
+            this.btnDelete.Size = new System.Drawing.Size(137, 37);
             this.btnDelete.TabIndex = 32;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -246,11 +231,10 @@
             this.Semester,
             this.Year,
             this.Convenor});
-            this.grdUnitOfferings.Location = new System.Drawing.Point(648, 80);
-            this.grdUnitOfferings.Margin = new System.Windows.Forms.Padding(4);
+            this.grdUnitOfferings.Location = new System.Drawing.Point(486, 65);
             this.grdUnitOfferings.Name = "grdUnitOfferings";
             this.grdUnitOfferings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdUnitOfferings.Size = new System.Drawing.Size(561, 700);
+            this.grdUnitOfferings.Size = new System.Drawing.Size(421, 569);
             this.grdUnitOfferings.TabIndex = 33;
             // 
             // Unitid
@@ -276,9 +260,9 @@
             // 
             // frmUnitOfferings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 795);
+            this.ClientSize = new System.Drawing.Size(914, 609);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gbDetails);
@@ -286,7 +270,7 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.grdUnitOfferings);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmUnitOfferings";
             this.Load += new System.EventHandler(this.frmUnitOfferings_Load);
             this.gbDetails.ResumeLayout(false);
