@@ -1971,3 +1971,38 @@ EXCEPTION
 	When Others Then
 		dbms_output.put_line(SQLERRM);
 End;
+<<<<<<< HEAD
+
+/
+
+create or replace FUNCTION UC4_3_View_EmpRole_Sup
+
+	RETURN SYS_REFCURSOR AS emproles SYS_REFCURSOR;
+  rcount number;
+BEGIN	
+      OPEN emproles for select e.FirstName, e.LastName
+       from EmployeeRole em
+       INNER JOIN Employee e
+       ON e.EmpID = em.EmpID
+       WHERE LOWER(em.Role) = 'supervisor';
+	return emproles;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
+create or replace FUNCTION UC4_4_View_Project
+	RETURN SYS_REFCURSOR AS pro SYS_REFCURSOR;
+BEGIN
+	OPEN pro for select * from project 
+	return pro;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+=======
+>>>>>>> origin/master

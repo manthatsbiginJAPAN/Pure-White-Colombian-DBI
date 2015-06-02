@@ -43,6 +43,8 @@ namespace FrontEndV0._1.forms
 
             getTasks();
             populateTasks();
+
+            
         }
 
         private void getTasks()
@@ -160,25 +162,31 @@ namespace FrontEndV0._1.forms
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
-            for (int i = 0; i <= grdStudentHours.Rows.Count - 1; i++)
+            try
             {
-                OracleCommand cmd = new OracleCommand("UC2_29_REGISTER_STUHOURS", connection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                for (int i = 0; i <= grdStudentHours.Rows.Count - 1; i++)
+                {
+                    OracleCommand cmd = new OracleCommand("UC2_29_REGISTER_STUHOURS", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("period", Convert.ToInt32(grdPeriods.Rows[grdPeriods.SelectedRows[0].Index].Cells[0].Value));
-                cmd.Parameters.Add("taskid", grdTasks.Rows[grdTasks.SelectedRows[0].Index].Cells[0].Value.ToString());
-                cmd.Parameters.Add("stuid", grdStudentHours.Rows[i].Cells[0].Value.ToString());
-                cmd.Parameters.Add("assid", _assid);
-                cmd.Parameters.Add("unitid", _unitid);
-                cmd.Parameters.Add("sem", _sem);
-                cmd.Parameters.Add("year", _year);
-                cmd.Parameters.Add("team", _team);
-                cmd.Parameters.Add("hours", Convert.ToInt32(grdStudentHours.Rows[i].Cells[2].Value));
-                cmd.Parameters.Add("datesubmitted", DateTime.Now.ToString("dd/MMM/yyyy"));
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
+                    cmd.Parameters.Add("period", Convert.ToInt32(grdPeriods.Rows[grdPeriods.SelectedRows[0].Index].Cells[0].Value));
+                    cmd.Parameters.Add("taskid", grdTasks.Rows[grdTasks.SelectedRows[0].Index].Cells[0].Value.ToString());
+                    cmd.Parameters.Add("stuid", grdStudentHours.Rows[i].Cells[0].Value.ToString());
+                    cmd.Parameters.Add("assid", _assid);
+                    cmd.Parameters.Add("unitid", _unitid);
+                    cmd.Parameters.Add("sem", _sem);
+                    cmd.Parameters.Add("year", _year);
+                    cmd.Parameters.Add("team", _team);
+                    cmd.Parameters.Add("hours", Convert.ToInt32(grdStudentHours.Rows[i].Cells[2].Value));
+                    cmd.Parameters.Add("datesubmitted", DateTime.Now.ToString("dd/MMM/yyyy"));
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Submission already made for this assignment");
             }
 
 

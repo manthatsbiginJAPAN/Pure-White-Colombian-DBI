@@ -171,6 +171,26 @@
             this.colSpecificCrit.MinimumWidth = 105;
             this.colSpecificCrit.Name = "colSpecificCrit";
             // 
+            // colCritID
+            // 
+            this.colCritID.FillWeight = 46.30474F;
+            this.colCritID.HeaderText = "Criterion ID";
+            this.colCritID.Name = "colCritID";
+            // 
+            // colGeneralCrit
+            // 
+            this.colGeneralCrit.FillWeight = 93.79678F;
+            this.colGeneralCrit.HeaderText = "General Aspect";
+            this.colGeneralCrit.MinimumWidth = 80;
+            this.colGeneralCrit.Name = "colGeneralCrit";
+            // 
+            // colSpecificCrit
+            // 
+            this.colSpecificCrit.FillWeight = 159.8985F;
+            this.colSpecificCrit.HeaderText = "Specific Aspect";
+            this.colSpecificCrit.MinimumWidth = 105;
+            this.colSpecificCrit.Name = "colSpecificCrit";
+            // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
