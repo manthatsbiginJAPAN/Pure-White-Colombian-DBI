@@ -128,6 +128,12 @@
     <Compile Include="forms\frmProject.Designer.cs">
       <DependentUpon>frmProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmReports.Designer.cs">
+      <DependentUpon>frmReports.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmStuAssessment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmProject.resx">
       <DependentUpon>frmProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmReports.resx">
+      <DependentUpon>frmReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmStuAssessment.resx">
       <DependentUpon>frmStuAssessment.cs</DependentUpon>

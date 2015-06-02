@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAssessment));
             this.lblTitle = new System.Windows.Forms.Label();
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPeerAss = new System.Windows.Forms.Button();
             this.btnTeamCont = new System.Windows.Forms.Button();
             this.txtMarkingGuide = new System.Windows.Forms.TextBox();
-            this.lblMarkingGuide = new System.Windows.Forms.Label();
             this.lblAssTitle = new System.Windows.Forms.Label();
             this.txtAssDesc = new System.Windows.Forms.TextBox();
             this.txtAssTitle = new System.Windows.Forms.TextBox();
@@ -73,11 +74,11 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.label2);
             this.gbDetails.Controls.Add(this.label1);
             this.gbDetails.Controls.Add(this.btnPeerAss);
             this.gbDetails.Controls.Add(this.btnTeamCont);
             this.gbDetails.Controls.Add(this.txtMarkingGuide);
-            this.gbDetails.Controls.Add(this.lblMarkingGuide);
             this.gbDetails.Controls.Add(this.lblAssTitle);
             this.gbDetails.Controls.Add(this.txtAssDesc);
             this.gbDetails.Controls.Add(this.txtAssTitle);
@@ -90,20 +91,30 @@
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
             // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(37, 195);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 47);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "Marking Guide:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(312, 43);
+            this.label1.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(318, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.Size = new System.Drawing.Size(69, 21);
             this.label1.TabIndex = 49;
             this.label1.Text = "Create:";
             // 
             // btnPeerAss
             // 
-            this.btnPeerAss.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPeerAss.Location = new System.Drawing.Point(316, 128);
+            this.btnPeerAss.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPeerAss.Location = new System.Drawing.Point(322, 128);
             this.btnPeerAss.Name = "btnPeerAss";
             this.btnPeerAss.Size = new System.Drawing.Size(137, 47);
             this.btnPeerAss.TabIndex = 51;
@@ -113,8 +124,8 @@
             // 
             // btnTeamCont
             // 
-            this.btnTeamCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeamCont.Location = new System.Drawing.Point(315, 75);
+            this.btnTeamCont.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeamCont.Location = new System.Drawing.Point(322, 75);
             this.btnTeamCont.Name = "btnTeamCont";
             this.btnTeamCont.Size = new System.Drawing.Size(137, 47);
             this.btnTeamCont.TabIndex = 20;
@@ -125,71 +136,65 @@
             // txtMarkingGuide
             // 
             this.txtMarkingGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarkingGuide.Location = new System.Drawing.Point(141, 195);
+            this.txtMarkingGuide.Location = new System.Drawing.Point(127, 195);
             this.txtMarkingGuide.Multiline = true;
             this.txtMarkingGuide.Name = "txtMarkingGuide";
-            this.txtMarkingGuide.Size = new System.Drawing.Size(302, 98);
+            this.txtMarkingGuide.Size = new System.Drawing.Size(332, 98);
             this.txtMarkingGuide.TabIndex = 50;
-            // 
-            // lblMarkingGuide
-            // 
-            this.lblMarkingGuide.AutoSize = true;
-            this.lblMarkingGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarkingGuide.Location = new System.Drawing.Point(6, 195);
-            this.lblMarkingGuide.Name = "lblMarkingGuide";
-            this.lblMarkingGuide.Size = new System.Drawing.Size(130, 20);
-            this.lblMarkingGuide.TabIndex = 48;
-            this.lblMarkingGuide.Text = "Marking Guide:";
             // 
             // lblAssTitle
             // 
-            this.lblAssTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAssTitle.Location = new System.Drawing.Point(11, 43);
+            this.lblAssTitle.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAssTitle.Location = new System.Drawing.Point(11, 31);
             this.lblAssTitle.Name = "lblAssTitle";
             this.lblAssTitle.Size = new System.Drawing.Size(110, 45);
             this.lblAssTitle.TabIndex = 20;
             this.lblAssTitle.Text = "Assessment Title:";
+            this.lblAssTitle.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txtAssDesc
             // 
             this.txtAssDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAssDesc.Location = new System.Drawing.Point(141, 88);
+            this.txtAssDesc.Location = new System.Drawing.Point(127, 96);
+            this.txtAssDesc.Multiline = true;
             this.txtAssDesc.Name = "txtAssDesc";
-            this.txtAssDesc.Size = new System.Drawing.Size(131, 26);
+            this.txtAssDesc.Size = new System.Drawing.Size(169, 79);
             this.txtAssDesc.TabIndex = 23;
             // 
             // txtAssTitle
             // 
             this.txtAssTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAssTitle.Location = new System.Drawing.Point(141, 43);
+            this.txtAssTitle.Location = new System.Drawing.Point(127, 31);
+            this.txtAssTitle.Multiline = true;
             this.txtAssTitle.Name = "txtAssTitle";
-            this.txtAssTitle.Size = new System.Drawing.Size(131, 26);
+            this.txtAssTitle.Size = new System.Drawing.Size(169, 46);
             this.txtAssTitle.TabIndex = 21;
             // 
             // lblAssDesc
             // 
-            this.lblAssDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAssDesc.Location = new System.Drawing.Point(11, 88);
+            this.lblAssDesc.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAssDesc.Location = new System.Drawing.Point(11, 96);
             this.lblAssDesc.Name = "lblAssDesc";
             this.lblAssDesc.Size = new System.Drawing.Size(110, 47);
             this.lblAssDesc.TabIndex = 22;
             this.lblAssDesc.Text = "Assessment Desc:";
+            this.lblAssDesc.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txtAssID
             // 
             this.txtAssID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAssID.Location = new System.Drawing.Point(150, 26);
+            this.txtAssID.Location = new System.Drawing.Point(169, 32);
             this.txtAssID.Name = "txtAssID";
-            this.txtAssID.Size = new System.Drawing.Size(100, 26);
+            this.txtAssID.Size = new System.Drawing.Size(137, 26);
             this.txtAssID.TabIndex = 2;
             // 
             // lblAssId
             // 
             this.lblAssId.AutoSize = true;
-            this.lblAssId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAssId.Location = new System.Drawing.Point(10, 26);
+            this.lblAssId.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAssId.Location = new System.Drawing.Point(10, 34);
             this.lblAssId.Name = "lblAssId";
-            this.lblAssId.Size = new System.Drawing.Size(136, 20);
+            this.lblAssId.Size = new System.Drawing.Size(142, 21);
             this.lblAssId.TabIndex = 1;
             this.lblAssId.Text = "Assessment ID:";
             // 
@@ -215,63 +220,63 @@
             // 
             this.cmbYear.Enabled = false;
             this.cmbYear.FormattingEnabled = true;
-            this.cmbYear.Location = new System.Drawing.Point(150, 184);
+            this.cmbYear.Location = new System.Drawing.Point(169, 182);
             this.cmbYear.Name = "cmbYear";
-            this.cmbYear.Size = new System.Drawing.Size(121, 21);
+            this.cmbYear.Size = new System.Drawing.Size(137, 21);
             this.cmbYear.TabIndex = 48;
             // 
             // cmbSem
             // 
             this.cmbSem.Enabled = false;
             this.cmbSem.FormattingEnabled = true;
-            this.cmbSem.Location = new System.Drawing.Point(150, 128);
+            this.cmbSem.Location = new System.Drawing.Point(169, 131);
             this.cmbSem.Name = "cmbSem";
-            this.cmbSem.Size = new System.Drawing.Size(121, 21);
+            this.cmbSem.Size = new System.Drawing.Size(137, 21);
             this.cmbSem.TabIndex = 47;
             this.cmbSem.SelectedIndexChanged += new System.EventHandler(this.cmbSem_SelectedIndexChanged_1);
             // 
             // cmbUnitId
             // 
             this.cmbUnitId.FormattingEnabled = true;
-            this.cmbUnitId.Location = new System.Drawing.Point(150, 77);
+            this.cmbUnitId.Location = new System.Drawing.Point(169, 82);
             this.cmbUnitId.Name = "cmbUnitId";
-            this.cmbUnitId.Size = new System.Drawing.Size(121, 21);
+            this.cmbUnitId.Size = new System.Drawing.Size(137, 21);
             this.cmbUnitId.TabIndex = 46;
             this.cmbUnitId.SelectedIndexChanged += new System.EventHandler(this.cmbUnitId_SelectedIndexChanged_1);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 129);
+            this.label3.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(61, 131);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 20);
+            this.label3.Size = new System.Drawing.Size(91, 21);
             this.label3.TabIndex = 44;
             this.label3.Text = "Semester:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 185);
+            this.label4.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(95, 182);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 20);
+            this.label4.Size = new System.Drawing.Size(57, 21);
             this.label4.TabIndex = 45;
             this.label4.Text = "Year:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 78);
+            this.label5.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(68, 82);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 20);
+            this.label5.Size = new System.Drawing.Size(84, 21);
             this.label5.TabIndex = 43;
             this.label5.Text = "Unit ID:";
             // 
             // btnAdd
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(342, 65);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(137, 37);
@@ -282,7 +287,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(342, 110);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(137, 37);
@@ -293,7 +298,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(342, 153);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(137, 37);
@@ -358,6 +363,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(300, 296);
             this.Name = "frmAssessment";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
@@ -382,7 +388,6 @@
         public System.Windows.Forms.Button btnAdd;
         public System.Windows.Forms.Button btnEdit;
         public System.Windows.Forms.Button btnDelete;
-        public System.Windows.Forms.Label lblMarkingGuide;
         public System.Windows.Forms.Label lblAssTitle;
         public System.Windows.Forms.TextBox txtAssDesc;
         public System.Windows.Forms.TextBox txtAssTitle;
@@ -402,6 +407,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnitID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colYear;
+        public System.Windows.Forms.Label label2;
 
     }
 }

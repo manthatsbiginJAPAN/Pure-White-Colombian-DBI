@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActionItems));
             this.gbDetails = new System.Windows.Forms.GroupBox();
+            this.dtDue = new System.Windows.Forms.DateTimePicker();
             this.cbStuID = new System.Windows.Forms.ComboBox();
             this.txtActionItem = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -47,7 +49,6 @@
             this.colStuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtDue = new System.Windows.Forms.DateTimePicker();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdActionItems)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +75,18 @@
             this.gbDetails.TabIndex = 59;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = " ";
+            // 
+            // dtDue
+            // 
+            this.dtDue.CustomFormat = "dd/MM/yyyy";
+            this.dtDue.Enabled = false;
+            this.dtDue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDue.Location = new System.Drawing.Point(144, 105);
+            this.dtDue.Margin = new System.Windows.Forms.Padding(2);
+            this.dtDue.Name = "dtDue";
+            this.dtDue.Size = new System.Drawing.Size(121, 20);
+            this.dtDue.TabIndex = 75;
+            this.dtDue.Value = new System.DateTime(2015, 5, 24, 0, 0, 0, 0);
             // 
             // cbStuID
             // 
@@ -246,18 +259,6 @@
             this.colStatus.HeaderText = "Complete?";
             this.colStatus.Name = "colStatus";
             // 
-            // dtDue
-            // 
-            this.dtDue.CustomFormat = "dd/MM/yyyy";
-            this.dtDue.Enabled = false;
-            this.dtDue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDue.Location = new System.Drawing.Point(144, 105);
-            this.dtDue.Margin = new System.Windows.Forms.Padding(2);
-            this.dtDue.Name = "dtDue";
-            this.dtDue.Size = new System.Drawing.Size(121, 20);
-            this.dtDue.TabIndex = 75;
-            this.dtDue.Value = new System.DateTime(2015, 5, 24, 0, 0, 0, 0);
-            // 
             // frmActionItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +267,7 @@
             this.Controls.Add(this.grdActionItems);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmActionItems";
             this.Load += new System.EventHandler(this.frmActionItems_Load);
             this.gbDetails.ResumeLayout(false);
