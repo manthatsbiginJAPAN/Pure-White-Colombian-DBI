@@ -248,10 +248,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPeerAssessmentcs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-<<<<<<< HEAD
-=======
             this.Load += new System.EventHandler(this.frmPeerAssessmentcs_Load);
->>>>>>> origin/master
             this.gbDetails.ResumeLayout(false);
             this.gbDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCriteriaInfo)).EndInit();

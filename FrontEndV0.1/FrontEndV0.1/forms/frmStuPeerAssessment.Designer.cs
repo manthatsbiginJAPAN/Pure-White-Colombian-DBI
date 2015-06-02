@@ -32,20 +32,15 @@
             this.lblArrow = new System.Windows.Forms.Label();
             this.grdStudentRatings = new System.Windows.Forms.DataGridView();
             this.StuID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-<<<<<<< HEAD
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-=======
->>>>>>> origin/master
             this.Rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grdAspects = new System.Windows.Forms.DataGridView();
             this.CriterionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.General = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Specific = new System.Windows.Forms.DataGridViewTextBoxColumn();
-<<<<<<< HEAD
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
-=======
             this.txtTotalHours = new System.Windows.Forms.TextBox();
             this.lblTotalHours = new System.Windows.Forms.Label();
             this.txtTeamID = new System.Windows.Forms.TextBox();
@@ -60,7 +55,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblComments = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
->>>>>>> origin/master
             ((System.ComponentModel.ISupportInitialize)(this.grdStudentRatings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAspects)).BeginInit();
             this.gbDetails.SuspendLayout();
@@ -84,12 +78,9 @@
             this.StuID,
             this.Name,
             this.Rating});
-<<<<<<< HEAD
             this.grdStudentRatings.Location = new System.Drawing.Point(799, 92);
             this.grdStudentRatings.Margin = new System.Windows.Forms.Padding(4);
-=======
             this.grdStudentRatings.Location = new System.Drawing.Point(599, 75);
->>>>>>> origin/master
             this.grdStudentRatings.Name = "grdStudentRatings";
             this.grdStudentRatings.Size = new System.Drawing.Size(271, 345);
             this.grdStudentRatings.TabIndex = 53;
@@ -98,7 +89,6 @@
             // 
             this.StuID.HeaderText = "Student";
             this.StuID.Name = "StuID";
-<<<<<<< HEAD
             this.StuID.ReadOnly = true;
             // 
             // Name
@@ -106,8 +96,6 @@
             this.Name.HeaderText = "Name";
             this.Name.Name = "Name";
             this.Name.ReadOnly = true;
-=======
->>>>>>> origin/master
             // 
             // Rating
             // 
@@ -122,12 +110,9 @@
             this.CriterionID,
             this.General,
             this.Specific});
-<<<<<<< HEAD
             this.grdAspects.Location = new System.Drawing.Point(19, 92);
             this.grdAspects.Margin = new System.Windows.Forms.Padding(4);
-=======
             this.grdAspects.Location = new System.Drawing.Point(14, 75);
->>>>>>> origin/master
             this.grdAspects.Name = "grdAspects";
             this.grdAspects.Size = new System.Drawing.Size(554, 345);
             this.grdAspects.TabIndex = 47;
@@ -203,12 +188,9 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
             this.btnCancel.Location = new System.Drawing.Point(989, 691);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
-=======
             this.btnCancel.Location = new System.Drawing.Point(742, 436);
->>>>>>> origin/master
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(128, 37);
             this.btnCancel.TabIndex = 48;
@@ -240,20 +222,15 @@
             // btnSubmit
             // 
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
             this.btnSubmit.Location = new System.Drawing.Point(799, 691);
             this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
-=======
             this.btnSubmit.Location = new System.Drawing.Point(599, 436);
->>>>>>> origin/master
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(137, 37);
             this.btnSubmit.TabIndex = 49;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
-<<<<<<< HEAD
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-=======
             // 
             // dateTimePicker2
             // 
@@ -315,7 +292,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(142, 20);
             this.dateTimePicker1.TabIndex = 0;
->>>>>>> origin/master
             // 
             // frmStuPeerAssessment
             // 
@@ -330,11 +306,8 @@
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.gbDetails);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-<<<<<<< HEAD
             this.Margin = new System.Windows.Forms.Padding(4);
-=======
-            this.Name = "frmStuPeerAssessment";
->>>>>>> origin/master
+            this.Name.Name = "frmStuPeerAssessment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.grdStudentRatings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAspects)).EndInit();
@@ -358,8 +331,6 @@
         public System.Windows.Forms.Label lblDueDate;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button btnSubmit;
-<<<<<<< HEAD
-=======
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         public System.Windows.Forms.Label lblDateSubmitted;
         private System.Windows.Forms.GroupBox gbDetails;
@@ -368,12 +339,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Rating;
         private System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.Label lblComments;
->>>>>>> origin/master
         private System.Windows.Forms.DataGridViewTextBoxColumn CriterionID;
         private System.Windows.Forms.DataGridViewTextBoxColumn General;
         private System.Windows.Forms.DataGridViewTextBoxColumn Specific;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StuID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rating;
     }
 }
