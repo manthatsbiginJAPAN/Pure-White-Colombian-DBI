@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReports));
             this.btnConUnitReport = new System.Windows.Forms.Button();
             this.txtReportDisplay = new System.Windows.Forms.TextBox();
             this.lblReports = new System.Windows.Forms.Label();
@@ -188,6 +189,7 @@
             this.Controls.Add(this.lblReports);
             this.Controls.Add(this.txtReportDisplay);
             this.Controls.Add(this.btnConUnitReport);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmReports";
             this.ResumeLayout(false);
             this.PerformLayout();
