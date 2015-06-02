@@ -17,6 +17,7 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
         private DataSet ds;
         private DataSet unitoffs;
+        private DataSet teams;
 
         private frmTeamContribution frmTeamCont;
         private frmPeerAssessmentcs frmPeerAss;
@@ -285,20 +286,54 @@ namespace FrontEndV0._1.forms
             frmTeamCont = new frmTeamContribution(grdAssessmentInfo.Rows[selectedRow].Cells[0].Value.ToString(),
                                                   grdAssessmentInfo.Rows[selectedRow].Cells[1].Value.ToString(),
                                                   Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[2].Value.ToString()),
-                                                  Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[3].Value.ToString())
-                                                  );
+                                                  Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[3].Value.ToString()));
             frmTeamCont.Show();
         }
 
         private void btnPeerAss_Click(object sender, EventArgs e)
         {
             int selectedRow = grdAssessmentInfo.SelectedRows[0].Index;
-            frmTeamCont = new frmPeerAssessmentcs(grdAssessmentInfo.Rows[selectedRow].Cells[0].Value.ToString(),
+            frmPeerAss = new frmPeerAssessmentcs(this, grdAssessmentInfo.Rows[selectedRow].Cells[0].Value.ToString(),
                                                   grdAssessmentInfo.Rows[selectedRow].Cells[1].Value.ToString(),
                                                   Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[2].Value.ToString()),
-                                                  Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[3].Value.ToString())
-                                                  );
+                                                  Convert.ToInt32(grdAssessmentInfo.Rows[selectedRow].Cells[3].Value.ToString()),
+                                                  getTeam());
             frmPeerAss.Show();
+        }
+
+        private String getTeam()
+        {
+            string team = "";
+
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_3_View_Team", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
+            cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("user", User);
+            cmd.Parameters.Add("role", "student");
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            teams = new DataSet();
+
+            da.Fill(teams, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
+
+            connection.Close();
+
+            int max = teams.Tables["teamcursor"].Rows.Count;
+            for (int i = 0; i < max; i++)
+            {
+                for (int x = 0; x < grdAssessmentInfo.Rows.Count; x++)
+                    if (teams.Tables["teamcursor"].Rows[i].ItemArray[2].Equals(grdAssessmentInfo.CurrentRow.Cells[1].Value) && teams.Tables["teamcursor"].Rows[i].ItemArray[3].Equals(grdAssessmentInfo.CurrentRow.Cells[2].Value) && teams.Tables["teamcursor"].Rows[i].ItemArray[4].Equals(grdAssessmentInfo.CurrentRow.Cells[3].Value))
+                    {
+                        team = teams.Tables["teamcursor"].Rows[i].ItemArray[0].ToString();
+                    }
+            }
+            return team;
         }
     }
 }

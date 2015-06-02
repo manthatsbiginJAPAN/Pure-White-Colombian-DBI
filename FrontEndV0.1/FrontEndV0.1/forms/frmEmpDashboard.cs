@@ -50,7 +50,7 @@ namespace FrontEndV0._1.forms
                 frmEnrolments = new frmEnrolments(user, isAdmin);
                 frmEnrolments.MdiParent = this;
 
-                frmReports = new frmReports(true);
+                frmReports = new frmReports(user, isAdmin);
                 frmUnits.MdiParent = this;
             }
             else

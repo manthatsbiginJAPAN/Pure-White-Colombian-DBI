@@ -20,7 +20,7 @@ namespace FrontEndV0._1.forms
 
         private frmAssessment _parent;
 
-        public frmPeerAssessmentcs(frmAssessment parent)
+        public frmPeerAssessmentcs(frmAssessment parent, string assid, string unitid, int sem, int year, string team)
         {
             InitializeComponent();
 
@@ -28,7 +28,7 @@ namespace FrontEndV0._1.forms
 
             _parent = parent;
 
-            _parent.populateAssGrid(this.grdAssessmentsInfo);
+            _parent.populateAssGrid(this.grdCriteriaInfo);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -37,10 +37,10 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("Criteria ID", txtCritID.Text);
-            cmd.Parameters.Add("AssID", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
-            cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semester", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
-            cmd.Parameters.Add("Year", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
+            cmd.Parameters.Add("AssID", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
+            cmd.Parameters.Add("UnitId", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
+            cmd.Parameters.Add("Semester", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
+            cmd.Parameters.Add("Year", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
             cmd.Parameters.Add("General", txtGeneralCrit.Text);
             cmd.Parameters.Add("Specific", txtSpecificCrit.Text);
 
@@ -60,10 +60,10 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("critcursor", OracleDbType.RefCursor);
             cmd.Parameters["critcursor"].Direction = ParameterDirection.ReturnValue;
-            cmd.Parameters.Add("AssID", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
-            cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semester", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
-            cmd.Parameters.Add("Year", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
+            cmd.Parameters.Add("AssID", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
+            cmd.Parameters.Add("UnitId", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
+            cmd.Parameters.Add("Semester", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
+            cmd.Parameters.Add("Year", grdCriteriaInfo.Rows[grdCriteriaInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
@@ -76,10 +76,10 @@ namespace FrontEndV0._1.forms
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 //only add tasks where they belong to the current selected assessment
-                string AssID = grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString();
-                string UnitID = grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString();
-                int Semester = Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value);
-                int Year = Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value);
+                string AssID = grdCriteriaInfo.SelectedRows[0].Cells[0].Value.ToString();
+                string UnitID = grdCriteriaInfo.SelectedRows[0].Cells[1].Value.ToString();
+                int Semester = Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[2].Value);
+                int Year = Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[3].Value);
                 object[] items = criteria.Tables[0].Rows[i].ItemArray;
 
                 if (AssID == items[1].ToString()
@@ -105,10 +105,10 @@ namespace FrontEndV0._1.forms
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("Criteria ID", txtCritID.Text);
-                cmd.Parameters.Add("Ass ID", grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString());
-                cmd.Parameters.Add("Unit ID", grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString());
-                cmd.Parameters.Add("Semester", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value));
-                cmd.Parameters.Add("Year", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value));
+                cmd.Parameters.Add("Ass ID", grdCriteriaInfo.SelectedRows[0].Cells[0].Value.ToString());
+                cmd.Parameters.Add("Unit ID", grdCriteriaInfo.SelectedRows[0].Cells[1].Value.ToString());
+                cmd.Parameters.Add("Semester", Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[2].Value));
+                cmd.Parameters.Add("Year", Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[3].Value));
                 cmd.Parameters.Add("General", txtGeneralCrit.Text);
                 cmd.Parameters.Add("Specific", txtSpecificCrit.Text);
 
@@ -119,7 +119,7 @@ namespace FrontEndV0._1.forms
                 btnEdit.Text = "Edit";
 
                 txtCritID.Enabled = true;
-                grdAssessmentsInfo.Enabled = true;
+                grdCriteriaInfo.Enabled = true;
 
                 displayCriteria();
             }
@@ -134,7 +134,7 @@ namespace FrontEndV0._1.forms
 
                 btnEdit.Text = "Save";
 
-                grdAssessmentsInfo.Enabled = false;
+                grdCriteriaInfo.Enabled = false;
             }
         }
 
@@ -146,10 +146,10 @@ namespace FrontEndV0._1.forms
             string critid = grdCriteriaInfo.SelectedRows[0].Cells[0].Value.ToString();
 
             cmd.Parameters.Add("Crit ID", critid);
-            cmd.Parameters.Add("Ass ID", grdAssessmentsInfo.SelectedRows[0].Cells[0].Value.ToString());
-            cmd.Parameters.Add("Unit ID", grdAssessmentsInfo.SelectedRows[0].Cells[1].Value.ToString());
-            cmd.Parameters.Add("Semester", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[2].Value));
-            cmd.Parameters.Add("Year", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value));
+            cmd.Parameters.Add("Ass ID", grdCriteriaInfo.SelectedRows[0].Cells[0].Value.ToString());
+            cmd.Parameters.Add("Unit ID", grdCriteriaInfo.SelectedRows[0].Cells[1].Value.ToString());
+            cmd.Parameters.Add("Semester", Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[2].Value));
+            cmd.Parameters.Add("Year", Convert.ToInt32(grdCriteriaInfo.SelectedRows[0].Cells[3].Value));
 
             connection.Open();
             cmd.ExecuteNonQuery();
