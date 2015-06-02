@@ -27,6 +27,7 @@ namespace FrontEndV0._1.forms
         private int _sem;
         private int _year;
         private int periodcnt;
+        private int totalhrs;
 
         public frmStuTeamContribution(string assid, string unitid, int sem, int year, string team)
         {
@@ -194,6 +195,9 @@ namespace FrontEndV0._1.forms
             {
                 return;
             }
+
+            totalhrs = 0;
+
             for (int i = 0; i < grdStudentHours.Rows.Count; i++)
             {
                 OracleCommand cmd = new OracleCommand("UC2_31_View_StuHours", connection);
@@ -223,10 +227,11 @@ namespace FrontEndV0._1.forms
                 {
                     object[] items = stuhours.Tables[0].Rows[0].ItemArray;
                     grdStudentHours.Rows[i].Cells[2].Value = items[8];
+                    totalhrs = totalhrs + Convert.ToInt32(items[8]);
                 }
-                
             }
-        }
 
+            grdPeriods.SelectedRows[0].Cells[2].Value = totalhrs;
+        }
     }
 }
