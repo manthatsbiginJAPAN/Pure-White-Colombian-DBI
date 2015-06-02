@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStuDetails));
             this.label7 = new System.Windows.Forms.Label();
             this.txtStuSName = new System.Windows.Forms.TextBox();
             this.grdStudentInfo = new System.Windows.Forms.DataGridView();
@@ -314,7 +315,9 @@
             this.Controls.Add(this.gbIdentifyingInformation);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEdit);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmStuDetails";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmStuDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdStudentInfo)).EndInit();
             this.gbDetails.ResumeLayout(false);

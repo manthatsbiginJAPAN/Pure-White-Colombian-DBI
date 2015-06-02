@@ -23,6 +23,7 @@ namespace FrontEndV0._1.forms
         private DataSet students;
 
         private string User;
+        private string UserFirstName;
         private bool isAdmin;
         private bool isConvenor;
         private bool isSupervisor;
@@ -33,6 +34,7 @@ namespace FrontEndV0._1.forms
             connection = conn.oraConn();
 
             User = null;
+            UserFirstName = null;
             isAdmin = false;
             isConvenor = false;
             isSupervisor = false;
@@ -56,7 +58,7 @@ namespace FrontEndV0._1.forms
             {
                 if (User.ToLower() == "student") //for ease of access at the moment...
                 {
-                    frmStuDashboard = new frmStuDashboard(User);
+                    frmStuDashboard = new frmStuDashboard(User, "Student");
                     frmStuDashboard.FormClosing += frmStuDashboardClosing;
                     frmStuDashboard.Show();
                     return;
@@ -76,7 +78,8 @@ namespace FrontEndV0._1.forms
                             //check if password matches before confirming login
                             if (txtPassword.Text == students.Tables[0].Rows[i][5].ToString())
                             {
-                                frmStuDashboard = new frmStuDashboard(User);
+                                UserFirstName = students.Tables[0].Rows[i][1].ToString();
+                                frmStuDashboard = new frmStuDashboard(User, UserFirstName);
                                 frmStuDashboard.FormClosing += frmStuDashboardClosing;
                                 frmStuDashboard.Show();
                                 return;
@@ -111,7 +114,8 @@ namespace FrontEndV0._1.forms
                         if (txtPassword.Text == employees.Tables[0].Rows[i][5].ToString())
                         {
                             ValidateEmployeeStatus(User);
-                            frmEmpDashboard = new frmEmpDashboard(User, isAdmin, isConvenor, isSupervisor);
+                            UserFirstName = employees.Tables[0].Rows[i][1].ToString();
+                            frmEmpDashboard = new frmEmpDashboard(User, UserFirstName, isAdmin, isConvenor, isSupervisor);
                             frmEmpDashboard.FormClosing += frmEmpDashboardClosing;
                             frmEmpDashboard.Show();
                             return;

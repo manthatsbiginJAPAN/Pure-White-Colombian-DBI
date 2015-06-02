@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmpDashboard));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.personalDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administratorFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +51,10 @@
             this.viewTeamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewProjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbWelcome = new System.Windows.Forms.Label();
+            this.pbCrest = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCrest)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -237,12 +241,41 @@
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
+            // pbWelcome
+            // 
+            this.pbWelcome.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbWelcome.AutoSize = true;
+            this.pbWelcome.BackColor = System.Drawing.Color.Transparent;
+            this.pbWelcome.Font = new System.Drawing.Font("Modern No. 20", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pbWelcome.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.pbWelcome.Location = new System.Drawing.Point(209, 60);
+            this.pbWelcome.Name = "pbWelcome";
+            this.pbWelcome.Size = new System.Drawing.Size(627, 38);
+            this.pbWelcome.TabIndex = 7;
+            this.pbWelcome.Text = "Welcome to the Employee Dashboard!";
+            this.pbWelcome.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pbCrest
+            // 
+            this.pbCrest.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbCrest.BackColor = System.Drawing.Color.Transparent;
+            this.pbCrest.Image = ((System.Drawing.Image)(resources.GetObject("pbCrest.Image")));
+            this.pbCrest.Location = new System.Drawing.Point(356, 112);
+            this.pbCrest.Name = "pbCrest";
+            this.pbCrest.Size = new System.Drawing.Size(288, 436);
+            this.pbCrest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbCrest.TabIndex = 6;
+            this.pbCrest.TabStop = false;
+            // 
             // frmEmpDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 609);
+            this.Controls.Add(this.pbWelcome);
+            this.Controls.Add(this.pbCrest);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmEmpDashboard";
@@ -250,6 +283,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCrest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,5 +313,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewAssessmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewTeamsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewProjectsToolStripMenuItem;
+        private System.Windows.Forms.Label pbWelcome;
+        private System.Windows.Forms.PictureBox pbCrest;
     }
 }

@@ -140,6 +140,7 @@
             this.Unitid,
             this.Semester,
             this.Year});
+            this.grdEnrolments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grdEnrolments.Location = new System.Drawing.Point(486, 64);
             this.grdEnrolments.Name = "grdEnrolments";
             this.grdEnrolments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
