@@ -1451,6 +1451,8 @@ EXCEPTION
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
 
+/
+
 create or replace PROCEDURE UC2_38_Update_Task_Period
 		(pPeriod number,
 	pTaskID number,
@@ -1461,7 +1463,7 @@ create or replace PROCEDURE UC2_38_Update_Task_Period
 	pPeriodDate date) AS
 BEGIN
 	UPDATE AssessmentTaskPeriod
-	SET PeriodDate = pPeriodDate,
+	SET PeriodDate = pPeriodDate
 	WHERE Period = pPeriod and
 		TaskId = pTaskID and
 		AssId = pAssID and
@@ -1472,6 +1474,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
+/
 
 CREATE or REPLACE FUNCTION UC2_39_View_Task_Period
 	RETURN SYS_REFCURSOR AS str SYS_REFCURSOR;
@@ -1490,6 +1494,8 @@ EXCEPTION
 		dbms_output.put_line(SQLERRM);
 End;
 
+/
+
 CREATE OR REPLACE PROCEDURE UC2_40_Delete_Task_Period
 		(pPeriod number,
 	pTaskID number,
@@ -1498,7 +1504,7 @@ CREATE OR REPLACE PROCEDURE UC2_40_Delete_Task_Period
 	pSemester number,
 	pYear number) AS
 BEGIN
-	Delete StudentRatings
+	Delete AssessmentTaskPeriod
 	WHERE Period = pPeriod and
 		TaskId = pTaskID and
 		AssId = pAssID and
@@ -1510,6 +1516,8 @@ EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
 END;
+
+/
 
 create or replace FUNCTION UC3_1_View_Meeting
 	(user varchar2, role varchar2)
