@@ -299,7 +299,7 @@ namespace FrontEndV0._1.forms
                     connection.Close();
 
                     linecount++;
-                    insertMsg += Environment.NewLine + unitid + name;
+                    insertMsg += Environment.NewLine + unitid + " " + name;
 
                 }
 
@@ -312,7 +312,7 @@ namespace FrontEndV0._1.forms
 
             if (linecount != 0)
             {
-                MessageBox.Show(insertMsg, "Added " + linecount + " units.");
+                MessageBox.Show(insertMsg, "Added " + linecount + " unit(s).");
             }
             else
             {

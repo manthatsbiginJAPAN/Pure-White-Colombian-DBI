@@ -50,6 +50,7 @@
             this.viewTeamsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewProjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +83,8 @@
             this.manageEmployeesToolStripMenuItem,
             this.manageUnitsToolStripMenuItem,
             this.manageUnitOfferingsToolStripMenuItem,
-            this.manageEnrolmentsToolStripMenuItem});
+            this.manageEnrolmentsToolStripMenuItem,
+            this.reportsToolStripMenuItem});
             this.administratorFunctionsToolStripMenuItem.Enabled = false;
             this.administratorFunctionsToolStripMenuItem.Name = "administratorFunctionsToolStripMenuItem";
             this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(225, 29);
@@ -237,6 +239,13 @@
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
+            // 
             // frmEmpDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,5 +288,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewAssessmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewTeamsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewProjectsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
     }
 }
