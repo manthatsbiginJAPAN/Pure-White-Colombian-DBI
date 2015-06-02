@@ -43,7 +43,6 @@ namespace FrontEndV0._1.forms
             cmd.Parameters.Add("Year", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
             cmd.Parameters.Add("General", txtGeneralCrit.Text);
             cmd.Parameters.Add("Specific", txtSpecificCrit.Text);
-            cmd.Parameters.Add("Due Date", dtDue.Value.ToString("dd/MMM/yyyy"));
 
 
             connection.Open();
@@ -61,6 +60,10 @@ namespace FrontEndV0._1.forms
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("critcursor", OracleDbType.RefCursor);
             cmd.Parameters["critcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("AssID", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[0].Value.ToString());
+            cmd.Parameters.Add("UnitId", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[1].Value.ToString());
+            cmd.Parameters.Add("Semester", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[2].Value.ToString());
+            cmd.Parameters.Add("Year", grdAssessmentsInfo.Rows[grdAssessmentsInfo.SelectedRows[0].Index].Cells[3].Value.ToString());
             connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
@@ -84,7 +87,7 @@ namespace FrontEndV0._1.forms
                     && Semester == Convert.ToInt32(items[3])
                     && Year == Convert.ToInt32(items[4]))
                 {
-                    grdCriteriaInfo.Rows.Add(new object[] { items[0], items[5], items[6], items[7] });
+                    grdCriteriaInfo.Rows.Add(new object[] { items[0], items[5], items[6] });
                 }
             }
         }
@@ -108,7 +111,6 @@ namespace FrontEndV0._1.forms
                 cmd.Parameters.Add("Year", Convert.ToInt32(grdAssessmentsInfo.SelectedRows[0].Cells[3].Value));
                 cmd.Parameters.Add("General", txtGeneralCrit.Text);
                 cmd.Parameters.Add("Specific", txtSpecificCrit.Text);
-                cmd.Parameters.Add("Due Date", dtDue.Value.ToString("dd/MMM/yyyy"));
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -128,7 +130,7 @@ namespace FrontEndV0._1.forms
 
                 txtGeneralCrit.Text = grdCriteriaInfo.SelectedRows[0].Cells[1].Value.ToString();
                 txtSpecificCrit.Text = grdCriteriaInfo.SelectedRows[0].Cells[2].Value.ToString();
-                dtDue.Value = Convert.ToDateTime(grdCriteriaInfo.SelectedRows[0].Cells[3].Value);
+
 
                 btnEdit.Text = "Save";
 

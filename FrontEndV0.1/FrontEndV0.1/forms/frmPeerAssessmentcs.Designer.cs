@@ -32,16 +32,11 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblCritID = new System.Windows.Forms.Label();
             this.gbDetails = new System.Windows.Forms.GroupBox();
-            this.dtDue = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtSpecificCrit = new System.Windows.Forms.TextBox();
             this.lblSpecfic = new System.Windows.Forms.Label();
             this.txtGeneralCrit = new System.Windows.Forms.TextBox();
             this.lblGeneral = new System.Windows.Forms.Label();
             this.grdCriteriaInfo = new System.Windows.Forms.DataGridView();
-            this.colCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGeneralCrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSpecificCrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -50,7 +45,9 @@
             this.UnitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Semester = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGeneralCrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpecificCrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCriteriaInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAssessmentsInfo)).BeginInit();
@@ -89,8 +86,6 @@
             // 
             // gbDetails
             // 
-            this.gbDetails.Controls.Add(this.dtDue);
-            this.gbDetails.Controls.Add(this.label1);
             this.gbDetails.Controls.Add(this.txtCritID);
             this.gbDetails.Controls.Add(this.lblCritID);
             this.gbDetails.Controls.Add(this.txtSpecificCrit);
@@ -106,24 +101,6 @@
             this.gbDetails.TabIndex = 34;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
-            // 
-            // dtDue
-            // 
-            this.dtDue.Location = new System.Drawing.Point(210, 264);
-            this.dtDue.Name = "dtDue";
-            this.dtDue.Size = new System.Drawing.Size(258, 23);
-            this.dtDue.TabIndex = 54;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(76, 262);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 25);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "Due Date:";
             // 
             // txtSpecificCrit
             // 
@@ -177,34 +154,13 @@
             this.grdCriteriaInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCritID,
             this.colGeneralCrit,
-            this.colSpecificCrit,
-            this.DueDate});
+            this.colSpecificCrit});
             this.grdCriteriaInfo.Location = new System.Drawing.Point(648, 87);
             this.grdCriteriaInfo.Margin = new System.Windows.Forms.Padding(4);
             this.grdCriteriaInfo.Name = "grdCriteriaInfo";
             this.grdCriteriaInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdCriteriaInfo.Size = new System.Drawing.Size(561, 677);
             this.grdCriteriaInfo.TabIndex = 33;
-            // 
-            // colCritID
-            // 
-            this.colCritID.FillWeight = 46.30474F;
-            this.colCritID.HeaderText = "Criterion ID";
-            this.colCritID.Name = "colCritID";
-            // 
-            // colGeneralCrit
-            // 
-            this.colGeneralCrit.FillWeight = 93.79678F;
-            this.colGeneralCrit.HeaderText = "General Criteria";
-            this.colGeneralCrit.MinimumWidth = 80;
-            this.colGeneralCrit.Name = "colGeneralCrit";
-            // 
-            // colSpecificCrit
-            // 
-            this.colSpecificCrit.FillWeight = 159.8985F;
-            this.colSpecificCrit.HeaderText = "Specific Criteria";
-            this.colSpecificCrit.MinimumWidth = 105;
-            this.colSpecificCrit.Name = "colSpecificCrit";
             // 
             // btnAdd
             // 
@@ -287,11 +243,25 @@
             this.Year.Name = "Year";
             this.Year.ReadOnly = true;
             // 
-            // DueDate
+            // colCritID
             // 
-            this.DueDate.HeaderText = "DueDate";
-            this.DueDate.Name = "DueDate";
-            this.DueDate.ReadOnly = true;
+            this.colCritID.FillWeight = 46.30474F;
+            this.colCritID.HeaderText = "Criterion ID";
+            this.colCritID.Name = "colCritID";
+            // 
+            // colGeneralCrit
+            // 
+            this.colGeneralCrit.FillWeight = 93.79678F;
+            this.colGeneralCrit.HeaderText = "General Criteria";
+            this.colGeneralCrit.MinimumWidth = 80;
+            this.colGeneralCrit.Name = "colGeneralCrit";
+            // 
+            // colSpecificCrit
+            // 
+            this.colSpecificCrit.FillWeight = 159.8985F;
+            this.colSpecificCrit.HeaderText = "Specific Criteria";
+            this.colSpecificCrit.MinimumWidth = 105;
+            this.colSpecificCrit.Name = "colSpecificCrit";
             // 
             // frmPeerAssessmentcs
             // 
@@ -329,18 +299,15 @@
         public System.Windows.Forms.Button btnEdit;
         public System.Windows.Forms.Button btnDelete;
         public System.Windows.Forms.TextBox txtSpecificCrit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCritID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGeneralCrit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpecificCrit;
         private System.Windows.Forms.DataGridView grdAssessmentsInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn AssID;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Semester;
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
-        private System.Windows.Forms.DateTimePicker dtDue;
-        public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lblSpecfic;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DueDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCritID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGeneralCrit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpecificCrit;
 
     }
 }
