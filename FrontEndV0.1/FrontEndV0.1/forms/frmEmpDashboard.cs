@@ -23,10 +23,12 @@ namespace FrontEndV0._1.forms
         private frmProject frmProject = null;
         private string User;
 
-        public frmEmpDashboard(string user, bool isAdmin, bool isConvenor, bool isSupervisor)
+        public frmEmpDashboard(string user, string firstName, bool isAdmin, bool isConvenor, bool isSupervisor)
         {
             InitializeComponent();
             User = user;
+            this.Text = ("Welcome " + firstName + "!");
+
             //for testing: MessageBox.Show("Form initialised. isAdmin: " + isAdmin + "; isConvenor: " + isConvenor + "; isSupervisor: " + isSupervisor);
 
             //Enable menus based on user's type --> except a user may have many types

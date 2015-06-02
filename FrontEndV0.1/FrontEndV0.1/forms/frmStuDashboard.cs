@@ -19,9 +19,10 @@ namespace FrontEndV0._1.forms
         private frmMeeting frmMeeting;
         private frmStuAssessment frmStuAssessment;
 
-        public frmStuDashboard(string user)
+        public frmStuDashboard(string user, string firstName)
         {
             InitializeComponent();
+            this.Text = ("Welcome " + firstName + "!");
 
             //Form load, instantiate subforms
             frmStuDetails = new frmStuDetails(user, false);
