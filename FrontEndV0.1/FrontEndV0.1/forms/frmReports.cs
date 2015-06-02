@@ -135,7 +135,7 @@ namespace FrontEndV0._1.forms
             txtReportDisplay.Clear();
             getUnits();
 
-            txtReportDisplay.Text = "******** List of Units and Unit Offerings: *********" + Environment.NewLine;
+            txtReportDisplay.Text = "******** List of Units, Unit Offerings and Convenors: *********" + Environment.NewLine;
 
             int unitrowcnt = units.Tables["unitcursor"].Rows.Count;
             string unitid = "";
@@ -150,7 +150,7 @@ namespace FrontEndV0._1.forms
                 txtReportDisplay.Text += System.Environment.NewLine + unitid + " " + unitname;
                 getThisUnitOfferings(unitid);
 
-                int offrowcnt = unitoffs2.Tables["unitoffcursor"].Rows.Count;
+                int offrowcnt = unitoffs2.Tables["unitoffcursor2"].Rows.Count;
                 for (int j = 0; j < offrowcnt; j++)
                 {
                     string sem = "";
@@ -163,7 +163,7 @@ namespace FrontEndV0._1.forms
                     confirstname = unitoffs2.Tables[0].Rows[j][2].ToString();
                     conlastname = unitoffs2.Tables[0].Rows[j][3].ToString();
 
-                    txtReportDisplay.Text += System.Environment.NewLine + "     -" + sem + " " + year + " " + confirstname + " " + conlastname;
+                    txtReportDisplay.Text += System.Environment.NewLine + "     " + sem + " " + year + " " + confirstname + " " + conlastname;
                 }
             }
             txtReportDisplay.Text += Environment.NewLine + Environment.NewLine;
