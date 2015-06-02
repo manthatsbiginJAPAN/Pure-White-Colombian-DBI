@@ -342,6 +342,7 @@ namespace FrontEndV0._1.forms
 
         private void viewAssessmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //I think this might need to be stuAssessment..?
             frmAssessment = new frmAssessment(User, false, true);
             frmAssessment.MdiParent = this;
             openAssessmentForm();

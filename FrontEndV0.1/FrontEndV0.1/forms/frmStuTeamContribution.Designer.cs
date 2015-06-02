@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStuTeamContribution));
             this.label1 = new System.Windows.Forms.Label();
             this.grdTasks = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,10 +54,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(296, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(222, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(545, 41);
+            this.label1.Size = new System.Drawing.Size(444, 34);
             this.label1.TabIndex = 36;
             this.label1.Text = "Team Contribution Submission";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -72,11 +72,10 @@
             this.grdTasks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.Task});
-            this.grdTasks.Location = new System.Drawing.Point(16, 97);
-            this.grdTasks.Margin = new System.Windows.Forms.Padding(4);
+            this.grdTasks.Location = new System.Drawing.Point(12, 79);
             this.grdTasks.Name = "grdTasks";
             this.grdTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdTasks.Size = new System.Drawing.Size(361, 631);
+            this.grdTasks.Size = new System.Drawing.Size(271, 513);
             this.grdTasks.TabIndex = 37;
             this.grdTasks.SelectionChanged += new System.EventHandler(this.grdTasks_SelectionChanged);
             // 
@@ -97,10 +96,9 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(986, 736);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Location = new System.Drawing.Point(740, 598);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(171, 46);
+            this.btnCancel.Size = new System.Drawing.Size(128, 37);
             this.btnCancel.TabIndex = 40;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -109,10 +107,9 @@
             // btnSubmit
             // 
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(796, 736);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSubmit.Location = new System.Drawing.Point(597, 598);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(183, 46);
+            this.btnSubmit.Size = new System.Drawing.Size(137, 37);
             this.btnSubmit.TabIndex = 41;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -129,11 +126,10 @@
             this.Period,
             this.Date,
             this.TotalPeriodHours});
-            this.grdPeriods.Location = new System.Drawing.Point(407, 97);
-            this.grdPeriods.Margin = new System.Windows.Forms.Padding(4);
+            this.grdPeriods.Location = new System.Drawing.Point(305, 79);
             this.grdPeriods.Name = "grdPeriods";
             this.grdPeriods.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdPeriods.Size = new System.Drawing.Size(361, 631);
+            this.grdPeriods.Size = new System.Drawing.Size(271, 513);
             this.grdPeriods.TabIndex = 43;
             this.grdPeriods.SelectionChanged += new System.EventHandler(this.grdPeriods_SelectionChanged);
             // 
@@ -165,10 +161,9 @@
             this.StuID,
             this.Name,
             this.Hours});
-            this.grdStudentHours.Location = new System.Drawing.Point(796, 97);
-            this.grdStudentHours.Margin = new System.Windows.Forms.Padding(4);
+            this.grdStudentHours.Location = new System.Drawing.Point(597, 79);
             this.grdStudentHours.Name = "grdStudentHours";
-            this.grdStudentHours.Size = new System.Drawing.Size(361, 631);
+            this.grdStudentHours.Size = new System.Drawing.Size(271, 513);
             this.grdStudentHours.TabIndex = 44;
             // 
             // StuID
@@ -197,10 +192,9 @@
             // 
             this.lblArrow.AutoSize = true;
             this.lblArrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrow.Location = new System.Drawing.Point(380, 358);
-            this.lblArrow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblArrow.Location = new System.Drawing.Point(285, 291);
             this.lblArrow.Name = "lblArrow";
-            this.lblArrow.Size = new System.Drawing.Size(25, 25);
+            this.lblArrow.Size = new System.Drawing.Size(19, 20);
             this.lblArrow.TabIndex = 44;
             this.lblArrow.Text = ">";
             // 
@@ -208,18 +202,17 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(769, 358);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(577, 291);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 25);
+            this.label2.Size = new System.Drawing.Size(19, 20);
             this.label2.TabIndex = 45;
             this.label2.Text = ">";
             // 
             // frmStuTeamContribution
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 795);
+            this.ClientSize = new System.Drawing.Size(884, 646);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblArrow);
             this.Controls.Add(this.grdStudentHours);
@@ -228,8 +221,8 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grdTasks);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            //this.Name = "frmStuTeamContribution";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "frmStuTeamContribution";
             this.Text = "Team Contribution Submission";
             ((System.ComponentModel.ISupportInitialize)(this.grdTasks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPeriods)).EndInit();
