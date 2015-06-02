@@ -55,6 +55,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -89,7 +90,8 @@
             this.manageEmployeesToolStripMenuItem,
             this.manageUnitsToolStripMenuItem,
             this.manageUnitOfferingsToolStripMenuItem,
-            this.manageEnrolmentsToolStripMenuItem});
+            this.manageEnrolmentsToolStripMenuItem,
+            this.reportToolStripMenuItem});
             this.administratorFunctionsToolStripMenuItem.Enabled = false;
             this.administratorFunctionsToolStripMenuItem.Name = "administratorFunctionsToolStripMenuItem";
             this.administratorFunctionsToolStripMenuItem.Size = new System.Drawing.Size(225, 29);
@@ -297,6 +299,13 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(276, 30);
+            this.reportToolStripMenuItem.Text = "Report";
+            this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
+            // 
             // frmEmpDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,5 +357,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
     }
 }

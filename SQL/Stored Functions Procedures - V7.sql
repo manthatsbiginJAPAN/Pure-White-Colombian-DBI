@@ -1027,6 +1027,23 @@ End;
 /
 
 
+CREATE or REPLACE FUNCTION UC2_18_View_Team_Allo_All
+ 	(pUnitID varchar2, pSemester number, pYear number)
+	RETURN SYS_REFCURSOR AS sta SYS_REFCURSOR;
+BEGIN
+	OPEN sta for select *
+	FROM StudentTeamAllocation
+	WHERE UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
+	return sta;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+/
+
 create or replace PROCEDURE UC2_20_Delete_Team_Allo
 		(pTeamID varchar2,
 	pStuID varchar2,
@@ -1062,9 +1079,15 @@ create or replace PROCEDURE UC2_21_Register_AssTask
 	pSemester number,
 	pYear number,
 	pTaskDesc varchar2,
-	pDueDate date) AS
+	pDueDate date,
+	pPeriods number) AS
+	pcount integer;
 BEGIN
 	INSERT INTO AssessmentTask VALUES (pTaskID, pAssID, pUnitID, pSemester, pYear, pTaskDesc, pDueDate);
+	for pcount IN 1..Pperiods LOOP
+		insert into AssessmentTaskPeriod VALUES (pcount, pTaskID, pAssID, pUnitID, pSemester, pYear, Null);
+	end Loop;
+
 	--dbms_output.put_line('Assessment: '|| pAssID ||' Title: '|| pAssTitle||' Unit Offering ' || pUnitID || ' added semester ' || pSemester || ', ' || pYear); --for testing
 EXCEPTION
 	WHEN DUP_VAL_ON_INDEX THEN
@@ -1135,13 +1158,19 @@ CREATE OR REPLACE PROCEDURE UC2_24_Delete_AssTask
 		, pSemester number
 		, pYear number) AS
 BEGIN
+	Delete AssessmentTaskPeriod
+	WHERE TaskID = pTaskID and
+		AssId = pAssID and
+		UnitId = pUnitID and
+		Semester = pSemester and
+		Year = pYear;
+
 	Delete AssessmentTask
 	WHERE TaskID = pTaskID and
 		AssId = pAssID and
 		UnitId = pUnitID and
 		Semester = pSemester and
 		Year = pYear;
-	--dbms_output.put_line('Assessment ' || pAssID || ' deleted' ); --for testing
 EXCEPTION
 	WHEN OTHERS THEN
 		RAISE_APPLICATION_ERROR(-20000, SQLERRM);
@@ -1898,3 +1927,38 @@ END;
 
 ---------------------------------------------------------------------
 
+/
+
+create or replace FUNCTION UC4_1_View_Unit_Offering
+	(pUnitID varchar2, user varchar2, role varchar2)
+	RETURN SYS_REFCURSOR AS uos SYS_REFCURSOR;
+  rcount number;
+BEGIN	
+	--dbms_output.put_line('Listing All Unit Offerings');
+	IF role = 'admin' THEN
+      OPEN uos for select u.Semester, u.Year, e.FirstName, e.LastName
+       from UnitOffering u
+       INNER JOIN Employee e
+       ON u.EmpId = e.EmpID
+       where UnitID = pUnitID;
+	elsif role = 'convenor' then
+      OPEN uos for select * from UnitOffering where LOWER(EmpID) = LOWER(user) and UnitID = pUnitID;
+  --else --backup plan
+  --    OPEN uos for select * from UnitOffering;
+  END IF;
+	return uos;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+
+OPEN sta for select s.StuID, d.FirstName, d.LastName
+	FROM StudentTeamAllocation s
+	INNER JOIN Student d
+	ON s.StuID = d.StuID
+	WHERE TeamID = pTeamID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
+/
