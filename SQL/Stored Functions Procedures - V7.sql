@@ -1898,3 +1898,38 @@ END;
 
 ---------------------------------------------------------------------
 
+/
+
+create or replace FUNCTION UC4_1_View_Unit_Offering
+	(pUnitID varchar2, user varchar2, role varchar2)
+	RETURN SYS_REFCURSOR AS uos SYS_REFCURSOR;
+  rcount number;
+BEGIN	
+	--dbms_output.put_line('Listing All Unit Offerings');
+	IF role = 'admin' THEN
+      OPEN uos for select u.Semester, u.Year, e.FirstName, e.LastName
+       from UnitOffering u
+       INNER JOIN Employee e
+       ON u.EmpId = e.EmpID
+       where UnitID = pUnitID;
+	elsif role = 'convenor' then
+      OPEN uos for select * from UnitOffering where LOWER(EmpID) = LOWER(user) and UnitID = pUnitID;
+  --else --backup plan
+  --    OPEN uos for select * from UnitOffering;
+  END IF;
+	return uos;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;
+
+
+OPEN sta for select s.StuID, d.FirstName, d.LastName
+	FROM StudentTeamAllocation s
+	INNER JOIN Student d
+	ON s.StuID = d.StuID
+	WHERE TeamID = pTeamID AND
+		UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
+/

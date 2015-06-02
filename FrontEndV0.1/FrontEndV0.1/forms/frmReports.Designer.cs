@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnConUnitReport = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtReportDisplay = new System.Windows.Forms.TextBox();
             this.lblReports = new System.Windows.Forms.Label();
             this.btnTeamDetails = new System.Windows.Forms.Button();
             this.btnProjectReport = new System.Windows.Forms.Button();
@@ -46,14 +46,16 @@
             this.btnConUnitReport.TabIndex = 35;
             this.btnConUnitReport.Text = "Convenors and Units";
             this.btnConUnitReport.UseVisualStyleBackColor = true;
+            this.btnConUnitReport.Click += new System.EventHandler(this.btnConUnitReport_Click);
             // 
-            // textBox1
+            // txtReportDisplay
             // 
-            this.textBox1.Location = new System.Drawing.Point(219, 39);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(683, 595);
-            this.textBox1.TabIndex = 41;
+            this.txtReportDisplay.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReportDisplay.Location = new System.Drawing.Point(219, 39);
+            this.txtReportDisplay.Multiline = true;
+            this.txtReportDisplay.Name = "txtReportDisplay";
+            this.txtReportDisplay.Size = new System.Drawing.Size(683, 595);
+            this.txtReportDisplay.TabIndex = 41;
             // 
             // lblReports
             // 
@@ -115,7 +117,7 @@
             this.Controls.Add(this.btnProjectReport);
             this.Controls.Add(this.btnTeamDetails);
             this.Controls.Add(this.lblReports);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtReportDisplay);
             this.Controls.Add(this.btnConUnitReport);
             this.Name = "frmReports";
             this.ResumeLayout(false);
@@ -126,7 +128,7 @@
         #endregion
 
         public System.Windows.Forms.Button btnConUnitReport;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtReportDisplay;
         public System.Windows.Forms.Label lblReports;
         public System.Windows.Forms.Button btnTeamDetails;
         public System.Windows.Forms.Button btnProjectReport;
