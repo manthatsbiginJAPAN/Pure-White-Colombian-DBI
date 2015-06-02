@@ -17,6 +17,7 @@ namespace FrontEndV0._1.forms
         private Connection conn = new Connection("s7663285", "123");
 
         private DataSet tasks;
+        private DataSet periods;
 
         private string _assid;
         private string _unitid;
@@ -72,6 +73,41 @@ namespace FrontEndV0._1.forms
                 object[] items = tasks.Tables[0].Rows[i].ItemArray;
                 grdTasks.Rows.Add(new object[] { items[0], items[5] });
             }
+        }
+
+        private void grdTasks_SelectionChanged(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("UC2_39_VIEW_TASK_PERIOD", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("percursor", OracleDbType.RefCursor);
+            cmd.Parameters["percursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("assid", _assid);
+            cmd.Parameters.Add("taskid", grdTasks.Rows[grdTasks.SelectedRows[0].Index].Cells[0].Value.ToString());
+            cmd.Parameters.Add("unitid", _unitid);
+            cmd.Parameters.Add("sem", _sem);
+            cmd.Parameters.Add("year", _year);
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            periods = new DataSet();
+
+            da.Fill(periods, "percursor", (OracleRefCursor)(cmd.Parameters["percursor"].Value));
+
+            connection.Close();
+
+            grdPeriods.Rows.Clear();
+
+            int rowcnt = periods.Tables["percusor"].Rows.Count;
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                object[] items = periods.Tables[0].Rows[i].ItemArray;
+                grdPeriods.Rows.Add(new object[] { items[0], items[6] });
+            }
+
         }
     }
 }
