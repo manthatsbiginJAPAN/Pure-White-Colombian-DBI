@@ -50,12 +50,6 @@
   <ItemGroup>
     <Compile Include="Connection.cs" />
     <Compile Include="Executor.cs" />
-    <Compile Include="forms\frmReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmReport.Designer.cs">
-      <DependentUpon>frmReport.cs</DependentUpon>
-    </Compile>
     <Compile Include="forms\frmAdminOperations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,9 +231,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmProject.resx">
       <DependentUpon>frmProject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmReport.resx">
-      <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmStuAssessment.resx">
       <DependentUpon>frmStuAssessment.cs</DependentUpon>
