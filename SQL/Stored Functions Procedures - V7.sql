@@ -1482,10 +1482,16 @@ END;
 
 /
 
-CREATE or REPLACE FUNCTION UC2_39_View_Task_Period
+CREATE or REPLACE FUNCTION UC2_39_View_Task_Period (pAssID varchar2, pTaskID varchar2, pUnitID varchar2,
+	pSemester varchar2, pYear varchar2)
 	RETURN SYS_REFCURSOR AS str SYS_REFCURSOR;
 BEGIN
-	OPEN str for select * from AssessmentTaskPeriod;
+	OPEN str for select * from AssessmentTaskPeriod
+	WHERE AssID = pAssID and
+	TaskID = pTaskID and
+	UnitID = pUnitID and
+	Semester = pSemester and
+	Year = pYear;
 	--LOOP
 	--	Fetch unts into u;
 	--	Exit When unts%NOTFOUND;
