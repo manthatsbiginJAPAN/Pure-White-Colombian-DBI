@@ -150,6 +150,8 @@ namespace FrontEndV0._1.forms
 
         private void grdAspects_SelectionChanged(object sender, EventArgs e)
         {
+            if (grdAspects.SelectedRows.Count == 0)
+                return;
             getRatings();
         }
 
