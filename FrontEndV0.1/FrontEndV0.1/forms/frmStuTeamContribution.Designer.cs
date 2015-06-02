@@ -222,7 +222,8 @@
             this.Controls.Add(this.grdTasks);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            //this.Name = "frmStuTeamContribution";
+            //this.Name = "frmStuTeamContribution"; //error again...
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Team Contribution Submission";
             ((System.ComponentModel.ISupportInitialize)(this.grdTasks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPeriods)).EndInit();

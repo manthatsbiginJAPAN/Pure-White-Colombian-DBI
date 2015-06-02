@@ -43,6 +43,8 @@
             this.lblYear = new System.Windows.Forms.Label();
             this.lblUnitID = new System.Windows.Forms.Label();
             this.btnEtc = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnConUnitReport
@@ -110,6 +112,7 @@
             // btnEnrolmentReport
             // 
             this.btnEnrolmentReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
             this.btnEnrolmentReport.Location = new System.Drawing.Point(6, 275);
             this.btnEnrolmentReport.Name = "btnEnrolmentReport";
             this.btnEnrolmentReport.Size = new System.Drawing.Size(167, 40);
@@ -187,11 +190,33 @@
             this.btnEtc.Text = "Etc...";
             this.btnEtc.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(59, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 21);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Basic";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Modern No. 20", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(213, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 21);
+            this.label2.TabIndex = 55;
+            this.label2.Text = "Advanced";
+            // 
             // frmReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 646);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEtc);
             this.Controls.Add(this.cbYear);
             this.Controls.Add(this.cbSemester);
@@ -231,6 +256,8 @@
         public System.Windows.Forms.Label lblYear;
         public System.Windows.Forms.Label lblUnitID;
         public System.Windows.Forms.Button btnEtc;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
 
     }
 }
