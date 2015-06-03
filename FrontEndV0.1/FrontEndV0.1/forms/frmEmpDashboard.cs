@@ -328,7 +328,7 @@ namespace FrontEndV0._1.forms
 
         private void allocationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmStuAssessment = new frmStuAssessment(User);
+            frmStuAssessment = new frmStuAssessment(User, true);
             frmStuAssessment.MdiParent = this;
             openStuAssessmentForm();
         }  

@@ -260,9 +260,12 @@ namespace FrontEndV0._1.forms
                     gbIdentifyingInformation.Enabled = false;
                     gbDetails.Enabled = false;
 
-                    //Enable other buttons
-                    btnAdd.Enabled = true;
-                    btnDelete.Enabled = true;
+                    if (isAdmin)
+                    {
+                        //Enable other buttons
+                        btnAdd.Enabled = true;
+                        btnDelete.Enabled = true;
+                    }
 
                     //Clear textboxes
                     txtStuID.Clear();

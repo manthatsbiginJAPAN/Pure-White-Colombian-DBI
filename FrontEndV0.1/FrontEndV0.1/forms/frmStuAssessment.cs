@@ -16,25 +16,39 @@ namespace FrontEndV0._1.forms
         private OracleConnection connection;
         private Connection conn = new Connection("s7663285", "123");
         private string _user;
+        private bool _isConvenor;
 
         private DataSet enrolment;
-        private DataSet assignments;
+        private DataSet assignments = null;
         private DataSet teams;
+        private DataSet ds;
 
         private frmStuTeamContribution frmStuTeamCont;
         private frmStuPeerAssessment frmStuPeerAss;
 
-        public frmStuAssessment(string user)
+        public frmStuAssessment(string user, bool isConvenor)
         {
             InitializeComponent();
 
             connection = conn.oraConn();
 
             _user = user;
+            _isConvenor = isConvenor;
 
             getEnrolment();
             getAssessments();
-            fillAssessments();
+            //fillAssessments();
+            populateAssGrid(grdAssessments);
+            if (_isConvenor)
+            {
+                _user = getStudent();
+            }
+        }
+
+        private string getStudent()
+        {
+            string student = "s7663285";
+            return student;
         }
 
         private void getEnrolment()
@@ -55,7 +69,7 @@ namespace FrontEndV0._1.forms
             da.Fill(enrolment, "enrcursor", (OracleRefCursor)(cmd.Parameters["enrcursor"].Value));
 
             connection.Close();
-        }   
+        }
 
         private void getAssessments()
         {
@@ -65,22 +79,35 @@ namespace FrontEndV0._1.forms
             cmd.Parameters.Add("asscursor", OracleDbType.RefCursor);
             cmd.Parameters["asscursor"].Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add("user", _user);
-            string role = "convenor"; //used currently for testing
-            if (_user.ToLower().ToArray<Char>().First().Equals('s'))
-            {
-                role = "student";
-            }
+            string role = "student";
+            if (_isConvenor)
+                role = "convenor";
             cmd.Parameters.Add("role", role);
-            connection.Open();
 
+            connection.Open();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             cmd.ExecuteNonQuery();
 
-            assignments = new DataSet();
+            ds = new DataSet();
 
-            da.Fill(assignments, "asscursor", (OracleRefCursor)(cmd.Parameters["asscursor"].Value));
+            da.Fill(ds, "asscursor", (OracleRefCursor)(cmd.Parameters["asscursor"].Value));
 
             connection.Close();
+        }
+
+        public void populateAssGrid(DataGridView thegrid)
+        {
+            //Empty the grid
+            thegrid.Rows.Clear();
+
+            //Populate grid
+            int rowcnt = ds.Tables["asscursor"].Rows.Count;
+
+            for (int i = 0; i <= rowcnt - 1; i++)
+            {
+                object[] items = ds.Tables[0].Rows[i].ItemArray;
+                thegrid.Rows.Add(new object[] { items[0], items[3], items[4], items[5] });
+            }
         }
 
         private void fillAssessments()
@@ -102,6 +129,10 @@ namespace FrontEndV0._1.forms
 
         private void grdAssessments_SelectionChanged(object sender, EventArgs e)
         {
+            if (assignments == null)
+            {
+                return;
+            }
             for (int i = 0; i < assignments.Tables[0].Rows.Count - 1; i++)
             {
                 if ( assignments.Tables[0].Rows[i][0].Equals(grdAssessments.SelectedRows[0].Cells[0].Value)

@@ -40,7 +40,7 @@ namespace FrontEndV0._1.forms
             frmMeeting = new frmMeeting(user, false);
             frmMeeting.MdiParent = this;
 
-            frmStuAssessment = new frmStuAssessment(user);
+            frmStuAssessment = new frmStuAssessment(user, false);
             frmStuAssessment.MdiParent = this;
         }
 
