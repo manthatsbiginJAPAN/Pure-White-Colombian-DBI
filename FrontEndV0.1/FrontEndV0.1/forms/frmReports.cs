@@ -242,40 +242,71 @@ namespace FrontEndV0._1.forms
 
         private void btnEnrolmentReport_Click(object sender, EventArgs e)
         {
-            txtReportDisplay.Clear();
-            string pUnitId = null, pSemester = null, pYear = null;
+            if (cbValidated())
+                {
+                  txtReportDisplay.Clear();
+                   string pUnitId = null, pSemester = null, pYear = null;
+                   pUnitId = cbUnitID.SelectedItem.ToString();
+                   pSemester = cbSemester.SelectedItem.ToString();
+                   pYear = cbYear.SelectedItem.ToString();
 
-            //validate selections
-            if (cbUnitID.SelectedIndex == -1)
-                MessageBox.Show("Please select a UnitID");
-            else
-                pUnitId = cbUnitID.SelectedItem.ToString();
+              /*  //validate selections
+                if (cbUnitID.SelectedIndex == -1)
+                    MessageBox.Show("Please select a UnitID");
+                else
+                    pUnitId = cbUnitID.SelectedItem.ToString();
 
-            if (cbSemester.SelectedIndex == -1)
-                MessageBox.Show("Please select a Semester");
-            else
-                pSemester = cbSemester.SelectedItem.ToString();
+                if (cbSemester.SelectedIndex == -1)
+                    MessageBox.Show("Please select a Semester");
+                else
+                    pSemester = cbSemester.SelectedItem.ToString();
 
-            if (cbYear.SelectedIndex == -1)
-                MessageBox.Show("Please select a Year");
-            else
-                pYear = cbYear.SelectedItem.ToString();
-           
+                if (cbYear.SelectedIndex == -1)
+                    MessageBox.Show("Please select a Year");
+                else
+                    pYear = cbYear.SelectedItem.ToString(); */
 
-            txtReportDisplay.Text = "** List of Enrolments in:" + pUnitId + "Semester:"+ pSemester + "Year:" + pYear + " **" + Environment.NewLine;
+                   getEnrolments(pUnitId, pSemester, pYear);
 
-            int enrowcnt = enrols.Tables["enrolcursor"].Rows.Count;
-            for (int i = 0; i < enrowcnt; i++)
-            {
-                string stufirstname = enrols.Tables["enrolcursor"].Rows[i][0].ToString();
-                string stulastname = enrols.Tables["enrolcursor"].Rows[i][1].ToString();
+                txtReportDisplay.Text = "******* List of Enrolled Students in: " + pUnitId + " *******" + Environment.NewLine +  "******* Semester: "+ pSemester + ", Year: " + pYear + " *********" + Environment.NewLine;
 
-                //populate textbox
-                txtReportDisplay.Text += System.Environment.NewLine + stufirstname + " " + stulastname;
+                int enrowcnt = enrols.Tables["enrolcursor"].Rows.Count;
+                for (int i = 0; i < enrowcnt; i++)
+                {
+                    string stufirstname = enrols.Tables["enrolcursor"].Rows[i][0].ToString();
+                    string stulastname = enrols.Tables["enrolcursor"].Rows[i][1].ToString();
+
+                    //populate textbox
+                    txtReportDisplay.Text += System.Environment.NewLine + stufirstname + " " + stulastname;
+                }
+
             }
         }
 
+        private bool cbValidated() 
+        {
+            //Track a cummulative error message, appending when a particular condition is not met
+            string ErrorMsg = null;
 
+            //validate selections
+            if (cbUnitID.SelectedIndex == -1)
+                ErrorMsg += Environment.NewLine + "Please select a Unit ID.";
+            if (cbSemester.SelectedIndex == -1)
+               ErrorMsg += Environment.NewLine + "Please select a Semester.";
+            if (cbYear.SelectedItem == null)
+                ErrorMsg += Environment.NewLine + "Please select a Year.";
+
+
+            if (ErrorMsg != null)
+            {
+                MessageBox.Show(ErrorMsg, "Cannot Display",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         private void btnSupervisorReport_Click(object sender, EventArgs e)
         {
