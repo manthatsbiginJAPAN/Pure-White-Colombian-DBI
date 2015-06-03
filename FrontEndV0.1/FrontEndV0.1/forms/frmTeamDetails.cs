@@ -410,7 +410,7 @@ namespace FrontEndV0._1.forms
                             if (cbStuID.Items.Contains(stuid.ToString()))
                             {
                                 cbStuID.Items.Remove(stuid.ToString());
-                                MessageBox.Show(stuid.ToString() + " removed");
+                               // MessageBox.Show(stuid.ToString() + " removed");
                             }
                             break;
                         }
@@ -419,7 +419,7 @@ namespace FrontEndV0._1.forms
                             if (!cbStuID.Items.Contains(stuid.ToString()))
                             {
                                 cbStuID.Items.Add(stuid.ToString());
-                                MessageBox.Show(stuid.ToString() + " added");
+                               // MessageBox.Show(stuid.ToString() + " added");
                             }
                         }
                     }   
