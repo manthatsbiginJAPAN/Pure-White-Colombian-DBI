@@ -2006,3 +2006,21 @@ End;
 /
 =======
 >>>>>>> origin/master
+
+
+
+CREATE or REPLACE FUNCTION UC2_3_View_Team_Unit_2
+  	(pUnitID varchar2, pSemester number, pYear number)
+	RETURN SYS_REFCURSOR AS tm SYS_REFCURSOR;
+BEGIN
+	open tm for select *
+	from Team
+	where UnitID = pUnitID AND
+		Semester = pSemester AND
+		Year = pYear;
+  END IF;
+	return tm;
+EXCEPTION
+	When Others Then
+		dbms_output.put_line(SQLERRM);
+End;

@@ -24,6 +24,8 @@ namespace FrontEndV0._1.forms
         private DataSet enrols;
         private DataSet emproles;
         private DataSet projects;
+        private DataSet teams;
+        private DataSet teamallocs;
         private string User;
         private bool IsAdmin;
 
@@ -177,7 +179,54 @@ namespace FrontEndV0._1.forms
             da.Fill(projects, "projcursor", (OracleRefCursor)(cmd.Parameters["projcursor"].Value));
 
             connection.Close();
-        } 
+        }
+
+        private void getTeams()
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_3_View_Team_2", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("teamcursor", OracleDbType.RefCursor);
+            cmd.Parameters["teamcursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
+            cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
+            cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem.ToString()));
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            teams = new DataSet();
+
+            da.Fill(teams, "teamcursor", (OracleRefCursor)(cmd.Parameters["teamcursor"].Value));
+
+            connection.Close();
+        }
+
+        private void getTeamAlloc(string teamID)
+        {
+            //Oracle Command to populate the dataset
+            OracleCommand cmd = new OracleCommand("UC2_18_View_Team_Allo", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("talloccursor", OracleDbType.RefCursor);
+            cmd.Parameters["talloccursor"].Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("teamid", teamID);
+            cmd.Parameters.Add("unitid", cbUnitID.SelectedItem.ToString());
+            cmd.Parameters.Add("semester", Convert.ToInt16(cbSemester.SelectedItem.ToString()));
+            cmd.Parameters.Add("year", Convert.ToInt16(cbYear.SelectedItem.ToString()));
+
+            connection.Open();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+
+            teamallocs = new DataSet();
+
+            da.Fill(teamallocs, "talloccursor", (OracleRefCursor)(cmd.Parameters["talloccursor"].Value));
+
+            connection.Close();
+        }
 
 #endregion
 
@@ -190,16 +239,13 @@ namespace FrontEndV0._1.forms
             int rowcnt = unitoffs.Tables["unitoffcursor"].Rows.Count;
             object unitid = new object();
 
-
             for (int i = 0; i <= rowcnt - 1; i++)
             {
                 unitid = unitoffs.Tables[0].Rows[i][0].ToString();
 
-                if (!cbUnitID.Items.Contains(unitid.ToString())) 
+                if (!cbUnitID.Items.Contains(unitid.ToString()))
                     cbUnitID.Items.Add(unitid.ToString());
-
             }
-
         }
 
         private void btnConUnitReport_Click(object sender, EventArgs e)
@@ -311,11 +357,9 @@ namespace FrontEndV0._1.forms
         private void btnSupervisorReport_Click(object sender, EventArgs e)
         {
             txtReportDisplay.Clear();
-
-            getEmployeeRoles();
-
             txtReportDisplay.Text = "********* List of Supervisors *********" + Environment.NewLine;
 
+            getEmployeeRoles();
             int enrowcnt = emproles.Tables["emprolecursor"].Rows.Count;
             for (int i = 0; i < enrowcnt; i++)
             {
@@ -414,6 +458,40 @@ namespace FrontEndV0._1.forms
         }
 
 #endregion
+
+        private void btnTeamDetails_Click(object sender, EventArgs e)
+        {
+            if (cbValidated())
+            {
+                txtReportDisplay.Clear();
+                txtReportDisplay.Text = "********* List of Teams and Members *********" + Environment.NewLine;
+                txtReportDisplay.Text += "     for " + cbUnitID.SelectedItem.ToString() + ", Semester "
+                    + cbSemester.SelectedItem.ToString() + ", " + cbYear.SelectedItem.ToString() + Environment.NewLine + Environment.NewLine;
+                
+                getTeams();
+                int rowcount = teams.Tables[0].Rows.Count;
+                object team = new object();
+                object firstname = new object();
+                object surname = new object();
+                string tab = "     ";
+
+                for (int i = 0; i < rowcount; i++)
+                {
+                    team = teams.Tables[0].Rows[i][0];
+                    txtReportDisplay.Text += tab + team.ToString() + Environment.NewLine;
+
+                    getTeamAlloc(team.ToString());
+                    int rowcnt = teamallocs.Tables[0].Rows.Count;
+                    for (int j = 0; j < rowcnt; j++)
+                    {
+                        firstname = teamallocs.Tables[0].Rows[j][1];
+                        surname = teamallocs.Tables[0].Rows[j][2];
+                        txtReportDisplay.Text += tab + tab + "-" + firstname.ToString() + " " + surname.ToString() + Environment.NewLine;
+                    }
+                }
+                txtReportDisplay.Text += Environment.NewLine + "********* End of List *********";
+            }
+        }
 
        
 
