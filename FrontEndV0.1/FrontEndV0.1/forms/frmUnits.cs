@@ -42,6 +42,7 @@ namespace FrontEndV0._1.forms
                 btnDelete.Enabled = false;
                 gbDetails.Enabled = false;
                 gbIdentifyingInformation.Enabled = false;
+                btnCSV.Enabled = false;
             }
         }
 
